@@ -1,0 +1,173 @@
+a, a:hover , a:focus{ 
+    text-decoration: none;
+    color: white;
+  }
+  .sub_nav > .sub_nav-links > a > button {
+    font-weight: bold;
+    display: inline-block;
+    padding: 8px 24px;
+    text-decoration: none;
+    font-family: Archivo;
+    font-size: 14px;   
+  }
+  
+  .ant-btn-primary,.ant-btn-primary:hover,.ant-btn-primary:focus{
+    border:none;
+    padding: 8px 10px;
+    /* border-image-slice: 1;
+    border-image-source: linear-gradient(to right top, #074085, #0e57a3, #116fc1, #0e89e0, #00a3ff); */
+    background: transparent; 
+    background-image: linear-gradient(to right top, #074085, #0e57a3, #116fc1, #0e89e0, #00a3ff);
+    border-radius: 3px;
+  }
+
+  .ant-btn-ghost,.ant-btn-ghost:hover,.ant-btn-ghost:focus{
+    border:2px solid #0e57a3;
+    padding: 8px 10px;
+    /* border-image-slice: 1;
+    border-image-source: linear-gradient(to right top, #074085, #0e57a3, #116fc1, #0e89e0, #00a3ff); */
+    background: transparent; 
+    vertical-align: middle;
+  }
+  .ant-btn > span {
+    color: white;
+  }
+  .wallet-adapter-icon{
+    display: inline-block;
+  }
+  .sub_nav {
+    margin-top: 65px;
+    width: 100%;  
+    position: fixed;
+    padding: 1px 0 1px 20px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56.83%, rgba(117, 233, 71, 0.2) 103.83%), #1A232B;
+    z-index: 100;
+  }
+
+  @media (max-width: 1024px) {
+    .sub_nav {
+      padding: 1px 20px;
+    }
+  }
+  
+  .sub_nav > .sub_nav-header {
+    display: inline;
+  }
+  
+  .sub_nav > .sub_nav-header > .sub_nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #fff;
+    /* padding: 10px 10px 10px 10px; */
+  }
+  
+  .sub_nav > .sub_nav-btn {
+    display: none;
+  }
+  
+  .sub_nav > .sub_nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+  }
+  
+  .sub_nav > .sub_nav-links > img {
+    display: inline-block;
+    padding: 10px 13px;
+ 
+  }
+  .sub_nav > .sub_nav-links > button {
+    font-weight: bold;
+    display: inline-block;
+    padding: 8px 24px;
+    text-decoration: none;
+    font-family: Archivo;
+    font-size: 14px;   
+  }
+  
+  .sub_nav > .sub_nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .sub_nav > #sub_nav-check {
+    display: none;
+  }
+  @media (max-width:960px) {
+    .sub_nav > .sub_nav-links > img {
+      padding: 10px 13px;
+   
+    }
+    .sub_nav > .sub_nav-links > button {
+      padding: 8px 18px;
+    }
+  }
+  
+  @media (max-width:768px) {
+    .sub_nav > .sub_nav-btn {
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+    .sub_nav > .sub_nav-btn > label {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      padding: 13px;
+    }
+    .sub_nav > .sub_nav-btn > label:hover,.sub_nav  #sub_nav-check:checked ~ .sub_nav-btn > label {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .sub_nav > .sub_nav-btn > label > span {
+      display: block;
+      width: 25px;
+      height: 10px;
+      border-top: 2px solid #eee;
+    }
+    .sub_nav > .sub_nav-links {
+      position: absolute;
+      display: block;
+      width: 100%;
+      background-color:black;
+      z-index: 100;
+      height: 0px;
+      transition: all 0.3s ease-in;
+      overflow-y: hidden;
+      top: 50px;
+      left: 0px;
+    }
+    .sub_nav > .sub_nav-links > button {
+      display: block;
+      width: 50%;
+      margin: 0 auto;
+      margin-top: 5px;
+    }
+
+    .sub_nav > .sub_nav-links > a > button {
+      display: block;
+      width: 50%;
+      margin: 0 auto;
+    }
+    .sub_nav > .sub_nav-links > img {
+      display: block;
+      margin: 0 auto;
+      
+    }
+    .sub_nav > #sub_nav-check:not(:checked) ~ .sub_nav-links {
+      height: 0px;
+    }
+    .sub_nav > #sub_nav-check:checked ~ .sub_nav-links {
+      height: calc(100vh - 50px);
+      overflow-y: auto;
+    }
+  }
+
+   
+
+
+  .connect-btn{
+    border:2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right top, #074085, #0e57a3, #116fc1, #0e89e0, #00a3ff);
+    padding: 8px 10px;
+   }

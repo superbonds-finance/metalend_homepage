@@ -1,0 +1,237 @@
+.main-bg{
+    background-size:"600px 600px";
+    top:"50%"
+}
+
+@media (max-width:400px) {
+    .main-bg{
+        background-size: 99% 65%;
+        top:"50%"
+    }
+    
+}
+.hero-section{
+    margin-top: 8rem;
+}
+.yielder-below{
+     
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 65.36%, rgba(34, 151, 241, 0.2) 102.89%), #1A232B;
+    clip-path: polygon(
+        0 0, 186% 0, 0 186%
+  )
+
+}
+
+    .yielder-below-Q1{
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56.83%, rgba(117, 233, 71, 0.2) 103.83%), #1A232B;
+        clip-path: polygon(
+            0 0, 186% 0, 0 186%
+    )
+    }
+
+.sticky-header {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
+    z-index: 1; 
+    background: rgba(26, 35, 43, var(--tw-bg-opacity)); 
+}
+
+.th-width-auto-calc {
+    /* min-width: calc(16.67vw - 52px); */
+    min-width: 15.27vw;
+}
+.trade_sb_token_wrapper{
+    right: 10%;
+    top: 27%;
+}
+.trade_sb_token_wrapper_1{
+    padding: 5px 0 15px 40px;
+    background-color: #161D23;
+}
+
+.trade_sb_token_wrapper_2{
+    padding: 20px 0 15px 40px;
+    background-color: #1A232B;
+}
+
+.offer_wrapper{
+    left:10%;
+    top: 38%;
+  
+}
+.offer_wrapper_1{
+    padding:14px 3px 20px 3px ;
+    background-color: #161D23;
+   
+}
+
+.offer_wrapper_2{
+    padding:14px 3px 20px 3px ;
+    background-color: #1A232B;
+}
+
+@media (max-width:1300px) {
+    .trade_sb_token_wrapper{
+        right: 5%;
+    }
+    .offer_wrapper{
+        
+    }
+}
+
+@media (max-width:1100px) {
+    .trade_sb_token_wrapper{
+        right: 10px;
+    }
+    .offer_wrapper{
+        
+    }
+    .hero-section{
+        margin-top: 8rem;
+    }
+}
+ 
+
+@media (max-width:768px) {
+    .trade_sb_token_wrapper{
+        display: none;
+    }
+    .offer_wrapper{
+        display: none;
+    }
+}
+
+.home-line-left,.home-line-right{
+    object-fit: cover;
+    width: 100%;
+    height: 60px;
+}
+
+.home-line-left{
+    object-position: 100% 0;
+}
+
+.home-line-right{
+    object-position: 0 100%;
+}
+
+
+.home_widget{
+    background: radial-gradient(125.74% 125.74% at 50% 53.68%, rgba(0, 0, 0, 0.69) 28.73%, rgba(0, 163, 255, 0.69) 100%);
+    border: 2px solid #0F4873;
+    box-sizing: border-box;
+    backdrop-filter: blur(4px);
+    /* Note: backdrop-filter has minimal browser support */
+    padding: 13px 0;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.wallet-adapter-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    margin-left: -4px;
+}
+
+.wallet-adapter-modal-menu {
+    border-right: 0px;
+}
+
+.wallet-adapter-modal-menu > .ant-menu-submenu {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.wallet-adapter-modal-menu .ant-menu-submenu-arrow {
+    right: 18px;
+}
+
+.wallet-adapter-modal-menu .ant-menu-submenu-title {
+    margin: 0;
+}
+
+.wallet-adapter-modal-menu .ant-menu-submenu-title:hover,
+.wallet-adapter-modal-menu .ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
+    color: white;
+}
+
+.wallet-adapter-modal-menu .ant-menu-submenu-title > .ant-menu-title-content {
+    padding-left: 25px;
+}
+
+.wallet-adapter-modal-menu .wallet-adapter-modal-menu-item {
+    margin: 0px;
+    padding: 0px;
+    height: 55px;
+    line-height: 44px;
+    box-shadow: inset 0 -1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.wallet-adapter-modal-menu .wallet-adapter-modal-menu-item:not(:last-child) {
+    margin-bottom: 0px;
+}
+
+.wallet-adapter-modal-menu-button {
+    border: 1px solid #9cf61c;
+    height: 44px;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+.wallet-adapter-modal-menu-button :last-child {
+    border: transparent;
+}
+
+.ant-btn-text:hover, .ant-btn-text:focus{
+    border: 1px solid #9cf61c;
+}
+.ant-btn-text:hover > span, .ant-btn-text:focus> span{
+    color: #9cf61c
+}
+.ant-menu-sub.ant-menu-inline{
+    background: rgb(20 20 20);
+}
+
+.ant-menu-sub.ant-menu-inline > .ant-menu-item {
+    height: 53px;
+}
+
+.ant-modal-header {
+    padding: 12px 24px;
+}
+
+.wallet-adapter-modal-menu-button-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+}
+
+.wallet-adapter-multi-button-menu {
+    padding: 0px;
+    margin-top: -44px;
+}
+
+.wallet-adapter-multi-button-menu-item {
+    padding: 0px;
+}
+
+.wallet-adapter-multi-button-menu-button {
+    text-align: left;
+}
+
+.wallet-adapter-multi-button-icon {
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+.wallet-adapter-multi-button-item {
+    padding: 0px;
+    padding-left: 12px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}

@@ -1,0 +1,13 @@
+.exchange_icon {
+  color: rgb(124, 250, 77);
+  margin: 111px 0px 0 -43px;
+  position: absolute;
+  font-size: 1.8rem;
+  background: #1a232b;
+}
+
+@media (max-width:768px) {
+  .exchange_icon {
+    display: none;
+  }
+}
