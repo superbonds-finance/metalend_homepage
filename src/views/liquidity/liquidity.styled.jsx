@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import font from "../../assets/Archivo-Bold.ttf"
 
-export const HeaderText=styled.span`
+export const HeaderText = styled.span`
     font-family: Archivo;
     font-style: normal;
     font-weight: 600;
@@ -11,7 +11,7 @@ export const HeaderText=styled.span`
     text-transform: uppercase;
     color: #FFFFFF;
 `
-export const Text=styled.span`
+export const Text = styled.span`
 font-family: Archivo;
 font-style: normal;
 font-weight: 500;
@@ -26,7 +26,7 @@ opacity: ${(props) => (props.opacity ? props.opacity : '')};
     font-size: 12px;
 } */
 `
-export const HeroText=styled.span`
+export const HeroText = styled.span`
 @font-face {
   font-family: 'Archivo';
   src: url(${font}) format('truetype');
@@ -34,11 +34,11 @@ export const HeroText=styled.span`
 }
 font-family: 'Archivo';
   font-style: normal;
-  font-weight: ${(props) => (props.weight ?  'bold' : '')};
+  font-weight: ${(props) => (props.weight ? 'bold' : '')};
   font-size: ${(props) => (props.size ? props.size : '14px')};
   line-height: 22px;
   text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
-  letter-spacing:${(props) => (props.spacing ?props.spacing : '0.5px')};;
+  letter-spacing:${(props) => (props.spacing ? props.spacing : '0.5px')};;
   color: ${(props) => (props.color ? props.color : '#FFFFFF')};
   opacity: ${(props) => (props.opacity ? props.opacity : '')};
   background: transparent;
@@ -46,13 +46,42 @@ font-family: 'Archivo';
   
 `
 
-export const ButtonText=styled.span`
+export const ButtonText = styled.span`
 font-family: Archivo;
 font-style: normal;
-font-weight: ${(props) => (props.weight ?  'bold' : '')};
+font-weight: ${(props) => (props.weight ? 'bold' : '')};
 font-size: ${(props) => (props.size ? props.size : '14px')};
 line-height: 22px;
 text-transform: ${(props) => (props.transform ? "uppercase" : 'non')};
 opacity: ${(props) => (props.opacity ? props.opacity : '')};
 hover:color
+`
+
+export const HoverToolTip = styled.div`
+  
+  background: none;
+  border: 0;
+  box-sizing: border-box;    
+  font-size: inherit;
+  font-weight: 700;
+  position: relative;
+  vertical-align: middle;
+
+  transition: color 0.25s;
+  
+  &:hover {
+    ${({ noColor }) => noColor ? '' : `${Text}{
+      color : #7cfa4c;
+      opacity: 1;
+      transition: opacity 0.3s ease,color 0.3s ease;
+    }`}
+    
+  }
+
+  ${({ noColor }) => noColor ? `${Text}:first-child{
+      svg{
+        min-width:14px;
+        width:14px;
+      }
+    }`: ''}
 `
