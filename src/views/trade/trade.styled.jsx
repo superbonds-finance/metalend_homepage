@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import font from "../../assets/Archivo-Bold.ttf"
 
-export const HeaderText=styled.span`
+export const HeaderText = styled.span`
   font-family: Archivo !important;
   font-style: normal;
   font-weight: 600;
@@ -11,7 +11,7 @@ export const HeaderText=styled.span`
   text-transform: uppercase;
   color: #FFFFFF;
 `
-export const Text=styled.span`
+export const Text = styled.span`
 @font-face {
   font-family: 'Archivo';
   src: url(${font}) format('truetype');
@@ -19,11 +19,11 @@ export const Text=styled.span`
 }
 font-family: 'Archivo';
   font-style: normal;
-  font-weight: ${(props) => (props.weight ?  'bold' : '')};
+  font-weight: ${(props) => (props.weight ? 'bold' : '')};
   font-size: ${(props) => (props.size ? props.size : '14px')};
   line-height: 22px;
   text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
-  letter-spacing:${(props) => (props.spacing ?props.spacing : '0.5px')};;
+  letter-spacing:${(props) => (props.spacing ? props.spacing : '0.5px')};;
   color: ${(props) => (props.color ? props.color : '#FFFFFF')};
   opacity: ${(props) => (props.opacity ? props.opacity : '')};
   background: transparent;
@@ -54,11 +54,7 @@ export const HoverToolTip = styled.div`
     .tooltip-hover{
       opacity: 1;
     }
-    ${({onlyFirst})=>onlyFirst? `${Text}:first-child{
-      color : #7cfa4c;
-      opacity: 1;
-      transition: opacity 0.3s ease,color 0.3s ease;
-    }`:`${Text}:first-child{
+    ${({ noColor }) => noColor ? '': `${Text}:first-child{
       color : #7cfa4c;
       opacity: 1;
       transition: opacity 0.3s ease,color 0.3s ease;
@@ -66,12 +62,12 @@ export const HoverToolTip = styled.div`
     
   }
 
-  ${({onlyFirst})=>onlyFirst? `${Text}:first-child{
+  ${({ noColor }) => noColor ? `${Text}:first-child{
       svg{
         min-width:14px;
         width:14px;
       }
-    }`:''}
+    }`: ''}
   .tooltip-hover {
     opacity: 0;
     user-select: none;

@@ -1132,7 +1132,7 @@ export function TradeView() {
 
                             <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status30 ==='ACTIVE')? '#263B31':'#161D23'}}>
                                 <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
-                                    <HoverToolTip onlyFirst className="flex flex-col justify-start">
+                                    <HoverToolTip noColor className="flex flex-col justify-start">
 
                                         <Text className='text-grid' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >Total Bonds Available
                                           <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
@@ -1143,7 +1143,7 @@ export function TradeView() {
                                     </HoverToolTip>
                                     <div className="lg:hidden md:block sm:hidden" style={{paddingLeft:'6px' , borderLeft: '3px solid '+ ((superBonds_status30 ==='ACTIVE' )? '#1A232B':'#5C7188')/* ,height: '-1px' */}}></div>
                                     <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status30 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
-                                    <HoverToolTip onlyFirst className="text-grid flex flex-col">
+                                    <HoverToolTip noColor className="text-grid flex flex-col">
                                  
                                         <Text size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >SuperBonds Pool
                                           <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
