@@ -1109,6 +1109,7 @@ export const StakingManagementView = () => {
             <p>decrease_rate: <br/><span><strong>{!PlatformData.decrease_rate ? null :parseFloat(PlatformData.decrease_rate.toString())/100}</strong>% per 90 days</span></p>
             <p>lp_token_holders_ratio: <br/><span><strong>{!PlatformData.lp_token_holders_ratio ? null :parseFloat(PlatformData.lp_token_holders_ratio.toString())/100}</strong>%</span></p>
             <p>bond_traders_ratio: <br/><span><strong>{!PlatformData.bond_traders_ratio ? null :parseFloat(PlatformData.bond_traders_ratio.toString())/100}</strong>%</span></p>
+            <p>risk_factor_x: <br/><span><strong>{!PlatformData.risk_factor_x ? null :parseFloat(PlatformData.risk_factor_x.toString())/100}</strong></span></p>
 
             <p>superb_staking_reward_ratio: <br/><span><strong>{!PlatformData.superb_staking_reward_ratio ? null :parseFloat(PlatformData.superb_staking_reward_ratio.toString())/100}</strong>%</span></p>
 
