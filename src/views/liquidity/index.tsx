@@ -27,7 +27,7 @@ import {
   numberFormatter, delay,
   formatInputNumber, unformatInputNumber,formatNumberWithoutRounding,
   numOnly, noSpecial } from "../../utils/utils";
-import { ButtonText, Text ,HeroText} from "./liquidity.styled"
+import { ButtonText, Text ,HeroText, HoverToolTip} from "./liquidity.styled"
 import {
   Account,
   // Connection,
@@ -43,6 +43,8 @@ import { AccountLayout, Token, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import '../../styles/trade.css'
 import { StakeViewComponent } from "../stake/stake-component";
 import { HeaderCard } from "../../components/HeaderCard";
+import { Tooltip } from "antd";
+import { ImInfo } from "react-icons/im";
 
 
 export function LiquidityView() {
@@ -609,15 +611,19 @@ export function LiquidityView() {
                 <Text className='cursor-pointer' onClick={()=>setLQ_Amount30(formatInputNumber(String(LP30balance)))}>{numberFormatter.format(LP30balance)}</Text>
               </div>
 
-              <div className='grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"}>Add Liquidity Price:</Text>
+              <HoverToolTip className='text-grid grid grid-cols-3'>
+                <Text weight='true' className="col-span-2" opacity={"0.75"}>Add Liquidity Price:
+                  <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+                </Text>
                 <Text>{1.000000} </Text>
-              </div>
+              </HoverToolTip>
 
-              <div className='grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"}>Remove Liquidity Price:</Text>
+              <HoverToolTip className='text-grid grid grid-cols-3'>
+                <Text weight='true' className="col-span-2" opacity={"0.75"}>Remove Liquidity Price:
+                  <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+                </Text>
                 <Text>{data30pool ? (data30pool.lp_price / 1000000).toFixed(6) : "..."} </Text>
-              </div>
+              </HoverToolTip>
 
             </div>
             <div className="text-center bg-gray-200 py-3 px-3 border rounded-md mt-3">
@@ -671,15 +677,19 @@ export function LiquidityView() {
                 <Text className='cursor-pointer' onClick={()=>setLQ_Amount90(formatInputNumber(String(LP90balance)))}>{numberFormatter.format(LP90balance)}</Text>
               </div>
 
-              <div className='grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"}>Add Liquidity Price:</Text>
+              <HoverToolTip className='text-grid grid grid-cols-3'>
+                <Text weight='true' className="col-span-2" opacity={"0.75"}>Add Liquidity Price:
+                  <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+                </Text>
                 <Text>{1.000000} </Text>
-              </div>
+              </HoverToolTip>
 
-              <div className='grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"}>Remove Liquidity Price:</Text>
+              <HoverToolTip className='text-grid grid grid-cols-3'>
+                <Text weight='true' className="col-span-2" opacity={"0.75"}>Remove Liquidity Price:
+                  <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+                </Text>
                 <Text>{data90pool ? (data90pool.lp_price / 1000000).toFixed(6) : "..."} </Text>
-              </div>
+              </HoverToolTip>
 
             </div>
             <div className="text-center bg-gray-200 py-3 px-3 border rounded-md mt-3">

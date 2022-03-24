@@ -29,7 +29,7 @@ import {PLATFORM_DATA_LAYOUT,PlatformDataLayout} from "../../utils/platform_data
 // import {STAKING_DATA_LAYOUT,StakingDataLayout} from "../../utils/staking_data_layout";
 import {TRADER_LAYOUT/* ,TraderLayout */} from "../../utils/trader_layout";
 import {FARMING_REWARD_LAYOUT} from "../../utils/farming_reward_layout";
-import {ButtonText,Text} from "./stake.styled";
+import {ButtonText,Text,HoverToolTip} from "./stake.styled";
 import BN from "bn.js";
 import axios from 'axios';
 import {AxiosResponse} from 'axios';
@@ -61,6 +61,8 @@ import {
 import Swal from 'sweetalert2';
 // import classes from './stake.module.css';
 import { GlobalStyle } from "../redeem/redeem.styled";
+import { Tooltip } from "antd";
+import { ImInfo } from "react-icons/im";
 
 let sunny_reward_accounts:any = [];
 let saber_reward_accounts:any = [];
@@ -821,10 +823,12 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
                 {/* <Text className='select-none' size={"12px"} color={"#7c7c7c"}>Fees: $5.00</Text> */}
               </div>
           </div>
-          <div className="flex flex-col text-center bg-gray-900 rounded-md  mt-5 my-3 py-3 my-1" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
-            <Text className='select-none w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>APY</Text>
+          <HoverToolTip className="text-grid flex flex-col text-center bg-gray-900 rounded-md  mt-5 my-3 py-3 my-1" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
+            <Text className='select-none w-9/12 mx-auto px-2' size='13.5px' weight='600' color='white'>APY
+              <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+            </Text>
             <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY30LP)>0?formatNumberWithoutRounding.format(APY30LP):"0.00"}%</strong></span></Text>
-          </div>
+          </HoverToolTip>
         </div>
 
         <div className="text-center bg-gray-200 pt-3 pb-2 px-3 border rounded-md ">
@@ -879,10 +883,12 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
                 {/* <Text className='select-none' size={"12px"} color={"#7c7c7c"}>Fees: $5.00</Text> */}
               </div>
           </div>
-          <div className="flex flex-col text-center bg-gray-900 rounded-md py-3 mt-5 my-3" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
-            <Text className='select-none w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>APY</Text>
+          <HoverToolTip className="text-grid flex flex-col text-center bg-gray-900 rounded-md py-3 mt-5 my-3" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
+            <Text className='select-none w-9/12 mx-auto px-2' size='13.5px' weight='600' color='white'>APY
+              <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+            </Text>
             <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY90LP)>0?formatNumberWithoutRounding.format(APY90LP):"0.00"}%</strong></span></Text>
-          </div>
+          </HoverToolTip>
         </div>
 
           <div className="text-center bg-gray-200 pt-3 pb-2 px-3 border rounded-md">
