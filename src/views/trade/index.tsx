@@ -45,7 +45,7 @@ import {  AccountLayout,
           MintLayout
  } from "@solana/spl-token";
 import Swal from 'sweetalert2'
-import {HeaderText,Text} from "./trade.styled"
+import {HoverToolTip,Text} from "./trade.styled"
 import { HeaderCard } from "../../components/HeaderCard";
 import '../../styles/trade.css';
 import { GlobalStyle } from "../redeem/redeem.styled";
@@ -1132,7 +1132,7 @@ export function TradeView() {
 
                             <div className="w-full p-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3" style={{height:"max-content" ,"background": (superBonds_status30 ==='ACTIVE')? '#263B31':'#161D23'}}>
                                 <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
-                                    <div className="flex flex-col justify-start">
+                                    <HoverToolTip onlyFirst className="flex flex-col justify-start">
 
                                         <Text className='text-grid' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >Total Bonds Available
                                           <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
@@ -1140,10 +1140,10 @@ export function TradeView() {
                                         </Text>
                                         <Text size={"19px"} color={(superBonds_status30 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"#5C7188"}><span ><strong>{bond_yield30 ?formatNumberWithoutRounding.format((adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1))/0.35):"0.00"}</strong></span></Text>
                                         <Text size={"9px"} opacity={"0.75"} spacing={'0px'} weight='bold'>USDC</Text>
-                                    </div>
+                                    </HoverToolTip>
                                     <div className="lg:hidden md:block sm:hidden" style={{paddingLeft:'6px' , borderLeft: '3px solid '+ ((superBonds_status30 ==='ACTIVE' )? '#1A232B':'#5C7188')/* ,height: '-1px' */}}></div>
                                     <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status30 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
-                                    <div className="text-grid flex flex-col">
+                                    <HoverToolTip onlyFirst className="text-grid flex flex-col">
                                  
                                         <Text size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >SuperBonds Pool
                                           <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
@@ -1151,50 +1151,50 @@ export function TradeView() {
                                         </Text>
                                         <Text size={"19px"} color={(superBonds_status30 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"#5C7188"}><span ><strong>{(SuperBonds_Rewards_Pool_30_Balance).toFixed(2)}</strong></span></Text>
                                         <Text size={"9px"} opacity={"0.75"} spacing={'0px'} weight='bold'>USDC</Text>
-                                    </div>
+                                    </HoverToolTip>
                                 </div>
                             </div>
                           </div>
                             <div className="bg-gray-200 py-1 px-1 sm:p-1 mt-5 rounded-md">
                                 <div className="w-full p-4 rounded-md bg-gray-400" >
-                                  <div className='text-grid grid grid-cols-3 cursor-pointer'>
+                                  <HoverToolTip className='text-grid grid grid-cols-3 cursor-pointer'>
                                     <Text weight='true' className="col-span-2 inline " opacity={"0.75"}>Fixed Yield
                                       <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo  className='info-circle ml-0.5'  /></Tooltip> 
                                     </Text>
                                     <Text className="" size={"19px"} color={"#7CFA4C"}><span style={{color: bond_yield30>=0 ? "#7CFA4C" : "red"}}><strong>{superbondsStatus30 ? Math.floor(bond_yield30*superbondsRate30*100)/100 : bond_yield30}%</strong></span></Text>
-                                  </div>
+                                  </HoverToolTip>
 
-                                  <div className='text-grid grid grid-cols-3 cursor-pointer'>
+                                  <HoverToolTip className='text-grid grid grid-cols-3 cursor-pointer'>
                                     <Text weight='true' className="col-span-2" opacity={"0.75"}>Days to Maturity
                                     <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                     </Text>
                                     
                                     <Text className='' size={"19px"}color={'white'}>30</Text>
-                                  </div>
+                                  </HoverToolTip>
                                 </div>
                                 <div className="w-full p-4 rounded-md">
-                                  <div className='text-grid cursor-pointer grid grid-cols-3'>
+                                  <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"} >Max Trade
                                         <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
                                       <span><Text size='15px'>{bond_yield30 ?formatNumberWithoutRounding.format(adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1)):"0.00"}</Text><Text className='ml-1' size='12px'>USDC</Text></span>
-                                    </div>
+                                    </HoverToolTip>
 
-                                    <div className='text-grid cursor-pointer grid grid-cols-3'>
+                                    <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Entrance
                                       <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
                                       <Text className='' size={"19px"}color={'white'}><Text size='15px'>{formatNumberWithoutRounding.format(bondValue_30)}</Text><Text className='ml-1' size='12px'>USDC</Text></Text>
-                                    </div>
+                                    </HoverToolTip>
 
-                                    <div className='text-grid cursor-pointer grid grid-cols-3'>
+                                    <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Maturity
                                         <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
                                         <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                       </Text>
                                       <Text className='' size={"19px"}color={'white'}><Text size='15px'><Text className='' size={"19px"}color={'white'}><Text size='15px'>{formatNumberWithoutRounding.format(bondValueMaturity_30)}</Text><Text className='ml-1' size='12px'>USDC</Text></Text></Text></Text>
-                                    </div>
+                                    </HoverToolTip>
                                 </div>
 
                             </div>
@@ -1317,45 +1317,45 @@ export function TradeView() {
 
                             <div className="bg-gray-200 py-1 p-1  sm:p-1 mt-5 rounded-md">
                                 <div className="w-full p-4 rounded-md bg-gray-400" >
-                                <div className='text-grid cursor-pointer grid grid-cols-3'>
+                                <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                     <Text weight='true' className="col-span-2" opacity={"0.75"} >Fixed Yield
                                       <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                     </Text>
                                     <Text weight='true' size={"19px"} color={"#7CFA4C"}><span style={{color: bond_yield90>=0 ? "#7CFA4C" : "red"}}><strong>{superbondsStatus90 ? Math.floor(bond_yield90*superbondsRate90*100)/100 : bond_yield90}%</strong></span></Text>
-                                  </div>
+                                  </HoverToolTip>
 
-                                  <div className='text-grid cursor-pointer grid grid-cols-3'>
+                                  <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                     <Text weight='true' className="col-span-2" opacity={"0.75"}>Days to Maturity
                                       <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
                                     <Text weight='true' className='' size={"19px"}color={'white'}>90</Text>
-                                  </div>
+                                  </HoverToolTip>
                                 </div>
                                 <div className="w-full p-4 rounded-md">
-                                  <div className='text-grid cursor-pointer grid grid-cols-3'>
+                                  <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                     <Text weight='true' className="col-span-2" opacity={"50%"} >Max Trade
                                       <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                     </Text>
                                     <span><Text size='15px'>{bond_yield90 ? formatNumberWithoutRounding.format(adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1)):"0.00"}</Text><Text className='ml-1' size='12px'>USDC</Text></span>
-                                  </div>
+                                  </HoverToolTip>
 
-                                    <div className='text-grid cursor-pointer grid grid-cols-3'>
+                                    <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Entrance
                                         <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
                                         <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                       </Text>
                                       <Text className='' size={"19px"}color={'white'}><Text size='15px'>{formatNumberWithoutRounding.format(bondValue_90)}</Text><Text className='ml-1' size='12px'>USDC</Text></Text>
-                                    </div>
+                                    </HoverToolTip>
 
-                                    <div className='text-grid cursor-pointer grid grid-cols-3'>
+                                    <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Maturity
                                         <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
                                         <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                       </Text>
                                       <Text className='' size={"19px"}color={'white'}><Text size='15px'><Text className='' size={"19px"}color={'white'}><Text size='15px'>{formatNumberWithoutRounding.format(bondValueMaturity_90)}</Text><Text className='ml-1' size='12px'>USDC</Text></Text></Text></Text>
-                                    </div>
+                                    </HoverToolTip>
 
                                 </div>
 

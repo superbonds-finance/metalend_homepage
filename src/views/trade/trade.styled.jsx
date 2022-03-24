@@ -37,3 +37,45 @@ export const CenterP = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;`
+
+export const HoverToolTip = styled.div`
+  
+  background: none;
+  border: 0;
+  box-sizing: border-box;    
+  font-size: inherit;
+  font-weight: 700;
+  position: relative;
+  vertical-align: middle;
+
+  transition: color 0.25s;
+  
+  &:hover {
+    .tooltip-hover{
+      opacity: 1;
+    }
+    ${({onlyFirst})=>onlyFirst? `${Text}:first-child{
+      color : #7cfa4c;
+      opacity: 1;
+      transition: opacity 0.3s ease,color 0.3s ease;
+    }`:`${Text}:first-child{
+      color : #7cfa4c;
+      opacity: 1;
+      transition: opacity 0.3s ease,color 0.3s ease;
+    }`}
+    
+  }
+  .tooltip-hover {
+    opacity: 0;
+    user-select: none;
+    transition: opacity 0.3s ease,color 0.3s ease;
+    cursor: pointer;
+    padding-left: 3px;
+    &::after {
+      display: inline-block;
+      content: "ⓘ";
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+`
