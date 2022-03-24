@@ -54,7 +54,7 @@ export const HoverToolTip = styled.div`
     .tooltip-hover{
       opacity: 1;
     }
-    ${({ noColor }) => noColor ? '': `${Text}:first-child{
+    ${({ noColor }) => noColor ? '': `${Text}{
       color : #7cfa4c;
       opacity: 1;
       transition: opacity 0.3s ease,color 0.3s ease;
@@ -68,7 +68,7 @@ export const HoverToolTip = styled.div`
         width:14px;
       }
     }`: ''}
-  .tooltip-hover {
+  /* .tooltip-hover {
     opacity: 0;
     user-select: none;
     transition: opacity 0.3s ease,color 0.3s ease;
@@ -80,5 +80,5 @@ export const HoverToolTip = styled.div`
       font-size: 12px;
       font-weight: bold;
     }
-  }
+  } */
 `

@@ -1114,7 +1114,7 @@ export function TradeView() {
                               <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url(${PoligonActive})`}}>
                                 <Text className='text-grid w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                 <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
-                                  <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
+                                  <ImInfo  className='info-circle-show ml-0.5'  /></Tooltip></Text>
                                 <Text className="" size={"14px"} color={"#9CF61C"}><span style={{color:"#9CF61C"}}><strong>{(APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):"0.00"}%</strong></span></Text>
                               </div>
                               {/* {superBonds_status30 === 'ACTIVE' &&
@@ -1279,7 +1279,9 @@ export function TradeView() {
 
                               <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2" style={{marginLeft: '-35px'}}>
                                 <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url(${PoligonActive})`}}>
-                                  <Text className='w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY</Text>
+                                  <Text className='w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
+                                  <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
+                                  <ImInfo  className='info-circle-show ml-0.5'  /></Tooltip></Text>
                                   <Text className="" size={"14px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00'}%</strong></span></Text>
                                 </div>
                                 {/* {superBonds_status90 === 'ACTIVE' &&
@@ -1297,18 +1299,24 @@ export function TradeView() {
 
                               <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status90 ==='ACTIVE')? '#263B31':'#161D23'}}>
                                   <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
-                                      <div className="flex flex-col">
-                                          <Text size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >Total Bonds Available</Text>
+                                      <HoverToolTip noColor className="flex flex-col justify-start">
+                                          <Text className='text-grid' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >Total Bonds Available
+                                            <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
+                                            <ImInfo  className='info-circle '  /></Tooltip>
+                                          </Text>
                                           <Text size={"19px"} color={(superBonds_status90 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"#5C7188"}><span ><strong>{bond_yield90 ? formatNumberWithoutRounding.format((adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1))/0.35):"0.00"}</strong></span></Text>
                                           <Text size={"9px"} opacity={"0.75"} spacing={'0px'} weight='bold'>USDC</Text>
-                                      </div>
+                                      </HoverToolTip>
                                       <div className="lg:hidden md:block sm:hidden" style={{paddingLeft:'6px', borderLeft: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188')/* ,height: '-1px' */}}></div>
                                       <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
-                                      <div className="flex flex-col">
-                                          <Text size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >SuperBonds Pool</Text>
+                                      <HoverToolTip noColor className="text-grid flex flex-col">
+                                          <Text size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >SuperBonds Pool
+                                            <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
+                                            <ImInfo  className='info-circle '  /></Tooltip>
+                                          </Text>
                                           <Text size={"19px"} color={(superBonds_status90 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"#5C7188"}><span ><strong>{(SuperBonds_Rewards_Pool_90_Balance).toFixed(2)}</strong></span></Text>
                                           <Text size={"9px"} opacity={"0.75"} spacing={'0px'} weight='bold'>USDC</Text>
-                                      </div>
+                                      </HoverToolTip>
                                   </div>
                               </div>
                             </div>
