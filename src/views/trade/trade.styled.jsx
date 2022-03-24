@@ -65,6 +65,13 @@ export const HoverToolTip = styled.div`
     }`}
     
   }
+
+  ${({onlyFirst})=>onlyFirst? `${Text}:first-child{
+      svg{
+        min-width:14px;
+        width:14px;
+      }
+    }`:''}
   .tooltip-hover {
     opacity: 0;
     user-select: none;

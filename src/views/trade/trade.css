@@ -5,5 +5,13 @@
  
 .text-grid:hover  .info-circle{
     display: inline;
+    opacity: 1;
    }
- .info-circle{display: none;}
+ .info-circle{
+    opacity: 0; 
+    display: inline;}
+
+ .hex_adjacent {
+    margin-left: -28px;
+    width: calc(100% + 28px);
+ }
