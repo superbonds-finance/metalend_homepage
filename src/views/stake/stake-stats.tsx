@@ -27,7 +27,7 @@ import {FARMING_REWARD_REQUEST_LAYOUT} from "../../utils/farming_reward_request_
 import axios from 'axios';
 import {AxiosResponse} from 'axios';
 
-import {ButtonText,Text} from "./stake.styled";
+import {ButtonText,Text,HoverToolTip} from "./stake.styled";
 import BN from "bn.js";
 import { Numberu64,numberFormatter,getTokenBalance,delay ,formatNumberWithoutRounding} from "../../utils/utils";
 import {
@@ -42,7 +42,9 @@ import {
           TOKEN_PROGRAM_ID,
  } from "@solana/spl-token";
 import Swal from 'sweetalert2';
-
+import { Tooltip } from "antd";
+import { ImInfo } from "react-icons/im";
+ 
 interface ParamTypes {
   trade_account: string
 }
@@ -1168,45 +1170,51 @@ export function StakeStats() {
             <div className="flex flex-col w-full md:w-full bg-gray-300 py-8 px-3 xl:px-3 rounded-md neon-bottom-card selected-box-neon">
                 
                 <div className="pb-6 pt-1 pl-1 pr-1 rounded-md ">
-                  <div className='grid grid-cols-1'>
-                    <Text size='16px' weight color='#7cfa4d'>Rewards from Trading Activities</Text>
+                  <div className='text-grid cursor-pointer grid grid-cols-1'>
+                    <Text size='16px' weight color='#7cfa4d'>Bond Purchaser Stats
+                      <Tooltip placement="rightTop" title={'The live value of all outstanding bonds and all attributable SB not claimed'}> 
+                      <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
+                    </Text>
                   </div>
                   <div className='grid grid-cols-3 bg-gray-200 rounded-t-md px-3 mt-2 py-1'>
-                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Outstanding Bond Value:</Text>
+                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Outstanding Bond Value</Text>
                     <Text className='' size={"14px"}color={'white'}>{traderData ? formatNumberWithoutRounding.format(new BN(traderData.total_active_trades, 10, "le").toNumber()/1000000): "0.00"}</Text>
                   </div>
 
                   <div className='grid grid-cols-3 bg-gray-200 mt-0.5 rounded-b-md px-3 py-1'>
-                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Unclaimed SB Amount:</Text>
+                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Unclaimed SB Amount</Text>
                     <Text className='' size={"14px"}color={'white'}>{formatNumberWithoutRounding.format(unclaimed_Trading_Rewards)}</Text>
                   </div>
 
-                  <div className='grid grid-cols-1 mt-7'>
-                    <Text size='16px' weight color='#7cfa4d'>Bond LP Reward</Text>
+                  <div className='text-grid cursor-pointer grid grid-cols-1 mt-7'>
+                    <Text size='16px' weight color='#7cfa4d'>Bond LP Stats
+                      <Tooltip placement="rightTop" title={'The number of LP tokens in each respective pool including all unclaimed rewards, consisting of SB and 3rd party tokens(Other Rewards)'}> 
+                      <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
+                    </Text>
                   </div>
                   <div className='grid grid-cols-3 bg-gray-200 rounded-t-md px-3 mt-2 py-1'>
-                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Staked 30-Day Pool LP Token:</Text>
+                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Staked 30-Day Pool LP Token</Text>
                     <Text className='' size={"14px"}color={'white'}>{traderData ? formatNumberWithoutRounding.format(traderData.total_LP_Token_staked_vector[0]/1000000): null}</Text>
                   </div>
 
                   <div className='grid grid-cols-3 bg-gray-200 mt-0.5  px-3 py-1'>
-                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Unclaimed 30-Day Pool SB:</Text>
+                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Unclaimed 30-Day Pool SB</Text>
                     <Text className='' size={"14px"}color={'white'}>{formatNumberWithoutRounding.format(unclaimed_LP_30_Staking)}</Text>
                   </div>
 
 
                   <div className='grid grid-cols-3 bg-gray-200 mt-0.5  px-3 py-1'>
-                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Staked 90-Day Pool LP Token:</Text>
+                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Staked 90-Day Pool LP Token</Text>
                     <Text className='' size={"14px"}color={'white'}>{traderData ? formatNumberWithoutRounding.format(traderData.total_LP_Token_staked_vector[1]/1000000): null}</Text>
                   </div>
                   
                   <div className='grid grid-cols-3 bg-gray-200 mt-0.5  px-3 py-1'>
-                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Unclaimed 90-Day Pool SB:</Text>
+                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Unclaimed 90-Day Pool SB</Text>
                     <Text className='' size={"14px"}color={'white'}>{formatNumberWithoutRounding.format(unclaimed_LP_90_Staking)}</Text>
                   </div>
 
                   <div className='grid grid-cols-3 bg-gray-200 mt-0.5 px-3 py-1'>
-                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Other Rewards:</Text>
+                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Other Rewards</Text>
                     <Text className='' size={"14px"}color={'white'}>{sunny_unclaimed_rewards?formatNumberWithoutRounding.format(sunny_unclaimed_rewards):'0.00'} S1, {saber_unclaimed_rewards?formatNumberWithoutRounding.format(saber_unclaimed_rewards):'0.00'} S2,</Text>
                   </div>
 
@@ -1215,16 +1223,19 @@ export function StakeStats() {
                     <Text className='' size={"14px"}color={'white'}>{orca_unclaimed_rewards?formatNumberWithoutRounding.format(orca_unclaimed_rewards):'0.00'} O </Text>
                   </div>
 
-                  <div className='grid grid-cols-1 mt-7 '>
-                    <Text size='16px' weight color='#7cfa4d'>Rewards from SB Staking</Text>
+                  <div className='text-grid cursor-pointer grid grid-cols-1 mt-7 '>
+                    <Text size='16px' weight color='#7cfa4d'>SB Staking Stats
+                      <Tooltip placement="rightTop" title={'The number of SB staked and all attributable SB not claimed'}> 
+                      <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
+                    </Text>
                   </div>
                   <div className='grid grid-cols-3 bg-gray-200 px-3 mt-2 py-1'>
-                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Total SB Staked:</Text>
+                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Total SB Staked</Text>
                     <Text className='' size={"14px"}color={'white'}>{traderData ? formatNumberWithoutRounding.format(new BN(traderData.total_SuperB_staked, 10, "le").toNumber()/1000000): null}</Text>
                   </div>
 
                   <div className='grid grid-cols-3 mt-0.5 bg-gray-200 rounded-b-md px-3 py-1'>
-                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Unclaimed SB Amount:</Text>
+                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Unclaimed SB Amount</Text>
                     <Text className='' size={"14px"}color={'white'}>{formatNumberWithoutRounding.format(unclaimed_SuperB_Staking)}</Text>
                   </div>
 
