@@ -1114,7 +1114,7 @@ export function TradeView() {
                               <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url(${PoligonActive})`}}>
                                 <Text className='text-grid w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                 <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
-                                  <ImInfo  className='info-circle-show ml-0.5'  /></Tooltip></Text>
+                                  <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
                                 <Text className="" size={"14px"} color={"#9CF61C"}><span style={{color:"#9CF61C"}}><strong>{(APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):"0.00"}%</strong></span></Text>
                               </div>
                               {/* {superBonds_status30 === 'ACTIVE' &&
@@ -1279,9 +1279,9 @@ export function TradeView() {
 
                               <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2" style={{marginLeft: '-35px'}}>
                                 <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url(${PoligonActive})`}}>
-                                  <Text className='w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
+                                  <Text className='text-grid w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                   <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> 
-                                  <ImInfo  className='info-circle-show ml-0.5'  /></Tooltip></Text>
+                                  <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
                                   <Text className="" size={"14px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00'}%</strong></span></Text>
                                 </div>
                                 {/* {superBonds_status90 === 'ACTIVE' &&
