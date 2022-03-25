@@ -586,7 +586,8 @@ export function LiquidityView() {
       <div className="w-8/12 my-0 mx-auto pt-28 2xl:w-9/12 xl:w-11/12 pb-5" style={{ maxWidth: "1000px" }}>
         {/* <HeaderText className="text-left">Add/Remove liquidity</HeaderText> */}
         <HeaderCard
-          text='Add/Remove liquidity'
+          isHover='true'
+          text='LP Interest Provision'
           USDCbalance={USDCbalance}
           SuperBbalance={SuperBbalance}
           divStyle=''
@@ -602,25 +603,25 @@ export function LiquidityView() {
             </div>
             <div className="bg-gray-200 py-3 pl-3 py-7 px-2 mt-5 rounded-md">
               <div className='grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"} >USDC Balance:</Text>
+                <Text weight='true' className="col-span-2" opacity={"0.75"} >USDC Balance</Text>
                 <Text className='cursor-pointer' onClick={()=>setLQ_Amount30(formatNumberWithoutRounding.format((USDCbalance)))}>{formatNumberWithoutRounding.format((USDCbalance))}</Text>
               </div>
 
               <div className='grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"} >LP Pool Token Balance:</Text>
+                <Text weight='true' className="col-span-2" opacity={"0.75"} >LP Pool Token Balance</Text>
                 <Text className='cursor-pointer' onClick={()=>setLQ_Amount30(formatInputNumber(String(LP30balance)))}>{numberFormatter.format(LP30balance)}</Text>
               </div>
 
-              <HoverToolTip className='text-grid grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"}>Add Liquidity Price:
-                  <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+              <HoverToolTip className='text-grid  cursor-pointer grid grid-cols-3'>
+                <Text weight='true' className="col-span-2" opacity={"0.75"}>Add Liquidity Price
+                  <Tooltip placement="rightTop" title={'The value of 1 LP token when adding USDC as liquidity to LP Pool'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
                 </Text>
                 <Text>{1.000000} </Text>
               </HoverToolTip>
 
-              <HoverToolTip className='text-grid grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"}>Remove Liquidity Price:
-                  <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+              <HoverToolTip className='text-grid  cursor-pointer grid grid-cols-3'>
+                <Text weight='true' className="col-span-2" opacity={"0.75"}>Remove Liquidity Price
+                  <Tooltip placement="rightTop" title={'The amount of USDC redeemable for 1 LP token'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
                 </Text>
                 <Text>{data30pool ? (data30pool.lp_price / 1000000).toFixed(6) : "..."} </Text>
               </HoverToolTip>
@@ -664,29 +665,29 @@ export function LiquidityView() {
           <div className="flex  justify-between  md:justify-center  md:flex-wrap  pt-6">
           <div className="flex w-6/12 flex-col 2xl:w-6/12 xl:w-11/12 lg:w-11/12 sm:w-12/12 md:w-10/12   py-4 px-7 sm:px-0">
             <div className="text-center">
-              <Text size={"16px"} transform={"true"}>Add/Remove Liquidity </Text>
+              <Text size={"16px"} transform={"true"}>Add/Remove Liquidity</Text>
             </div>
             <div className="bg-gray-200 py-3 pl-3 py-7 px-2 mt-5 rounded-md">
               <div className='grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"}>USDC Balance:</Text>
+                <Text weight='true' className="col-span-2" opacity={"0.75"}>USDC Balance</Text>
                 <Text className='cursor-pointer' onClick={()=>setLQ_Amount90(formatNumberWithoutRounding.format((USDCbalance)))}>{formatNumberWithoutRounding.format((USDCbalance))}</Text>
               </div>
 
               <div className='grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"}>LP Pool Token Balance:</Text>
+                <Text weight='true' className="col-span-2" opacity={"0.75"}>LP Pool Token Balance</Text>
                 <Text className='cursor-pointer' onClick={()=>setLQ_Amount90(formatInputNumber(String(LP90balance)))}>{numberFormatter.format(LP90balance)}</Text>
               </div>
 
-              <HoverToolTip className='text-grid grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"}>Add Liquidity Price:
-                  <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+              <HoverToolTip className='text-grid  cursor-pointer grid grid-cols-3'>
+                <Text weight='true' className="col-span-2" opacity={"0.75"}>Add Liquidity Price
+                  <Tooltip placement="rightTop" title={'The value of 1 LP token when adding USDC as liquidity to LP Pool'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
                 </Text>
                 <Text>{1.000000} </Text>
               </HoverToolTip>
 
-              <HoverToolTip className='text-grid grid grid-cols-3'>
-                <Text weight='true' className="col-span-2" opacity={"0.75"}>Remove Liquidity Price:
-                  <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+              <HoverToolTip className='text-grid  cursor-pointer grid grid-cols-3'>
+                <Text weight='true' className="col-span-2" opacity={"0.75"}>Remove Liquidity Price
+                  <Tooltip placement="rightTop" title={'The amount of USDC redeemable for 1 LP token'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
                 </Text>
                 <Text>{data90pool ? (data90pool.lp_price / 1000000).toFixed(6) : "..."} </Text>
               </HoverToolTip>

@@ -714,6 +714,7 @@ export function StakeView() {
         </div> */}
         <HeaderCard
           text=''
+          isHover=''
           USDCbalance={USDCbalance}
           SuperBbalance={SuperBbalance}
           divStyle=' 3xl:justify-center 2xxl:justify-center 2xl:justify-center xl:justify-center lg:justify-center md:justify-center sm:justify-center '
@@ -741,12 +742,12 @@ export function StakeView() {
                    
                   </div>
                 </div>
-                <HoverToolTip className="text-grid flex flex-col text-center rounded-md py-3 mt-2" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
-                  <Text className='select-none w-9/12 mx-auto px-2' opacity={"0.5"} size='13.5px' weight='600' color='white'>APY
-                    <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+                <div className="text-grid flex flex-col text-center rounded-md py-3 mt-2" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
+                  <Text className='select-none w-9/12 mx-auto px-2'  size='16px' weight='600' color='white'>APY
+                    <Tooltip placement="bottom" title={' Estimated yield earned for staking SB token'}> <ImInfo className='cursor-pointer info-circle-show  ml-0.5' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
                   </Text>
                   <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong> {(APYSBLP)>0?formatNumberWithoutRounding.format(APYSBLP):"0.00"}% </strong></span></Text>
-                </HoverToolTip>
+                </div>
               </div>
 
               <div className="text-center bg-gray-200 py-3 px-3 border rounded-md mt-3">

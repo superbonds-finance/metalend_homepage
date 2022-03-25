@@ -805,7 +805,9 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       className="flex  flex-col w-6/12 2xl:w-49/100 xl:w-11/12 md:w-8/12 sm:w-12/12  py-4 px-7 md:my-4 md:ml-0  sm:py-0 sm:px-0">
       {/* <i className={"fas fa-exchange-alt fa-lg mr-1 " + classes.exchange_icon} aria-hidden="true" /> */}
       <div className="text-center">
-        <Text size={"16px"} transform={"true"}>LP STAKING</Text>
+        <Text className='text-grid cursor-pointer' size={"16px"} transform={"true"}>LP STAKING
+        <Tooltip placement="rightTop" title={'Stake your LP commitment to earn yield'}> 
+        <ImInfo  className=' info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip></Text>
       </div>
 
       <div className="bg-gray-200 p-1 rounded-md mt-5">
@@ -823,12 +825,12 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
                 {/* <Text className='select-none' size={"12px"} color={"#7c7c7c"}>Fees: $5.00</Text> */}
               </div>
           </div>
-          <HoverToolTip className="text-grid flex flex-col text-center bg-gray-900 rounded-md  mt-5 my-3 py-3 my-1" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
-            <Text className='select-none w-9/12 mx-auto px-2' size='13.5px' weight='600' color='white'>APY
-              <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+          <div className="text-grid flex flex-col text-center bg-gray-900 rounded-md  mt-5 my-3 py-3 my-1" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
+            <Text className='select-none w-9/12 mx-auto px-2' size='16px' weight='600' color='white'>APY
+              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className=' cursor-pointer info-circle-show ml-0.5' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
             </Text>
             <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY30LP)>0?formatNumberWithoutRounding.format(APY30LP):"0.00"}%</strong></span></Text>
-          </HoverToolTip>
+          </div>
         </div>
 
         <div className="text-center bg-gray-200 pt-3 pb-2 px-3 border rounded-md ">
@@ -864,8 +866,10 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
         className="flex  flex-col w-6/12 2xl:w-49/100 xl:w-11/12 md:w-8/12 sm:w-12/12 py-4 px-7 md:my-4 md:ml-0  sm:py-0 sm:px-0">
         {/* <i className={"fas fa-exchange-alt fa-lg mr-1 " + classes.exchange_icon} aria-hidden="true" /> */}
         <div className="text-center">
-          <Text size={"16px"} transform={"true"}>LP STAKING</Text>
-        </div>
+          <Text className='text-grid cursor-pointer' size={"16px"} transform={"true"}>LP STAKING
+          <Tooltip placement="rightTop" title={'Stake your LP commitment to earn yield'}> 
+          <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip></Text>
+      </div>
 
 
       <div className="bg-gray-200 p-1 rounded-md mt-5">
@@ -883,12 +887,12 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
                 {/* <Text className='select-none' size={"12px"} color={"#7c7c7c"}>Fees: $5.00</Text> */}
               </div>
           </div>
-          <HoverToolTip className="text-grid flex flex-col text-center bg-gray-900 rounded-md py-3 mt-5 my-3" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
-            <Text className='select-none w-9/12 mx-auto px-2' size='13.5px' weight='600' color='white'>APY
-              <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo className='info-circle ml-0.5'/></Tooltip> 
+          <div className="text-grid flex flex-col text-center bg-gray-900 rounded-md py-3 mt-5 my-3" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
+            <Text className='select-none w-9/12 mx-auto px-2' size='16px' weight='600' color='white'>APY
+              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className='cursor-pointer info-circle-show  ml-0.5' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
             </Text>
             <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY90LP)>0?formatNumberWithoutRounding.format(APY90LP):"0.00"}%</strong></span></Text>
-          </HoverToolTip>
+          </div>
         </div>
 
           <div className="text-center bg-gray-200 pt-3 pb-2 px-3 border rounded-md">
