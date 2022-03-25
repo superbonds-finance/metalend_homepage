@@ -827,7 +827,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           </div>
           <div className="text-grid flex flex-col text-center bg-gray-900 rounded-md  mt-5 my-3 py-3 my-1" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
             <Text className='select-none w-9/12 mx-auto px-2' size='16px' weight='600' color='white'>APY
-              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className=' cursor-pointer info-circle-show ml-0.5' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
+              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className=' cursor-pointer info-circle-hide ml-0.5' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
             </Text>
             <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY30LP)>0?formatNumberWithoutRounding.format(APY30LP):"0.00"}%</strong></span></Text>
           </div>
@@ -889,7 +889,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           </div>
           <div className="text-grid flex flex-col text-center bg-gray-900 rounded-md py-3 mt-5 my-3" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
             <Text className='select-none w-9/12 mx-auto px-2' size='16px' weight='600' color='white'>APY
-              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className='cursor-pointer info-circle-show  ml-0.5' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
+              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className='cursor-pointer info-circle-hide  ml-0.5' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
             </Text>
             <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY90LP)>0?formatNumberWithoutRounding.format(APY90LP):"0.00"}%</strong></span></Text>
           </div>
