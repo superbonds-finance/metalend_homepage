@@ -54,3 +54,32 @@ font-family: 'Archivo';
   user-select: none;
   
 `
+
+export const HoverToolTip = styled.div`
+  
+  background: none;
+  border: 0;
+  box-sizing: border-box;    
+  font-size: inherit;
+  font-weight: 700;
+  position: relative;
+  vertical-align: middle;
+
+  transition: color 0.25s;
+  
+  &:hover {
+    ${({ noColor }) => noColor ? '' : `${Text}{
+      color : #7cfa4c;
+      opacity: 1;
+      transition: opacity 0.3s ease,color 0.3s ease;
+    }`}
+    
+  }
+
+  ${({ noColor }) => noColor ? `${Text}:first-child{
+      svg{
+        min-width:14px;
+        width:14px;
+      }
+    }`: ''}
+`

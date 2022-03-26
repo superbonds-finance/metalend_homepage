@@ -24,7 +24,7 @@ import {PLATFORM_DATA_LAYOUT,PlatformDataLayout} from "../../utils/platform_data
 import {STAKING_DATA_LAYOUT,StakingDataLayout} from "../../utils/staking_data_layout";
 import {TRADER_LAYOUT/* ,TraderLayout */} from "../../utils/trader_layout";
 import {FARMING_REWARD_LAYOUT} from "../../utils/farming_reward_layout";
-import {ButtonText,Text,HeroText} from "./stake.styled";
+import {ButtonText,Text,HeroText,HoverToolTip} from "./stake.styled";
 import BN from "bn.js";
 import axios from 'axios';
 import {AxiosResponse} from 'axios';
@@ -50,6 +50,8 @@ import '../../styles/trade.css';
 
 import { GlobalStyle } from "../redeem/redeem.styled";
 import { HeaderCard } from "../../components/HeaderCard";
+import { Tooltip } from "antd";
+import { ImInfo } from "react-icons/im";
 
 interface ParamTypes {
   trade_account: string
@@ -712,6 +714,7 @@ export function StakeView() {
         </div> */}
         <HeaderCard
           text=''
+          isHover=''
           USDCbalance={USDCbalance}
           SuperBbalance={SuperBbalance}
           divStyle=' 3xl:justify-center 2xxl:justify-center 2xl:justify-center xl:justify-center lg:justify-center md:justify-center sm:justify-center '
@@ -739,8 +742,10 @@ export function StakeView() {
                    
                   </div>
                 </div>
-                <div className="flex flex-col text-center rounded-md py-3 mt-2" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
-                  <Text className='select-none w-9/12 mx-auto px-2' opacity={"0.5"} size='12px' weight='600' color='white'>APY</Text>
+                <div className="text-grid flex flex-col text-center rounded-md py-3 mt-2" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
+                  <Text className='select-none w-9/12 mx-auto px-2'  size='16px' weight='600' color='white'>APY
+                    <Tooltip placement="bottom" title={' Estimated yield earned for staking SB token'}> <ImInfo className='cursor-pointer info-circle-hide  ml-0.5' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
+                  </Text>
                   <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong> {(APYSBLP)>0?formatNumberWithoutRounding.format(APYSBLP):"0.00"}% </strong></span></Text>
                 </div>
               </div>
