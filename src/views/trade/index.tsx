@@ -188,7 +188,7 @@ export function TradeView() {
 
       const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-       console.log("asas",decodedPoolDataState)
+ 
       setData30pool(decodedPoolDataState);
 
       const encodeSuperBonds_Rewards_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.SuperBonds_Rewards_Pool), 'singleGossip'))!.data;
@@ -246,6 +246,7 @@ export function TradeView() {
       let bond_yield = decodedPoolDataState.pool_yield_vector[0]/100;
       setBond_Yield30(bond_yield);
       bond_yield =  decodedPoolDataState.pool_yield_vector[1]/100;
+      
       setBond_Yield90(bond_yield);
 
     }
@@ -995,7 +996,7 @@ export function TradeView() {
             }
             //console.log('superbonds_rate',superbonds_rate);
             setSuperBondsRate90(superbonds_rate);
-            setBondValueMaturity_90(bondValue * ((1 + (superbonds_rate*bond_yield90/100))**(30/365)))
+            setBondValueMaturity_90(bondValue * ((1 + (superbonds_rate*bond_yield90/100))**(90/365)))
           }
 
         }
@@ -1015,7 +1016,7 @@ export function TradeView() {
         showAllTrade==1?fetchPublicAPI(limit,offset+x_paginationcursor):fetchPrivateAPI(limit,offset+x_paginationcursor);
       }
       else{
-        console.log("aasasas")
+       
          setOffset(offset+0);
          showAllTrade==1?fetchPublicAPI(limit,x_paginationcursor):fetchPrivateAPI(limit,x_paginationcursor);
         }
@@ -1052,7 +1053,7 @@ export function TradeView() {
       setBondValueMaturity_90(bondValueMaturity);
     }
   }
-
+ 
     return (
         <div className="w-screen h-screen bg-black">
             <div  className="w-9/12 my-0 mx-auto pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
@@ -1069,7 +1070,7 @@ export function TradeView() {
 
                           <div className={`flex justify-between rounded-t-md py-3 px-3 ${superBonds_status30 ==='ACTIVE'?'sb-activated':'bg-gray-200'} select-none`}>
                             <Text className='sm:hidden' weight={'true'} size ={"16px"} transform={"true"} color={superBonds_status30 ==='ACTIVE' ? "#334150":"white"} style={{ fontFamily:"Archivo"}}>30-day pool</Text>
-                            {superBonds_status30 ==='ACTIVE' && <Text weight={'true'} spacing='0.3em' size ={"16px"} transform={"true"} color={"#334150"} style={{ fontFamily:"Bai Jamjuree"}}>superbonds ACTIVATED</Text>}
+                            {superBonds_status30 ==='ACTIVE' && <Text className='mr-11 xl:mr-0'  weight={'true'} spacing='0.3em' size ={"16px"} transform={"true"} color={"#334150"} style={{ fontFamily:"Bai Jamjuree"}}>superbonds ACTIVATED</Text>}
                           </div>
 
                           <div className="grid-cols-2 mt-3 items-center hidden sm:grid">
@@ -1179,7 +1180,7 @@ export function TradeView() {
                                       <Text weight='true' className="col-span-2" opacity={"50%"} >Max Trade
                                         <Tooltip placement="rightTop" title={'Largest possible single trade size at any given point in time'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
-                                      <span><Text size='15px'>{bond_yield30 ?formatNumberWithoutRounding.format(adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1)):"0.00"}</Text><Text className='ml-1' size='12px'>USDC</Text></span>
+                                       <Text className='whitespace-normal' size='15px'>{bond_yield30 ?formatNumberWithoutRounding.format(adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1)):"0.00"}<Text className='ml-1' size='12px'>USDC</Text> </Text>
                                     </HoverToolTip>
 
                                     <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
@@ -1235,7 +1236,7 @@ export function TradeView() {
 
                           <div className={`flex justify-between rounded-t-md py-3 px-3 ${superBonds_status90 ==='ACTIVE'?'sb-activated':'bg-gray-200'} select-none`}>
                             <Text className='sm:hidden' weight={'true'} size ={"16px"} transform={"true"} color={superBonds_status90 ==='ACTIVE' ? "#334150":"white"} style={{ fontFamily:"Archivo"}}>90-day pool</Text>
-                            {superBonds_status90 ==='ACTIVE' && <Text  className='mr-11' weight={'true'} spacing='0.3em' size ={"16px"} transform={"true"} color={"#334150"} style={{ fontFamily:"Bai Jamjuree"}}>superbonds ACTIVATED</Text>}
+                            {superBonds_status90 ==='ACTIVE' && <Text  className='mr-11 xl:mr-0' weight={'true'} spacing='0.3em' size ={"16px"} transform={"true"} color={"#334150"} style={{ fontFamily:"Bai Jamjuree"}}>superbonds ACTIVATED</Text>}
                           </div>
 
                           <div className="grid-cols-2 mt-3 items-center hidden sm:grid">
@@ -1343,11 +1344,11 @@ export function TradeView() {
                                 </div>
                                 <div className="w-full p-4 rounded-md">
                                   <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
-                                    <Text weight='true' className="col-span-2" opacity={"50%"} >Max Trade
+                                    <Text weight='true' className="col-span-2 xs:col-span-1 xs:gap-2" opacity={"50%"} >Max Trade
                                       <Tooltip placement="rightTop" title={'Largest possible single trade size at any given point in time'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                     </Text>
-                                    <span><Text size='15px'>{bond_yield90 ? formatNumberWithoutRounding.format(adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1)):"0.00"}</Text><Text className='ml-1' size='12px'>USDC</Text></span>
+                                    <span><Text size='    '>{bond_yield90 ? formatNumberWithoutRounding.format(adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1)):"0.00"}</Text><Text className='ml-1' size='12px'>USDC</Text></span>
                                   </HoverToolTip>
 
                                     <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
