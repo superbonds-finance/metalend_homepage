@@ -20,7 +20,7 @@ export const AppLayout = React.memo(({ children }) => {
     <WalletModalProvider>
       <div className="App wormhole-bg">
         <Navbar showWinUp={showWinUp}/>
-        <SunNavbar showWinUp={showWinUp} />
+        {/* <SunNavbar showWinUp={showWinUp} /> */}
         {/* <Layout title={LABELS.APP_TITLE}>
           <Header className="App-Bar">
             <Link to="/">

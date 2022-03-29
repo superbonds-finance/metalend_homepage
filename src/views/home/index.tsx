@@ -228,16 +228,10 @@ export const HomeView = () => {
     <div className="w-screen h-screen  bg-black hero-section" >
       <div className="flex flex-col absolute trade_sb_token_wrapper">
 
-      <div className="rounded-md max-w-xs  w-64 z-50">
+        {/* <div className="rounded-md max-w-xs  w-64 z-50">
           <div className="offer_wrapper_1 flex flex-col text-center rounded-md">
             <div className="flex justify-center w-9/12 my-0 mx-auto">
-              {/* <img
-                src={
-                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643874041/ambassador_illustration_2_uncu3e.svg"
-                }
-                alt="..."
-                style={{ width: "65px", height: "60px" }}
-              /> */}
+              
               <NewText
                 color="white"
                 size="24px"
@@ -265,8 +259,8 @@ export const HomeView = () => {
               </button>
             </div>
           </div>
-        </div>
-        <div className="rounded-md max-w-xs w-64 z-50 mt-3">
+        </div> */}
+        {/* <div className="rounded-md max-w-xs w-64 z-50 mt-3">
           <div className="trade_sb_token_wrapper_1 flex flex-col justify-start ">
             <Text
               color="#586779"
@@ -363,7 +357,7 @@ export const HomeView = () => {
               />
             </div>
           </div>
-        </div>
+        </div> */}
 
       </div>
 
@@ -471,7 +465,141 @@ export const HomeView = () => {
       </div>
 
       <section>
+        <div className="flex flex-wrap align-middle justify-around w-9/12 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center">
+          <div className="rounded-md max-w-xs  w-64 z-50">
+            <div className="offer_wrapper_1 flex flex-col text-center rounded-md">
+              <div className="flex justify-center w-9/12 my-0 mx-auto">
+                <NewText
+                  color="white"
+                  size="24px"
+                  transform=""
+                  className=" mt-2 select-none font-bold text-white "
+                >
+                  Become an <span style={{ color: "#01A0FC" }}>S</span>
+                  <span style={{ color: "#7CFA4C" }}>B</span> Ambassador
+                </NewText>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  onClick={() =>
+                    window.open(
+                        "https://superbonds.medium.com/the-ambassador-program-from-superbonds-8d11f5063bac"
+                    )
+                  }
+                    className="hover:bg-green-100 text-white hover:text-black  border-2 z-40 w-36 rounded-md border-green-100 px-2 py-2 inline-block"
+                    style={{ marginTop: "18px" }}
+                  >
+                  <TextDoc transform="" className="" size="16px" weight="true">
+                    Join Now
+                  </TextDoc>
+                </button>
+              </div>
+            </div>
+          </div>
+ 
+        
+          <div className="trade_sb_token_wrapper_1 flex flex-col justify-start z-50 ">
+            <Text
+              color="#586779"
+              size="16px"
+              weight="true"
+              transform="true"
+              className="my-0 mt-3 select-none"
+            >
+              Trade SB token
+            </Text>
+            <div className="flex flex-col justify-start">
+              <img
+                onClick={() =>
+                  window.open("https://www.mexc.com/exchange/SB_USDT")
+                }
+                className=" my-0  select-none mr-12 cursor-pointer Z-40  mt-3 left-auto right-auto"
+                src={
+                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366156/full-logo-normal-mexc_cllivy.svg"
+                }
+                alt="..."
+                style={{ height: "38px", width: "131px" }}
+              />
+              <img
+                onClick={() =>
+                  window.open(
+                    "https://dex.raydium.io/#/market/E3cNotFPoECwQvacT2D7u3C3tKRkGtUxv8WFYazBEx4X"
+                  )
+                }
+                className=" -ml-5 select-none my-0  mr-12 cursor-pointer mt-2 Z-40 "
+                src={
+                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366716/logo-text.cf5a7a0_lx0ueg.svg"
+                }
+                alt="..."
+                style={{ height: "38px", width: "176px" }}
+              />
+
+              <div className="flex my-0 mt-4">
+                <img
+                  onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
+                  className="w-8 select-none cursor-pointer Z-40"
+                  src={
+                    "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366783/jupiter-logo_vi90us.svg"
+                  }
+                  alt="..."
+                  style={{ height: "38px" }}
+                />
+
+                <Text
+                  onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
+                  className="ml-2 mt-2 cursor-pointer Z-40 select-none '"
+                  size="16px"
+                  weight="true"
+                >
+                  Jupiter
+                </Text>
+              </div>
+            </div>
+          </div>
+
+          <div className="trade_sb_token_wrapper_2 flex flex-col  justify-start ">
+            <Text
+              color="#586779"
+              size="16px"
+              weight="true"
+              transform="true"
+              className="my-0 select-none"
+            >
+              Track markets
+            </Text>
+            <div className="flex flex-col justify-start">
+              <img
+                onClick={() =>
+                  window.open("https://www.coingecko.com/en/coins/superbonds")
+                }
+                className=" select-none  -ml-1 my-0  mr-10 mt-3 cursor-pointer Z-40  "
+                src={
+                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643368369/coingecko-logo-white-3f2aeb48e13428b7199395259dbb96280bf47ea05b2940ef7d3e87c61e4d8408_jlbfa3.png"
+                }
+                alt="..."
+                style={{ height: "35px", width: "130px" }}
+              />
+              <img
+                onClick={() =>
+                  window.open(
+                    "https://coinmarketcap.com/currencies/superbonds/"
+                  )
+                }
+                className=" select-none my-0  mr-12 mt-3 cursor-pointer Z-40 "
+                src={
+                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643903985/CoinMarketCap_tp16rh.png"
+                }
+                alt="..."
+                style={{ height: "45px", width: "165px" }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
         <div className="flex flex-col mt-12 text-center justify-center select-none">
+          
           <div className="flex justify-center items-center">
             <div>
               <img

@@ -69,13 +69,13 @@ export default function Navbar(props: {
       <div className="nav-header cursor-pointer">
         <div className="nav-title"  onClick={() => handlePush("/")}>
           <img
-            className="inline-block w-12"
+            className="inline-block w-52"
             src={
-              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1644346281/Vector_ci8nqs.svg"
+              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1648553250/Logo_with-text_lqvart.png"
             }
             alt="SuperB"
           />
-          SuperBonds
+           
         </div>
       </div>
 
