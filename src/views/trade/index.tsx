@@ -1110,9 +1110,9 @@ export function TradeView() {
                             </div>
                           </div> */}
 
-                          <div className="grid grid-cols-10 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-5 mt-3 rounded-md items-center">
+                          <div className="grid grid-cols-10 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-5 xs:grid-cols-1 xs:grid-rows-2 mt-3 rounded-md items-center">
 
-                            <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2" style={{marginLeft: '-35px'}}>
+                            <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2 xs:col-span-1 main_hex">
                               <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url(${PoligonActive})`}}>
                                 <Text className='text-grid cursor-pointer w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                 <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}> 
@@ -1132,7 +1132,7 @@ export function TradeView() {
                                </div>} */}
                             </div>
 
-                            <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status30 ==='ACTIVE')? '#263B31':'#161D23'}}>
+                            <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 xs:col-span-1 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status30 ==='ACTIVE')? '#263B31':'#161D23'}}>
                                 <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
                                     <HoverToolTip noColor className="flex flex-col justify-start">
 
@@ -1277,9 +1277,9 @@ export function TradeView() {
                               </div>
                             </div> */}
 
-                             <div className="grid grid-cols-10 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-5 mt-3 rounded-md items-center">
+                             <div className="grid grid-cols-10 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-5 xs:grid-cols-1 xs:grid-rows-2 mt-3 rounded-md items-center">
 
-                              <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2" style={{marginLeft: '-35px'}}>
+                              <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2 xs:col-span-1 main_hex">
                                 <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url(${PoligonActive})`}}>
                                   <Text className='w-9/12 text-grid cursor-pointer mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                   <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}> 
@@ -1299,7 +1299,7 @@ export function TradeView() {
                                  </div>} */}
                               </div>
 
-                              <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status90 ==='ACTIVE')? '#263B31':'#161D23'}}>
+                              <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 xs:col-span-1 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status90 ==='ACTIVE')? '#263B31':'#161D23'}}>
                                   <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
                                       <HoverToolTip noColor className="flex flex-col justify-start">
                                           <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >Total Bonds Available
