@@ -1055,7 +1055,7 @@ export function TradeView() {
 
     return (
         <div className="w-screen h-screen bg-black">
-            <div  className="w-9/12 my-0 mx-auto pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
+            <div  className="w-9/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
                 <div className='flex flex-col' >
                     <HeaderCard
                       isHover=''

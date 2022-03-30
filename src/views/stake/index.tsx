@@ -699,7 +699,7 @@ export function StakeView() {
   
   return (
     <div className="w-screen h-screen bg-black ">
-      <div  className="w-7/12 my-0 mx-auto pt-20 lg:w-11/12 md:w-12/12" style={{maxWidth:"1000px"}}>
+      <div  className="w-7/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 lg:w-11/12 md:w-12/12" style={{maxWidth:"1000px"}}>
         {/* <div className='flex pt-4 justify-center sm:flex-col'>
           <div className="flex">
             <div className="py-2 pl-2 pr-14 md:pr-3 rounded-md" style={{ 'background': ' linear-gradient(89.52deg, rgba(124, 250, 76, 0.1) 15.18%, rgba(124, 250, 76, 0) 76.06%), #1F2933' }}>
