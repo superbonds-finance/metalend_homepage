@@ -401,12 +401,15 @@ export const HomeView = () => {
                 alt="..."
               />
             </div>
-            <Text className="block mb-7 mt-4" size="24px" weight="true">
-              Financial NFT Market
+            <Text className="block mt-4" size="16px" weight="true">
+              Up to <b style={{color:'#01A0FC',fontSize:'20px'}}>18% </b>fixed yield, fully secured
+            </Text>
+            <Text className="block mb-7 mt-2" size="16px" weight="true">
+              Plus earn additional boosters
             </Text>
           </div>
           <div className="flex justify-center">
-            <button
+            {/* <button
               onClick={() =>
                 handlePush("/trade")
               }
@@ -421,7 +424,18 @@ export const HomeView = () => {
               >
                 Launch Devnet
               </BtnText>
-              {/* <img  className=' mt-0.5' src={arrow}  /> */}
+               
+            </button> */}
+
+            <button
+               onClick={() =>
+                handlePush("/trade")
+              }
+              className="hover:bg-green-100  text-white hover:text-black  border-2 z-40 w-44 rounded-md border-green-100 px-4 py-2 inline-block ml-3"
+            >
+              <TextDoc transform="" className="" size="16px" weight="true">
+              Launch App
+              </TextDoc>
             </button>
 
             <button
@@ -438,7 +452,7 @@ export const HomeView = () => {
           <div className="flex justify-center">
             <div className="home_widget w-96 flex flex-col items-center">
               <Text transform className='text-center' size={"14px"} spacing={'0px'} weight='bold' >Total Bonds Available</Text>
-              <Text className='text-center' size={"19px"} color={'#01A0FC'}><span ><strong>{(bond_yield90 || bond_yield30) ?
+              <Text className='text-center' size={"20px"} color={'#01A0FC'}><span ><strong>{(bond_yield90 || bond_yield30) ?
                formatNumberWithoutRounding.format(
                 (bond_yield90 ? ((adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1))/0.35) : 0) +
                 (bond_yield30 ? ((adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1))/0.35) : 0))
@@ -465,10 +479,10 @@ export const HomeView = () => {
       </div>
 
       <section>
-        <div className="flex flex-wrap align-middle justify-around w-9/12 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center">
-          <div className="rounded-md max-w-xs  w-64 z-50">
-            <div className="offer_wrapper_1 flex flex-col text-center rounded-md">
-              <div className="flex justify-center w-9/12 my-0 mx-auto">
+        <div className="flex flex-wrap items-center justify-around w-8/12 mt-5 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center">
+        <div className="rounded-md max-w-xs z-50" >
+            <div className="offer_wrapper_1 mt-3 flex flex-col text-center rounded-md" style={{minHeight:"214px",maxWidth:"216px"}}> 
+              <div className="flex justify-center my-0 mx-auto">
                 <NewText
                   color="white"
                   size="24px"
@@ -479,7 +493,7 @@ export const HomeView = () => {
                   <span style={{ color: "#7CFA4C" }}>B</span> Ambassador
                 </NewText>
               </div>
-              <div className="flex justify-center">
+              <div className="flex justify-center pt-5">
                 <button
                   onClick={() =>
                     window.open(
@@ -498,13 +512,13 @@ export const HomeView = () => {
           </div>
  
         
-          <div className="trade_sb_token_wrapper_1 flex flex-col justify-start z-50 ">
+          <div className="trade_sb_token_wrapper_1 mt-3 rounded-md flex flex-col  items-center z-50 ">
             <Text
               color="#586779"
               size="16px"
               weight="true"
               transform="true"
-              className="my-0 mt-3 select-none"
+              className="my-0 select-none"
             >
               Trade SB token
             </Text>
@@ -513,7 +527,7 @@ export const HomeView = () => {
                 onClick={() =>
                   window.open("https://www.mexc.com/exchange/SB_USDT")
                 }
-                className=" my-0  select-none mr-12 cursor-pointer Z-40  mt-3 left-auto right-auto"
+                className=" my-0  select-none cursor-pointer Z-40  mt-3 left-auto right-auto"
                 src={
                   "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366156/full-logo-normal-mexc_cllivy.svg"
                 }
@@ -526,7 +540,7 @@ export const HomeView = () => {
                     "https://dex.raydium.io/#/market/E3cNotFPoECwQvacT2D7u3C3tKRkGtUxv8WFYazBEx4X"
                   )
                 }
-                className=" -ml-5 select-none my-0  mr-12 cursor-pointer mt-2 Z-40 "
+                className=" -ml-3 select-none my-0  cursor-pointer mt-2 Z-40 "
                 src={
                   "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366716/logo-text.cf5a7a0_lx0ueg.svg"
                 }
@@ -556,8 +570,8 @@ export const HomeView = () => {
               </div>
             </div>
           </div>
-
-          <div className="trade_sb_token_wrapper_2 flex flex-col  justify-start ">
+          
+          <div className="trade_sb_token_wrapper_2 mt-3 flex flex-col  rounded-md items-center   z-50 sm:mt-3" style={{minHeight:"214px"}} >
             <Text
               color="#586779"
               size="16px"
@@ -567,12 +581,12 @@ export const HomeView = () => {
             >
               Track markets
             </Text>
-            <div className="flex flex-col justify-start">
+            <div className="flex flex-col justify-start pt-3">
               <img
                 onClick={() =>
                   window.open("https://www.coingecko.com/en/coins/superbonds")
                 }
-                className=" select-none  -ml-1 my-0  mr-10 mt-3 cursor-pointer Z-40  "
+                className=" select-none  -ml-1 my-0  mt-3 cursor-pointer Z-40  "
                 src={
                   "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643368369/coingecko-logo-white-3f2aeb48e13428b7199395259dbb96280bf47ea05b2940ef7d3e87c61e4d8408_jlbfa3.png"
                 }
@@ -585,7 +599,7 @@ export const HomeView = () => {
                     "https://coinmarketcap.com/currencies/superbonds/"
                   )
                 }
-                className=" select-none my-0  mr-12 mt-3 cursor-pointer Z-40 "
+                className=" select-none my-0   mt-3 cursor-pointer Z-40 "
                 src={
                   "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643903985/CoinMarketCap_tp16rh.png"
                 }
@@ -643,7 +657,7 @@ export const HomeView = () => {
                   alt="trade"
                 />
               </div>
-              <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 py-16 rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
+              <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 pb-4 pt-16 rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
                 <div className="flex flex-col ">
                   <BtnText
                     className="mt-2"
@@ -651,7 +665,7 @@ export const HomeView = () => {
                     size="21px"
                     weight="true"
                   >
-                    Always Earn
+                   Fixed Yield
                   </BtnText>
                   <Text
                     letterSpacing="1px"
@@ -659,7 +673,7 @@ export const HomeView = () => {
                     size="15px"
                     opacity="0.5"
                   >
-                     Multiple on-chain reward streams, Multiplied Yields
+                     Secured rates, guaranteed. Powered by LP bond underwriting 
                   </Text>
                 </div>
               </div>
@@ -675,7 +689,7 @@ export const HomeView = () => {
                   alt="trade"
                 />
               </div>
-              <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 py-16 rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
+              <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 pb-4 pt-16  rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
                 <div className="flex flex-col">
                   <BtnText
                     className="mt-2"
@@ -683,7 +697,7 @@ export const HomeView = () => {
                     size="21px"
                     weight="true"
                   >
-                    Fixed or Floating
+                  Cross-Chain Yield
                   </BtnText>
                   <Text
                     letterSpacing="1px"
@@ -691,7 +705,7 @@ export const HomeView = () => {
                     size="15px"
                     opacity="0.5"
                   >
-                    Earn fixed yield or underwrite it to earn flexible rewards
+                     No need to farm stables anywhere else. Superbonds programmatically farms the most established stablecoin yields crosschain for the benefit of LPs
                   </Text>
                 </div>
               </div>
@@ -707,7 +721,7 @@ export const HomeView = () => {
                   alt="trade"
                 />
               </div>
-              <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 py-16 rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
+              <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 pb-4 pt-16  rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
                 <div className="flex flex-col">
                   <BtnText
                     className="mt-2"
@@ -723,8 +737,7 @@ export const HomeView = () => {
                     size="15px"
                     opacity="0.5"
                   >
-                    A known future value, in your custody: a new form of
-                    collateral
+                  Bonds issued on SuperBonds are self-custodied financial NFTs with a known and higher terminal value. A new form of collateral that benefits from the term structure in crypto
                   </Text>
                 </div>
               </div>
@@ -740,7 +753,7 @@ export const HomeView = () => {
                   alt="trade"
                 />
               </div>
-              <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 py-16 rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
+              <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 pb-4 pt-16  rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
                 <div className="flex flex-col">
                   <BtnText
                     className="mt-2"
@@ -756,7 +769,7 @@ export const HomeView = () => {
                     size="15px"
                     opacity="0.5"
                   >
-                    The key to the ecosystem in a deflationary gas model
+                    The bloodline of SuperBonds and a layer-2 gas. SB has a pre-determined mint and is burned in every transaction on SuperBonds
                   </Text>
                 </div>
               </div>
@@ -775,7 +788,7 @@ export const HomeView = () => {
               className="text-black bg-green-100 rounded-md px-6 py-4"
             >
               <TextDoc transform="" className="" size="16px" weight="true">
-                LAUNCH DAPP
+                LAUNCH APP
               </TextDoc>
             </button>
           </div>
