@@ -1404,7 +1404,7 @@ export function TradeView() {
             <div className="w-11/12 my-0 mx-auto pb-5 pt-20 xxl:flex xxl:flex-col xxl:items-center">
                 <div className="mt-2">
                   <div className="pb-3 flex justify-between flex-wrap">
-                    <div className='flex justify-between flex-wrap sm:pb-3'>
+                    <div className='flex justify-between sm:flex-col sm:justify-start flex-wrap sm:pb-3'>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 2? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(2)}>MY Trades</Text>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>MY Pending Redemptions</Text>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 1? 'border-b-2 border-green-100' : '')} transform size='14px' onClick={()=>onShowAllTrades(1)}>Recent Trades</Text>
