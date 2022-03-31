@@ -227,7 +227,7 @@ export const HomeView = () => {
   return (
     <div className="w-screen h-screen  bg-black hero-section" >
       <div className="flex flex-col absolute trade_sb_token_wrapper">
-
+         {/*Hero Section*/}
         {/* <div className="rounded-md max-w-xs  w-64 z-50">
           <div className="offer_wrapper_1 flex flex-col text-center rounded-md">
             <div className="flex justify-center w-9/12 my-0 mx-auto">
@@ -935,6 +935,7 @@ export const HomeView = () => {
               <BtnText color="#01A0FC" size="28px" weight="true">
                 MetaLend
               </BtnText>
+
               {/* <BtnText className="mt-2" color="white" size="14px" weight="true">
                 Q2 2022
               </BtnText> */}
