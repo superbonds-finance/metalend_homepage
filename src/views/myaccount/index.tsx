@@ -145,7 +145,7 @@ export  function MyAccountView() {
 
   return (
       <div className="w-screen h-screen bg-black ">
-        <div className="w-11/12 my-0 mx-auto pt-16" style={{maxWidth:"1540px"}}>
+        <div className="w-11/12 my-0 mx-auto pt-16 lg:pt-24 md:pt-16" style={{maxWidth:"1540px"}}>
         <HeaderCard
           isHover=''
           text=''

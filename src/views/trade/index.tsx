@@ -1056,7 +1056,7 @@ export function TradeView() {
  
     return (
         <div className="w-screen h-screen bg-black">
-            <div  className="w-9/12 my-0 mx-auto pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
+            <div  className="w-9/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
                 <div className='flex flex-col' >
                     <HeaderCard
                       isHover=''
@@ -1110,12 +1110,12 @@ export function TradeView() {
                             </div>
                           </div> */}
 
-                          <div className="grid grid-cols-10 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-5 mt-3 rounded-md items-center">
+                          <div className="grid grid-cols-10 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-5 xs:grid-cols-1 xs:grid-rows-2 mt-3 rounded-md items-center">
 
-                            <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2" style={{marginLeft: '-35px'}}>
+                            <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2 xs:col-span-1 main_hex">
                               <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url(${PoligonActive})`}}>
                                 <Text className='text-grid cursor-pointer w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
-                                <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable componen'}> 
+                                <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}> 
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
                                 <Text className="" size={"14px"} color={"#9CF61C"}><span style={{color:"#9CF61C"}}><strong>{(APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):"0.00"}%</strong></span></Text>
                               </div>
@@ -1132,7 +1132,7 @@ export function TradeView() {
                                </div>} */}
                             </div>
 
-                            <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status30 ==='ACTIVE')? '#263B31':'#161D23'}}>
+                            <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 xs:col-span-1 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status30 ==='ACTIVE')? '#263B31':'#161D23'}}>
                                 <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
                                     <HoverToolTip noColor className="flex flex-col justify-start">
 
@@ -1161,14 +1161,14 @@ export function TradeView() {
                                 <div className="w-full p-4 rounded-md bg-gray-400" >
                                   <HoverToolTip className='text-grid grid grid-cols-3 cursor-pointer'>
                                     <Text weight='true' className="col-span-2 inline " opacity={"0.75"}>Fixed Yield
-                                      <Tooltip placement="rightTop" title={'The guaranteed minimum yield, in USDC, expressed in annualized terms'}> <ImInfo  className='info-circle ml-0.5'  /></Tooltip> 
+                                      <Tooltip placement="rightTop" title={'The guaranteed yield upon maturity, in USDC, expressed in annualized terms'}> <ImInfo  className='info-circle ml-0.5'  /></Tooltip> 
                                     </Text>
                                     <Text className="" size={"19px"} color={"#7CFA4C"}><span style={{color: bond_yield30>=0 ? "#7CFA4C" : "red"}}><strong>{superbondsStatus30 ? Math.floor(bond_yield30*superbondsRate30*100)/100 : bond_yield30}%</strong></span></Text>
                                   </HoverToolTip>
 
                                   <HoverToolTip className='text-grid grid grid-cols-3 cursor-pointer'>
                                     <Text weight='true' className="col-span-2" opacity={"0.75"}>Days to Maturity
-                                    <Tooltip placement="rightTop" title={'The period of time afte which the bond can be redeemed for its full value'}> 
+                                    <Tooltip placement="rightTop" title={'The period of time after which the bond can be redeemed for its full value'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                     </Text>
                                     
@@ -1277,9 +1277,9 @@ export function TradeView() {
                               </div>
                             </div> */}
 
-                             <div className="grid grid-cols-10 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-5 mt-3 rounded-md items-center">
+                             <div className="grid grid-cols-10 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-5 xs:grid-cols-1 xs:grid-rows-2 mt-3 rounded-md items-center">
 
-                              <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2" style={{marginLeft: '-35px'}}>
+                              <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2 xs:col-span-1 main_hex">
                                 <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url(${PoligonActive})`}}>
                                   <Text className='w-9/12 text-grid cursor-pointer mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                   <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}> 
@@ -1299,7 +1299,7 @@ export function TradeView() {
                                  </div>} */}
                               </div>
 
-                              <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status90 ==='ACTIVE')? '#263B31':'#161D23'}}>
+                              <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 xs:col-span-1 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status90 ==='ACTIVE')? '#263B31':'#161D23'}}>
                                   <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
                                       <HoverToolTip noColor className="flex flex-col justify-start">
                                           <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >Total Bonds Available
@@ -1337,7 +1337,7 @@ export function TradeView() {
 
                                   <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                     <Text weight='true' className="col-span-2" opacity={"0.75"}>Days to Maturity
-                                      <Tooltip placement="rightTop" title={'The period of time afte which the bond can be redeemed for its full value'}> 
+                                      <Tooltip placement="rightTop" title={'The period of time after which the bond can be redeemed for its full value'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
                                     <Text weight='true' className='' size={"19px"}color={'white'}>90</Text>
                                   </HoverToolTip>
@@ -1404,7 +1404,7 @@ export function TradeView() {
             <div className="w-11/12 my-0 mx-auto pb-5 pt-20 xxl:flex xxl:flex-col xxl:items-center">
                 <div className="mt-2">
                   <div className="pb-3 flex justify-between flex-wrap">
-                    <div className='flex justify-between flex-wrap sm:pb-3'>
+                    <div className='flex justify-between sm:flex-col sm:justify-start flex-wrap sm:pb-3'>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 2? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(2)}>MY Trades</Text>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>MY Pending Redemptions</Text>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 1? 'border-b-2 border-green-100' : '')} transform size='14px' onClick={()=>onShowAllTrades(1)}>Recent Trades</Text>

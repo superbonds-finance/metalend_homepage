@@ -251,20 +251,7 @@ export  function ClaimNFTView() {
     }
 
     let nft_associated_token_account_address = await findAssociatedTokenAddress(publicKey,new PublicKey(nft));
-    // let superB_associated_token_account_address = await findAssociatedTokenAddress(new PublicKey(trade_owner),SUPERB_MINT_ADDRESS);
 
-    // const encodedStakingDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
-    // const decodedStakingDataState = PLATFORM_DATA_LAYOUT.decode(encodedStakingDataState) as PlatformDataLayout;
-
-    // let [SuperB_pda_address,SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
-
-
-    // let owner_account_info = next_account_info(account_info_iter)?;
-    // let nft_account_info = next_account_info(account_info_iter)?;
-    // //Account that holds the trade information
-    // let trade_state_account_info = next_account_info(account_info_iter)?;
-    // let previous_owner_data_info = next_account_info(account_info_iter)?;
-    // let new_owner_data_info = next_account_info(account_info_iter)?;
     const buffers = [
       Buffer.from(Uint8Array.of(23))
     ];

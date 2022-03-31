@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory} from "react-router-dom";
-import { Text, TextDoc, BtnText, NewText } from "./home.styled";
+import { Text, TextDoc, BtnText, NewText ,NumberText} from "./home.styled";
 // import { Tooltip } from 'antd';
 import bgimage from "../../assets/bg.png";
 import "./home.css";
@@ -22,7 +22,7 @@ import {
 import '../../styles/trade.css';
 import axios from 'axios';
 import {AxiosResponse} from 'axios';
-
+ 
 
 export const HomeView = () => {
   const history = useHistory();
@@ -389,7 +389,7 @@ export const HomeView = () => {
           }}
         >
           <div className="py-1 ">
-            <div className="flex justify-center ">
+            {/* <div className="flex justify-center ">
               <Text transform="" size="42px" weight="true">
                 SuperBonds
               </Text>
@@ -400,15 +400,33 @@ export const HomeView = () => {
                 }
                 alt="..."
               />
-            </div>
-            <Text className="block mt-4" size="16px" weight="true">
-              Up to <b style={{color:'#01A0FC',fontSize:'20px'}}>18% </b>fixed yield, fully secured
-            </Text>
-            <Text className="block mb-7 mt-2" size="16px" weight="true">
-              Plus earn additional boosters
-            </Text>
+            </div> */}
+              <div className="flex justify-center  items-center">
+              <Text className='ml-2' transform="" size="26px" weight="true">
+                Upto
+              </Text>
+              <NumberText className='ml-2' style={{marginTop:"1.7rem"}} transform="" size="42px"  color='#7CFA4C'>
+               18
+              </NumberText>
+              <NumberText  style={{marginTop:"1.5rem"}}  transform="" size="35px"  color='#7CFA4C'>
+               %
+              </NumberText>
+              <Text className='ml-2' transform="" size="26px" weight="true">
+                fixed yield, fully secured
+              </Text>
+            </div> 
+            
+            <BtnText className="block " size="18px" weight="true">
+               Multiple reward streams. Anytime redemption.
+            </BtnText>
+            {/* <BtnText className="block mt-2" size="16px" weight="true">
+              Instant Redemptions
+            </BtnText> */}
+            {/* <BtnText className="block   mt-2" size="16px" weight="true">
+              Full Custody
+            </BtnText> */}
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-10">
             {/* <button
               onClick={() =>
                 handlePush("/trade")
@@ -428,16 +446,22 @@ export const HomeView = () => {
             </button> */}
 
             <button
-               onClick={() =>
+              onClick={() =>
                 handlePush("/trade")
               }
-              className="hover:bg-green-100  text-white hover:text-black  border-2 z-40 w-44 rounded-md border-green-100 px-4 py-2 inline-block ml-3"
+              className="w-48  z-40 rounded-md bg-green-100 px-4 py-2 inline-block text-center transform   hover:scale-105"
             >
-              <TextDoc transform="" className="" size="16px" weight="true">
-              Launch App
-              </TextDoc>
+              <BtnText
+                className="transform transition hover:scale-105"
+                transform=""
+                size="16px"
+                weight="true"
+                color="black"
+              >
+                Launch Devnet
+              </BtnText>
+              {/* <img  className=' mt-0.5' src={arrow}  /> */}
             </button>
-
             <button
               onClick={() =>
                 window.open("https://superbonds.gitbook.io/superbonds/")
@@ -449,14 +473,15 @@ export const HomeView = () => {
               </TextDoc>
             </button>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-5">
             <div className="home_widget w-96 flex flex-col items-center">
-              <Text transform className='text-center' size={"14px"} spacing={'0px'} weight='bold' >Total Bonds Available</Text>
-              <Text className='text-center' size={"20px"} color={'#01A0FC'}><span ><strong>{(bond_yield90 || bond_yield30) ?
+              <Text   className='text-center' size={"14px"} spacing={'0px'}  >Total Bonds Available</Text>
+              <Text className='text-center mt-2' size={"30px"} color={'#01A0FC'}>
+                <span ><strong>{(bond_yield90 || bond_yield30) ?
                formatNumberWithoutRounding.format(
                 (bond_yield90 ? ((adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1))/0.35) : 0) +
                 (bond_yield30 ? ((adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1))/0.35) : 0))
-                :"0.00"}</strong></span></Text>
+                :"0.00"}</strong></span> USDC</Text>
             </div>
           </div>
         </div>
@@ -660,7 +685,7 @@ export const HomeView = () => {
               <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 pb-4 pt-16 rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
                 <div className="flex flex-col ">
                   <BtnText
-                    className="mt-2"
+                    className="mt-1"
                     color="white"
                     size="21px"
                     weight="true"
@@ -669,11 +694,11 @@ export const HomeView = () => {
                   </BtnText>
                   <Text
                     letterSpacing="1px"
-                    className="tracking-normal mt-3"
+                    className="tracking-normal mt-5"
                     size="15px"
                     opacity="0.5"
                   >
-                     Secured rates, guaranteed. Powered by LP bond underwriting 
+                     Upto 18% fixed yield, Secured rates & guaranteed. Powered by LP bond underwriting 
                   </Text>
                 </div>
               </div>
@@ -692,7 +717,7 @@ export const HomeView = () => {
               <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 pb-4 pt-16  rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
                 <div className="flex flex-col">
                   <BtnText
-                    className="mt-2"
+                    className="mt-1"
                     color="white"
                     size="21px"
                     weight="true"
@@ -701,7 +726,7 @@ export const HomeView = () => {
                   </BtnText>
                   <Text
                     letterSpacing="1px"
-                    className="tracking-normal mt-3"
+                    className="tracking-normal mt-5"
                     size="15px"
                     opacity="0.5"
                   >
@@ -724,7 +749,7 @@ export const HomeView = () => {
               <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 pb-4 pt-16  rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
                 <div className="flex flex-col">
                   <BtnText
-                    className="mt-2"
+                    className="mt-1"
                     color="white"
                     size="21px"
                     weight="true"
@@ -733,7 +758,7 @@ export const HomeView = () => {
                   </BtnText>
                   <Text
                     letterSpacing="1px"
-                    className="tracking-normal mt-3"
+                    className="tracking-normal mt-5"
                     size="15px"
                     opacity="0.5"
                   >
@@ -756,7 +781,7 @@ export const HomeView = () => {
               <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 pb-4 pt-16  rounded-md w-64 -z-50 -mt-14 sm:w-full h-full">
                 <div className="flex flex-col">
                   <BtnText
-                    className="mt-2"
+                    className="mt-1"
                     color="white"
                     size="21px"
                     weight="true"
@@ -765,7 +790,7 @@ export const HomeView = () => {
                   </BtnText>
                   <Text
                     letterSpacing="1px"
-                    className="tracking-normal mt-3"
+                    className="tracking-normal mt-5"
                     size="15px"
                     opacity="0.5"
                   >

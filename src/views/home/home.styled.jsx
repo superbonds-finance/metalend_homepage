@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import font from "../../assets/FontsFree-Net-Akkurat-Bold.ttf"
 import Gilroy from "../../assets/Gilroy-Light.ttf";
 import GilroyBold from "../../assets/Gilroy-Bold.ttf";
+import Gathom from "../../assets/GothamBook.ttf";
 
 export const HeaderText=styled.span`
   font-family: Archivo;
@@ -12,6 +13,20 @@ export const HeaderText=styled.span`
   letter-spacing: 0.146643px;
   text-transform: uppercase;
   color: #FFFFFF;
+`
+
+
+export const NumberText=styled.span`
+@font-face {
+  font-family: 'Gotham';
+  src: url(${Gathom}) format('truetype');
+}
+font-family: 'Gotham';
+font-weight: ${(props) => (props.weight ?  'bold' : '300')};
+font-size: ${(props) => (props.size ? props.size : '16px')};
+text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
+color: ${(props) => (props.color ? props.color : '#FFFFFF')};
+ 
 `
 export const Text=styled.span`
 @font-face {
