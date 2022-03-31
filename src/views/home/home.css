@@ -2,6 +2,11 @@
     background-size:"600px 600px";
     top:"50%"
 }
+.sub_nav {  
+    padding: 1px 0 1px 20px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56.83%, rgba(117, 233, 71, 0.2) 103.83%), #1A232B;
+    z-index: 100;
+  }
 
 @media (max-width:400px) {
     .main-bg{

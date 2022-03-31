@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory} from "react-router-dom";
-import { Text, TextDoc, BtnText, NewText ,NumberText} from "./home.styled";
+import { Text, TextDoc, BtnText, NewText ,NumberText,CalibariText,Jupiter} from "./home.styled";
 // import { Tooltip } from 'antd';
 import bgimage from "../../assets/bg.png";
 import "./home.css";
@@ -402,18 +402,16 @@ export const HomeView = () => {
               />
             </div> */}
               <div className="flex justify-center  items-center">
-              <Text className='ml-2' transform="" size="26px" weight="true">
-                Upto
-              </Text>
+               
               <NumberText className='ml-2' style={{marginTop:"1.7rem"}} transform="" size="42px"  color='#7CFA4C'>
                18
               </NumberText>
               <NumberText  style={{marginTop:"1.5rem"}}  transform="" size="35px"  color='#7CFA4C'>
                %
               </NumberText>
-              <Text className='ml-2' transform="" size="26px" weight="true">
-                fixed yield, fully secured
-              </Text>
+              <CalibariText className='ml-2' transform="" size="26px" weight="true">
+                Fixed Yield in USDC. Guaranteed.
+              </CalibariText>
             </div> 
             
             <BtnText className="block " size="18px" weight="true">
@@ -502,8 +500,107 @@ export const HomeView = () => {
           />
         </div>
       </div>
+      <section className="sub_nav">
+      <div className=' flex flex-wrap items-center justify-around w-9/12 mx-auto my-0 pt-5   xl:w-full justify-center ' >
 
-      <section>
+<div className='  flex flex-col justify-center items-center py-8 lg:py-2'>
+  {/* <img  src='https://www.orca.so/static/media/logomark.1ef55f8f.svg' alt='...' className="w-11 mr-2 lg:hidden" /> */}
+  <NewText
+      color='white'
+      weight="true"
+      transform=""
+      size='40px'
+      className="my-0 select-none"
+    >
+     Become an <span style={{ color: "#01A0FC" }}>S</span>
+          <span style={{ color: "#7CFA4C" }}>B</span> Ambassador
+  </NewText>
+  <button
+        onClick={() => window.open("https://www.orca.so/pools?pool=sb/usdc")}
+        className="ml-5 sm:ml-2 mt-5 bg-green-100 text-black   border-2 z-40 w-28 rounded-md px-3 py-3 inline-block"
+        
+      >
+        <NewText transform="" className="" size="18px" weight="true">
+          Join Now
+        </NewText>
+     
+      </button>
+
+
+
+    {/* <button onClick={() => window.open("https://www.orca.so/pools?pool=sb/usdc")} className="hover:bg-black  hover:text-white text-black  ml-5 border-2 z-40 w-44 xl:w-36 whitespace-nowrap rounded-xl border-black px-2 py-2 inline-block lg:mt-2">
+        <NewText transform="" className='font-bold tracking-wide' size="16px" weight="true">
+          Become LP
+        </NewText>
+    </button> */}
+    {/* <img  src='https://www.orca.so/static/media/logomark.1ef55f8f.svg' alt='...' className="w-11 lg:hidden ml-2" /> */}
+</div>
+
+<div className='flex flex-col justify-center items-center py-8 lg:py-2'>
+  {/* <img  src='https://www.orca.so/static/media/logomark.1ef55f8f.svg' alt='...' className="w-11 mr-2 lg:hidden" /> */}
+  <NewText
+      color='white'
+      weight="true"
+      transform=""
+      size='40px'
+      className="my-0 select-none"
+    >
+     Trade <span style={{ color: "#01A0FC" }}>S</span>
+          <span style={{ color: "#7CFA4C" }}>B</span> Token
+  </NewText>
+  <div className="flex mt-5">
+  <img
+        onClick={() =>
+          window.open("https://www.mexc.com/exchange/SB_USDT")
+        }
+        className=" my-0  select-none cursor-pointer Z-40   left-auto right-auto"
+        src={
+          "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366156/full-logo-normal-mexc_cllivy.svg"
+        }
+        alt="..."
+        style={{ height: "38px", width: "131px" }}
+      />
+      <img
+        onClick={() =>
+          window.open(
+            "https://dex.raydium.io/#/market/E3cNotFPoECwQvacT2D7u3C3tKRkGtUxv8WFYazBEx4X"
+          )
+        }
+        className="   select-none my-0  cursor-pointer   Z-40 "
+        src={
+          "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366716/logo-text.cf5a7a0_lx0ueg.svg"
+        }
+        alt="..."
+        style={{ height: "38px", width: "176px" }}
+      />
+      <div className="flex my-0  ">
+        <img
+          onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
+          className="w-8 select-none cursor-pointer Z-40"
+          src={ 
+            "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366783/jupiter-logo_vi90us.svg"
+          }
+          alt="..."
+          style={{ height: "38px" }}
+        />
+
+        <Jupiter
+          onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
+          className="ml-2 mt-2 cursor-pointer Z-40 select-none '"
+          size="16px"
+         
+        >
+          Jupiter
+        </Jupiter>
+      </div>
+  </div>
+
+      
+ </div>
+</div>
+      </section>
+       
+      {/* <section>
         <div className="flex flex-wrap items-center justify-around w-8/12 mt-5 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center">
         <div className="rounded-md max-w-xs z-50" >
             <div className="offer_wrapper_1 mt-3 flex flex-col text-center rounded-md" style={{minHeight:"214px",maxWidth:"216px"}}> 
@@ -634,7 +731,7 @@ export const HomeView = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section>
         <div className="flex flex-col mt-12 text-center justify-center select-none">

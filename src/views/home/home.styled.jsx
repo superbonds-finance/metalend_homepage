@@ -28,6 +28,15 @@ text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
 color: ${(props) => (props.color ? props.color : '#FFFFFF')};
  
 `
+export const CalibariText=styled.span`
+ 
+font-family: 'Calibri';
+font-weight: ${(props) => (props.weight ?  'bold' : '300')};
+font-size: ${(props) => (props.size ? props.size : '16px')};
+text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
+color: ${(props) => (props.color ? props.color : '#FFFFFF')};
+ 
+`
 export const Text=styled.span`
 @font-face {
   font-family: 'AkkuratLLWeb-Bold';
@@ -96,5 +105,21 @@ opacity: ${(props) => (props.opacity ? props.opacity : '')};
 @media (max-width: 639px) {
   font-size: 20px;
 }
+`
+ 
+export const Jupiter=styled.span`
+@font-face {
+  font-family: 'AkkuratLLWeb-Bold';
+  src: url(${font}) format('truetype');
+}
+font-family: 'AkkuratLLWeb-Bold';
+ 
+  font-weight: ${(props) => (props.weight ?  'bold' : '300')};
+  font-size: ${(props) => (props.size ? props.size : '16px')};
+  line-height: 22px;
+  text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
+  letter-spacing : ${({ letterSpacing }) => letterSpacing || '1px'} ;
+  color: ${(props) => (props.color ? props.color : '#FFFFFF')};
+  opacity: ${(props) => (props.opacity ? props.opacity : '')};
 `
  
