@@ -401,15 +401,16 @@ export const HomeView = () => {
                 alt="..."
               />
             </div> */}
-              <div className="flex justify-center  items-center">
-               
-              <NumberText className='ml-2' style={{marginTop:"1.7rem"}} transform="" size="42px"  color='#7CFA4C'>
-               18
-              </NumberText>
-              <NumberText  style={{marginTop:"1.5rem"}}  transform="" size="35px"  color='#7CFA4C'>
-               %
-              </NumberText>
-              <CalibariText className='ml-2' transform="" size="26px" weight="true">
+              <div className="flex sm:flex-col justify-center  items-center">
+               <div className='flex justify-center items-center'>
+                <NumberText className='ml-2' style={{marginTop:"1.7rem"}} transform="" size="42px"  color='#7CFA4C'>
+                 18
+                </NumberText>
+                <NumberText  style={{marginTop:"1.5rem"}}  transform="" size="35px"  color='#7CFA4C'>
+                 %
+                </NumberText>
+              </div>
+              <CalibariText className='ml-2 mt-7 sm:mt-0' transform="" size="26px" weight="true">
                 Fixed Yield in USDC. Guaranteed.
               </CalibariText>
             </div> 
@@ -510,7 +511,7 @@ export const HomeView = () => {
       weight="true"
       transform=""
       size='40px'
-      className="my-0 select-none"
+      className="my-0 select-none text-center"
     >
      Become an <span style={{ color: "#01A0FC" }}>S</span>
           <span style={{ color: "#7CFA4C" }}>B</span> Ambassador
@@ -548,7 +549,7 @@ export const HomeView = () => {
      Trade <span style={{ color: "#01A0FC" }}>S</span>
           <span style={{ color: "#7CFA4C" }}>B</span> Token
   </NewText>
-  <div className="flex mt-5">
+  <div className="flex sm:flex-wrap sm:justify-content-center xs:flex-col mt-5 items-center">
   <img
         onClick={() =>
           window.open("https://www.mexc.com/exchange/SB_USDT")
@@ -558,7 +559,7 @@ export const HomeView = () => {
           "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366156/full-logo-normal-mexc_cllivy.svg"
         }
         alt="..."
-        style={{ height: "38px", width: "131px" }}
+        style={{ height: "50px", width: "160px" }}
       />
       <img
         onClick={() =>
@@ -581,13 +582,13 @@ export const HomeView = () => {
             "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366783/jupiter-logo_vi90us.svg"
           }
           alt="..."
-          style={{ height: "38px" }}
+          style={{ height: "42px" }}
         />
 
         <Jupiter
           onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
           className="ml-2 mt-2 cursor-pointer Z-40 select-none '"
-          size="16px"
+          size="18px"
          
         >
           Jupiter
