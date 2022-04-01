@@ -7,7 +7,9 @@
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56.83%, rgba(117, 233, 71, 0.2) 103.83%), #1A232B;
     z-index: 100;
   }
-
+.hex-height{
+    height:'50px'
+}
 @media (max-width:400px) {
     .main-bg{
         background-size: 99% 65%;

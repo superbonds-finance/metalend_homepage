@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory} from "react-router-dom";
-import { Text, TextDoc, BtnText, NewText ,NumberText,CalibariText,Jupiter} from "./home.styled";
+import { Text, TextDoc, BtnText, NewText ,NumberText,CalibariText,Jupiter,CardText} from "./home.styled";
 // import { Tooltip } from 'antd';
 import bgimage from "../../assets/bg.png";
 import "./home.css";
@@ -388,35 +388,35 @@ export const HomeView = () => {
             backgroundSize: "contain",
           }}
         >
-          <div className="py-1 ">
-            {/* <div className="flex justify-center ">
-              <Text transform="" size="42px" weight="true">
+          <div className="py-3">
+            <div className="flex justify-center ">
+              {/* <Text transform="" size="42px" weight="true">
                 SuperBonds
-              </Text>
+              </Text> */}
               <img
-                className="ml-3"
+                className=" "
                 src={
                   "https://res.cloudinary.com/drr1rnoxf/image/upload/v1636998509/solana_ffxt3n.svg"
                 }
                 alt="..."
               />
-            </div> */}
-              <div className="flex sm:flex-col justify-center  items-center">
-               <div className='flex justify-center items-center'>
-                <NumberText className='ml-2' style={{marginTop:"1.7rem"}} transform="" size="42px"  color='#7CFA4C'>
-                 18
-                </NumberText>
-                <NumberText  style={{marginTop:"1.5rem"}}  transform="" size="35px"  color='#7CFA4C'>
-                 %
-                </NumberText>
-              </div>
-              <CalibariText className='ml-2 mt-7 sm:mt-0' transform="" size="26px" weight="true">
-                Fixed Yield in USDC. Guaranteed.
-              </CalibariText>
-            </div> 
+            </div>
+              <div className="flex sm:flex-col justify-center  items-center mt-5">
+                <div className='hex-height flex justify-center items-center h-16'  >
+                  <NumberText className='ml-2' style={{marginTop:"1.4rem"}} transform="" size="35px"  color='#7CFA4C'>
+                  18
+                  </NumberText>
+                  <NumberText  style={{marginTop:"1.4rem"}}  transform="" size="35px"  color='#7CFA4C'>
+                  %
+                  </NumberText>
+                </div>
+                <BtnText className='ml-2 sm:mt-0' transform="" size="23px" weight="true">
+                  Fixed Yield in USDC. Guaranteed.
+                </BtnText>
+              </div> 
             
-            <BtnText className="block " size="18px" weight="true">
-               Multiple reward streams. Anytime redemption.
+            <BtnText className="block -mt-2 " size="15px" weight="true">
+              Additional rewards. Instant cash-outs.
             </BtnText>
             {/* <BtnText className="block mt-2" size="16px" weight="true">
               Instant Redemptions
@@ -425,7 +425,7 @@ export const HomeView = () => {
               Full Custody
             </BtnText> */}
           </div>
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-10 xl:mt-6">
             {/* <button
               onClick={() =>
                 handlePush("/trade")
@@ -448,7 +448,7 @@ export const HomeView = () => {
               onClick={() =>
                 handlePush("/trade")
               }
-              className="w-48  z-40 rounded-md bg-green-100 px-4 py-2 inline-block text-center transform   hover:scale-105"
+              className="w-48 z-40 rounded-md bg-green-100 px-4 py-2 inline-block text-center transform   hover:scale-105"
             >
               <BtnText
                 className="transform transition hover:scale-105"
@@ -457,7 +457,7 @@ export const HomeView = () => {
                 weight="true"
                 color="black"
               >
-                Launch Devnet
+                Launch App
               </BtnText>
               {/* <img  className=' mt-0.5' src={arrow}  /> */}
             </button>
@@ -472,15 +472,15 @@ export const HomeView = () => {
               </TextDoc>
             </button>
           </div>
-          <div className="flex justify-center mt-5">
+          <div className="flex justify-center mt-5 xl:mt-3">
             <div className="home_widget w-96 flex flex-col items-center">
               <Text   className='text-center' size={"14px"} spacing={'0px'}  >Total Bonds Available</Text>
-              <Text className='text-center mt-2' size={"30px"} color={'#01A0FC'}>
+              <NumberText className='text-center mt-2' size={"30px"} color={'#01A0FC'} style={{height:'30px'}}>
                 <span ><strong>{(bond_yield90 || bond_yield30) ?
                formatNumberWithoutRounding.format(
                 (bond_yield90 ? ((adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1))/0.35) : 0) +
                 (bond_yield30 ? ((adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1))/0.35) : 0))
-                :"0.00"}</strong></span> USDC</Text>
+                :"0.00"}</strong></span> USDC</NumberText>
             </div>
           </div>
         </div>
@@ -502,104 +502,90 @@ export const HomeView = () => {
         </div>
       </div>
       <section className="sub_nav">
-      <div className=' flex flex-wrap items-center justify-around w-9/12 mx-auto my-0 pt-5   xl:w-full justify-center ' >
+        <div className=' flex flex-wrap items-center justify-around w-9/12 mx-auto my-0 pt-5   xl:w-full justify-center ' >
+          <div className='  flex flex-col justify-center items-center py-8 lg:py-2'>
+            <NewText
+              color='white'
+              weight="true"
+              transform=""
+              size='40px'
+              className="my-0 select-none text-center"
+              >
+              Become an <span style={{ color: "#01A0FC" }}>S</span>
+              <span style={{ color: "#7CFA4C" }}>B</span> Ambassador
+            </NewText>
+            <button
+              onClick={() => window.open("https://www.orca.so/pools?pool=sb/usdc")}
+              className="ml-5 sm:ml-2 mt-5 bg-green-100 text-black   border-2 z-40 w-28 rounded-md px-3 py-2 inline-block"
+              
+            >
+              <NewText transform="" className="" size="18px" weight="true">
+                Join Now
+              </NewText>
+            </button>
+          </div>
+          
 
-<div className='  flex flex-col justify-center items-center py-8 lg:py-2'>
-  {/* <img  src='https://www.orca.so/static/media/logomark.1ef55f8f.svg' alt='...' className="w-11 mr-2 lg:hidden" /> */}
-  <NewText
-      color='white'
-      weight="true"
-      transform=""
-      size='40px'
-      className="my-0 select-none text-center"
-    >
-     Become an <span style={{ color: "#01A0FC" }}>S</span>
-          <span style={{ color: "#7CFA4C" }}>B</span> Ambassador
-  </NewText>
-  <button
-        onClick={() => window.open("https://www.orca.so/pools?pool=sb/usdc")}
-        className="ml-5 sm:ml-2 mt-5 bg-green-100 text-black   border-2 z-40 w-28 rounded-md px-3 py-3 inline-block"
-        
-      >
-        <NewText transform="" className="" size="18px" weight="true">
-          Join Now
-        </NewText>
-     
-      </button>
+          <div className='flex flex-col justify-center items-center py-8 lg:py-2 z-50' >
+            <NewText
+              color='white'
+              weight="true"
+              transform=""
+              size='30px'
+              className="my-0 select-none"
+              >
+                Trade <span style={{ color: "#01A0FC" }}>S</span>
+                <span style={{ color: "#7CFA4C" }}>B</span> Token
+            </NewText>
+            <div className="flex sm:flex-wrap sm:justify-content-center xs:flex-col mt-5 items-center">
+              <img
+                onClick={() =>
+                  window.open("https://www.mexc.com/exchange/SB_USDT")
+                }
+                className=" my-0  select-none cursor-pointer Z-40   left-auto right-auto"
+                src={
+                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366156/full-logo-normal-mexc_cllivy.svg"
+                }
+                alt="..."
+                style={{ height: "50px", width: "130px" }}
+                      />
+              <img
+                onClick={() =>
+                  window.open(
+                    "https://dex.raydium.io/#/market/E3cNotFPoECwQvacT2D7u3C3tKRkGtUxv8WFYazBEx4X"
+                  )
+                }
+                className="ml-2 select-none my-0  cursor-pointer   Z-40 "
+                src={
+                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366716/logo-text.cf5a7a0_lx0ueg.svg"
+                }
+                alt="..."
+                style={{ height: "38px", width: "150px" }}
+              />
+              <div className="flex my-0 ml-2  ">
+                <img
+                  onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
+                  className="w-8 select-none cursor-pointer Z-40"
+                  src={ 
+                    "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366783/jupiter-logo_vi90us.svg"
+                  }
+                  alt="..."
+                  style={{ height: "42px" }}
+                />
 
-
-
-    {/* <button onClick={() => window.open("https://www.orca.so/pools?pool=sb/usdc")} className="hover:bg-black  hover:text-white text-black  ml-5 border-2 z-40 w-44 xl:w-36 whitespace-nowrap rounded-xl border-black px-2 py-2 inline-block lg:mt-2">
-        <NewText transform="" className='font-bold tracking-wide' size="16px" weight="true">
-          Become LP
-        </NewText>
-    </button> */}
-    {/* <img  src='https://www.orca.so/static/media/logomark.1ef55f8f.svg' alt='...' className="w-11 lg:hidden ml-2" /> */}
-</div>
-
-<div className='flex flex-col justify-center items-center py-8 lg:py-2'>
-  {/* <img  src='https://www.orca.so/static/media/logomark.1ef55f8f.svg' alt='...' className="w-11 mr-2 lg:hidden" /> */}
-  <NewText
-      color='white'
-      weight="true"
-      transform=""
-      size='40px'
-      className="my-0 select-none"
-    >
-     Trade <span style={{ color: "#01A0FC" }}>S</span>
-          <span style={{ color: "#7CFA4C" }}>B</span> Token
-  </NewText>
-  <div className="flex sm:flex-wrap sm:justify-content-center xs:flex-col mt-5 items-center">
-  <img
-        onClick={() =>
-          window.open("https://www.mexc.com/exchange/SB_USDT")
-        }
-        className=" my-0  select-none cursor-pointer Z-40   left-auto right-auto"
-        src={
-          "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366156/full-logo-normal-mexc_cllivy.svg"
-        }
-        alt="..."
-        style={{ height: "50px", width: "160px" }}
-      />
-      <img
-        onClick={() =>
-          window.open(
-            "https://dex.raydium.io/#/market/E3cNotFPoECwQvacT2D7u3C3tKRkGtUxv8WFYazBEx4X"
-          )
-        }
-        className="   select-none my-0  cursor-pointer   Z-40 "
-        src={
-          "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366716/logo-text.cf5a7a0_lx0ueg.svg"
-        }
-        alt="..."
-        style={{ height: "38px", width: "176px" }}
-      />
-      <div className="flex my-0  ">
-        <img
-          onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
-          className="w-8 select-none cursor-pointer Z-40"
-          src={ 
-            "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366783/jupiter-logo_vi90us.svg"
-          }
-          alt="..."
-          style={{ height: "42px" }}
-        />
-
-        <Jupiter
-          onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
-          className="ml-2 mt-2 cursor-pointer Z-40 select-none '"
-          size="18px"
-         
-        >
-          Jupiter
-        </Jupiter>
-      </div>
-  </div>
-
-      
- </div>
-</div>
-      </section>
+                <Jupiter
+                  onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
+                  className="ml-2 mt-2 cursor-pointer Z-40 select-none '"
+                  size="14px"
+                
+                >
+                  Jupiter
+                </Jupiter>
+              </div>
+             </div>
+            </div>
+          </div>
+        </section>
        
       {/* <section>
         <div className="flex flex-wrap items-center justify-around w-8/12 mt-5 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center">
@@ -790,14 +776,14 @@ export const HomeView = () => {
                   >
                    Fixed Yield
                   </BtnText>
-                  <Text
+                  <CardText
                     letterSpacing="1px"
                     className="tracking-normal mt-5"
                     size="15px"
                     opacity="0.5"
                   >
-                     Upto 18% fixed yield, Secured rates & guaranteed. Powered by LP bond underwriting 
-                  </Text>
+                     Up to 18% fixed yield through bonds with various maturities. Powered by LP underwriting.
+                  </CardText>
                 </div>
               </div>
             </div>
@@ -820,16 +806,16 @@ export const HomeView = () => {
                     size="21px"
                     weight="true"
                   >
-                  Cross-Chain Yield
+                  Cross-Chain
                   </BtnText>
-                  <Text
+                  <CardText
                     letterSpacing="1px"
                     className="tracking-normal mt-5"
                     size="15px"
                     opacity="0.5"
                   >
-                     No need to farm stables anywhere else. Superbonds programmatically farms the most established stablecoin yields crosschain for the benefit of LPs
-                  </Text>
+                    No need to farm stablecoins elsewhere. SuperBonds programmatically farms the most established stablecoin yields crosschain for the benefit of LPs.
+                  </CardText>
                 </div>
               </div>
             </div>
@@ -854,14 +840,14 @@ export const HomeView = () => {
                   >
                     Financial NFTs
                   </BtnText>
-                  <Text
+                  <CardText
                     letterSpacing="1px"
                     className="tracking-normal mt-5"
                     size="15px"
                     opacity="0.5"
                   >
-                  Bonds issued on SuperBonds are self-custodied financial NFTs with a known and higher terminal value. A new form of collateral that benefits from the term structure in crypto
-                  </Text>
+                    Issued bonds are self-custodied Financial NFTs with a known terminal value, making them a form of collateral not yet in circulation. 
+                  </CardText>
                 </div>
               </div>
             </div>
@@ -886,14 +872,14 @@ export const HomeView = () => {
                   >
                     SB Token
                   </BtnText>
-                  <Text
+                  <CardText
                     letterSpacing="1px"
                     className="tracking-normal mt-5"
                     size="15px"
                     opacity="0.5"
                   >
-                    The bloodline of SuperBonds and a layer-2 gas. SB has a pre-determined mint and is burned in every transaction on SuperBonds
-                  </Text>
+                    The bloodline of the SuperBonds platform and a layer-2 gas. SB has a pre-determined mint and is burned on every transaction on SuperBonds.
+                  </CardText>
                 </div>
               </div>
             </div>
