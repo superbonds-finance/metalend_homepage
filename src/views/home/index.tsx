@@ -382,11 +382,11 @@ export const HomeView = () => {
         </div>
 
         <div
-          className="main-bg    w-full h-full  bg-no-repeat bg-center py-0"
-          style={{
-            backgroundImage: `url(${"https://res.cloudinary.com/drr1rnoxf/image/upload/v1636998508/Polygon_qqqvbm.png"})`,
-            backgroundSize: "contain",
-          }}
+          className="main-bg w-full h-full  bg-no-repeat bg-center py-0"
+          // style={{
+          //   backgroundImage: `url(${"https://res.cloudinary.com/drr1rnoxf/image/upload/v1636998508/Polygon_qqqvbm.png"})`,
+          //   backgroundSize: "contain",
+          // }}
         >
           <div className="flex flex-col  w-full h-full  justify-center text-center py-0">
           

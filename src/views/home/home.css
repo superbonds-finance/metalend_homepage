@@ -1,6 +1,8 @@
 .main-bg{
-    background-size:"600px 600px";
-    top:"50%"
+    background-size:600px 600px;
+    top: 50%;
+    background-image: url('https://res.cloudinary.com/drr1rnoxf/image/upload/v1636998508/Polygon_qqqvbm.png');
+    background-size: contain;
 }
 .sub_nav {  
     padding: 1px 0 1px 20px;
@@ -8,12 +10,19 @@
     z-index: 100;
   }
 .hex-height{
-    height:'50px'
+    height: 50px
+}
+
+@media (max-width:576px) {
+    .main-bg{
+        background-size: inherit;
+    }
+    
 }
 @media (max-width:400px) {
     .main-bg{
-        background-size: 99% 65%;
-        top:"50%"
+        background-size: inherit;
+        top: 50%;
     }
     
 }
