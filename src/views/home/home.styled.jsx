@@ -21,7 +21,11 @@ export const NumberText=styled.span`
   font-family: 'Gotham';
   src: url(${GathomLight}) format('truetype');
 }
-font-family: 'Gotham';
+line-height: 1.41;
+letter-spacing: -0.2px;
+word-break: break-word;
+white-space: break-spaces;
+font-family: 'Open Sans', sans-serif;
 font-weight: ${(props) => (props.weight ?  'bold' : '300')};
 font-size: ${(props) => (props.size ? props.size : '16px')};
 text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};

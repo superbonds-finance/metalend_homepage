@@ -131,7 +131,7 @@
     box-sizing: border-box;
     backdrop-filter: blur(4px);
     /* Note: backdrop-filter has minimal browser support */
-    padding: 13px 0;
+    padding: 6px 0;
     border-radius: 8px;
     margin-top: 30px;
 }

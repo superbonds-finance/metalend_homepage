@@ -382,20 +382,33 @@ export const HomeView = () => {
         </div>
 
         <div
-          className="main-bg flex flex-col w-full h-full  text-center bg-no-repeat bg-center justify-center "
+          className="main-bg    w-full h-full  bg-no-repeat bg-center py-0"
           style={{
             backgroundImage: `url(${"https://res.cloudinary.com/drr1rnoxf/image/upload/v1636998508/Polygon_qqqvbm.png"})`,
             backgroundSize: "contain",
           }}
         >
-          <div className="pt-20">
-           
-              <div className="flex sm:flex-col justify-center  items-center mt-5 py-3">
+          <div className="flex flex-col  w-full h-full  justify-center text-center py-0">
+          
+          <div className="flex justify-center">
+              {/* <Text transform="" size="42px" weight="true">
+                SuperBonds
+              </Text> */}
+              <img
+                className=" "
+                src={
+                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1636998509/solana_ffxt3n.svg"
+                }
+                alt="..."
+              />
+            </div>
+          <div className="pt-0">
+              <div className="flex sm:flex-col justify-center  items-center  py-3">
                 <div className='hex-height flex justify-center items-center h-16'  >
-                  <NumberText className='ml-2' style={{marginTop:"1.4rem"}} transform="" size="33px"  color='#7CFA4C'>
+                  <NumberText className='ml-2' weight='true' transform="" size="33px"  color='#7CFA4C' style={{letterSpacing:"-2px"}}>
                   18
                   </NumberText>
-                  <NumberText  style={{marginTop:"1.4rem"}}  transform="" size="33px"  color='#7CFA4C'>
+                  <NumberText    transform="" size="28px"  color='#7CFA4C'>
                   %
                   </NumberText>
                 </div>
@@ -405,7 +418,7 @@ export const HomeView = () => {
               </div> 
             
             <BtnText className="block -mt-4 " size="15px" weight="" style={{fontWeight:'500'}}>
-              Additional rewards. Instant cash-outs.
+              Multiple reward streams. Instant cash-outs.
             </BtnText>
             {/* <BtnText className="block mt-2" size="16px" weight="true">
               Instant Redemptions
@@ -414,7 +427,7 @@ export const HomeView = () => {
               Full Custody
             </BtnText> */}
           </div>
-          <div className="flex justify-center mt-10 xl:mt-6">
+          <div className="flex justify-center mt-16 xl:mt-6">
             {/* <button
               onClick={() =>
                 handlePush("/trade")
@@ -437,7 +450,7 @@ export const HomeView = () => {
               onClick={() =>
                 handlePush("/trade")
               }
-              className="w-48 z-40 rounded-md bg-green-100 px-4 py-2 inline-block text-center transform   hover:scale-105"
+              className=" w-48 z-40 rounded-md bg-green-100 px-4 py-2 inline-block text-center transform hover:scale-105"
             >
               <BtnText
                 className="transform transition hover:scale-105"
@@ -464,7 +477,7 @@ export const HomeView = () => {
           <div className="flex justify-center mt-5 xl:mt-3">
             <div className="home_widget w-96 flex flex-col items-center">
               <Text   className='text-center' size={"14px"} spacing={'0px'} >Total Bonds Available</Text>
-              <NumberText className='text-center mt-2' size={"28px"} color={'#01A0FC'} style={{height:'25px'}}>
+              <NumberText className='text-center ' size={"28px"} color={'#01A0FC'} weight='true'>
                 <span ><strong>{(bond_yield90 || bond_yield30) ?
                formatNumberWithoutRounding.format(
                 (bond_yield90 ? ((adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1))/0.35) : 0) +
@@ -473,18 +486,7 @@ export const HomeView = () => {
             </div>
           </div>
 
-          <div className="flex justify-center mt-8">
-              {/* <Text transform="" size="42px" weight="true">
-                SuperBonds
-              </Text> */}
-              <img
-                className=" "
-                src={
-                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1636998509/solana_ffxt3n.svg"
-                }
-                alt="..."
-              />
-            </div>
+          </div>
         </div>
 
         <div className="absolute md:hidden">
@@ -520,23 +522,23 @@ export const HomeView = () => {
               onClick={() =>
                 window.open("https://superbonds.medium.com/the-ambassador-program-from-superbonds-8d11f5063bac")
               }
-              className="w-36 mt-5 z-40 rounded-md bg-green-100 px-4 py-2 inline-block text-center "
+              className="mt-3 hover:bg-green-100  text-white hover:text-black  border-2 z-40 w-44 rounded-md border-green-100 px-4 py-2 inline-block ml-3"
             >
-              <BtnText
-                className=" "
+              <TextDoc
+                className=""
                 transform=""
                 size="16px"
                 weight="true"
-                color="black"
+                color="white"
               >
                 Join Now
-              </BtnText>
+              </TextDoc>
               {/* <img  className=' mt-0.5' src={arrow}  /> */}
             </button>
           
           </div>
           
-          <div className="vl" style={{borderLeft: '3px solid rgb(70 129 48)',height: '100px'}}></div>
+          {/* <div className="vl" style={{borderLeft: '3px solid rgb(70 129 48)',height: '100px'}}></div> */}
           <div className='flex flex-col justify-center items-center  lg:py-2 z-50' >
             <NewText
               color='white'
@@ -1024,107 +1026,12 @@ export const HomeView = () => {
       </section>
 
       <footer className="footer">
-      <section className="sub_nav">
-        <div className=' flex flex-wrap items-center justify-around w-9/12 mx-auto my-0 py-6  xl:w-full justify-center ' >
-          <div className='  flex flex-col justify-center items-center   lg:py-2'>
-            <NewText
-              color='white'
-              weight="true"
-              transform=""
-              size='30px'
-              className="my-0 select-none text-center"
-              >
-              Become an <span style={{ color: "#01A0FC" }}>S</span>
-              <span style={{ color: "#7CFA4C" }}>B</span> Ambassador
-            </NewText>
-            <button
-              onClick={() =>
-                window.open("https://superbonds.medium.com/the-ambassador-program-from-superbonds-8d11f5063bac")
-              }
-              className="w-36 mt-5 z-40 rounded-md bg-green-100 px-4 py-2 inline-block text-center "
-            >
-              <BtnText
-                className=" "
-                transform=""
-                size="16px"
-                weight="true"
-                color="black"
-              >
-                Join Now
-              </BtnText>
-              {/* <img  className=' mt-0.5' src={arrow}  /> */}
-            </button>
-          
-          </div>
-          
-          <div className="vl" style={{borderLeft: '3px solid rgb(70 129 48)',height: '100px'}}></div>
-          <div className='flex flex-col justify-center items-center  lg:py-2 z-50' >
-            <NewText
-              color='white'
-              weight="true"
-              transform=""
-              size='30px'
-              className="my-0 select-none"
-              >
-                Trade <span style={{ color: "#01A0FC" }}>S</span>
-                <span style={{ color: "#7CFA4C" }}>B</span> Token
-            </NewText>
-            <div className="flex sm:flex-wrap sm:justify-content-center xs:flex-col mt-5 items-center">
-              <img
-                onClick={() =>
-                  window.open("https://www.mexc.com/exchange/SB_USDT")
-                }
-                className=" my-0  select-none cursor-pointer Z-40   left-auto right-auto"
-                src={
-                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366156/full-logo-normal-mexc_cllivy.svg"
-                }
-                alt="..."
-                style={{ height: "50px", width: "130px" }}
-                      />
-              <img
-                onClick={() =>
-                  window.open(
-                    "https://dex.raydium.io/#/market/E3cNotFPoECwQvacT2D7u3C3tKRkGtUxv8WFYazBEx4X"
-                  )
-                }
-                className="ml-2 select-none my-0  cursor-pointer   Z-40 "
-                src={
-                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366716/logo-text.cf5a7a0_lx0ueg.svg"
-                }
-                alt="..."
-                style={{ height: "38px", width: "150px" }}
-              />
-              <div className="flex my-0 ml-2  ">
-                <img
-                  onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
-                  className="w-8 select-none cursor-pointer Z-40"
-                  src={ 
-                    "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366783/jupiter-logo_vi90us.svg"
-                  }
-                  alt="..."
-                  style={{ height: "42px" }}
-                />
-
-                <Jupiter
-                  onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
-                  className="ml-2 mt-2 cursor-pointer Z-40 select-none '"
-                  size="14px"
-                
-                >
-                  Jupiter
-                </Jupiter>
-              </div>
-             </div>
-            </div>
-          </div>
-         
+      
         <div className=" flex justify-center">
           <Text>
             Copyright © 2021 <strong>SuperBonds</strong>
           </Text>
         </div>
-        </section>
-
       </footer>
     </div>
   );
