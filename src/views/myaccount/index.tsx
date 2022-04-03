@@ -164,7 +164,7 @@ export  function MyAccountView() {
               <div className="flex justify-between">
                 <div>
                   <button className="border-2 rounded-md border-green-100 px-6 py-1.5 inline-block">
-                    <Text >My Bond NFTs</Text>
+                    <Text >My Bonds</Text>
                   </button>
                 </div>
 
