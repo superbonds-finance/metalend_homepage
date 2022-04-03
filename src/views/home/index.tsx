@@ -560,7 +560,7 @@ export const HomeView = () => {
           </div>
           
           {/* <div className="vl" style={{borderLeft: '3px solid rgb(70 129 48)',height: '100px'}}></div> */}
-          <div className='flex flex-col justify-center items-center lg:pt-5 lg:py-2 z-50' >
+          <div className='flex flex-col justify-center items-center lg:pt-5 z-50' >
             <NewText
               color='white'
               weight="true"
