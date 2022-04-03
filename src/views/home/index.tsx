@@ -22,7 +22,7 @@ import {
 import '../../styles/trade.css';
 import axios from 'axios';
 import {AxiosResponse} from 'axios';
- 
+import CountUp from 'react-countup'; 
 
 export const HomeView = () => {
   const history = useHistory();
@@ -477,12 +477,33 @@ export const HomeView = () => {
           <div className="flex justify-center mt-5 xl:mt-3">
             <div className="home_widget w-96 flex flex-col items-center">
               <Text   className='text-center' size={"14px"} spacing={'0px'} >Total Bonds Available</Text>
-              <NumberText className='text-center ' size={"28px"} color={'#01A0FC'} weight='true'>
+              {/* <NumberText className='text-center ' size={"28px"} color={'#01A0FC'} weight='true'>
                 <span ><strong>{(bond_yield90 || bond_yield30) ?
                formatNumberWithoutRounding.format(
                 (bond_yield90 ? ((adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1))/0.35) : 0) +
                 (bond_yield30 ? ((adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1))/0.35) : 0))
-                :"0.00"}</strong></span> USDC</NumberText>
+                :"0.00"}</strong></span> USDC</NumberText> */}
+                <CountUp
+                  start={0}
+                  end={Number((bond_yield90 || bond_yield30) ?
+                    (
+                     (bond_yield90 ? ((adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1))/0.35) : 0) +
+                     (bond_yield30 ? ((adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1))/0.35) : 0))
+                     :0)}
+                  duration={1.5}
+                  delay={0}
+                  separator=","
+                  decimals={2}
+                  decimal="."
+                >
+                  {({ countUpRef }) => (
+                    <div>
+                    <NumberText className='text-center ' size={"28px"} color={'#01A0FC'} weight='true'>
+                    <span ref={countUpRef} /> USDC
+                    </NumberText>
+                    </div>
+                  )}
+                </CountUp>
             </div>
           </div>
 
@@ -539,7 +560,7 @@ export const HomeView = () => {
           </div>
           
           {/* <div className="vl" style={{borderLeft: '3px solid rgb(70 129 48)',height: '100px'}}></div> */}
-          <div className='flex flex-col justify-center items-center  lg:py-2 z-50' >
+          <div className='flex flex-col justify-center items-center lg:pt-5 lg:py-2 z-50' >
             <NewText
               color='white'
               weight="true"
@@ -966,7 +987,8 @@ export const HomeView = () => {
                     "https://res.cloudinary.com/drr1rnoxf/image/upload/v1642360290/SB_Whitepaper-compressed_lafdtl.pdf#page=13"
                   )
                 }
-                className="text-white border-2 rounded-md border-purple-100 px-8 py-4"
+                // className="text-white border-2 rounded-md border-purple-100 px-8 py-4"
+                className="hover:bg-purple-100  text-white hover:text-black  border-2 z-40 w-44 rounded-md border-purple-100 px-4 py-2 inline-block ml-3"
               >
                 <TextDoc transform="" className="" size="16px" weight="true">
                   READ MORE

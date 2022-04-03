@@ -49,6 +49,7 @@
     "postcss": "^7.0.39",
     "react": "^16.13.1",
     "react-animated-text": "^0.1.4",
+    "react-countup": "^6.2.0",
     "react-dom": "^16.13.1",
     "react-icons": "^4.3.1",
     "react-router-dom": "^5.2.0",
