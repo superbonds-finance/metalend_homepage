@@ -427,7 +427,7 @@ export const HomeView = () => {
               Full Custody
             </BtnText> */}
           </div>
-          <div className="flex justify-center mt-16 xl:mt-6">
+          <div className="flex justify-center mt-16  2xl:mt-9 xl:mt-6">
             {/* <button
               onClick={() =>
                 handlePush("/trade")
@@ -474,10 +474,10 @@ export const HomeView = () => {
               </TextDoc>
             </button>
           </div>
-          <div className="flex justify-center mt-5 xl:mt-3">
-            <div className="home_widget w-96 flex flex-col items-center">
+          <div className="flex justify-center mt-5  2xl:mt-0 xl:mt-3">
+            <div className="home_widget w-96  flex flex-col items-center">
               <Text   className='text-center' size={"14px"} spacing={'0px'} >Total Bonds Available</Text>
-              <NumberText className='text-center ' size={"28px"} color={'#01A0FC'} weight='true'>
+              <NumberText className='text-center ' size={"25px"} color={'#01A0FC'} weight='true'>
                 <span ><strong>{(bond_yield90 || bond_yield30) ?
                formatNumberWithoutRounding.format(
                 (bond_yield90 ? ((adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1))/0.35) : 0) +
@@ -506,13 +506,13 @@ export const HomeView = () => {
         </div>
       </div>
       <section className="sub_nav">
-        <div className=' flex flex-wrap items-center justify-around w-9/12 mx-auto my-0 py-6  xl:w-full justify-center ' >
-          <div className='  flex flex-col justify-center items-center  g:py-2'>
+        <div className=' flex flex-wrap items-center py-4 justify-around w-9/12 mx-auto my-0   xl:w-full justify-center ' >
+          <div className='flex flex-col justify-center items-center'>
             <NewText
               color='white'
               weight="true"
               transform=""
-              size='30px'
+              size='26px'
               className="my-0 select-none text-center"
               >
               Become an <span style={{ color: "#01A0FC" }}>S</span>
@@ -522,7 +522,7 @@ export const HomeView = () => {
               onClick={() =>
                 window.open("https://superbonds.medium.com/the-ambassador-program-from-superbonds-8d11f5063bac")
               }
-              className="mt-3 hover:bg-green-100  text-white hover:text-black  border-2 z-40 w-44 rounded-md border-green-100 px-4 py-2 inline-block ml-3"
+              className=" mt-6 hover:bg-green-100  text-white hover:text-black  border-2 z-40 w-44 rounded-md border-green-100 px-4 py-2 inline-block ml-3"
             >
               <TextDoc
                 className=""
@@ -539,23 +539,23 @@ export const HomeView = () => {
           </div>
           
           {/* <div className="vl" style={{borderLeft: '3px solid rgb(70 129 48)',height: '100px'}}></div> */}
-          <div className='flex flex-col justify-center items-center  lg:py-2 z-50' >
+          <div className='flex -mb-2 flex-col justify-center items-center z-50' >
             <NewText
               color='white'
               weight="true"
               transform=""
-              size='30px'
+              size='26px'
               className="my-0 select-none"
               >
                 Trade <span style={{ color: "#01A0FC" }}>S</span>
                 <span style={{ color: "#7CFA4C" }}>B</span> Token
             </NewText>
-            <div className="flex sm:flex-wrap sm:justify-content-center xs:flex-col mt-5 items-center">
+            <div className="flex mt-4 sm:flex-wrap sm:justify-content-center xs:flex-col items-center">
               <img
                 onClick={() =>
                   window.open("https://www.mexc.com/exchange/SB_USDT")
                 }
-                className=" my-0  select-none cursor-pointer Z-40   left-auto right-auto"
+                className=" my-0  select-none cursor-pointer Z-40 left-auto right-auto"
                 src={
                   "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366156/full-logo-normal-mexc_cllivy.svg"
                 }
