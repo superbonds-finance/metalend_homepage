@@ -698,7 +698,7 @@ export function StakeView() {
 
   
   return (
-    <div className="w-screen h-screen bg-black ">
+    <div className="w-screen h-screen bg-black">
       <div  className="w-7/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 lg:w-11/12 md:w-12/12" style={{maxWidth:"1000px"}}>
         {/* <div className='flex pt-4 justify-center sm:flex-col'>
           <div className="flex">

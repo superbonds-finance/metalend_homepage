@@ -646,7 +646,7 @@ export function LiquidityView() {
                 </button>
               </div>
               <div>
-                <button onClick={() => onRemoveLiquidity(30)} className="border-2 hover:bg-green-100 hover:text-black rounded-md w-full border-green-100 px-6 py-1.5 inline-block">
+                <button onClick={() => onRemoveLiquidity(30)} className="border-2 hover:bg-white hover:text-black  rounded-md w-full border-white px-6 py-1.5 inline-block">
                   <ButtonText transform weight>REMOVE</ButtonText >
                 </button>
               </div>
@@ -712,7 +712,7 @@ export function LiquidityView() {
                 </button>
               </div>
               <div>
-                <button onClick={() => onRemoveLiquidity(90)} className="border-2 hover:bg-green-100 hover:text-black rounded-md w-full border-green-100 px-6 py-1.5 inline-block">
+                <button onClick={() => onRemoveLiquidity(90)} className="border-2 hover:bg-white hover:text-black  rounded-md w-full border-white px-6 py-1.5 inline-block">
                   <ButtonText transform weight >REMOVE</ButtonText>
                 </button>
               </div>

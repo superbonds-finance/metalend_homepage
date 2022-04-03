@@ -966,7 +966,7 @@ export const HomeView = () => {
                     "https://res.cloudinary.com/drr1rnoxf/image/upload/v1642360290/SB_Whitepaper-compressed_lafdtl.pdf#page=13"
                   )
                 }
-                className="text-white border-2 rounded-md border-purple-100 px-8 py-4"
+                className="hover:bg-purple-100  text-white hover:text-black   border-2 rounded-md border-purple-100 px-4 py-2"
               >
                 <TextDoc transform="" className="" size="16px" weight="true">
                   READ MORE
