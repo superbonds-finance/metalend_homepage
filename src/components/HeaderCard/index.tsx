@@ -18,7 +18,7 @@ export const HeaderCard = (props: {
       {!!props.isHover && props.isHover && <div>
         <HeaderText className='text-grid cursor-pointer'>{props.text}
           <Tooltip placement="rightTop" title={'The amount you provide will be used by the LP as interest commitments to bond buyers'}> 
-          <ImInfo  className='info-circle ml-0.5'  style={{width:"16px", marginBottom:"2px"}} /></Tooltip>
+          <ImInfo  className='info-circle ml-0.5'  style={{width:"16px", marginBottom:"12px"}} /></Tooltip>
       </HeaderText></div>}
       <div className="flex sm:flex-wrap gap-2">
         <div className="py-2 pl-2 pr-14 md:pr-3 rounded-md" style={{ maxWidth: '190px', width: '190px', 'background': ' linear-gradient(89.52deg, rgba(124, 250, 76, 0.1) 15.18%, rgba(124, 250, 76, 0) 76.06%), #1F2933' }}>

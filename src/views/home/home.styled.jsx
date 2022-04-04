@@ -30,8 +30,12 @@ font-weight: ${(props) => (props.weight ?  'bold' : '300')};
 font-size: ${(props) => (props.size ? props.size : '16px')};
 text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
 color: ${(props) => (props.color ? props.color : '#FFFFFF')};
- 
- 
+@media (max-width: 639px) {
+  font-size: ${(props) => (props.smsize ? props.smsize : '16px')};
+}
+@media (max-width: 320px) {
+  font-size: ${(props) => (props.xssize ? props.xssize : '16px')};
+}
 `
 export const CalibariText=styled.span`
  
@@ -64,7 +68,6 @@ export const Text=styled.span`
   src: url(${font}) format('truetype');
 }
 font-family: 'AkkuratLLWeb-Bold';
- 
   font-weight: ${(props) => (props.weight ?  'bold' : '300')};
   font-size: ${(props) => (props.size ? props.size : '16px')};
   line-height: 22px;
@@ -87,6 +90,7 @@ opacity: ${(props) => (props.opacity ? props.opacity : '')};
     font-size: 20px;
 }
 `
+
 
 export const TextDoc=styled.span`
   font-family: Archivo;

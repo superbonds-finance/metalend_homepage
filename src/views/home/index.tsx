@@ -23,6 +23,7 @@ import '../../styles/trade.css';
 import axios from 'axios';
 import {AxiosResponse} from 'axios';
 import CountUp from 'react-countup'; 
+import { SpaceContext } from "antd/lib/space";
 
 export const HomeView = () => {
   const history = useHistory();
@@ -403,23 +404,23 @@ export const HomeView = () => {
               />
             </div>
           <div className="pt-0">
-              <div className="flex sm:flex-col justify-center  items-center  py-3">
+              <div className="flex  justify-center  items-center ">
                 <div className='hex-height flex justify-center items-center h-16'  >
-                  <NumberText className='ml-2' weight='true' transform="" size="33px"  color='#7CFA4C' style={{letterSpacing:"-2px"}}>
+                  <NumberText smsize='28px' xssize='24px' className='ml-2' weight='true' transform="" size="33px"  color='#7CFA4C' style={{letterSpacing:"-2px"}}>
                   18
                   </NumberText>
-                  <NumberText    transform="" size="28px"  color='#7CFA4C'>
+                  <NumberText   smsize='28px' xssize='24px' transform="" size="28px"  color='#7CFA4C' style={{fontFamily:'IBM Plex Sans'}}>
                   %
                   </NumberText>
                 </div>
-                <BtnText className='ml-2 sm:mt-0' transform="" size="20px" weight="true">
+                <span className='hex-first-text ml-2 sm:mt-0'  >
                   Fixed Yield in USDC. Guaranteed.
-                </BtnText>
+                </span>
               </div> 
             
-            <BtnText className="block -mt-4 " size="15px" weight="" style={{fontWeight:'500'}}>
+            <span className="block  hex-second-text"  style={{fontWeight:'500'}}>
               Multiple reward streams. Instant cash-outs.
-            </BtnText>
+            </span>
             {/* <BtnText className="block mt-2" size="16px" weight="true">
               Instant Redemptions
             </BtnText> */}

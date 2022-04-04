@@ -1161,7 +1161,7 @@ export function TradeView() {
                                 <div className="w-full p-4 rounded-md bg-gray-400" >
                                   <HoverToolTip className='text-grid grid grid-cols-3 cursor-pointer'>
                                     <Text weight='true' className="col-span-2 inline " opacity={"0.75"}>Fixed Yield
-                                      <Tooltip placement="rightTop" title={'The guaranteed yield upon maturity, in USDC, expressed in annualized terms'}> <ImInfo  className='info-circle ml-0.5'  /></Tooltip> 
+                                      <Tooltip placement="rightTop" title={'The guaranteed yield upon maturity, in USDC, expressed in annualized terms'}> <ImInfo  className='info-circle'  /></Tooltip> 
                                     </Text>
                                     <Text className="" size={"19px"} color={"#7CFA4C"}><span style={{color: bond_yield30>=0 ? "#7CFA4C" : "red"}}><strong>{superbondsStatus30 ? Math.floor(bond_yield30*superbondsRate30*100)/100 : bond_yield30}%</strong></span></Text>
                                   </HoverToolTip>
