@@ -179,12 +179,12 @@ a, a:hover , a:focus{
     overflow-y: auto;
   }
   .nav > #nav-check:checked ~ .space_top {
-    height: calc(100vh - 215px);
+    height: calc(100vh - 275px);
     padding-top: 15px;
   }
 }
 
-@media (max-width:520px) {
+@media (max-width:574px) {
   .nav > .nav-links-outer {
     font-size: 13px;
     padding: 13px 0;
