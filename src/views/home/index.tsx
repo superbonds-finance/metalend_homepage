@@ -428,7 +428,7 @@ export const HomeView = () => {
               Full Custody
             </BtnText> */}
           </div>
-          <div className="flex justify-center mt-16  2xl:mt-9 xl:mt-6">
+          <div className="flex justify-center mt-9 2xl:mt-9 xl:mt-6">
             {/* <button
               onClick={() =>
                 handlePush("/trade")
@@ -475,7 +475,7 @@ export const HomeView = () => {
               </TextDoc>
             </button>
           </div>
-          <div className="flex justify-center mt-5  2xl:mt-0 xl:mt-3">
+          <div className="flex justify-center mt-5  2xl:mt-6 xl:mt-3">
             <div className="home_widget w-96  flex flex-col items-center">
               <Text   className='text-center' size={"14px"} spacing={'0px'} >Total Bonds Available</Text>
               {/* <NumberText className='text-center ' size={"28px"} color={'#01A0FC'} weight='true'>
