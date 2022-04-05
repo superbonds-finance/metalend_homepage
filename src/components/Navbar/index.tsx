@@ -37,7 +37,7 @@ export default function Navbar(props: {
   }, [location.pathname]);
 
   const Links = (<>
-   <button
+   {/* <button
       onClick={() =>
         window.open(
           "https://res.cloudinary.com/drr1rnoxf/image/upload/v1642360290/SB_Whitepaper-compressed_lafdtl.pdf"
@@ -48,7 +48,7 @@ export default function Navbar(props: {
       <TextDoc transform="" className="" size="16px" weight="true">
         Audit Report
       </TextDoc>
-    </button>
+    </button> */}
     <button
       onClick={() =>
         window.open(
