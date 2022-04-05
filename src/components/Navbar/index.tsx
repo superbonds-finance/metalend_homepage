@@ -37,42 +37,49 @@ export default function Navbar(props: {
   }, [location.pathname]);
 
   const Links = (<>
-   {/* <button
-      onClick={() =>
-        window.open(
-          "https://res.cloudinary.com/drr1rnoxf/image/upload/v1642360290/SB_Whitepaper-compressed_lafdtl.pdf"
-        )
-      }
-      className="hover:bg-green-100  text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-5 md:px-3 sm:px-2 py-1 inline-block ml-3"
-    >
-      <TextDoc transform="" className="" size="16px" weight="true">
-        Audit Report
-      </TextDoc>
-    </button> */}
-    <button
-      onClick={() =>
-        window.open(
-          "https://res.cloudinary.com/drr1rnoxf/image/upload/v1642360290/SB_Whitepaper-compressed_lafdtl.pdf"
+  <div className="flex md:flex-col">
+    <div className="flex justify-between">
+      <button
+        onClick={() =>
+          window.open(
+            "https://res.cloudinary.com/drr1rnoxf/image/upload/v1642360290/SB_Whitepaper-compressed_lafdtl.pdf"
           )
-      }
-      className="hover:bg-green-100  text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-5 md:px-3 sm:px-2 py-1 inline-block ml-3"
-    >
-      <TextDoc transform="" className="" size="16px" weight="true">
-        Whitepaper
-      </TextDoc>
-    </button>
-    <a href="https://twitter.com/SBonds_Finance" target="_blank">
-      <i className="fab fa-twitter fa-lg px-2 z-50" />
-    </a>
-    <a href="https://t.me/SuperBonds" target="_blank">
-      <i className="fab fa-telegram fa-lg px-2 z-50" />
-    </a>
-    <a href="https://discord.gg/yCWKEcxKAe" target="_blank">
-      <i className="fab fa-discord fa-lg px-2 z-50" />
-    </a>
-    <a href="https://superbonds.medium.com/" target="_blank">
-      <i className="fab fa-medium fa-lg px-2 z-50" />
-    </a>
+        }
+        className="hover:bg-green-100  text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-5 md:px-3 sm:px-2 py-1 inline-block ml-3"
+      >
+        <TextDoc transform="" className="" size="16px" weight="true">
+          Audit Report
+        </TextDoc>
+      </button>
+      <button
+        onClick={() =>
+          window.open(
+            "https://res.cloudinary.com/drr1rnoxf/image/upload/v1642360290/SB_Whitepaper-compressed_lafdtl.pdf"
+            )
+        }
+        className="hover:bg-green-100  text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-5 md:px-3 sm:px-2 py-1 inline-block ml-3"
+      >
+        <TextDoc transform="" className="" size="16px" weight="true">
+          Whitepaper
+        </TextDoc>
+      </button>
+    </div>
+    <div className='py-2'>
+      <a href="https://twitter.com/SBonds_Finance" target="_blank">
+        <i className="fab fa-twitter fa-lg px-2 z-50" />
+      </a>
+      <a href="https://t.me/SuperBonds" target="_blank">
+        <i className="fab fa-telegram fa-lg px-2 z-50" />
+      </a>
+      <a href="https://discord.gg/yCWKEcxKAe" target="_blank">
+        <i className="fab fa-discord fa-lg px-2 z-50" />
+      </a>
+      <a href="https://superbonds.medium.com/" target="_blank">
+        <i className="fab fa-medium fa-lg px-2 z-50" />
+      </a>
+    </div>
+  </div>
+   
   </>);
 
   return (
@@ -180,147 +187,7 @@ export default function Navbar(props: {
             </Popover>
           </>
         )}
-
-        <div className="flex flex-wrap justify-center">
-          <div className="flex offer_wrapper_mobile lg:w-8/12 md:w-8/12 sm:w-10/12 xs:w-full">
-            <div className="rounded-md w-full z-50">
-              <div className="offer_wrapper_1_mobile flex flex-col text-center neon-bottom-card selected-box-neon rounded-md">
-              <div className="flex justify-center w-9/12 my-0 mx-auto">
-              {/* <img
-                src={
-                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643874041/ambassador_illustration_2_uncu3e.svg"
-                }
-                alt="..."
-                style={{ width: "65px", height: "60px" }}
-              /> */}
-               <NewText
-              color="white"
-              size="24px"
-              transform=""
-              className=" mt-2 select-none font-bold text-white "
-            >
-              Become an <span style={{ color: "#01A0FC" }}>S</span>
-              <span style={{ color: "#7CFA4C" }}>B</span> Ambassador
-            </NewText>
-            </div>
-
-            <div className="flex justify-center">
-
-              <button
-                onClick={() =>
-                  window.open(
-                    "https://superbonds.medium.com/the-ambassador-program-from-superbonds-8d11f5063bac"
-                  )
-                }
-                className="hover:bg-green-100 text-white hover:text-black  border-2 z-40 w-36 rounded-md border-green-100 px-2 py-2 inline-block"
-                style={{ marginTop: "18px" }}
-              >
-                <TextDoc transform="" className="" size="16px" weight="true">
-                  Join Now
-                </TextDoc>
-              </button>
-            </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex trade_sb_token_wrapper_mobile lg:w-8/12 md:w-8/12 sm:w-10/12 xs:w-full">
-        <div className="rounded-md z-50">
-          <div className="trade_sb_token_wrapper_1_mobile flex flex-col justify-start ">
-            <Text
-              color="#586779"
-              size="16px"
-              weight="true"
-              transform="true"
-              className="my-0 mt-3 select-none"
-            >
-              Trade SB token
-            </Text>
-            <div className="flex flex-col justify-start">
-              <img
-                onClick={() =>
-                  window.open("https://www.mexc.com/exchange/SB_USDT")
-                }
-                className="w-36 my-0  select-none mr-12 cursor-pointer Z-40  mt-3 left-auto right-auto"
-                src={
-                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366156/full-logo-normal-mexc_cllivy.svg"
-                }
-                alt="..."
-              />
-              <img
-                onClick={() =>
-                  window.open(
-                    "https://dex.raydium.io/#/market/E3cNotFPoECwQvacT2D7u3C3tKRkGtUxv8WFYazBEx4X"
-                  )
-                }
-                className="w-36 select-none my-0  mr-12 cursor-pointer mt-3 Z-40 "
-                src={
-                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366716/logo-text.cf5a7a0_lx0ueg.svg"
-                }
-                alt="..."
-              />
-              <div className="flex my-0 ">
-                <img
-                  onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
-                  className="w-8 mt-3 select-none cursor-pointer Z-40"
-                  src={
-                    "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366783/jupiter-logo_vi90us.svg"
-                  }
-                  alt="..."
-                />
-
-                <Text
-                  onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
-                  className="mx-1 mt-4 cursor-pointer Z-40 select-none '"
-                  size="16px"
-                  weight="true"
-                >
-                  Jupiter
-                </Text>
-              </div>
-            </div>
-          </div>
-
-          <div className="trade_sb_token_wrapper_1_mobile flex flex-col  justify-start ">
-            <Text
-              color="#586779"
-              size="16px"
-              weight="true"
-              transform="true"
-              className="my-0 select-none"
-            >
-              Track markets
-            </Text>
-            <div className="flex flex-col justify-start">
-              <img
-                onClick={() =>
-                  window.open("https://www.coingecko.com/en/coins/superbonds")
-                }
-                className="w-32 select-none  -ml-1 my-0  mr-10 mt-3 cursor-pointer Z-40 "
-                src={
-                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643368369/coingecko-logo-white-3f2aeb48e13428b7199395259dbb96280bf47ea05b2940ef7d3e87c61e4d8408_jlbfa3.png"
-                }
-                alt="..."
-              />
-              <img
-                onClick={() =>
-                  window.open(
-                    "https://coinmarketcap.com/currencies/superbonds/"
-                  )
-                }
-                className="w-40 select-none my-0  mr-12 mt-3 cursor-pointer Z-40 "
-                src={
-                  "https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg?_=4c6dced"
-                }
-                alt="..."
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-        </div>
-
+ 
       </div>
     </div>
   );

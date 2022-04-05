@@ -50,6 +50,17 @@
 @media (max-width:400px) {
     .hex-second-text{
         margin-top: 5px;
+        font-size: 12px;
+    }
+    .hex-first-text{
+        font-size: 14px;
+    }
+    
+}
+@media (max-width:300px) {
+    .hex-second-text{
+        margin-top: 5px;
+        font-size: 12px;
     }
     .hex-first-text{
         font-size: 12px;

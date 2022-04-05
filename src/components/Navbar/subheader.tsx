@@ -20,9 +20,9 @@ export default function SunNavbar(props: { left?: JSX.Element; right?: JSX.Eleme
   return props.showWinUp ? (
     <div className="sub_nav lg:py-2">
       <div className='flex justify-around lg:flex-wrap lg:justify-center ' >
-
+{/* 
         <div className='flex flex-col justify-center items-center py-8 lg:py-2'>
-          {/* <img  src='https://www.orca.so/static/media/logomark.1ef55f8f.svg' alt='...' className="w-11 mr-2 lg:hidden" /> */}
+         
           <NewText
               color='white'
               weight="true"
@@ -45,17 +45,11 @@ export default function SunNavbar(props: { left?: JSX.Element; right?: JSX.Eleme
               </button>
 
 
-
-            {/* <button onClick={() => window.open("https://www.orca.so/pools?pool=sb/usdc")} className="hover:bg-black  hover:text-white text-black  ml-5 border-2 z-40 w-44 xl:w-36 whitespace-nowrap rounded-xl border-black px-2 py-2 inline-block lg:mt-2">
-                <NewText transform="" className='font-bold tracking-wide' size="16px" weight="true">
-                  Become LP
-                </NewText>
-            </button> */}
-            {/* <img  src='https://www.orca.so/static/media/logomark.1ef55f8f.svg' alt='...' className="w-11 lg:hidden ml-2" /> */}
-        </div>
+ 
+        </div> */}
 
         <div className='flex flex-col justify-center items-center py-8 lg:py-2'>
-          {/* <img  src='https://www.orca.so/static/media/logomark.1ef55f8f.svg' alt='...' className="w-11 mr-2 lg:hidden" /> */}
+{/*       
           <NewText
               color='white'
               weight="true"
@@ -65,8 +59,8 @@ export default function SunNavbar(props: { left?: JSX.Element; right?: JSX.Eleme
             >
              Trade <span style={{ color: "#01A0FC" }}>S</span>
                   <span style={{ color: "#7CFA4C" }}>B</span> Token
-          </NewText>
-          <div className="flex mt-5">
+          </NewText> */}
+          {/* <div className="flex mt-5">
           <img
                 onClick={() =>
                   window.open("https://www.mexc.com/exchange/SB_USDT")
@@ -111,7 +105,7 @@ export default function SunNavbar(props: { left?: JSX.Element; right?: JSX.Eleme
                   Jupiter
                 </Jupiter>
               </div>
-          </div>
+          </div> */}
 
               
 

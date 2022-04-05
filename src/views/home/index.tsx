@@ -396,14 +396,14 @@ export const HomeView = () => {
                 SuperBonds
               </Text> */}
               <img
-                className=" "
+                className="-mt-8"
                 src={
                   "https://res.cloudinary.com/drr1rnoxf/image/upload/v1636998509/solana_ffxt3n.svg"
                 }
                 alt="..."
               />
             </div>
-          <div className="pt-0">
+          <div className="pt-0 mt-8">
               <div className="flex  justify-center  items-center ">
                 <div className='hex-height flex justify-center items-center h-16'  >
                   <NumberText smsize='28px' xssize='24px' className='ml-2' weight='true' transform="" size="33px"  color='#7CFA4C' style={{letterSpacing:"-2px"}}>
