@@ -528,7 +528,7 @@ export const HomeView = () => {
         </div>
       </div>
       <section className="sub_nav">
-        <div className=' flex flex-wrap items-center py-4 justify-around w-9/12 mx-auto my-0   xl:w-full justify-center ' >
+        <div className=' flex flex-wrap sm:flex-col items-center py-4 justify-around w-9/12 mx-auto my-0   xl:w-full justify-center ' >
           <div className='flex flex-col justify-center items-center'>
             <NewText
               color='white'
@@ -572,12 +572,12 @@ export const HomeView = () => {
                 Trade <span style={{ color: "#01A0FC" }}>S</span>
                 <span style={{ color: "#7CFA4C" }}>B</span> Token
             </NewText>
-            <div className="flex mt-4 sm:flex-wrap sm:justify-content-center xs:flex-col items-center">
+            <div className="flex mt-4 sm:mt-0 sm:flex-col sm:justify-start sm:items-start items-center">
               <img
                 onClick={() =>
                   window.open("https://www.mexc.com/exchange/SB_USDT")
                 }
-                className=" my-0  select-none cursor-pointer Z-40 left-auto right-auto"
+                className=" my-0 sm:ml-2 select-none cursor-pointer Z-40 left-auto right-auto"
                 src={
                   "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366156/full-logo-normal-mexc_cllivy.svg"
                 }
@@ -590,14 +590,14 @@ export const HomeView = () => {
                     "https://dex.raydium.io/#/market/E3cNotFPoECwQvacT2D7u3C3tKRkGtUxv8WFYazBEx4X"
                   )
                 }
-                className="ml-2 select-none my-0  cursor-pointer   Z-40 "
+                className="ml-2 sm:ml-0 select-none my-0  cursor-pointer   Z-40 "
                 src={
                   "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366716/logo-text.cf5a7a0_lx0ueg.svg"
                 }
                 alt="..."
                 style={{ height: "38px", width: "150px" }}
               />
-              <div className="flex my-0 ml-2  ">
+              <div className="flex my-0 ml-2 sm:ml-1.5 sm:mt-2  ">
                 <img
                   onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
                   className="w-8 select-none cursor-pointer Z-40"
@@ -974,7 +974,7 @@ export const HomeView = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col justify-center yielder-below mx-auto my-0 py-14 px-20 rounded-md mt-5">
+          <div className="flex flex-col justify-center yielder-below mx-auto my-0 py-14 px-20 rounded-md mt-5 sm:p-10">
             <div>
               <BtnText color="white" size="21px" weight="true">
                 Coming Soon
