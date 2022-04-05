@@ -60,7 +60,7 @@ export default function Navbar(props: {
         </TextDoc>
       </button>
     </div>
-    <div className='py-2'>
+    <div className='mx-auto py-2'>
       <a href="https://twitter.com/SBonds_Finance" target="_blank">
         <i className="fab fa-twitter fa-lg px-2 z-50" />
       </a>
@@ -109,7 +109,7 @@ export default function Navbar(props: {
       </div>
 
 
-      <div className={"nav-links" + (props.showWinUp? ' space_top':'')}>
+      <div className={"nav-links  text-center" + (props.showWinUp? ' space_top':'')}>
 
       {path == "/" ?  (
         <div className="nav-links-outer-nav">
@@ -179,7 +179,7 @@ export default function Navbar(props: {
               content={<Settings />}
               trigger="click"
             >
-              <i className="fas fa-cog fa-lg text-gray-600 cursor-pointer ml-2 mt-1" />
+              <i className="fas fa-cog fa-lg text-gray-600 cursor-pointer ml-2 mt-1 md:mt-4" />
             </Popover>
           </>
         )}

@@ -112,7 +112,7 @@ a, a:hover , a:focus{
 }
 
 
-@media (max-width:768px) {
+@media (max-width:769px) {
   
   .nav > .nav-links-outer {
     right: 50px;
@@ -179,12 +179,12 @@ a, a:hover , a:focus{
     overflow-y: auto;
   }
   .nav > #nav-check:checked ~ .space_top {
-    height: calc(100vh - 275px);
+    height: 100%;
     padding-top: 15px;
   }
-}
-
-@media (max-width:574px) {
+  .nav > #nav-check:checked ~ .space_top {
+    height: 100%;
+  }
   .nav > .nav-links-outer {
     font-size: 13px;
     padding: 13px 0;
@@ -194,13 +194,19 @@ a, a:hover , a:focus{
   }
   .nav-links-outer-nav {
     display: flex;
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
   }
+}
+
+@media (max-width:698px) {
 
 }
 
-@media (max-width:420px) {
+@media (max-width:560px) {
+  .nav > #nav-check:checked ~ .space_top {
+    height: 100px;
+  }
   .nav > .nav-links > button,.nav > .nav-links > a > button {
     width: 80%;
   }
