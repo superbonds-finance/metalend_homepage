@@ -23,7 +23,6 @@ export const NumberText=styled.span`
 }
 line-height: 1.41;
 letter-spacing: -0.2px;
-word-break: break-word;
 white-space: break-spaces;
 font-family: 'Open Sans', sans-serif;
 font-weight: ${(props) => (props.weight ?  'bold' : '300')};
