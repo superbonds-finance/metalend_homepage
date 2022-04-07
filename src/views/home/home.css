@@ -29,6 +29,12 @@
     letter-spacing:1px;
    
 }
+@media (max-width:768px) {
+    .sub_nav {  
+        padding: 1px 0 1px;
+    }
+    
+}
 @media (max-width:576px) {
     .main-bg{
         background-size: inherit;

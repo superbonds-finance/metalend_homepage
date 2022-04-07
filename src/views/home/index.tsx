@@ -544,7 +544,7 @@ export const HomeView = () => {
               onClick={() =>
                 window.open("https://superbonds.medium.com/the-ambassador-program-from-superbonds-8d11f5063bac")
               }
-              className=" mt-6 hover:bg-green-100  text-white hover:text-black  border-2 z-40 w-44 rounded-md border-green-100 px-4 py-2 inline-block ml-3"
+              className=" mt-6 hover:bg-green-100  text-white hover:text-black  border-2 z-40 w-44 rounded-md border-green-100 px-4 py-2 inline-block ml-3 sm:ml-0"
             >
               <TextDoc
                 className=""

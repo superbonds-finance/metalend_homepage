@@ -60,7 +60,7 @@ export default function Navbar(props: {
         </TextDoc>
       </button>
     </div>
-    <div className='mx-auto py-2'>
+    <div className='mx-auto py-2 sm:pt-6'>
       <a href="https://twitter.com/SBonds_Finance" target="_blank">
         <i className="fab fa-twitter fa-lg px-2 z-50" />
       </a>
