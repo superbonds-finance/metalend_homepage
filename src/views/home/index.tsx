@@ -409,11 +409,11 @@ export const HomeView = () => {
                   <NumberText smsize='28px' xssize='24px' className='ml-2' weight='true' transform="" size="33px"  color='#7CFA4C' style={{letterSpacing:"-2px"}}>
                   18
                   </NumberText>
-                  <NumberText   smsize='28px' xssize='24px' transform="" size="28px"  color='#7CFA4C' style={{fontFamily:'IBM Plex Sans'}}>
+                  <NumberText   smsize='28px' xssize='24px' transform="" size="29px"  color='#7CFA4C' style={{fontFamily:'IBM Plex Sans'}}>
                   %
                   </NumberText>
                 </div>
-                <span className='hex-first-text ml-2 sm:mt-0'  >
+                <span className='hex-first-text mt-1.5 ml-1.5 sm:mt-0'  >
                   Fixed Yield in USDC. Guaranteed.
                 </span>
               </div> 
