@@ -54,7 +54,6 @@ import {AxiosResponse} from 'axios';
 import {TradeTableComponent} from "./trade.table";
 import { useInterval } from "../../hooks";
 import "./trade.css"
-import PoligonActive from "../../assets/polygon_trade_active.png";
 import PoligonInActive from "../../assets/polygon_trade_inactive.png";
 import { ImInfo } from 'react-icons/im';
 import { Tooltip } from 'antd';
@@ -1113,7 +1112,7 @@ export function TradeView() {
                           <div className="grid grid-cols-10 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-5 xs:grid-cols-1 xs:grid-rows-2 mt-3 rounded-md items-center">
 
                             <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2 xs:col-span-1 main_hex">
-                              <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url(${PoligonActive})`}}>
+                              <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url('https://res.cloudinary.com/drr1rnoxf/image/upload/v1649338054/Group_1312_m4dht4.png')`}}>
                                 <Text className='text-grid cursor-pointer w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                 <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}> 
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
@@ -1280,7 +1279,7 @@ export function TradeView() {
                              <div className="grid grid-cols-10 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-5 xs:grid-cols-1 xs:grid-rows-2 mt-3 rounded-md items-center">
 
                               <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2 xs:col-span-1 main_hex">
-                                <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url(${PoligonActive})`}}>
+                                <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url('https://res.cloudinary.com/drr1rnoxf/image/upload/v1649338054/Group_1312_m4dht4.png')`}}>
                                   <Text className='w-9/12 text-grid cursor-pointer mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                   <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}> 
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>

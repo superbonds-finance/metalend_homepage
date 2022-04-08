@@ -40,7 +40,9 @@ export default function Navbar(props: {
   <div className="flex md:flex-col">
     <div className="flex justify-between">
       <button
-         
+          onClick={() =>
+            window.open("https://res.cloudinary.com/drr1rnoxf/image/upload/v1649345580/Audit_uy02oz.pdf")
+          }
         className="hover:bg-green-100  text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-5 md:px-3 sm:px-2 py-1 inline-block ml-3"
       >
         <TextDoc transform="" className="" size="16px" weight="true">
