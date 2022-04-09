@@ -2,8 +2,13 @@ import styled from 'styled-components';
 import font from "../../assets/FontsFree-Net-Akkurat-Bold.ttf"
 import Gilroy from "../../assets/Gilroy-Light.ttf";
 import GilroyBold from "../../assets/Gilroy-Bold.ttf";
-import Gathom from "../../assets/GothamBook.ttf";
-import GathomLight from "../../assets/GothamLight.ttf";
+// import Gathom from "../../assets/GothamBook.ttf";
+// import GathomLight from "../../assets/GothamLight.ttf";
+import Gathomttf from "../../assets/Gotham-Fonts/Gotham-Book.ttf";
+import Gathomwoff from "../../assets/Gotham-Fonts/Gotham-Book.woff";
+import Gathomwoff2 from "../../assets/Gotham-Fonts/Gotham-Book.woff2";
+
+
 export const HeaderText=styled.span`
   font-family: Archivo;
   font-style: normal;
@@ -17,10 +22,6 @@ export const HeaderText=styled.span`
 
 
 export const NumberText=styled.span`
-@font-face {
-  font-family: 'Gotham';
-  src: url(${GathomLight}) format('truetype');
-}
 line-height: 1.41;
 letter-spacing: -0.2px;
 white-space: break-spaces;
@@ -47,9 +48,12 @@ color: ${(props) => (props.color ? props.color : '#FFFFFF')};
 `
 export const CardText=styled.span`
   @font-face {
-    font-family: 'Gotham';
-    src: url(${Gathom}) format('truetype');
-  }
+  font-family: "gotham";
+  src: url(${Gathomttf}) format('woff'),
+       url(${Gathomwoff}) format('woff2'),
+       url(${Gathomwoff2}) format('truetype');
+  font-weight: normal;
+}
   font-family: 'Gotham';
   font-weight: ${(props) => (props.weight ?  'bold' : '300')};
   font-size: ${(props) => (props.size ? props.size : '16px')};
@@ -121,7 +125,7 @@ export const BoldFont=styled.span`
   font-family: 'Gilroy';
   src: url(${GilroyBold}) format('truetype');
 }
-font-family: ''Gilroy';
+font-family: 'Gilroy';
 font-size: ${(props) => (props.size ? props.size : '30px')};
 line-height: 22px;
 text-transform: ${(props) => (props.transform ? "uppercase" : 'non')};
