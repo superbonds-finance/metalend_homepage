@@ -413,7 +413,7 @@ export const HomeView = () => {
                   %
                   </NumberText>
                 </div>
-                <span className='hex-first-text mt-1.5 ml-1.5 sm:mt-0'  >
+                <span className='hex-first-text mt-2.5 ml-1.5'  >
                   Fixed Yield in USDC. Guaranteed.
                 </span>
               </div> 

@@ -249,14 +249,14 @@ export function PlatformStatsView() {
 
            <div className="flex pt-6 justify-between flex-wrap ">
                 <div className="flex flex-col w-full my-0 mx-auto 2xxl:mt-3 mb-3">
-                    <div className="flex w-7/12 mx-auto my-0 flex-wrap justify-evenly sm:justify-start">
-                        <button className="border-2 rounded-md border-green-100 px-6 py-1.5 inline-block"  onClick={() => onGetFreeSol()}>
+                    <div className="flex w-7/12 mx-auto md:w-full my-0 flex-wrap justify-evenly sm:flex-col sm:w-9/12">
+                        <button className="border-2 rounded-md border-green-100 px-6 py-1.5 inline-block sm:mb-5"  onClick={() => onGetFreeSol()}>
                             Get Free SOL
                         </button>
-                        <button className="border-2 rounded-md border-green-100 px-6 py-1.5 inline-block"    onClick={() => onGetFreeToken(1)}>
+                        <button className="border-2 rounded-md border-green-100 px-6 py-1.5 inline-block sm:mb-5"    onClick={() => onGetFreeToken(1)}>
                             Get Free SB
                         </button>
-                        <button className="border-2 rounded-md border-green-100 px-6 py-1.5 inline-block"   onClick={() => onGetFreeToken(3)}>
+                        <button className="border-2 rounded-md border-green-100 px-6 py-1.5"   onClick={() => onGetFreeToken(3)}>
                             Get Free USDC
                         </button>
                     </div>
