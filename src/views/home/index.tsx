@@ -407,7 +407,7 @@ export const HomeView = () => {
               <div className="flex  justify-center  items-center ">
                 <div className='hex-height flex justify-center items-center h-16'  >
                   <NumberText smsize='28px' xssize='24px' className='ml-2' weight='true' transform="" size="33px"  color='#7CFA4C' style={{letterSpacing:"-2px"}}>
-                  18
+                  {bond_yield90}
                   </NumberText>
                   <NumberText   smsize='28px' xssize='24px' transform="" size="29px"  color='#7CFA4C' style={{fontFamily:'IBM Plex Sans'}}>
                   %
