@@ -1650,7 +1650,7 @@
     "json-to-pretty-yaml" "^1.2.2"
     "mkdirp" "1.0.4"
 
-"@solana/spl-token@^0.1.6":
+"@solana/spl-token@^0.1.6", "@solana/spl-token@^0.1.8":
   "integrity" "sha512-LZmYCKcPQDtJgecvWOgT/cnoIQPWjdH+QVyzPcFvyDUiT0DiRjZaam4aqNUyvchLFhzgunv3d9xOoyE34ofdoQ=="
   "resolved" "https://registry.npmjs.org/@solana/spl-token/-/spl-token-0.1.8.tgz"
   "version" "0.1.8"
