@@ -30,6 +30,18 @@ font-family: 'Archivo';
   
 `
 
+export const SmallText = styled.span`
+font-family: Archivo !important;
+font-style: normal;
+font-weight: 600;
+font-size: 28px;
+line-height: 34px;
+letter-spacing: 0.146643px;
+text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
+color: #FFFFFF;
+  
+`
+
 export const CenterP = styled.p`
   min-height: 276.75px;
   font-size: 1.2rem;

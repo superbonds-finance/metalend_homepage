@@ -1177,7 +1177,7 @@ export function TradeView() {
                                 <div className="w-full p-4 rounded-md">
                                   <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"} >Max Trade
-                                        <Tooltip placement="rightTop" title={'Largest possible single trade size at any given point in time'}> 
+                                        <Tooltip placement="rightTop" title={'Largest possible trade size at any given point in time'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
                                       <span className="break-all"><Text size='15px'>{bond_yield30 ?formatNumberWithoutRounding.format(adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1)):"0.00"}</Text><Text className='ml-1' size='12px'>USDC</Text></span>
                                     </HoverToolTip>
@@ -1312,7 +1312,7 @@ export function TradeView() {
                                       <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
                                       <HoverToolTip noColor className="text-grid flex flex-col">
                                           <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >SuperBonds Pool
-                                            <Tooltip placement="bottom" title={'Amount of USDC that is eligible for payment as interest during SuperBonds periods'}> 
+                                            <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during SuperBonds periods'}> 
                                             <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                           </Text>
                                           <Text size={"19px"} color={(superBonds_status90 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"#5C7188"}><span ><strong>{(SuperBonds_Rewards_Pool_90_Balance).toFixed(2)}</strong></span></Text>
@@ -1344,7 +1344,7 @@ export function TradeView() {
                                 <div className="w-full p-4 rounded-md">
                                   <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                     <Text weight='true' className="col-span-2 " opacity={"50%"} >Max Trade
-                                      <Tooltip placement="rightTop" title={'Largest possible single trade size at any given point in time'}> 
+                                      <Tooltip placement="rightTop" title={'Largest possible trade size at any given point in time'}> 
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                     </Text>
                                     <span className="break-all"><Text size='15px'>{bond_yield90 ? formatNumberWithoutRounding.format(adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1)):"0.00"}</Text><Text className='ml-1' size='12px'>USDC</Text></span>

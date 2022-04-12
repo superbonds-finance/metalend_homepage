@@ -587,7 +587,7 @@ export function LiquidityView() {
         {/* <HeaderText className="text-left">Add/Remove liquidity</HeaderText> */}
         <HeaderCard
           isHover='true'
-          text='LP Interest Provision'
+          text='Underwriting Liquidity'
           USDCbalance={USDCbalance}
           SuperBbalance={SuperBbalance}
           divStyle=''

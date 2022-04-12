@@ -1,6 +1,5 @@
 import React from "react";
-
-import { HeaderText, Text } from "../../views/trade/trade.styled";
+import { HeaderText, Text,SmallText } from "../../views/trade/trade.styled";
 import { numberFormatter, formatNumberWithoutRounding } from "../../utils/utils";
 import { Tooltip } from "antd";
 import { ImInfo } from "react-icons/im";
@@ -16,8 +15,8 @@ export const HeaderCard = (props: {
     <div className={'flex pt-4 justify-between sm:flex-col' + props.divStyle}>
       {!!props.text  && !props.isHover && <div><HeaderText>{props.text}</HeaderText></div>}
       {!!props.isHover && props.isHover && <div>
-        <HeaderText className='text-grid cursor-pointer'>{props.text}
-          <Tooltip placement="rightTop" title={'The amount you provide will be used by the LP as interest commitments to bond buyers'}> 
+        <HeaderText className='text-grid cursor-pointer'>{props.text} <SmallText>(LPs)</SmallText>
+          <Tooltip placement="rightTop" title={'LPs, by committing capital to a pool, will provide the interest payable to bond purchasers. In exchange, they will be eligible to earn varying streams of variable yield.'}> 
           <ImInfo  className='info-circle ml-0.5'  style={{width:"16px", marginBottom:"12px"}} /></Tooltip>
       </HeaderText></div>}
       <div className="flex sm:flex-wrap gap-2">
