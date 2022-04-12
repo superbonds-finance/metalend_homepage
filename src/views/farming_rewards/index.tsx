@@ -457,6 +457,7 @@ export const FarmingRewardsView = () => {
 
         </Col>
         <Col xs={24} sm={24} md={12} lg={12} xl={12} style={{paddingLeft:"10px"}}>
+          <br /><br />
           <h2>Accounts that hold the rewards and under SuperBonds contract management</h2>
           <p><strong>Sunny Account: {!stakingPool ? null : stakingPool.reserved_token_accounts[0].toBase58()}</strong></p>
           <p><strong>Saber Account: {!stakingPool ? null : stakingPool.reserved_token_accounts[1].toBase58()}</strong></p>
