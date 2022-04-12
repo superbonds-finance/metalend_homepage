@@ -621,6 +621,7 @@ export const StakingManagementView = () => {
     let MINT_ACCOUNT = SUNNY_MINT_ADDRESS;
     if (_farm_id == 1) MINT_ACCOUNT = SABER_MINT_ADDRESS;
     else if (_farm_id == 2) MINT_ACCOUNT = ORCA_MINT_ADDRESS;
+    else if (_farm_id == 3) MINT_ACCOUNT = USDC_MINT_ADDRESS;
 
     //Create Token Account to hold Rewards
     const Token_Account = new Account();
@@ -994,6 +995,9 @@ export const StakingManagementView = () => {
           </Button>
           <Button type="primary" htmlType="submit" style={{marginRight:"10px"}} onClick={() => onCreateAccount(2)}>
            ORCA Account
+          </Button>
+          <Button type="primary" htmlType="submit" style={{marginRight:"10px"}} onClick={() => onCreateAccount(3)}>
+           USDC Account
           </Button>
           <br/><br/>
           <p>{farm_address}</p>
