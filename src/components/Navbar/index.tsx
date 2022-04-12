@@ -67,7 +67,7 @@ export default function Navbar(props: {
     <div className="nav">
       <input type="checkbox" id="nav-check" />
       <div className="nav-header cursor-pointer">
-        <div className="nav-title"  onClick={() => handlePush("/")}>
+        <div className="nav-title" >
           <img
             className="inline-block w-12"
             src={
