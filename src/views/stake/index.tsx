@@ -141,7 +141,7 @@ export function StakeView() {
   }
 
   const fetchAPY= async ()=>{
-    const APY30LP:AxiosResponse<any> = await axios.get('https://api.superbonds.finance/SB_Staking_APY ');
+    const APY30LP:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/SB_Staking_APY ');
     setAPYSBLP(APY30LP.data.APY)
    }
    

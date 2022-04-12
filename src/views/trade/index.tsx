@@ -734,7 +734,7 @@ export function TradeView() {
       //Get All Trades
       try {
         const data = {limit,offset};
-        const response:AxiosResponse<any> = await axios.post('https://api.superbonds.finance/getAllTrades',data);
+        const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getAllTrades',data);
         if(response.data.trades.length===0 && offset>0) {
           fetchPublicAPI(10,0)
           setOffset(0)
@@ -747,7 +747,7 @@ export function TradeView() {
       //Get All Pending Redemptions
       // try {
       //   const data = {limit,offset};;
-      //   const response:AxiosResponse<any> = await axios.post('https://api.superbonds.finance/getAllPendings',data);
+      //   const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getAllPendings',data);
 
       // } catch (error) {
       //   console.error(error);
@@ -760,7 +760,7 @@ export function TradeView() {
         if(showAllTrade===2){
           try {
             const data = {limit,offset,trade_owner:publicKey.toString()};
-            const response:AxiosResponse<any> = await axios.post('https://api.superbonds.finance/getTrades',data);
+            const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getTrades',data);
             if(response.data.trades.length===0 && offset>0) {
               fetchPrivateAPI(10,0)
               setOffset(0)
@@ -777,7 +777,7 @@ export function TradeView() {
         if(showAllTrade===3){
           try {
             const data = {limit,offset,owner:publicKey.toString()};
-            const response:AxiosResponse<any> = await axios.post('https://api.superbonds.finance/getPendings',data);
+            const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPendings',data);
             if(response.data.pendings.length===0 && offset>0) {
               fetchPrivateAPI(10,0);
               setOffset(0)
@@ -793,7 +793,7 @@ export function TradeView() {
     }
 
    const fetchAPY= async ()=>{
-    const response:AxiosResponse<any> = await axios.get('https://api.superbonds.finance/Trade_Staking_APY');
+    const response:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/Trade_Staking_APY');
     setAPY(response.data.APY)
    }
 

@@ -146,10 +146,10 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
   }, [traderData,PlatformData]);
 
   const fetchAPY= async ()=>{
-    const APY30LP:AxiosResponse<any> = await axios.get('https://api.superbonds.finance/LP_30_Staking_APY');
+    const APY30LP:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/LP_30_Staking_APY');
     setAPY30LP(APY30LP.data.APY)
 
-    const APY90LP:AxiosResponse<any> = await axios.get('https://api.superbonds.finance/LP_90_Staking_APY');
+    const APY90LP:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/LP_90_Staking_APY');
     setAPY90LP(APY90LP.data.APY)
    }
    
