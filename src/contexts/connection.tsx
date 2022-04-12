@@ -23,7 +23,7 @@ export type ENV =
 export const ENDPOINTS = [
   {
     name: "mainnet-beta" as ENV,
-    endpoint: "https://aged-icy-breeze.solana-mainnet.quiknode.pro/33147446f8ef72867443a72d3ecd74826367a3f0/",
+    endpoint: "https://solana-api.projectserum.com/",
     chainID: ChainID.MainnetBeta,
   },
   {
