@@ -12,7 +12,9 @@ import { SUPERBONDS_PROGRAM_ID,
          ORCA_MINT_ADDRESS,
          SUNNY_TOKEN_DECIMALS,
          SABER_TOKEN_DECIMALS,
-         ORCA_TOKEN_DECIMALS
+         ORCA_TOKEN_DECIMALS,
+         USDC_MINT_ADDRESS,
+         USDC_DECIMALS
        } from "../../utils/ids";
 import { Numberu32,Numberu64 } from "../../utils/utils";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -41,10 +43,12 @@ export const FarmingRewardsView = () => {
   const [Sunnybalance,setSunnybalance] = useState<any>(0);
   const [Saberbalance,setSaberbalance] = useState<any>(0);
   const [Orcabalance,setOrcabalance] = useState<any>(0);
+  const [Usdcbalance,setUsdcbalance] = useState<any>(0);
 
   const [Sunnybalance_contract,setSunnybalance_contract] = useState<any>(0);
   const [Saberbalance_contract,setSaberbalance_contract] = useState<any>(0);
   const [Orcabalance_contract,setOrcabalance_contract] = useState<any>(0);
+  const [Usdcbalance_contract,setUsdcbalance_contract] = useState<any>(0);
 
   const getAllBalances = async () => {
     if ( !wallet){
@@ -64,13 +68,16 @@ export const FarmingRewardsView = () => {
 
     setSunnybalance(await getTokenBalance(connection,wallet.publicKey,SUNNY_MINT_ADDRESS,SUNNY_TOKEN_DECIMALS));
     setSaberbalance(await getTokenBalance(connection,wallet.publicKey,SABER_MINT_ADDRESS,SABER_TOKEN_DECIMALS));
-    //setOrcabalance(await getTokenBalance(connection,wallet.publicKey,ORCA_MINT_ADDRESS,ORCA_TOKEN_DECIMALS));
+    setOrcabalance(await getTokenBalance(connection,wallet.publicKey,ORCA_MINT_ADDRESS,ORCA_TOKEN_DECIMALS));
+    setUsdcbalance(await getTokenBalance(connection,wallet.publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
     const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
     //console.log(decodedPoolDataState);
     setStakingPool(decodedPoolDataState);
     let sunny_reward_account = decodedPoolDataState.reserved_token_accounts[0];
     let saber_reward_account = decodedPoolDataState.reserved_token_accounts[1];
+    let orca_reward_account = decodedPoolDataState.reserved_token_accounts[2];
+    let usdc_reward_account = decodedPoolDataState.reserved_token_accounts[3];
 
     const encodeSunnyReward_ADDRESS = (await connection.getAccountInfo(new PublicKey(sunny_reward_account), 'singleGossip'))!.data;
     const decodeSunnyReward_ADDRESS = AccountLayout.decode(encodeSunnyReward_ADDRESS);
@@ -81,6 +88,16 @@ export const FarmingRewardsView = () => {
     const decodeSaberReward_ADDRESS = AccountLayout.decode(encodeSaberReward_ADDRESS);
     let Saber_Balance = new BN(decodeSaberReward_ADDRESS.amount, 10, "le").toNumber() / (10**SABER_TOKEN_DECIMALS);
     setSaberbalance_contract(Saber_Balance);
+
+    const encodeOrcaReward_ADDRESS = (await connection.getAccountInfo(new PublicKey(orca_reward_account), 'singleGossip'))!.data;
+    const decodeOrcaReward_ADDRESS = AccountLayout.decode(encodeOrcaReward_ADDRESS);
+    let Orca_Balance = new BN(decodeOrcaReward_ADDRESS.amount, 10, "le").toNumber() / (10**ORCA_TOKEN_DECIMALS);
+    setOrcabalance_contract(Orca_Balance);
+
+    const encodeUSDCReward_ADDRESS = (await connection.getAccountInfo(new PublicKey(usdc_reward_account), 'singleGossip'))!.data;
+    const decodeUSDCReward_ADDRESS = AccountLayout.decode(encodeUSDCReward_ADDRESS);
+    let USDC_Balance = new BN(decodeUSDCReward_ADDRESS.amount, 10, "le").toNumber() / (10**USDC_DECIMALS);
+    setUsdcbalance_contract(USDC_Balance);
 
   }
   const [reward_request_data,setReward_Request_Data] = useState<any>([]);
@@ -388,12 +405,14 @@ export const FarmingRewardsView = () => {
       <br/>
       <h2>Farming Rewards</h2>
       <Row>
-        <br />
+        <br /><br />
         <Col xs={24} sm={24} md={12} lg={12} xl={12} style={{paddingLeft:"10px"}}>
+          <br /><br />
           <h2>Your Account:</h2>
           <p>Sunny Balance: <br/><span><strong>{Sunnybalance}</strong></span></p>
           <p>Saber Balance: <br/><span><strong>{Saberbalance}</strong></span></p>
-          <p>Orca Balance (mainnet only): <br/><span><strong>{Orcabalance}</strong></span></p>
+          <p>Orca Balance: <br/><span><strong>{Orcabalance}</strong></span></p>
+          <p>USDC Balance: <br/><span><strong>{Usdcbalance}</strong></span></p>
 
           <h2>List of 3rd party Reward Request</h2>
           <table className="w-full md:block overflow-x-auto " style={{"borderCollapse":"separate","borderSpacing":" 0 10px","borderRadius":"1.5em"}}>
@@ -438,18 +457,20 @@ export const FarmingRewardsView = () => {
 
         </Col>
         <Col xs={24} sm={24} md={12} lg={12} xl={12} style={{paddingLeft:"10px"}}>
+          <br /><br />
           <h2>Accounts that hold the rewards and under SuperBonds contract management</h2>
           <p><strong>Sunny Account: {!stakingPool ? null : stakingPool.reserved_token_accounts[0].toBase58()}</strong></p>
           <p><strong>Saber Account: {!stakingPool ? null : stakingPool.reserved_token_accounts[1].toBase58()}</strong></p>
           <p><strong>Orca Account: {!stakingPool ? null : stakingPool.reserved_token_accounts[2].toBase58()}</strong></p>
+          <p><strong>USDC Account: {!stakingPool ? null : stakingPool.reserved_token_accounts[3].toBase58()}</strong></p>
 
           <h2>Total active Farming Reward Account:</h2>
           <p><strong>{!stakingPool ? null : stakingPool.active_farming_rewards_count}</strong></p>
           <h2>Balance in SuperBonds Contracts:</h2>
           <p>Sunny Balance: <br/><span><strong>{Sunnybalance_contract}</strong></span></p>
           <p>Saber Balance: <br/><span><strong>{Saberbalance_contract}</strong></span></p>
-          <p>Orca Balance (mainnet only): <br/><span><strong>{Orcabalance_contract}</strong></span></p>
-
+          <p>Orca Balance: <br/><span><strong>{Orcabalance_contract}</strong></span></p>
+          <p>Usdc Balance: <br/><span><strong>{Usdcbalance_contract}</strong></span></p>
         </Col>
       </Row>
 

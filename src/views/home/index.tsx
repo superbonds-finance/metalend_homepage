@@ -22,7 +22,7 @@ import {
 import '../../styles/trade.css';
 import axios from 'axios';
 import {AxiosResponse} from 'axios';
-import CountUp from 'react-countup'; 
+import CountUp from 'react-countup';
 import { SpaceContext } from "antd/lib/space";
 
 export const HomeView = () => {
@@ -157,7 +157,7 @@ export const HomeView = () => {
       //Get All Trades
       try {
         const data = {limit,offset};
-        const response:AxiosResponse<any> = await axios.post('https://api.superbonds.finance/getAllTrades',data);
+        const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getAllTrades',data);
         if(response.data.trades.length===0 && offset>0) {
           fetchPublicAPI(10,0)
           return;
@@ -168,7 +168,7 @@ export const HomeView = () => {
       //Get All Pending Redemptions
       // try {
       //   const data = {limit,offset};;
-      //   const response:AxiosResponse<any> = await axios.post('https://api.superbonds.finance/getAllPendings',data);
+      //   const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getAllPendings',data);
 
       // } catch (error) {
       //   console.error(error);
@@ -181,7 +181,7 @@ export const HomeView = () => {
         if(showAllTrade===2){
           try {
             const data = {limit,offset,trade_owner:publicKey.toString()};
-            const response:AxiosResponse<any> = await axios.post('https://api.superbonds.finance/getTrades',data);
+            const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getTrades',data);
             if(response.data.trades.length===0 && offset>0) {
               fetchPrivateAPI(10,0)
               return;
@@ -196,7 +196,7 @@ export const HomeView = () => {
         if(showAllTrade===3){
           try {
             const data = {limit,offset,owner:publicKey.toString()};
-            const response:AxiosResponse<any> = await axios.post('https://api.superbonds.finance/getPendings',data);
+            const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPendings',data);
             if(response.data.pendings.length===0 && offset>0) {
               fetchPrivateAPI(10,0);
               return;
@@ -232,7 +232,7 @@ export const HomeView = () => {
         {/* <div className="rounded-md max-w-xs  w-64 z-50">
           <div className="offer_wrapper_1 flex flex-col text-center rounded-md">
             <div className="flex justify-center w-9/12 my-0 mx-auto">
-              
+
               <NewText
                 color="white"
                 size="24px"
@@ -390,7 +390,7 @@ export const HomeView = () => {
           // }}
         >
           <div className="flex flex-col  w-full h-full  justify-center text-center py-0">
-          
+
           <div className="flex justify-center">
               {/* <Text transform="" size="42px" weight="true">
                 SuperBonds
@@ -416,8 +416,8 @@ export const HomeView = () => {
                 <span className='hex-first-text mt-2.5 ml-1.5'  >
                   Fixed Yield in USDC. Guaranteed.
                 </span>
-              </div> 
-            
+              </div>
+
             <span className="block  hex-second-text"  style={{fontWeight:'500'}}>
               Multiple reward streams. Instant cash-outs.
             </span>
@@ -444,7 +444,7 @@ export const HomeView = () => {
               >
                 Launch Devnet
               </BtnText>
-               
+
             </button> */}
 
             <button
@@ -557,9 +557,9 @@ export const HomeView = () => {
               </TextDoc>
               {/* <img  className=' mt-0.5' src={arrow}  /> */}
             </button>
-          
+
           </div>
-          
+
           {/* <div className="vl" style={{borderLeft: '3px solid rgb(70 129 48)',height: '100px'}}></div> */}
           <div className='flex flex-col justify-center items-center lg:pt-5 z-50' >
             <NewText
@@ -601,7 +601,7 @@ export const HomeView = () => {
                 <img
                   onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
                   className="w-8 select-none cursor-pointer Z-40"
-                  src={ 
+                  src={
                     "https://res.cloudinary.com/drr1rnoxf/image/upload/v1643366783/jupiter-logo_vi90us.svg"
                   }
                   alt="..."
@@ -612,7 +612,7 @@ export const HomeView = () => {
                   onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
                   className="ml-2 mt-2 cursor-pointer Z-40 select-none '"
                   size="14px"
-                
+
                 >
                   Jupiter
                 </Jupiter>
@@ -621,11 +621,11 @@ export const HomeView = () => {
             </div>
           </div>
         </section>
-       
+
       {/* <section>
         <div className="flex flex-wrap items-center justify-around w-8/12 mt-5 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center">
         <div className="rounded-md max-w-xs z-50" >
-            <div className="offer_wrapper_1 mt-3 flex flex-col text-center rounded-md" style={{minHeight:"214px",maxWidth:"216px"}}> 
+            <div className="offer_wrapper_1 mt-3 flex flex-col text-center rounded-md" style={{minHeight:"214px",maxWidth:"216px"}}>
               <div className="flex justify-center my-0 mx-auto">
                 <NewText
                   color="white"
@@ -654,8 +654,8 @@ export const HomeView = () => {
               </div>
             </div>
           </div>
- 
-        
+
+
           <div className="trade_sb_token_wrapper_1 mt-3 rounded-md flex flex-col  items-center z-50 ">
             <Text
               color="#586779"
@@ -714,7 +714,7 @@ export const HomeView = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="trade_sb_token_wrapper_2 mt-3 flex flex-col  rounded-md items-center   z-50 sm:mt-3" style={{minHeight:"214px"}} >
             <Text
               color="#586779"
@@ -757,7 +757,7 @@ export const HomeView = () => {
 
       <section>
         <div className="flex flex-col mt-12 text-center justify-center select-none">
-          
+
           <div className="flex justify-center items-center">
             <div>
               <img
@@ -881,7 +881,7 @@ export const HomeView = () => {
                     size="15px"
                     opacity="0.5"
                   >
-                    Issued bonds are self-custodied Financial NFTs with a known terminal value, making them a form of collateral not yet in circulation. 
+                    Issued bonds are self-custodied Financial NFTs with a known terminal value, making them a form of collateral not yet in circulation.
                   </CardText>
                 </div>
               </div>
@@ -1049,7 +1049,7 @@ export const HomeView = () => {
       </section>
 
       <footer className="footer">
-      
+
         <div className=" flex justify-center">
           <Text>
             Copyright © 2021 <strong>SuperBonds</strong>

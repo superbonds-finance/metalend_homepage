@@ -206,7 +206,7 @@ export function StakeStats() {
     }
     try {
       const data = {userAccount:publicKey.toString()};
-      const response:AxiosResponse<any> = await axios.post('https://api.superbonds.finance/getRewards',data);
+      const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getRewards',data);
 
       //console.log(response?.data.rewards.data.rewards);
       setSunny_Unclaimed_Rewards(response?.data.rewards.data.rewards.sunny);

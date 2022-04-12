@@ -115,7 +115,7 @@ export  function MyAccountView() {
     if(publicKey){
       try {
         const data = {limit,offset,trade_owner:publicKey.toString()};
-        const response:AxiosResponse<any> = await axios.post('https://api.superbonds.finance/getTrades',data);
+        const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getTrades',data);
         if(response.data.trades.length===0 && offset>0) {
           fetchPrivateAPI(10,0)
           setOffset(0)
