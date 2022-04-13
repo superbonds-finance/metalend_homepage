@@ -41,7 +41,7 @@ export default function Navbar(props: {
     <div className="flex justify-between">
       <button
           onClick={() =>
-            window.open("https://res.cloudinary.com/drr1rnoxf/image/upload/v1649611110/SuperBonds_Audit_Report_1_ykz2xq.pdf")
+            window.open("https://res.cloudinary.com/drr1rnoxf/image/upload/v1649780638/SuperBonds_Audit_Report_caey88.pdf")
           }
         className="hover:bg-green-100  text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-5 md:px-3 sm:px-2 py-1 inline-block ml-3"
       >
@@ -49,16 +49,18 @@ export default function Navbar(props: {
           Audit Report
         </TextDoc>
       </button>
+
+       
       <button
         onClick={() =>
           window.open(
             "https://res.cloudinary.com/drr1rnoxf/image/upload/v1642360290/SB_Whitepaper-compressed_lafdtl.pdf"
             )
         }
-        className="hover:bg-green-100  text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-5 md:px-3 sm:px-2 py-1 inline-block ml-3"
+        className="hover:bg-green-100 text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-4 md:px-3 sm:px-2 py-0 inline-block ml-3"
       >
-        <TextDoc transform="" className="" size="16px" weight="true">
-          Whitepaper
+        <TextDoc transform="" className="" size="14px" weight="true">
+          Launch App
         </TextDoc>
       </button>
     </div>
@@ -145,14 +147,14 @@ export default function Navbar(props: {
             </button>
             {/* <button className={path=="/tge"?"bg-gray-300  text-white rounded-md":''} onClick={()=>handlePush('/tge')}><span className="text-sm tracking-wide">TGE</span></button>
           <button className={path=="/claimNFT"?"bg-gray-300  text-white rounded-md":''} onClick={()=>handlePush('/claimNFT')}><span className="text-sm tracking-wide">Claim NFT</span></button> */}
-            <button
+            {/* <button
               className={
                 path == "/platform" ? "bg-gray-300  text-white rounded-md" : ""
               }
               onClick={() => handlePush("/platform")}
             >
               <span className="text-sm tracking-wide">Platform Stats</span>
-            </button>
+            </button> */}
             {connected && (
               <button
                 className={

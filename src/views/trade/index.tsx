@@ -1301,7 +1301,7 @@ export function TradeView() {
                               <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 xs:col-span-1 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status90 ==='ACTIVE')? '#263B31':'#161D23'}}>
                                   <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
                                       <HoverToolTip noColor className="flex flex-col justify-start">
-                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >Total Bonds Available
+                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >Total Bonds Available
                                             <Tooltip placement="bottom" title={'Total USDC value of bonds that can be purchased given the USDC value of capital in the LP pool'}> 
                                             <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                           </Text>
@@ -1311,7 +1311,7 @@ export function TradeView() {
                                       <div className="lg:hidden md:block sm:hidden" style={{paddingLeft:'6px', borderLeft: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188')/* ,height: '-1px' */}}></div>
                                       <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
                                       <HoverToolTip noColor className="text-grid flex flex-col">
-                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >SuperBonds Pool
+                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >SuperBonds Pool
                                             <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during SuperBonds periods'}> 
                                             <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                           </Text>

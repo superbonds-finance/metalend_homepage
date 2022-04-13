@@ -1172,7 +1172,7 @@ export function StakeStats() {
                 <div className="pb-6 pt-1 pl-1 pr-1 rounded-md ">
                   <div className='text-grid cursor-pointer grid grid-cols-1'>
                     <Text size='16px' weight color='#7cfa4d'>Bond Purchaser Stats
-                      <Tooltip placement="rightTop" title={'The live value of all outstanding bonds and all attributable SB not claimed'}> 
+                      <Tooltip placement="rightTop" title={'The live value of all your outstanding bonds and all attributable SB not claimed'}> 
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>
@@ -1188,7 +1188,7 @@ export function StakeStats() {
 
                   <div className='text-grid cursor-pointer grid grid-cols-1 mt-7'>
                     <Text size='16px' weight color='#7cfa4d'>Bond LP Stats
-                      <Tooltip placement="rightTop" title={'The number of LP tokens in each respective pool including all unclaimed rewards, consisting of SB and 3rd party tokens(Other Rewards)'}> 
+                      <Tooltip placement="rightTop" title={'The number of staked LP tokens in each respective pool including all unclaimed rewards, consisting of SB and 3rd party tokens(Other Rewards)'}> 
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>

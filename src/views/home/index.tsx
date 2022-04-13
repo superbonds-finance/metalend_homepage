@@ -1052,7 +1052,7 @@ export const HomeView = () => {
 
         <div className=" flex justify-center">
           <Text>
-            Copyright © 2021 <strong>SuperBonds</strong>
+            Copyright © 2022 <strong>SuperBonds</strong>
           </Text>
         </div>
       </footer>
