@@ -27,6 +27,12 @@
    background-color: #28333f;
  }
  
+ .hex_number {
+   max-width: 93px;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
  @media only screen and (max-width: 1300px) {
    .hex_adjacent {
       margin-left: -20px;
