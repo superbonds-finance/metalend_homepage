@@ -74,7 +74,7 @@ export const StakingManagementView = () => {
       }
       //Staking State Account
       const staking_state_account = new Account();
-      console.log('staking_state_account',staking_state_account.publicKey.toString());
+      //console.log('staking_state_account',staking_state_account.publicKey.toString());
       const createStakingStateAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: STAKING_DATA_LAYOUT.span,
@@ -85,7 +85,7 @@ export const StakingManagementView = () => {
 
       //Platform State Account
       const platform_state_account = new Account();
-      console.log('platform_state_account',platform_state_account.publicKey.toString());
+      //console.log('platform_state_account',platform_state_account.publicKey.toString());
       const createPlatformStateAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: PLATFORM_DATA_LAYOUT.span,
@@ -96,7 +96,7 @@ export const StakingManagementView = () => {
 
       //Create Token Account to hold 6B SuperB
       const SuperB_Account = new Account();
-      console.log('SuperB_Account',SuperB_Account.publicKey.toBase58());
+      //console.log('SuperB_Account',SuperB_Account.publicKey.toBase58());
       const createSuperB_AccountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: AccountLayout.span,
@@ -108,7 +108,7 @@ export const StakingManagementView = () => {
 
       //Create Token Account to hold Treasury USDC
       const Treasury_Account = new Account();
-      console.log('Treasury_Account',Treasury_Account.publicKey.toBase58());
+      //console.log('Treasury_Account',Treasury_Account.publicKey.toBase58());
       const createTreasury_AccountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: AccountLayout.span,
@@ -120,7 +120,7 @@ export const StakingManagementView = () => {
 
       //Create Token Account to hold Treasury SuperB
       const Treasury_SuperB_Account = new Account();
-      console.log('Treasury_SuperB_Account',Treasury_SuperB_Account.publicKey.toBase58());
+      //console.log('Treasury_SuperB_Account',Treasury_SuperB_Account.publicKey.toBase58());
       const createTreasury_SuperB_AccountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: AccountLayout.span,
@@ -132,7 +132,7 @@ export const StakingManagementView = () => {
 
       //Create Token Account to hold SuperB fee
       const SuperB_Pool_Account = new Account();
-      console.log('SuperB_Pool_Account',SuperB_Pool_Account.publicKey.toBase58());
+      //console.log('SuperB_Pool_Account',SuperB_Pool_Account.publicKey.toBase58());
       const createSuperB_Pool_AccountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: AccountLayout.span,
@@ -144,7 +144,7 @@ export const StakingManagementView = () => {
 
       //Create Token Account to hold Staked SB Token
       const Staked_SB_Token_Account = new Account();
-      console.log('Staked_SB_Token_Account',Staked_SB_Token_Account.publicKey.toBase58());
+      //console.log('Staked_SB_Token_Account',Staked_SB_Token_Account.publicKey.toBase58());
       const createStaked_SB_Token_AccountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: AccountLayout.span,
@@ -157,7 +157,7 @@ export const StakingManagementView = () => {
       const buffers = [
         Buffer.from(Uint8Array.of(3))
       ];
-      console.log(Buffer.concat(buffers));
+      //console.log(Buffer.concat(buffers));
 
       let associated_USDC_token_account_address = await findAssociatedTokenAddress(publicKey,USDC_MINT_ADDRESS);
 
@@ -165,7 +165,7 @@ export const StakingManagementView = () => {
       let associated_USDC_token_account_address_info = await connection.getAccountInfo(associated_USDC_token_account_address);
         //check if lp token is initialized or not
       if (!associated_USDC_token_account_address_info) {
-          console.log("Create saber_usdc_usdc_lp_token_account");
+          //console.log("Create saber_usdc_usdc_lp_token_account");
           let associated_USDC_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
@@ -275,12 +275,12 @@ export const StakingManagementView = () => {
 
     const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-    console.log(decodedPoolDataState);
+    //console.log(decodedPoolDataState);
     setPlatformData(decodedPoolDataState);
 
     const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-    console.log(decodedStakingDataState);
+    //console.log(decodedStakingDataState);
     setStakingData(decodedStakingDataState);
 
 
@@ -311,7 +311,7 @@ export const StakingManagementView = () => {
       filters,
       encoding: 'base64',
     });
-    console.log('multisig',resp);
+    //console.log('multisig',resp);
 
     let tableData:any[] = [];
     let accountData:any[] = [];
@@ -321,7 +321,7 @@ export const StakingManagementView = () => {
       tableData.push(decodedPoolDataState);
       accountData.push(resp[index].pubkey.toBase58());
     }
-    console.log(tableData);
+    //console.log(tableData);
     setMultiSigs(tableData);
     setMultiSig_Accounts(accountData);
 
@@ -388,7 +388,7 @@ export const StakingManagementView = () => {
       }
       //Staking State Account
       const multisig_state_account = new Account();
-      console.log('multisig_state_account',multisig_state_account.publicKey.toString());
+      //console.log('multisig_state_account',multisig_state_account.publicKey.toString());
       const createMultiSigStateAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: MULTISIG_LAYOUT.span,
@@ -401,7 +401,7 @@ export const StakingManagementView = () => {
         const buffers = [
           Buffer.from(Uint8Array.of(2,1,0))
         ];
-        //console.log(Buffer.concat(buffers));
+        ////console.log(Buffer.concat(buffers));
         const setGovIx = new TransactionInstruction({
             programId: SUPERBONDS_PROGRAM_ID,
             keys: [
@@ -428,7 +428,7 @@ export const StakingManagementView = () => {
             message: 'Updated overnance successfully',
             type: "success",
           });
-          await delay(2000);
+          await delay(5000);
           onRefresh();
         }
       }
@@ -439,7 +439,7 @@ export const StakingManagementView = () => {
         let associated_USDC_token_account_address_info = await connection.getAccountInfo(associated_USDC_token_account_address);
           //check if lp token is initialized or not
         if (!associated_USDC_token_account_address_info) {
-            console.log("Create associated_USDC_token_account_address");
+            //console.log("Create associated_USDC_token_account_address");
             let associated_USDC_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
                 SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
                 TOKEN_PROGRAM_ID,
@@ -469,7 +469,7 @@ export const StakingManagementView = () => {
         const buffers = [
           Buffer.from(Uint8Array.of(2,0,0))
         ];
-        //console.log(Buffer.concat(buffers));
+        ////console.log(Buffer.concat(buffers));
         const setOpIx = new TransactionInstruction({
             programId: SUPERBONDS_PROGRAM_ID,
             keys: [
@@ -498,11 +498,11 @@ export const StakingManagementView = () => {
             message: 'Updated new Operator successfully',
             type: "success",
           });
-          await delay(2000);
+          await delay(5000);
           onRefresh();
         }
       }
-      //console.log(txid);
+      ////console.log(txid);
     }
   const onUpdateAdmin = async () => {
     if (!wallet){
@@ -540,7 +540,7 @@ export const StakingManagementView = () => {
     }
     //Staking State Account
     const multisig_state_account = new Account();
-    console.log('multisig_state_account',multisig_state_account.publicKey.toString());
+    //console.log('multisig_state_account',multisig_state_account.publicKey.toString());
     const createMultiSigStateAccountIx = SystemProgram.createAccount({
         programId: SUPERBONDS_PROGRAM_ID,
         space: MULTISIG_LAYOUT.span,
@@ -552,7 +552,7 @@ export const StakingManagementView = () => {
     const buffers = [
       Buffer.from(Uint8Array.of(2,2,new_index))
     ];
-    //console.log(Buffer.concat(buffers));
+    ////console.log(Buffer.concat(buffers));
     const setAdminIx = new TransactionInstruction({
         programId: SUPERBONDS_PROGRAM_ID,
         keys: [
@@ -579,11 +579,11 @@ export const StakingManagementView = () => {
         message: 'Updated overnance successfully',
         type: "success",
       });
-      await delay(2000);
+      await delay(5000);
       onRefresh();
     }
 
-    //console.log(txid);
+    ////console.log(txid);
   }
 
   const [farm_address,setFarm_Address] = useState("");
@@ -625,7 +625,7 @@ export const StakingManagementView = () => {
 
     //Create Token Account to hold Rewards
     const Token_Account = new Account();
-    console.log('Token_Account',Token_Account.publicKey.toBase58());
+    //console.log('Token_Account',Token_Account.publicKey.toBase58());
     const createToken_AccountIx = SystemProgram.createAccount({
         programId: TOKEN_PROGRAM_ID,
         space: AccountLayout.span,
@@ -747,7 +747,7 @@ export const StakingManagementView = () => {
       const buffers = [
         Buffer.from(Uint8Array.of(2,1,0))
       ];
-      //console.log(Buffer.concat(buffers));
+      ////console.log(Buffer.concat(buffers));
       const setGovIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -773,7 +773,7 @@ export const StakingManagementView = () => {
           message: 'Update Governance Request sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
     }
@@ -784,7 +784,7 @@ export const StakingManagementView = () => {
       let associated_USDC_token_account_address_info = await connection.getAccountInfo(associated_USDC_token_account_address);
         //check if lp token is initialized or not
       if (!associated_USDC_token_account_address_info) {
-          console.log("Create associated_USDC_token_account_address");
+          //console.log("Create associated_USDC_token_account_address");
           let associated_USDC_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
@@ -814,7 +814,7 @@ export const StakingManagementView = () => {
       const buffers = [
         Buffer.from(Uint8Array.of(2,0,0))
       ];
-      //console.log(Buffer.concat(buffers));
+      ////console.log(Buffer.concat(buffers));
       const setOpIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -842,7 +842,7 @@ export const StakingManagementView = () => {
           message: 'Update new Operator Request sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
     }
@@ -850,7 +850,7 @@ export const StakingManagementView = () => {
       const buffers = [
         Buffer.from(Uint8Array.of(2,2,index))
       ];
-      //console.log(Buffer.concat(buffers));
+      ////console.log(Buffer.concat(buffers));
       const setAdminIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -876,7 +876,7 @@ export const StakingManagementView = () => {
           message: 'Update Admin Request sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
 
@@ -902,7 +902,7 @@ export const StakingManagementView = () => {
     }
     //Platform State Account
     const freetoken_state_account = new Account();
-    console.log('freetoken_state_account',freetoken_state_account.publicKey.toString());
+    //console.log('freetoken_state_account',freetoken_state_account.publicKey.toString());
     const createPlatformStateAccountIx = SystemProgram.createAccount({
         programId: FREE_TOKEN_PROGRAM_ID,
         space: FREETOKEN_DATA_LAYOUT.span,
@@ -913,7 +913,7 @@ export const StakingManagementView = () => {
 
     //Create Token Account to hold 6B SuperB
     const SuperB_Account = new Account();
-    console.log('SuperB_Account',SuperB_Account.publicKey.toBase58());
+    //console.log('SuperB_Account',SuperB_Account.publicKey.toBase58());
     const createSuperB_AccountIx = SystemProgram.createAccount({
         programId: TOKEN_PROGRAM_ID,
         space: AccountLayout.span,
@@ -924,7 +924,7 @@ export const StakingManagementView = () => {
     const initSuperB_AccountIx = Token.createInitAccountInstruction(TOKEN_PROGRAM_ID, SUPERB_MINT_ADDRESS, SuperB_Account.publicKey, publicKey);
     //Create Token Account to hold 6B SuperB
     const USDC_Account = new Account();
-    console.log('USDC_Account',USDC_Account.publicKey.toBase58());
+    //console.log('USDC_Account',USDC_Account.publicKey.toBase58());
     const createUSDC_AccountIx = SystemProgram.createAccount({
         programId: TOKEN_PROGRAM_ID,
         space: AccountLayout.span,

@@ -44,7 +44,7 @@ import {
 import Swal from 'sweetalert2';
 import { Tooltip } from "antd";
 import { ImInfo } from "react-icons/im";
- 
+
 interface ParamTypes {
   trade_account: string
 }
@@ -147,7 +147,7 @@ export function StakeStats() {
     });
     if (resp.length > 0){
       let decodedData = TRADER_LAYOUT.decode(resp[0].account.data);
-      console.log(decodedData);
+      //console.log(decodedData);
       setTraderData(decodedData);
     }
 
@@ -170,12 +170,12 @@ export function StakeStats() {
     }
     const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-    //console.log(decodedPoolDataState);
+    ////console.log(decodedPoolDataState);
     setPlatformData(decodedPoolDataState);
 
     const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-    //console.log(decodedStakingDataState);
+    ////console.log(decodedStakingDataState);
     setStakingData(decodedStakingDataState);
 
     // const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
@@ -208,7 +208,7 @@ export function StakeStats() {
       const data = {userAccount:publicKey.toString()};
       const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getRewards',data);
 
-      //console.log(response?.data.rewards.data.rewards);
+      ////console.log(response?.data.rewards.data.rewards);
       setSunny_Unclaimed_Rewards(response?.data.rewards.data.rewards.sunny);
       setSaber_Unclaimed_Rewards(response?.data.rewards.data.rewards.saber);
       setOrca_Unclaimed_Rewards(response?.data.rewards.data.rewards.orca);
@@ -276,15 +276,15 @@ export function StakeStats() {
     if (account_length > 50) account_length = 50;
     else if (account_length == 0) return;
 
-    console.log('account_length',account_length);
+    //console.log('account_length',account_length);
 
     let associated_token_account_address = await findAssociatedTokenAddress(publicKey,mint_account);
-    console.log('associated_token_account_address',associated_token_account_address.toBase58());
+    //console.log('associated_token_account_address',associated_token_account_address.toBase58());
     //check if associated_USDC_token_account_address is is_initialized
     let associated_token_account_address_info = await connection.getAccountInfo(associated_token_account_address);
       //check if lp token is initialized or not
     if (!associated_token_account_address_info) {
-        console.log("Create associated_token_account_address");
+        //console.log("Create associated_token_account_address");
         let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
             SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
             TOKEN_PROGRAM_ID,
@@ -371,7 +371,7 @@ export function StakeStats() {
         message: '3rd Party Rewards Claim Request Sent',
         type: "success",
       });
-      await delay(2000);
+      await delay(5000);
       onRefresh();
       getRewardDataAccount();
     }
@@ -409,7 +409,7 @@ export function StakeStats() {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Proceed = true;
-          //console.log(Proceed);
+          ////console.log(Proceed);
         }
       })
       if (!Proceed) return;
@@ -446,10 +446,10 @@ export function StakeStats() {
       return;
     }
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
 
     let associated_LP_Token_token_account_address = await findAssociatedTokenAddress(publicKey,lp_token_mint_address);
-    console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
+    //console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
     let buffers = null;
     if (!isClaim){
        buffers = [
@@ -479,14 +479,14 @@ export function StakeStats() {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
     let [SuperB_pda_address/*,SuperB_pda_NONCE*/] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
     if (resp.length == 0){
-      console.log('Initializing Trader Data Account and Stake...');
+      //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
-      console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
@@ -539,12 +539,12 @@ export function StakeStats() {
             type: "success",
           });
         }
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
     }
     else{
-      console.log('Stake...');
+      //console.log('Stake...');
       const stakeLP_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -589,7 +589,7 @@ export function StakeStats() {
             type: "success",
           });
         }
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
     }
@@ -635,7 +635,7 @@ export function StakeStats() {
     }
 
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
     let buffers = null;
     if (!isClaim)
      buffers = [
@@ -663,14 +663,14 @@ export function StakeStats() {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
     let [SuperB_pda_address,/* SuperB_pda_NONCE */] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
     if (resp.length == 0){
-      console.log('Initializing Trader Data Account and Stake...');
+      //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
-      console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
@@ -713,12 +713,12 @@ export function StakeStats() {
           message: 'Staking Request Sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
     }
     else{
-      //console.log('Stake...');
+      ////console.log('Stake...');
       const stakeSB_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -762,7 +762,7 @@ export function StakeStats() {
           });
         }
 
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
     }
@@ -809,7 +809,7 @@ export function StakeStats() {
       await onStake(90,true);
 
     if (unclaimed_Trading_Rewards == 0 ){
-      await delay(2000);
+      await delay(5000);
       onRefresh();
       return;
     }
@@ -823,7 +823,7 @@ export function StakeStats() {
 
 
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
     let buffers = [
         Buffer.from(Uint8Array.of(19,3, ...new Numberu64(0).toBuffer()))
        ];
@@ -845,12 +845,12 @@ export function StakeStats() {
       filters,
       encoding: 'base64',
     });
-    //console.log('resp',resp);
+    ////console.log('resp',resp);
     //return;
     let [SuperB_pda_address/* ,SuperB_pda_NONCE */] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
     if (resp.length > 0){
-      //console.log('Stake...');
+      ////console.log('Stake...');
       const stakeSB_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -888,7 +888,7 @@ export function StakeStats() {
           });
 
 
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
     }
@@ -938,12 +938,12 @@ export function StakeStats() {
       trader_Data_account = resp[0].pubkey;
       //Create associated_token_account_address for SUNNY/SABER if not created
       let associated_Sunny_account_address = await findAssociatedTokenAddress(publicKey,SUNNY_MINT_ADDRESS);
-      //console.log('associated_Sunny_account_address',associated_Sunny_account_address.toBase58());
+      ////console.log('associated_Sunny_account_address',associated_Sunny_account_address.toBase58());
       //check if associated_USDC_token_account_address is is_initialized
       let associated_Sunny_account_address_info = await connection.getAccountInfo(associated_Sunny_account_address);
         //check if lp token is initialized or not
       if (!associated_Sunny_account_address_info) {
-          //console.log("Create associated_Sunny_account_address");
+          ////console.log("Create associated_Sunny_account_address");
           let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
@@ -971,12 +971,12 @@ export function StakeStats() {
       }
 
       let associated_Saber_account_address = await findAssociatedTokenAddress(publicKey,SABER_MINT_ADDRESS);
-      //console.log('associated_Saber_account_address',associated_Saber_account_address.toBase58());
+      ////console.log('associated_Saber_account_address',associated_Saber_account_address.toBase58());
       //check if associated_USDC_token_account_address is is_initialized
       let associated_Saber_account_address_info = await connection.getAccountInfo(associated_Saber_account_address);
         //check if lp token is initialized or not
       if (!associated_Saber_account_address_info) {
-          //console.log("Create associated_Saber_account_address");
+          ////console.log("Create associated_Saber_account_address");
           let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
@@ -1031,7 +1031,7 @@ export function StakeStats() {
 
       //Create Request Account to save request information
       const request_state_account = new Account();
-      //console.log('trade_state_account',trade_state_account.publicKey.toString());
+      ////console.log('trade_state_account',trade_state_account.publicKey.toString());
       const createRequestStateAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: FARMING_REWARD_REQUEST_LAYOUT.span,
@@ -1069,7 +1069,7 @@ export function StakeStats() {
           message: '3rd Party Rewards Claim Request Sent. It might take up to 2 minutes to process.',
           type: "success",
         });
-        await delay(2000);
+        await delay(5000);
         onRefresh();
         getRewardDataAccount();
       }
@@ -1113,8 +1113,8 @@ export function StakeStats() {
     }
     let my_total_staked_Trades = new BN(traderData.total_active_trades, 10, "le").toNumber()/1000000;
     let my_rewardDebt_Trades = new BN(traderData.rewardDebt_Trades, 10, "le").toNumber()/1000000;
-    // console.log('my_total_staked_Trades',my_total_staked_Trades);
-    // console.log('rewards',my_total_staked_Trades * _accAmountPerShare_Trades - my_rewardDebt_Trades);
+    // //console.log('my_total_staked_Trades',my_total_staked_Trades);
+    // //console.log('rewards',my_total_staked_Trades * _accAmountPerShare_Trades - my_rewardDebt_Trades);
     setUnclaimed_Trading_Rewards(my_total_staked_Trades * _accAmountPerShare_Trades - my_rewardDebt_Trades);
 
     //SuperB Staking Rewards Calculation
@@ -1168,11 +1168,11 @@ export function StakeStats() {
         <div className='flex flex-col w-5/12  lg:w-full md:w-full sm:w-full md:self-center pr-3 lg:pr-0 lg:pt-0'>
 
             <div className="flex flex-col w-full md:w-full bg-gray-300 py-8 px-3 xl:px-3 rounded-md neon-bottom-card selected-box-neon">
-                
+
                 <div className="pb-6 pt-1 pl-1 pr-1 rounded-md ">
                   <div className='text-grid cursor-pointer grid grid-cols-1'>
                     <Text size='16px' weight color='#7cfa4d'>Bond Purchaser Stats
-                      <Tooltip placement="rightTop" title={'The live value of all outstanding bonds and all attributable SB not claimed'}> 
+                      <Tooltip placement="rightTop" title={'The live value of all outstanding bonds and all attributable SB not claimed'}>
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>
@@ -1188,7 +1188,7 @@ export function StakeStats() {
 
                   <div className='text-grid cursor-pointer grid grid-cols-1 mt-7'>
                     <Text size='16px' weight color='#7cfa4d'>Bond LP Stats
-                      <Tooltip placement="rightTop" title={'The number of LP tokens in each respective pool including all unclaimed rewards, consisting of SB and 3rd party tokens(Other Rewards)'}> 
+                      <Tooltip placement="rightTop" title={'The number of LP tokens in each respective pool including all unclaimed rewards, consisting of SB and 3rd party tokens(Other Rewards)'}>
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>
@@ -1207,7 +1207,7 @@ export function StakeStats() {
                     <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Staked 90-Day Pool LP Token</Text>
                     <Text className='' size={"14px"}color={'white'}>{traderData ? formatNumberWithoutRounding.format(traderData.total_LP_Token_staked_vector[1]/1000000): null}</Text>
                   </div>
-                  
+
                   <div className='grid grid-cols-3 bg-gray-200 mt-0.5  px-3 py-1'>
                     <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Unclaimed 90-Day Pool SB</Text>
                     <Text className='' size={"14px"}color={'white'}>{formatNumberWithoutRounding.format(unclaimed_LP_90_Staking)}</Text>
@@ -1225,7 +1225,7 @@ export function StakeStats() {
 
                   <div className='text-grid cursor-pointer grid grid-cols-1 mt-7 '>
                     <Text size='16px' weight color='#7cfa4d'>SB Staking Stats
-                      <Tooltip placement="rightTop" title={'The number of SB staked and all attributable SB not claimed'}> 
+                      <Tooltip placement="rightTop" title={'The number of SB staked and all attributable SB not claimed'}>
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>
@@ -1239,7 +1239,7 @@ export function StakeStats() {
                     <Text className='' size={"14px"}color={'white'}>{formatNumberWithoutRounding.format(unclaimed_SuperB_Staking)}</Text>
                   </div>
 
-                     
+
                 </div>
                 <div className="grid grid-cols-2 gap-2 mt-3">
 

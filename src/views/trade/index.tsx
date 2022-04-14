@@ -155,7 +155,7 @@ export function TradeView() {
         setTradeLiquidityAvailability30(data30pool.trade_liquidity_availability/10000);
         setTrade_fee_USDC30(data30pool.trade_fee_USDC/10000);
         setTransaction_fee_SuperB30(new BN(data30pool.transaction_fee_SuperB, 10, "le").toNumber());
-        //console.log(data30pool.trade_liquidity_availability,new BN(data30pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
+        ////console.log(data30pool.trade_liquidity_availability,new BN(data30pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
       }
       if (data90pool) {
 
@@ -164,7 +164,7 @@ export function TradeView() {
         setTradeLiquidityAvailability90(data90pool.trade_liquidity_availability/10000);
         setTrade_fee_USDC90(data90pool.trade_fee_USDC/10000);
         setTransaction_fee_SuperB90(new BN(data90pool.transaction_fee_SuperB, 10, "le").toNumber());
-        //console.log(data90pool.trade_liquidity_availability);
+        ////console.log(data90pool.trade_liquidity_availability);
       }
       superBondsProcess();
     }, [data30pool,data90pool]);
@@ -240,7 +240,7 @@ export function TradeView() {
       // }
       const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
       const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-      //console.log(decodedPoolDataState);
+      ////console.log(decodedPoolDataState);
       setStakingPool(decodedPoolDataState);
       let bond_yield = decodedPoolDataState.pool_yield_vector[0]/100;
       setBond_Yield30(bond_yield);
@@ -332,7 +332,7 @@ export function TradeView() {
 
       let toSend = bondYield > 0 ? bondValue*(1+trade_fee_USDC) : bondValueMaturity*(1+trade_fee_USDC);
       let superB_fee = pool == 30 ? transaction_fee_SuperB30 : transaction_fee_SuperB90;
-      //console.log('toSend',toSend,'superB_fee',superB_fee,'adjustedLiquidity',adjustedLiquidity);
+      ////console.log('toSend',toSend,'superB_fee',superB_fee,'adjustedLiquidity',adjustedLiquidity);
       if (bondValueMaturity-bondValue > tradeLiquidityAvailability * adjustedLiquidity){
         notify({
           message: 'Above Max Trade Limit',
@@ -447,14 +447,14 @@ export function TradeView() {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Proceed = true;
-          //console.log(Proceed);
+          ////console.log(Proceed);
         }
       })
-      //console.log('here',Proceed);
+      ////console.log('here',Proceed);
       if (!Proceed) return;
 
       const NFT_Mint_account = new Account();
-      //console.log('NFT_Mint_account',NFT_Mint_account.publicKey.toBase58());
+      ////console.log('NFT_Mint_account',NFT_Mint_account.publicKey.toBase58());
       const createNFT_Mint_accountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: MintLayout.span,
@@ -469,7 +469,7 @@ export function TradeView() {
         publicKey,
         null);
       let nft_associated_token_account_address = await findAssociatedTokenAddress(publicKey,NFT_Mint_account.publicKey);
-      //console.log('nft_associated_token_account_address',nft_associated_token_account_address.toBase58());
+      ////console.log('nft_associated_token_account_address',nft_associated_token_account_address.toBase58());
 
       let nft_associated_token_account_creationIx = Token.createAssociatedTokenAccountInstruction(
           SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
@@ -499,7 +499,7 @@ export function TradeView() {
 
       //Create Trade State Account to save trade information
       const trade_state_account = new Account();
-      //console.log('trade_state_account',trade_state_account.publicKey.toString());
+      ////console.log('trade_state_account',trade_state_account.publicKey.toString());
       const createTradeStateAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADE_DATA_LAYOUT.span,
@@ -518,7 +518,7 @@ export function TradeView() {
       //Calculate min_interest
       let longInterest = bondValueMaturity-bondValue;
       let min_interest = longInterest * 0.95;
-      console.log('min_interest',min_interest);
+      //console.log('min_interest',min_interest);
       const buffers = [
         Buffer.from(Uint8Array.of(15, ...new Numberu64(Math.round(toSend * (10**USDC_DECIMALS))).toBuffer(),
           ...new Numberu64(Math.round(min_interest * (10**USDC_DECIMALS))).toBuffer()
@@ -542,7 +542,7 @@ export function TradeView() {
         filters,
         encoding: 'base64',
       });
-      //console.log('resp',resp);
+      ////console.log('resp',resp);
       //return;
       let [SUPERBONDS_REWARD_PDA, SUPERBONDS_REWARD_NONCE] = await PublicKey.findProgramAddress([new PublicKey(datapool.SuperBonds_Rewards_Pool).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
@@ -552,9 +552,9 @@ export function TradeView() {
       let [SuperB_pda_address,SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
       if (resp.length == 0){
-        //console.log('Initializing Trader Data Account and Stake...');
+        ////console.log('Initializing Trader Data Account and Stake...');
         trader_Data_account = new Account();
-        //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+        ////console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
         const createTraderDataAccountIx = SystemProgram.createAccount({
             programId: SUPERBONDS_PROGRAM_ID,
             space: TRADER_LAYOUT.span,
@@ -631,12 +631,12 @@ export function TradeView() {
               message: 'Added Trade successfully',
               type: "success",
             });
-            await delay(2000);
+            await delay(5000);
             readPoolData_30();
             readPoolData_90();
             getStakingPoolData();
             //onShowAllTrades(2);
-            await delay(2000);
+            await delay(5000);
             fetchPrivateAPI(10,0);
             fetchPublicAPI(10,0);
             setOffset(0)
@@ -713,12 +713,12 @@ export function TradeView() {
               message: 'New trade request sent successfully',
               type: "success",
             });
-            await delay(2000);
+            await delay(5000);
             readPoolData_30();
             readPoolData_90();
             getStakingPoolData();
             //onShowAllTrades(2);
-            await delay(2000);
+            await delay(5000);
             fetchPublicAPI(10,0);
             fetchPrivateAPI(10,0);
             setOffset(0);
@@ -849,7 +849,7 @@ export function TradeView() {
         });
         return;
       }
-      //console.log(pool,POOL_30_ADDRESS,POOL_90_ADDRESS);
+      ////console.log(pool,POOL_30_ADDRESS,POOL_90_ADDRESS);
 
       const encodedPoolDataState = (await connection.getAccountInfo(new PublicKey(pool), 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
@@ -914,7 +914,7 @@ export function TradeView() {
           message: 'Settle Request Sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(5000);
       }
     }
 
@@ -951,7 +951,7 @@ export function TradeView() {
             else if (diff >0) {
                 superbonds_rate = data30pool.superBonds_rate/100;
             }
-            //console.log('superbonds_rate',superbonds_rate);
+            ////console.log('superbonds_rate',superbonds_rate);
             setSuperBondsRate30(superbonds_rate);
 
             setBondValueMaturity_30(bondValue * ((1 + (superbonds_rate*bond_yield30/100))**(30/365)))
@@ -993,7 +993,7 @@ export function TradeView() {
             else if (diff >0) {
                 superbonds_rate = data90pool.superBonds_rate/100;
             }
-            //console.log('superbonds_rate',superbonds_rate);
+            ////console.log('superbonds_rate',superbonds_rate);
             setSuperBondsRate90(superbonds_rate);
             setBondValueMaturity_90(bondValue * ((1 + (superbonds_rate*bond_yield90/100))**(90/365)))
           }
@@ -1005,7 +1005,7 @@ export function TradeView() {
 
     }
     const handlePagination=(limit:number,x_paginationcursor:number)=>{
-     // console.log(offset)
+     // //console.log(offset)
       if(x_paginationcursor>0) {
         setOffset(offset+x_paginationcursor);
         showAllTrade==1?fetchPublicAPI(limit,offset+x_paginationcursor):fetchPrivateAPI(limit,offset+x_paginationcursor);

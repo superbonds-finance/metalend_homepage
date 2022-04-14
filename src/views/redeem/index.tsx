@@ -76,7 +76,7 @@ export const RedeemView = () => {
 
   useEffect(() => {
     if (!wallet.publicKey) return;
-    console.log('Here');
+    //console.log('Here');
     onShowTradeInformation();
     getAllBalances();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,7 +107,7 @@ export const RedeemView = () => {
     }
     const encodedTradeDataState = trade_data_info.data;
     const decodedTradeDataState = TRADE_DATA_LAYOUT.decode(encodedTradeDataState);
-    console.log(decodedTradeDataState);
+    //console.log(decodedTradeDataState);
     setTradeData(decodedTradeDataState);
 
     const NFT_info = await connection.getAccountInfo(decodedTradeDataState.NFT);
@@ -125,7 +125,7 @@ export const RedeemView = () => {
     var maturity_at = 1000* new BN(decodedTradeDataState.maturity_date, 10, "le").toNumber();
     var now = new Date();
     const diffDays = Math.round(Math.abs((maturity_at - now.getTime()) / (1000)));
-    console.log(maturity_at,now,diffDays);
+    //console.log(maturity_at,now,diffDays);
     let current_bond_value = 0;
     if (maturity_at<now.getTime()) current_bond_value = Bond_at_maturity;
     else
@@ -241,10 +241,10 @@ export const RedeemView = () => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Proceed = true;
-        console.log(Proceed);
+        //console.log(Proceed);
       }
     })
-    console.log('here',Proceed);
+    //console.log('here',Proceed);
     if (!Proceed) return;
 
     //Create new SuperB token Account and transfer fee amount to it
@@ -259,14 +259,14 @@ export const RedeemView = () => {
     const buffers = [
       Buffer.from(Uint8Array.of(17))
     ];
-    console.log('pool',tradeData.pool.toBase58(),'trade_account',trade_account,'NFT',tradeData.NFT.toBase58());
-    console.log('usdc_associated_token_account_address',usdc_associated_token_account_address.toBase58());
-    console.log('superB_associated_token_account_address',superB_associated_token_account_address.toBase58());
+    //console.log('pool',tradeData.pool.toBase58(),'trade_account',trade_account,'NFT',tradeData.NFT.toBase58());
+    //console.log('usdc_associated_token_account_address',usdc_associated_token_account_address.toBase58());
+    //console.log('superB_associated_token_account_address',superB_associated_token_account_address.toBase58());
 
     const NFT_info = await connection.getAccountInfo(tradeData.NFT);
     if (!NFT_info) return;
     // const NFT_data = MintLayout.decode(NFT_info.data);
-    //console.log(new PublicKey(NFT_data.mint));
+    ////console.log(new PublicKey(NFT_data.mint));
     //Check if current user has any NFT with this NFT Mint Account
     let NFT_Balance = await getTokenBalance(connection,publicKey,tradeData.NFT,0);
     if (NFT_Balance != 1 ){
@@ -278,7 +278,7 @@ export const RedeemView = () => {
     }
 
     let nft_associated_token_account_address = await findAssociatedTokenAddress(publicKey,tradeData.NFT);
-    console.log('nft_associated_token_account_address',nft_associated_token_account_address.toBase58());
+    //console.log('nft_associated_token_account_address',nft_associated_token_account_address.toBase58());
     const Burn_one_NFT_Ix = Token.createBurnInstruction(
       TOKEN_PROGRAM_ID,
       tradeData.NFT,
@@ -304,7 +304,7 @@ export const RedeemView = () => {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     if (resp.length == 0 ){
       notify({
         message: 'Cannot find Trader Data Account',
@@ -315,7 +315,7 @@ export const RedeemView = () => {
 
 
     const redeem_data_account = new Account();
-    console.log('redeem_data_account',redeem_data_account.publicKey.toString());
+    //console.log('redeem_data_account',redeem_data_account.publicKey.toString());
     const createRedeemDataAccountIx = SystemProgram.createAccount({
         programId: SUPERBONDS_PROGRAM_ID,
         space: REDEEM_DATA_LAYOUT.span,
@@ -372,7 +372,7 @@ export const RedeemView = () => {
         message: 'Redemption Request Sent',
         type: "success",
       });
-      await delay(2000);
+      await delay(5000);
       history.push("/trade");
     }
   }

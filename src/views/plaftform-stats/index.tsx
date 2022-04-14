@@ -106,7 +106,7 @@ export function PlatformStatsView() {
           message: "Airdrop 1 SOL request Sent",
           type: "success",
         });
-        await delay(2000);
+        await delay(5000);
         // setSOLbalance(await connection.getBalance(publicKey)/(10**9));
       } catch (error) {
         notify({
@@ -120,12 +120,12 @@ export function PlatformStatsView() {
 
         // const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
         // const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-        // console.log(decodedPoolDataState);
+        // //console.log(decodedPoolDataState);
         // setPlatformData(decodedPoolDataState);
 
         const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
         const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-        console.log(decodedStakingDataState);
+        //console.log(decodedStakingDataState);
         setStakingData(decodedStakingDataState);
 
         const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
@@ -181,7 +181,7 @@ export function PlatformStatsView() {
       let associated_token_account_address_info = await connection.getAccountInfo(associated_token_account_address);
         //check if lp token is initialized or not
       if (!associated_token_account_address_info) {
-          console.log("Create associated_token_account_address");
+          //console.log("Create associated_token_account_address");
           let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
@@ -235,7 +235,7 @@ export function PlatformStatsView() {
           message: 'Request for Free Tokens sent!',
           type: "info",
         });
-        await delay(2000);
+        await delay(5000);
         // setUSDCbalance(await getTokenBalance(connection,publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
         // setSuperBbalance(await getTokenBalance(connection,publicKey,SUPERB_MINT_ADDRESS,SUPERB_DECIMALS));
         return;
@@ -247,7 +247,7 @@ export function PlatformStatsView() {
     <div className="w-screen h-screen bg-black ">
         <div className="w-11/12 my-0 mx-auto pt-28 " style={{maxWidth:"1540px"}}>
 
-           <div className="flex pt-6 justify-between flex-wrap ">
+           {/*<div className="flex pt-6 justify-between flex-wrap ">
                 <div className="flex flex-col w-full my-0 mx-auto 2xxl:mt-3 mb-3">
                     <div className="flex w-7/12 mx-auto md:w-full my-0 flex-wrap justify-evenly sm:flex-col sm:w-9/12">
                         <button className="border-2 rounded-md border-green-100 px-6 py-1.5 inline-block sm:mb-5"  onClick={() => onGetFreeSol()}>
@@ -261,7 +261,7 @@ export function PlatformStatsView() {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div>*/}
 
             <div className="flex flex-col w-7/12 mx-auto my-0 mt-5 md:w-full  bg-gray-300 py-5 px-7 xl:px-3 rounded-md X">
                 <div className="text-center">

@@ -197,7 +197,7 @@ export function StakeView() {
     });
     if (resp.length > 0){
       let decodedData = TRADER_LAYOUT.decode(resp[0].account.data);
-      console.log(decodedData);
+      //console.log(decodedData);
       setTraderData(decodedData);
     }
 
@@ -220,12 +220,12 @@ export function StakeView() {
     }
     const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-    console.log(decodedPoolDataState)
+    //console.log(decodedPoolDataState)
     setPlatformData(decodedPoolDataState);
 
     const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-    console.log(decodedStakingDataState);
+    //console.log(decodedStakingDataState);
     setStakingData(decodedStakingDataState);
 
     const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
@@ -274,7 +274,7 @@ export function StakeView() {
     saber_reward_accounts = [];
 
     resp.forEach(element => {
-      console.log(element);
+      //console.log(element);
       let farming_reward = FARMING_REWARD_LAYOUT.decode(element.account.data);
       let total_reward = new BN(farming_reward.total_reward, 10, "le").toNumber() / 1000000;
       let lp_staked_30 = farming_reward.total_lp_token_staked[0] / 1000000;
@@ -401,7 +401,7 @@ export function StakeView() {
     }
 
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
     let buffers = null;
     if (!isClaim)
      buffers = [
@@ -429,14 +429,14 @@ export function StakeView() {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
     let [SuperB_pda_address,SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
     if (resp.length == 0){
-      console.log('Initializing Trader Data Account and Stake...');
+      //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
-      console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
@@ -479,12 +479,12 @@ export function StakeView() {
           message: 'Staking Request Sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
     }
     else{
-      //console.log('Stake...');
+      ////console.log('Stake...');
       const stakeSB_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -528,14 +528,14 @@ export function StakeView() {
           });
         }
 
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
     }
 
 
   }
-  console.log(stakingPool)
+  //console.log(stakingPool)
   const onUnstakeSB = async () => {
     let fees=stakingPool.unstake_SB_fee/100;
     const message = `
@@ -613,7 +613,7 @@ export function StakeView() {
     }
 
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
 
     const buffers = [
       Buffer.from(Uint8Array.of(21,2, ...new Numberu64(parseFloat(unformatInputNumber(sb_amount)) * (10**SUPERB_DECIMALS)).toBuffer()))
@@ -636,7 +636,7 @@ export function StakeView() {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
 
     if (resp.length == 0){
@@ -647,7 +647,7 @@ export function StakeView() {
       return;
     }
     else{
-      console.log('Unstaking...');
+      //console.log('Unstaking...');
       let [staked_SuperB_pda_address,staked_SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.Staked_SB_Token_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
       let [SuperB_pda_address,SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
@@ -685,7 +685,7 @@ export function StakeView() {
           message: 'Unstaking Request Sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(5000);
         onRefresh();
       }
     }

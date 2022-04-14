@@ -78,7 +78,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
   const [lq_amount90,setLQ_Amount90] = useState("");
   // const [sb_amount,setSB_Amount] = useState("");
   // const [sol_sb_lp_amount,setSOL_SB_LP_Amount] = useState("");
-  console.log("data30pool",data30pool)
+  //console.log("data30pool",data30pool)
   const onChangeLQ_amount30 = useCallback( (e) => {
     const { value } = e.target;
     setLQ_Amount30(formatInputNumber(value));
@@ -189,7 +189,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     });
     if (resp.length > 0){
       let decodedData = TRADER_LAYOUT.decode(resp[0].account.data);
-      console.log(decodedData);
+      //console.log(decodedData);
       setTraderData(decodedData);
     }
 
@@ -216,7 +216,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
 
     // const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
     // const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-    // console.log(decodedStakingDataState);
+    // //console.log(decodedStakingDataState);
     // setStakingData(decodedStakingDataState);
 
     // const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
@@ -282,7 +282,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     saber_reward_accounts = [];
 
     resp.forEach(element => {
-      console.log(element);
+      //console.log(element);
       let farming_reward = FARMING_REWARD_LAYOUT.decode(element.account.data);
       let total_reward = new BN(farming_reward.total_reward, 10, "le").toNumber() / 1000000;
       let lp_staked_30 = farming_reward.total_lp_token_staked[0] / 1000000;
@@ -403,7 +403,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Proceed = true;
-          //console.log(Proceed);
+          ////console.log(Proceed);
         }
       })
       if (!Proceed) return;
@@ -440,10 +440,10 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       return;
     }
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
 
     let associated_LP_Token_token_account_address = await findAssociatedTokenAddress(publicKey,lp_token_mint_address);
-    console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
+    //console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
     let buffers = null;
     if (!isClaim){
        buffers = [
@@ -473,14 +473,14 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
     let [SuperB_pda_address/* ,SuperB_pda_NONCE */] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
     if (resp.length == 0){
-      console.log('Initializing Trader Data Account and Stake...');
+      //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
-      console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
@@ -533,14 +533,14 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
             type: "success",
           });
         }
-        await delay(2000);
+        await delay(5000);
         onRefresh();
         getAllLiquidityBalances()
       }
     }
 
     else{
-      console.log('Stake...');
+      //console.log('Stake...');
       const stakeLP_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -585,7 +585,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
             type: "success",
           });
         }
-        await delay(2000);
+        await delay(5000);
         onRefresh();
        getAllLiquidityBalances()
       }
@@ -669,7 +669,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Proceed = true;
-          //console.log(Proceed);
+          ////console.log(Proceed);
         }
       });
       if (!Proceed) return;
@@ -705,10 +705,10 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       return;
     }
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
 
     let associated_LP_Token_token_account_address = await findAssociatedTokenAddress(publicKey,lp_token_mint_address);
-    console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
+    //console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
 
     let [SuperB_pda_address/* ,SuperB_pda_NONCE */] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
@@ -733,7 +733,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
 
     if (resp.length == 0){
@@ -745,7 +745,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       return;
     }
     else{
-      console.log('Unstake...');
+      //console.log('Unstake...');
       let [staked_lp_token_pda_address/* ,staked_lp_token_pda_NONCE */] = await PublicKey.findProgramAddress([ new PublicKey(decodedPoolDataState.Staked_LP_Token_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
       const unstakeLP_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
@@ -784,7 +784,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           message: 'Unstake Request Sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(5000);
         onRefresh();
         getAllLiquidityBalances()
       }

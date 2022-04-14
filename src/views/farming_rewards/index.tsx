@@ -72,7 +72,7 @@ export const FarmingRewardsView = () => {
     setUsdcbalance(await getTokenBalance(connection,wallet.publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
     const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-    //console.log(decodedPoolDataState);
+    ////console.log(decodedPoolDataState);
     setStakingPool(decodedPoolDataState);
     let sunny_reward_account = decodedPoolDataState.reserved_token_accounts[0];
     let saber_reward_account = decodedPoolDataState.reserved_token_accounts[1];
@@ -130,21 +130,21 @@ export const FarmingRewardsView = () => {
   //   });
   //
   //   if (resp.length == 0) return;
-  //   console.log('resp',resp);
+  //   //console.log('resp',resp);
   //   let array:any = [];
   //   resp.forEach(element => {
   //     let farming_reward = FARMING_REWARD_LAYOUT.decode(element.account.data);
-  //     console.log('farming_reward',farming_reward);
+  //     //console.log('farming_reward',farming_reward);
   //     let total_reward = new BN(farming_reward.total_reward, 10, "le").toNumber() / 1000000;
   //     let lp_staked_30 = farming_reward.total_lp_token_staked[0] / 1000000;
   //     let lp_staked_90 = farming_reward.total_lp_token_staked[1] / 1000000;
-  //     console.log('total_reward',total_reward,lp_staked_30,lp_staked_90);
+  //     //console.log('total_reward',total_reward,lp_staked_30,lp_staked_90);
   //     //if (total_reward>0 && (lp_staked_30 > 0 || lp_staked_90 > 0 ))
   //       array.push(farming_reward)
   //   });
   //   //new BN(value.received_at, 10, "le").toNumber() * 1000)
   //   //array.sort((a,b) => (new BN(a.received_at, 10, "le").toNumber() < new BN(b.received_at, 10, "le").toNumber()) ? 1 : ((new BN(b.received_at, 10, "le").toNumber() < new BN(a.received_at, 10, "le").toNumber()) ? -1 : 0))
-  //   console.log(array);
+  //   //console.log(array);
   //   setReward_Data(array);
   // }
   const getRewardRequestAccount = async () => {
@@ -178,11 +178,11 @@ export const FarmingRewardsView = () => {
       setReward_Request_Data([]);
       return;
     }
-    console.log('resp',resp);
+    //console.log('resp',resp);
     let array:any = [];
     resp.forEach(element => {
         let farming_reward_request = FARMING_REWARD_REQUEST_LAYOUT.decode(element.account.data);
-        //console.log('farming_reward_request',farming_reward_request);
+        ////console.log('farming_reward_request',farming_reward_request);
         var obj = {
           data: farming_reward_request,
           account: element.pubkey,
@@ -191,7 +191,7 @@ export const FarmingRewardsView = () => {
     });
     //new BN(value.received_at, 10, "le").toNumber() * 1000)
     //array.sort((a,b) => (new BN(a.received_at, 10, "le").toNumber() < new BN(b.received_at, 10, "le").toNumber()) ? 1 : ((new BN(b.received_at, 10, "le").toNumber() < new BN(a.received_at, 10, "le").toNumber()) ? -1 : 0))
-    //console.log(array);
+    ////console.log(array);
     setReward_Request_Data(array);
   }
 
@@ -253,12 +253,12 @@ export const FarmingRewardsView = () => {
         associated_token_account_address = await findAssociatedTokenAddress(claim_account_pk,ORCA_MINT_ADDRESS);
       }
 
-      console.log('associated_token_account_address',associated_token_account_address.toBase58());
+      //console.log('associated_token_account_address',associated_token_account_address.toBase58());
       //check if associated_token_account_address is is_initialized
       let associated_token_account_address_info = await connection.getAccountInfo(associated_token_account_address);
         //check if associated token is initialized or not
       if (!associated_token_account_address_info) {
-          console.log("Create associated_token_account_address");
+          //console.log("Create associated_token_account_address");
           let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
@@ -301,7 +301,7 @@ export const FarmingRewardsView = () => {
         filters,
         encoding: 'base64',
       });
-      //console.log('resp',resp);
+      ////console.log('resp',resp);
       if (resp.length == 0) return;
 
       const buffers = [
@@ -336,7 +336,7 @@ export const FarmingRewardsView = () => {
           message: '3rd Party Rewards Request proceeded',
           type: "success",
         });
-        await delay(3000);
+        await delay(5000);
         getAllBalances();
         getRewardRequestAccount();
       }
@@ -395,7 +395,7 @@ export const FarmingRewardsView = () => {
         message: 'Cleanup Request proceeded',
         type: "success",
       });
-      await delay(3000);
+      await delay(5000);
       getAllBalances();
       getRewardRequestAccount();
     }

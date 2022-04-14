@@ -103,7 +103,7 @@ export const GovernanceView = () => {
         message: 'Setting Change Request Sent',
         type: "success",
       });
-      await delay(2000);
+      await delay(5000);
     }
   }
 
@@ -128,7 +128,7 @@ export const GovernanceView = () => {
   const [settingText,setSettingText] = useState("");
 
   const onClickSetting = ( item:any) => {
-    console.log(item.key);
+    //console.log(item.key);
     setting = parseInt(item.key);
     switch (setting) {
           // pub risk_factor_x: u8,                  // From 0 to 100 (0 to 1)
