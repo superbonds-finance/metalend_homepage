@@ -38,7 +38,7 @@ export default function Navbar(props: {
 
   const Links = (<>
   <div className="flex md:flex-col">
-    <div className="flex justify-between" style={{height: '42px'}}>
+    <div className="flex justify-between" style={{height: '38px'}}>
       <button
           onClick={() =>
             window.open("https://res.cloudinary.com/drr1rnoxf/image/upload/v1649780638/SuperBonds_Audit_Report_caey88.pdf")
@@ -52,6 +52,7 @@ export default function Navbar(props: {
 
        
       <button
+        
          onClick={() =>
           handlePush("/trade")
         }

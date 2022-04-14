@@ -15,7 +15,7 @@ export const HeaderCard = (props: {
     <div className={'flex pt-4 justify-between sm:flex-col' + props.divStyle}>
       {!!props.text  && !props.isHover && <div><HeaderText>{props.text}</HeaderText></div>}
       {!!props.isHover && props.isHover && <div>
-        <HeaderText className='text-grid cursor-pointer'>{props.text} <SmallText>(LPs)</SmallText>
+        <HeaderText className='text-grid cursor-pointer'>Liquidity <span>&nbsp;</span>Providers<SmallText>(LPs)</SmallText>
           <Tooltip placement="rightTop" title={'LPs, by committing capital to a pool, will provide the interest payable to bond purchasers. In exchange, they will be eligible to earn varying streams of variable yield. LPs must stake LP tokens to earn yield'}> 
           <ImInfo  className='info-circle ml-0.5'  style={{width:"16px", marginBottom:"12px"}} /></Tooltip>
       </HeaderText></div>}
