@@ -77,7 +77,7 @@ export default function Navbar(props: {
       </a>
     </div>
   </div>
-   
+
   </>);
 
   return (
@@ -92,7 +92,7 @@ export default function Navbar(props: {
             }
             alt="SuperB"
           />
-           
+
         </div>
       </div>
 
@@ -145,14 +145,14 @@ export default function Navbar(props: {
             </button>
             {/* <button className={path=="/tge"?"bg-gray-300  text-white rounded-md":''} onClick={()=>handlePush('/tge')}><span className="text-sm tracking-wide">TGE</span></button>
           <button className={path=="/claimNFT"?"bg-gray-300  text-white rounded-md":''} onClick={()=>handlePush('/claimNFT')}><span className="text-sm tracking-wide">Claim NFT</span></button> */}
-            <button
+            {/* <button
               className={
                 path == "/platform" ? "bg-gray-300  text-white rounded-md" : ""
               }
               onClick={() => handlePush("/platform")}
             >
               <span className="text-sm tracking-wide">Platform Stats</span>
-            </button>
+            </button>*/}
             {connected && (
               <button
                 className={
@@ -185,7 +185,7 @@ export default function Navbar(props: {
             </Popover>
           </>
         )}
- 
+
       </div>
     </div>
   );
