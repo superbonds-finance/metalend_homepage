@@ -23,7 +23,9 @@ export type ENV =
 export const ENDPOINTS = [
   {
     name: "mainnet-beta" as ENV,
-    endpoint: "https://api.mainnet-beta.solana.com/",
+    //endpoint: "https://api.mainnet-beta.solana.com/",
+    //endpoint: "https://solana-api.projectserum.com",
+    endpoint: "https://aged-icy-breeze.solana-mainnet.quiknode.pro/33147446f8ef72867443a72d3ecd74826367a3f0/",
     chainID: ChainID.MainnetBeta,
   },
   {
@@ -33,7 +35,7 @@ export const ENDPOINTS = [
   }
 ];
 
-const DEFAULT = ENDPOINTS[1].endpoint;
+const DEFAULT = ENDPOINTS[0].endpoint;
 const DEFAULT_SLIPPAGE = 0.25;
 
 interface ConnectionConfig {
@@ -55,7 +57,7 @@ const ConnectionContext = React.createContext<ConnectionConfig>({
   setSlippage: (val: number) => {},
   connection: new Connection(DEFAULT, "recent"),
   sendConnection: new Connection(DEFAULT, "recent"),
-  env: ENDPOINTS[1].name,
+  env: ENDPOINTS[0].name,
   tokens: [],
   tokenMap: new Map<string, TokenInfo>(),
 });
@@ -63,7 +65,7 @@ const ConnectionContext = React.createContext<ConnectionConfig>({
 export function ConnectionProvider({ children = undefined as any }) {
   const [endpoint, setEndpoint] = useLocalStorageState(
     "connectionEndpts",
-    ENDPOINTS[1].endpoint
+    ENDPOINTS[0].endpoint
   );
 
   const [slippage, setSlippage] = useLocalStorageState(
@@ -79,7 +81,7 @@ export function ConnectionProvider({ children = undefined as any }) {
   ]);
 
   const chain =
-    ENDPOINTS.find((end) => end.endpoint === endpoint) || ENDPOINTS[1];
+    ENDPOINTS.find((end) => end.endpoint === endpoint) || ENDPOINTS[0];
   const env = chain.name;
 
   const [tokens, setTokens] = useState<TokenInfo[]>([]);
@@ -226,33 +228,43 @@ export const sendTransaction = async (
   const txid = await connection.sendRawTransaction(rawTransaction, options);
 
   if (awaitConfirmation) {
-    console.log('confirm Transaction...',txid);
-    const status = (
-      await connection.confirmTransaction(
-        txid,
-        options && (options.commitment as any)
-      )
-    ).value;
+    notify({
+      message: 'Waiting for confirmation...',
+      type: "info",
+    });
+    //console.log('confirm Transaction...',txid);
+    try{
+      const status = (
+        await connection.confirmTransaction(
+          txid,
+          options && (options.commitment as any)
+        )
+      ).value;
 
-    if (status?.err) {
-      const errors = await getErrorForTransaction(connection, txid);
-      notify({
-        message: "Transaction failed...",
-        description: (
-          <>
-            {errors.map((err) => (
-              <div>{err}</div>
-            ))}
-            <ExplorerLink address={txid} type="transaction" />
-          </>
-        ),
-        type: "error",
-      });
-
-      throw new Error(
-        `Raw transaction ${txid} failed (${JSON.stringify(status)})`
-      );
+      if (status?.err) {
+        // const errors = await getErrorForTransaction(connection, txid);
+        // notify({
+        //   message: "Transaction failed...",
+        //   description: (
+        //     <>
+        //       {errors.map((err) => (
+        //         <div>{err}</div>
+        //       ))}
+        //       <ExplorerLink address={txid} type="transaction" />
+        //     </>
+        //   ),
+        //   type: "error",
+        // });
+        return -1;
+        // throw new Error(
+        //   `Raw transaction ${txid} failed (${JSON.stringify(status)})`
+        // );
+      }
     }
+    catch (e){
+      return -1;
+    }
+
   }
 
   return txid;

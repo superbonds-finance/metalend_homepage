@@ -307,7 +307,7 @@ export function LiquidityView() {
           message: 'Removed Liquidity successfully',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();
@@ -338,7 +338,7 @@ export function LiquidityView() {
       let txid = await sendTransaction(connection, wallet,
         [createLPTokenAccountIx, initLP_TOKENAccountIx, transferLPTokensToTempAccIx,
           removeLiquidityIx]
-        , [lp_token_account], false);
+        , [lp_token_account]);
       if (!txid) {
         notify({
           message: 'Something wrong with your request!',
@@ -349,7 +349,7 @@ export function LiquidityView() {
           message: 'Removed Liquidity successfully',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();
@@ -518,7 +518,7 @@ export function LiquidityView() {
 
       let txid = await sendTransaction(connection, wallet,
         [lp_associated_token_account_creationIx, addLiquidityIx]
-        , [], false);
+        , []);
       if (!txid) {
         notify({
           message: 'Something wrong with your request!',
@@ -530,7 +530,7 @@ export function LiquidityView() {
           message: 'Added Liquidity successfully',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();
@@ -559,7 +559,7 @@ export function LiquidityView() {
       });
       let txid = await sendTransaction(connection, wallet,
         [addLiquidityIx]
-        , [], false);
+        , []);
       if (!txid) {
         notify({
           message: 'Something wrong with your request!',
@@ -570,7 +570,7 @@ export function LiquidityView() {
           message: 'Added Liquidity successfully',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();

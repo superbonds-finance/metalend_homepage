@@ -270,7 +270,7 @@ export const FarmingRewardsView = () => {
           let txid = await sendTransaction(connection,wallet,
               [associated_token_account_address_creationIx
               ],
-            [],false);
+            []);
           if (!txid){
             notify({
               message: 'Something wrong with your request!',
@@ -325,7 +325,7 @@ export const FarmingRewardsView = () => {
 
       let txid = await sendTransaction(connection,wallet,
           [processIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -336,7 +336,7 @@ export const FarmingRewardsView = () => {
           message: '3rd Party Rewards Request proceeded',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         getAllBalances();
         getRewardRequestAccount();
       }
@@ -384,7 +384,7 @@ export const FarmingRewardsView = () => {
 
     let txid = await sendTransaction(connection,wallet,
         [processIx]
-      ,[],false);
+      ,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -395,7 +395,7 @@ export const FarmingRewardsView = () => {
         message: 'Cleanup Request proceeded',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       getAllBalances();
       getRewardRequestAccount();
     }

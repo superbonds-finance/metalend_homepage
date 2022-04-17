@@ -106,7 +106,7 @@ export function PlatformStatsView() {
           message: "Airdrop 1 SOL request Sent",
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         // setSOLbalance(await connection.getBalance(publicKey)/(10**9));
       } catch (error) {
         notify({
@@ -193,7 +193,7 @@ export function PlatformStatsView() {
           let txid = await sendTransaction(connection,wallet,
               [associated_token_account_address_creationIx
               ],
-            [],false);
+            []);
           if (!txid){
             notify({
               message: 'Something wrong with your request!',
@@ -223,7 +223,7 @@ export function PlatformStatsView() {
           [
             getFreeTokensIx
         ]
-        ,[],false);
+        ,[]);
       if (!txid1){
         notify({
           message: 'Something wrong with your request!',
@@ -235,7 +235,7 @@ export function PlatformStatsView() {
           message: 'Request for Free Tokens sent!',
           type: "info",
         });
-        await delay(10000);
+        await delay(3000);
         // setUSDCbalance(await getTokenBalance(connection,publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
         // setSuperBbalance(await getTokenBalance(connection,publicKey,SUPERB_MINT_ADDRESS,SUPERB_DECIMALS));
         return;

@@ -177,7 +177,7 @@ export const StakingManagementView = () => {
           let txid = await sendTransaction(connection,wallet,
               [associated_USDC_token_account_address_creationIx
               ],
-            [],false);
+            []);
           if (!txid){
             notify({
               message: 'Something wrong with your request!',
@@ -222,7 +222,7 @@ export const StakingManagementView = () => {
             createSuperB_Pool_AccountIx,initSuperB_Pool_AccountIx,
 
         ]
-        ,[staking_state_account,platform_state_account,SuperB_Account,Treasury_Account,SuperB_Pool_Account],false);
+        ,[staking_state_account,platform_state_account,SuperB_Account,Treasury_Account,SuperB_Pool_Account]);
       if (!txid1){
         notify({
           message: 'Something wrong with your request!',
@@ -236,7 +236,7 @@ export const StakingManagementView = () => {
               createTreasury_SuperB_AccountIx,initTreasury_SuperB_AccountIx,
               initPoolIx
           ]
-          ,[Staked_SB_Token_Account,Treasury_SuperB_Account],false);
+          ,[Staked_SB_Token_Account,Treasury_SuperB_Account]);
           if (!txid2){
             notify({
               message: 'Something wrong with your request!',
@@ -417,7 +417,7 @@ export const StakingManagementView = () => {
           setGovIx
         ];
 
-        let txid = await sendTransaction(connection,wallet,transactions,[multisig_state_account],false);
+        let txid = await sendTransaction(connection,wallet,transactions,[multisig_state_account]);
         if (!txid){
           notify({
             message: 'Something wrong with your request!',
@@ -428,7 +428,7 @@ export const StakingManagementView = () => {
             message: 'Updated overnance successfully',
             type: "success",
           });
-          await delay(10000);
+          await delay(3000);
           onRefresh();
         }
       }
@@ -451,7 +451,7 @@ export const StakingManagementView = () => {
             let txid = await sendTransaction(connection,wallet,
                 [associated_USDC_token_account_address_creationIx
                 ],
-              [],false);
+              []);
             if (!txid){
               notify({
                 message: 'Something wrong with your request!',
@@ -487,7 +487,7 @@ export const StakingManagementView = () => {
           setOpIx
         ];
 
-        let txid = await sendTransaction(connection,wallet,transactions,[multisig_state_account],false);
+        let txid = await sendTransaction(connection,wallet,transactions,[multisig_state_account]);
         if (!txid){
           notify({
             message: 'Something wrong with your request!',
@@ -498,7 +498,7 @@ export const StakingManagementView = () => {
             message: 'Updated new Operator successfully',
             type: "success",
           });
-          await delay(10000);
+          await delay(3000);
           onRefresh();
         }
       }
@@ -568,7 +568,7 @@ export const StakingManagementView = () => {
       setAdminIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[multisig_state_account],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[multisig_state_account]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -579,7 +579,7 @@ export const StakingManagementView = () => {
         message: 'Updated overnance successfully',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       onRefresh();
     }
 
@@ -640,7 +640,7 @@ export const StakingManagementView = () => {
     setFarm_Address(Token_Account.publicKey.toBase58());
     let txid = await sendTransaction(connection,wallet,
         [createToken_AccountIx,initToken_AccountIx,changeOwnerIx]
-      ,[Token_Account],false);
+      ,[Token_Account]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -701,7 +701,7 @@ export const StakingManagementView = () => {
 
     let txid = await sendTransaction(connection,wallet,
         [updateAccountIx]
-      ,[],false);
+      ,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -762,7 +762,7 @@ export const StakingManagementView = () => {
         setGovIx
       ];
 
-      let txid = await sendTransaction(connection,wallet,transactions,[],false);
+      let txid = await sendTransaction(connection,wallet,transactions,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -773,7 +773,7 @@ export const StakingManagementView = () => {
           message: 'Update Governance Request sent',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -796,7 +796,7 @@ export const StakingManagementView = () => {
           let txid = await sendTransaction(connection,wallet,
               [associated_USDC_token_account_address_creationIx
               ],
-            [],false);
+            []);
           if (!txid){
             notify({
               message: 'Something wrong with your request!',
@@ -831,7 +831,7 @@ export const StakingManagementView = () => {
         setOpIx
       ];
 
-      let txid = await sendTransaction(connection,wallet,transactions,[],false);
+      let txid = await sendTransaction(connection,wallet,transactions,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -842,7 +842,7 @@ export const StakingManagementView = () => {
           message: 'Update new Operator Request sent',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -865,7 +865,7 @@ export const StakingManagementView = () => {
         setAdminIx
       ];
 
-      let txid = await sendTransaction(connection,wallet,transactions,[],false);
+      let txid = await sendTransaction(connection,wallet,transactions,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -876,7 +876,7 @@ export const StakingManagementView = () => {
           message: 'Update Admin Request sent',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
 
@@ -956,7 +956,7 @@ export const StakingManagementView = () => {
           initFreeTokensIx,
 
       ]
-      ,[freetoken_state_account,SuperB_Account,USDC_Account],false);
+      ,[freetoken_state_account,SuperB_Account,USDC_Account]);
     if (!txid1){
       notify({
         message: 'Something wrong with your request!',

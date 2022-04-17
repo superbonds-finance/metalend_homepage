@@ -313,13 +313,30 @@ export const RedeemView = () => {
       return;
     }
 
+    let rentExemption = 0;
+    try{
+      rentExemption = await connection.getMinimumBalanceForRentExemption(REDEEM_DATA_LAYOUT.span);
+      if (rentExemption == 0){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+    } catch(e){
+      notify({
+        message: 'Please try again, connection to Solana blockchain was interrupted',
+        type: "error",
+      });
+      return;
+    }
 
     const redeem_data_account = new Account();
     //console.log('redeem_data_account',redeem_data_account.publicKey.toString());
     const createRedeemDataAccountIx = SystemProgram.createAccount({
         programId: SUPERBONDS_PROGRAM_ID,
         space: REDEEM_DATA_LAYOUT.span,
-        lamports: await connection.getMinimumBalanceForRentExemption(REDEEM_DATA_LAYOUT.span),
+        lamports: rentExemption,
         fromPubkey: publicKey,
         newAccountPubkey: redeem_data_account.publicKey
     });
@@ -360,7 +377,7 @@ export const RedeemView = () => {
           RedeemIx,
           Burn_one_NFT_Ix
       ]
-      ,[redeem_data_account],false);
+      ,[redeem_data_account]);
 
     if (!txid){
       notify({
@@ -372,7 +389,7 @@ export const RedeemView = () => {
         message: 'Redemption Request Sent',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       history.push("/trade");
     }
   }

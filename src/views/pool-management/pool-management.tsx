@@ -138,7 +138,7 @@ export const PoolManagementView = () => {
       setYieldIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -149,7 +149,7 @@ export const PoolManagementView = () => {
         message: 'Updated successfully',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       onRefresh();
     }
     ////console.log(txid);
@@ -294,7 +294,7 @@ export const PoolManagementView = () => {
             createTrader_Pool_AccountIx,initTrader_Pool_AccountIx,
             createSuperBonds_Pool_AccountIx,initSuperBonds_Pool_AccountIx
         ]
-        ,[pool_state_account,LP_Pool_Account,Trader_Pool_Account,SuperBonds_Pool_Account],false);
+        ,[pool_state_account,LP_Pool_Account,Trader_Pool_Account,SuperBonds_Pool_Account]);
       if (!txid1){
         notify({
           message: 'Something wrong with your request!',
@@ -307,7 +307,7 @@ export const PoolManagementView = () => {
             createLP_Mint_AccountIx,initLP_Mint_AccountIx,
             createStaked_LP_Token_AccountIx,initStaked_LP_Token_AccountIx,
             initPoolIx],
-        [pool_state_account,LP_Pool_Account,Trader_Pool_Account,SuperBonds_Pool_Account,LP_Mint_Account,Staked_LP_Token_Account],false);
+        [pool_state_account,LP_Pool_Account,Trader_Pool_Account,SuperBonds_Pool_Account,LP_Mint_Account,Staked_LP_Token_Account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -318,7 +318,7 @@ export const PoolManagementView = () => {
           message: 'Created Pool successfully',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
 
@@ -378,7 +378,7 @@ export const PoolManagementView = () => {
 
     let txid = await sendTransaction(connection,wallet,
         [farmIx]
-      ,[],false);
+      ,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -389,7 +389,7 @@ export const PoolManagementView = () => {
         message: 'External Farming Request Sent',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       onRefresh();
     }
   }
@@ -594,7 +594,7 @@ export const PoolManagementView = () => {
 
     let txid = await sendTransaction(connection,wallet,
         [claimSuperBTreasuryIx]
-      ,[],false);
+      ,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -605,7 +605,7 @@ export const PoolManagementView = () => {
         message: 'Claim Request Sent',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       onRefresh();
     }
   }
@@ -673,7 +673,7 @@ export const PoolManagementView = () => {
       depositIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -684,7 +684,7 @@ export const PoolManagementView = () => {
         message: 'Deposit Request sent successfully',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       onRefresh();
     }
     ////console.log(txid);
@@ -740,7 +740,7 @@ export const PoolManagementView = () => {
       setSuperBondsIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -751,7 +751,7 @@ export const PoolManagementView = () => {
         message: 'Set SuperBonds Status Request sent successfully',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       onRefresh();
     }
     ////console.log(txid);
@@ -849,7 +849,7 @@ export const PoolManagementView = () => {
       withdrawFundIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -860,7 +860,7 @@ export const PoolManagementView = () => {
         message: 'Withdraw Request sent successfully',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       onRefresh();
     }
   }
@@ -927,7 +927,7 @@ export const PoolManagementView = () => {
       updateLPPriceIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -938,7 +938,7 @@ export const PoolManagementView = () => {
         message: 'update LP Price request sent successfully',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       onRefresh();
     }
   }

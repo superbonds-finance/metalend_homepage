@@ -274,7 +274,7 @@ export  function ClaimNFTView() {
 
     let txid1 = await sendTransaction(connection,wallet,
         transactions
-      ,signers,false);
+      ,signers);
 
     if (!txid1){
       notify({

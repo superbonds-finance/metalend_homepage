@@ -454,11 +454,30 @@ export function TradeView() {
       if (!Proceed) return;
 
       const NFT_Mint_account = new Account();
+
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(MintLayout.span, 'singleGossip');
+        console.log(rentExemption);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
       ////console.log('NFT_Mint_account',NFT_Mint_account.publicKey.toBase58());
       const createNFT_Mint_accountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: MintLayout.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(MintLayout.span, 'singleGossip'),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: NFT_Mint_account.publicKey
       });
@@ -497,13 +516,36 @@ export function TradeView() {
         publicKey,
       []);
 
+      notify({
+        message: 'Preparing...',
+        type: "info",
+      });
+
       //Create Trade State Account to save trade information
       const trade_state_account = new Account();
       ////console.log('trade_state_account',trade_state_account.publicKey.toString());
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADE_DATA_LAYOUT.span);
+        console.log(rentExemption);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+
       const createTradeStateAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADE_DATA_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADE_DATA_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: trade_state_account.publicKey
       });
@@ -555,10 +597,27 @@ export function TradeView() {
         ////console.log('Initializing Trader Data Account and Stake...');
         trader_Data_account = new Account();
         ////console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+        let rentExemption = 0;
+        try{
+          rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+          if (rentExemption == 0){
+            notify({
+              message: 'Please try again, connection to Solana blockchain was interrupted',
+              type: "error",
+            });
+            return;
+          }
+        } catch(e){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
         const createTraderDataAccountIx = SystemProgram.createAccount({
             programId: SUPERBONDS_PROGRAM_ID,
             space: TRADER_LAYOUT.span,
-            lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+            lamports: rentExemption,
             fromPubkey: publicKey,
             newAccountPubkey: trader_Data_account.publicKey
         });
@@ -604,7 +663,7 @@ export function TradeView() {
               createTradeStateAccountIx,
               createTraderDataAccountIx
           ]
-          ,[trade_state_account,NFT_Mint_account,trader_Data_account],false);
+          ,[trade_state_account,NFT_Mint_account,trader_Data_account]);
 
         if (!txid1){
           notify({
@@ -620,7 +679,7 @@ export function TradeView() {
               [
                 TradeIx
               ]
-            ,[trade_state_account,NFT_Mint_account,trader_Data_account],false);
+            ,[trade_state_account,NFT_Mint_account,trader_Data_account]);
           if (!txid1){
             notify({
               message: 'Something wrong with your request!',
@@ -631,12 +690,12 @@ export function TradeView() {
               message: 'Added Trade successfully',
               type: "success",
             });
-            await delay(10000);
+            await delay(3000);
             readPoolData_30();
             readPoolData_90();
             getStakingPoolData();
             //onShowAllTrades(2);
-            await delay(10000);
+            await delay(3000);
             fetchPrivateAPI(10,0);
             fetchPublicAPI(10,0);
             setOffset(0)
@@ -684,9 +743,8 @@ export function TradeView() {
               nft_associated_token_account_creationIx,
               Mint_one_NFT_Ix,
               Disable_Mint_Ix,
-              createTradeStateAccountIx
           ]
-          ,[trade_state_account,NFT_Mint_account],false);
+          ,[NFT_Mint_account]);
 
         if (!txid1){
           notify({
@@ -700,9 +758,10 @@ export function TradeView() {
           });
           let txid2 = await sendTransaction(connection,wallet,
               [
+                createTradeStateAccountIx,
                 TradeIx
               ]
-            ,[trade_state_account,NFT_Mint_account],false);
+            ,[trade_state_account,NFT_Mint_account]);
           if (!txid1){
             notify({
               message: 'Something wrong with your request!',
@@ -713,12 +772,12 @@ export function TradeView() {
               message: 'New trade request sent successfully',
               type: "success",
             });
-            await delay(10000);
+            await delay(3000);
             readPoolData_30();
             readPoolData_90();
             getStakingPoolData();
             //onShowAllTrades(2);
-            await delay(10000);
+            await delay(3000);
             fetchPublicAPI(10,0);
             fetchPrivateAPI(10,0);
             setOffset(0);
@@ -816,7 +875,7 @@ export function TradeView() {
       // if(wallet && publicKey){
       //   superBondsProcess();
       // }
-    }, 1000);
+    }, 3000);
 
     const onSettle = async (pool:any,owner:any,usdc_account:any,data_account:any,amount:number) =>{
       if ( !wallet){
@@ -902,7 +961,7 @@ export function TradeView() {
           [
             settleIx
         ]
-        ,[],false);
+        ,[]);
 
       if (!txid){
         notify({
@@ -914,7 +973,7 @@ export function TradeView() {
           message: 'Settle Request Sent',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
       }
     }
 

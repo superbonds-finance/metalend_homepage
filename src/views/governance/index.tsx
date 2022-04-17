@@ -92,7 +92,7 @@ export const GovernanceView = () => {
 
     let txid = await sendTransaction(connection,wallet,
         [farmIx]
-      ,[],false);
+      ,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -103,7 +103,7 @@ export const GovernanceView = () => {
         message: 'Setting Change Request Sent',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
     }
   }
 

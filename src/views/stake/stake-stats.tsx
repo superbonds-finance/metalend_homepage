@@ -296,7 +296,7 @@ export function StakeStats() {
         let txid = await sendTransaction(connection,wallet,
             [associated_token_account_address_creationIx
             ],
-          [],false);
+          []);
         if (!txid){
           notify({
             message: 'Something wrong with your request!',
@@ -360,7 +360,7 @@ export function StakeStats() {
 
     let txid = await sendTransaction(connection,wallet,
         [claimIx]
-      ,[],false);
+      ,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -371,7 +371,7 @@ export function StakeStats() {
         message: '3rd Party Rewards Claim Request Sent',
         type: "success",
       });
-      await delay(10000);
+      await delay(3000);
       onRefresh();
       getRewardDataAccount();
     }
@@ -487,10 +487,28 @@ export function StakeStats() {
       //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
       //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: trader_Data_account.publicKey
       });
@@ -520,7 +538,7 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [createTraderDataAccountIx,stakeLP_TokenIx]
-        ,[trader_Data_account],false);
+        ,[trader_Data_account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -539,7 +557,7 @@ export function StakeStats() {
             type: "success",
           });
         }
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -570,7 +588,7 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [stakeLP_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -589,7 +607,7 @@ export function StakeStats() {
             type: "success",
           });
         }
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -671,10 +689,28 @@ export function StakeStats() {
       //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
       //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: trader_Data_account.publicKey
       });
@@ -702,7 +738,7 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [createTraderDataAccountIx,stakeSB_TokenIx]
-        ,[trader_Data_account],false);
+        ,[trader_Data_account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -713,7 +749,7 @@ export function StakeStats() {
           message: 'Staking Request Sent',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -742,7 +778,7 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [stakeSB_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -762,7 +798,7 @@ export function StakeStats() {
           });
         }
 
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -809,7 +845,7 @@ export function StakeStats() {
       await onStake(90,true);
 
     if (unclaimed_Trading_Rewards == 0 ){
-      await delay(10000);
+      await delay(3000);
       onRefresh();
       return;
     }
@@ -874,7 +910,7 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [stakeSB_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -888,7 +924,7 @@ export function StakeStats() {
           });
 
 
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -955,7 +991,7 @@ export function StakeStats() {
           let txid = await sendTransaction(connection,wallet,
               [associated_token_account_address_creationIx
               ],
-            [],false);
+            []);
           if (!txid){
             notify({
               message: 'Something wrong with your request!',
@@ -988,7 +1024,7 @@ export function StakeStats() {
           let txid = await sendTransaction(connection,wallet,
               [associated_token_account_address_creationIx
               ],
-            [],false);
+            []);
           if (!txid){
             notify({
               message: 'Something wrong with your request!',
@@ -1028,14 +1064,30 @@ export function StakeStats() {
         });
         return;
       }
-
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(FARMING_REWARD_REQUEST_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
       //Create Request Account to save request information
       const request_state_account = new Account();
       ////console.log('trade_state_account',trade_state_account.publicKey.toString());
       const createRequestStateAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: FARMING_REWARD_REQUEST_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(FARMING_REWARD_REQUEST_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: request_state_account.publicKey
       });
@@ -1058,7 +1110,7 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [createRequestStateAccountIx,requestIx]
-        ,[request_state_account],false);
+        ,[request_state_account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -1069,7 +1121,7 @@ export function StakeStats() {
           message: '3rd Party Rewards Claim Request Sent. It might take up to 2 minutes to process.',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         onRefresh();
         getRewardDataAccount();
       }

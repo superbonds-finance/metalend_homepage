@@ -436,11 +436,28 @@ export function StakeView() {
     if (resp.length == 0){
       //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
       //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: trader_Data_account.publicKey
       });
@@ -468,7 +485,7 @@ export function StakeView() {
 
       let txid = await sendTransaction(connection,wallet,
           [createTraderDataAccountIx,stakeSB_TokenIx]
-        ,[trader_Data_account],false);
+        ,[trader_Data_account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -479,7 +496,7 @@ export function StakeView() {
           message: 'Staking Request Sent',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -508,7 +525,7 @@ export function StakeView() {
 
       let txid = await sendTransaction(connection,wallet,
           [stakeSB_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -528,7 +545,7 @@ export function StakeView() {
           });
         }
 
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -674,7 +691,7 @@ export function StakeView() {
 
       let txid = await sendTransaction(connection,wallet,
           [unstakeSB_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -685,7 +702,7 @@ export function StakeView() {
           message: 'Unstaking Request Sent',
           type: "success",
         });
-        await delay(10000);
+        await delay(3000);
         onRefresh();
       }
     }
