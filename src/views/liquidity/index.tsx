@@ -63,17 +63,17 @@ export function LiquidityView() {
 
   const getAllBalances = async () => {
     if (!wallet) {
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Sol network',
+      //   type: "error",
+      // });
       return;
     }
     if (!wallet.publicKey) {
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     //setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
@@ -307,7 +307,7 @@ export function LiquidityView() {
           message: 'Removed Liquidity successfully',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();
@@ -349,7 +349,7 @@ export function LiquidityView() {
           message: 'Removed Liquidity successfully',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();
@@ -530,7 +530,7 @@ export function LiquidityView() {
           message: 'Added Liquidity successfully',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();
@@ -570,7 +570,7 @@ export function LiquidityView() {
           message: 'Added Liquidity successfully',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();

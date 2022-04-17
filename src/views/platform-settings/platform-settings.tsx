@@ -428,7 +428,7 @@ export const StakingManagementView = () => {
             message: 'Updated overnance successfully',
             type: "success",
           });
-          await delay(5000);
+          await delay(10000);
           onRefresh();
         }
       }
@@ -498,7 +498,7 @@ export const StakingManagementView = () => {
             message: 'Updated new Operator successfully',
             type: "success",
           });
-          await delay(5000);
+          await delay(10000);
           onRefresh();
         }
       }
@@ -579,7 +579,7 @@ export const StakingManagementView = () => {
         message: 'Updated overnance successfully',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
       onRefresh();
     }
 
@@ -773,7 +773,7 @@ export const StakingManagementView = () => {
           message: 'Update Governance Request sent',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         onRefresh();
       }
     }
@@ -842,7 +842,7 @@ export const StakingManagementView = () => {
           message: 'Update new Operator Request sent',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         onRefresh();
       }
     }
@@ -876,7 +876,7 @@ export const StakingManagementView = () => {
           message: 'Update Admin Request sent',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         onRefresh();
       }
 

@@ -54,17 +54,17 @@ export function PlatformStatsView() {
 
     const getAllBalances = async () => {
       if ( !wallet){
-        notify({
-          message: 'Please connect to Sol network',
-          type: "error",
-        });
+        // notify({
+        //   message: 'Please connect to Sol network',
+        //   type: "error",
+        // });
         return;
       }
       if (!wallet.publicKey){
-        notify({
-          message: 'Please connect to Solana network',
-          type: "error",
-        });
+        // notify({
+        //   message: 'Please connect to Solana network',
+        //   type: "error",
+        // });
         return;
       }
       // setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
@@ -106,7 +106,7 @@ export function PlatformStatsView() {
           message: "Airdrop 1 SOL request Sent",
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         // setSOLbalance(await connection.getBalance(publicKey)/(10**9));
       } catch (error) {
         notify({
@@ -235,7 +235,7 @@ export function PlatformStatsView() {
           message: 'Request for Free Tokens sent!',
           type: "info",
         });
-        await delay(5000);
+        await delay(10000);
         // setUSDCbalance(await getTokenBalance(connection,publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
         // setSuperBbalance(await getTokenBalance(connection,publicKey,SUPERB_MINT_ADDRESS,SUPERB_DECIMALS));
         return;

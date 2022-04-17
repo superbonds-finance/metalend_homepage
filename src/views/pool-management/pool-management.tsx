@@ -149,7 +149,7 @@ export const PoolManagementView = () => {
         message: 'Updated successfully',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
       onRefresh();
     }
     ////console.log(txid);
@@ -318,7 +318,7 @@ export const PoolManagementView = () => {
           message: 'Created Pool successfully',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         onRefresh();
       }
 
@@ -389,7 +389,7 @@ export const PoolManagementView = () => {
         message: 'External Farming Request Sent',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
       onRefresh();
     }
   }
@@ -605,7 +605,7 @@ export const PoolManagementView = () => {
         message: 'Claim Request Sent',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
       onRefresh();
     }
   }
@@ -684,7 +684,7 @@ export const PoolManagementView = () => {
         message: 'Deposit Request sent successfully',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
       onRefresh();
     }
     ////console.log(txid);
@@ -751,7 +751,7 @@ export const PoolManagementView = () => {
         message: 'Set SuperBonds Status Request sent successfully',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
       onRefresh();
     }
     ////console.log(txid);
@@ -860,7 +860,7 @@ export const PoolManagementView = () => {
         message: 'Withdraw Request sent successfully',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
       onRefresh();
     }
   }
@@ -938,7 +938,7 @@ export const PoolManagementView = () => {
         message: 'update LP Price request sent successfully',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
       onRefresh();
     }
   }

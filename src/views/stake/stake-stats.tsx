@@ -72,17 +72,17 @@ export function StakeStats() {
 
   const getAllBalances = async () => {
     if ( !wallet){
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Sol network',
+      //   type: "error",
+      // });
       return;
     }
     if (!wallet.publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     //setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
@@ -371,7 +371,7 @@ export function StakeStats() {
         message: '3rd Party Rewards Claim Request Sent',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
       onRefresh();
       getRewardDataAccount();
     }
@@ -539,7 +539,7 @@ export function StakeStats() {
             type: "success",
           });
         }
-        await delay(5000);
+        await delay(10000);
         onRefresh();
       }
     }
@@ -589,7 +589,7 @@ export function StakeStats() {
             type: "success",
           });
         }
-        await delay(5000);
+        await delay(10000);
         onRefresh();
       }
     }
@@ -713,7 +713,7 @@ export function StakeStats() {
           message: 'Staking Request Sent',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         onRefresh();
       }
     }
@@ -762,7 +762,7 @@ export function StakeStats() {
           });
         }
 
-        await delay(5000);
+        await delay(10000);
         onRefresh();
       }
     }
@@ -809,7 +809,7 @@ export function StakeStats() {
       await onStake(90,true);
 
     if (unclaimed_Trading_Rewards == 0 ){
-      await delay(5000);
+      await delay(10000);
       onRefresh();
       return;
     }
@@ -888,7 +888,7 @@ export function StakeStats() {
           });
 
 
-        await delay(5000);
+        await delay(10000);
         onRefresh();
       }
     }
@@ -1069,7 +1069,7 @@ export function StakeStats() {
           message: '3rd Party Rewards Claim Request Sent. It might take up to 2 minutes to process.',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         onRefresh();
         getRewardDataAccount();
       }

@@ -104,17 +104,17 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
 
   const getAllBalances = async () => {
     if ( !wallet){
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Sol network',
+      //   type: "error",
+      // });
       return;
     }
     if (!wallet.publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     //setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
@@ -152,7 +152,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     const APY90LP:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/LP_90_Staking_APY');
     setAPY90LP(APY90LP.data.APY)
    }
-   
+
    useEffect(()=>{
     fetchAPY()
    },[])
@@ -239,7 +239,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     setData90pool(decodedPoolDataState);
     let transactionFeeSuperB = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber() / (10**USDC_DECIMALS);
     setTransactionFees(transactionFeeSuperB)
-    
+
   }
 
   const [sunny_unclaimed_rewards,setSunny_Unclaimed_Rewards] = useState(0);
@@ -332,7 +332,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
    const message = `
     <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
       <div class="table2">
-        <table class="w-full"> 
+        <table class="w-full">
             <tr>
               <th class="text-left">
                 <span class="th_span small_font_td_span">
@@ -533,7 +533,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
             type: "success",
           });
         }
-        await delay(5000);
+        await delay(10000);
         onRefresh();
         getAllLiquidityBalances()
       }
@@ -585,7 +585,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
             type: "success",
           });
         }
-        await delay(5000);
+        await delay(10000);
         onRefresh();
        getAllLiquidityBalances()
       }
@@ -599,7 +599,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     const message = `
      <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
        <div class="table2">
-         <table class="w-full"> 
+         <table class="w-full">
              <tr>
                <th class="text-left">
                  <span class="th_span small_font_td_span">
@@ -610,7 +610,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
                  <b>${UnstakingFees}</b>%</span>
                </td>
              </tr>
- 
+
              <tr>
                <th class="text-left">
                  <span class="th_span small_font_td_span">
@@ -784,7 +784,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           message: 'Unstake Request Sent',
           type: "success",
         });
-        await delay(5000);
+        await delay(10000);
         onRefresh();
         getAllLiquidityBalances()
       }
@@ -806,7 +806,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       {/* <i className={"fas fa-exchange-alt fa-lg mr-1 " + classes.exchange_icon} aria-hidden="true" /> */}
       <div className="text-center">
         <Text className='text-grid cursor-pointer' size={"16px"} transform={"true"}>LP STAKING
-        <Tooltip placement="rightTop" title={'Stake your LP commitment to earn yield'}> 
+        <Tooltip placement="rightTop" title={'Stake your LP commitment to earn yield'}>
         <ImInfo  className=' info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip></Text>
       </div>
 
@@ -827,7 +827,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           </div>
           <div className="text-grid flex flex-col text-center bg-gray-900 rounded-md  mt-5 my-3 py-3 my-1" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
             <Text className='select-none w-9/12 mx-auto px-2' size='16px' weight='600' color='white'>APY
-              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className=' cursor-pointer info-circle-hide' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
+              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className=' cursor-pointer info-circle-hide' style={{width:"13px", marginBottom:"3px"}}/></Tooltip>
             </Text>
             <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY30LP)>0?formatNumberWithoutRounding.format(APY30LP):"0.00"}%</strong></span></Text>
           </div>
@@ -867,7 +867,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
         {/* <i className={"fas fa-exchange-alt fa-lg mr-1 " + classes.exchange_icon} aria-hidden="true" /> */}
         <div className="text-center">
           <Text className='text-grid cursor-pointer' size={"16px"} transform={"true"}>LP STAKING
-          <Tooltip placement="rightTop" title={'Stake your LP commitment to earn yield'}> 
+          <Tooltip placement="rightTop" title={'Stake your LP commitment to earn yield'}>
           <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip></Text>
       </div>
 
@@ -889,7 +889,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           </div>
           <div className="text-grid flex flex-col text-center bg-gray-900 rounded-md py-3 mt-5 my-3" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
             <Text className='select-none w-9/12 mx-auto px-2' size='16px' weight='600' color='white'>APY
-              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className='cursor-pointer info-circle-hide ' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
+              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className='cursor-pointer info-circle-hide ' style={{width:"13px", marginBottom:"3px"}}/></Tooltip>
             </Text>
             <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY90LP)>0?formatNumberWithoutRounding.format(APY90LP):"0.00"}%</strong></span></Text>
           </div>

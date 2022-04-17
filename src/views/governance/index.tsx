@@ -103,7 +103,7 @@ export const GovernanceView = () => {
         message: 'Setting Change Request Sent',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
     }
   }
 

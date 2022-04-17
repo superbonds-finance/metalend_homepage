@@ -51,17 +51,17 @@ export const RedeemView = () => {
 
   const getAllBalances = async () => {
     if ( !wallet){
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Sol network',
+      //   type: "error",
+      // });
       return;
     }
     if (!wallet.publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     setUSDCbalance(await getTokenBalance(connection,wallet.publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
@@ -205,7 +205,7 @@ export const RedeemView = () => {
     const message = `
     <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
       <div class="table2">
-        <table class="w-full"> 
+        <table class="w-full">
             <tr>
               <th class="text-left">
                 <span class="th_span small_font_td_span">
@@ -231,7 +231,7 @@ export const RedeemView = () => {
       </div>
     </div>
     `
-    
+
     await Swal.fire({
       title: 'Redeem Confirmation',
       html:message,
@@ -372,7 +372,7 @@ export const RedeemView = () => {
         message: 'Redemption Request Sent',
         type: "success",
       });
-      await delay(5000);
+      await delay(10000);
       history.push("/trade");
     }
   }
