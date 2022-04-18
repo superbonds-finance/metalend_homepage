@@ -15,6 +15,7 @@ import { SUPERBONDS_PROGRAM_ID,
          PLATFORM_DATA_ACCOUNT,
          SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
          SUNNY_MINT_ADDRESS, SABER_MINT_ADDRESS, ORCA_MINT_ADDRESS,
+         USDC_MINT_ADDRESS
        } from "../../utils/ids";
 import { findAssociatedTokenAddress } from "../../contexts/accounts";
 import { useInterval } from "../../hooks";
@@ -60,7 +61,6 @@ export function StakeStats() {
   const [lq_amount90] = useState("");
   const [sb_amount] = useState("");
   const [sol_sb_lp_amount] = useState("");
-
 
   const [SuperBbalance,setSuperBbalance] = useState<any>(0);
   const [LP30balance,setLP30balance] = useState<any>(0);
@@ -187,6 +187,7 @@ export function StakeStats() {
   const [sunny_unclaimed_rewards,setSunny_Unclaimed_Rewards] = useState(0);
   const [saber_unclaimed_rewards,setSaber_Unclaimed_Rewards] = useState(0);
   const [orca_unclaimed_rewards,setOrca_Unclaimed_Rewards] = useState(0);
+  const [usdc_unclaimed_rewards,setUSDC_Unclaimed_Rewards] = useState(0);
 
   const getRewardDataAccount = async () => {
     if ( !wallet){
@@ -212,6 +213,7 @@ export function StakeStats() {
       setSunny_Unclaimed_Rewards(response?.data.rewards.data.rewards.sunny);
       setSaber_Unclaimed_Rewards(response?.data.rewards.data.rewards.saber);
       setOrca_Unclaimed_Rewards(response?.data.rewards.data.rewards.orca);
+      setUSDC_Unclaimed_Rewards(response?.data.rewards.data.rewards.usdc);
     } catch (error) {
       console.error(error);
     }
@@ -836,6 +838,9 @@ export function StakeStats() {
     // if (orca_unclaimed_rewards!=0){
     //   await onClaimExternalReward(2)
     // }
+    // if (usdc_unclaimed_rewards!=0){
+    //   await onClaimExternalReward(3)
+    // }
     if (unclaimed_SuperB_Staking !=0)
       await onStakeSB(true);
 
@@ -945,7 +950,7 @@ export function StakeStats() {
       });
       return;
     }
-    if (sunny_unclaimed_rewards == 0 && saber_unclaimed_rewards == 0 && orca_unclaimed_rewards == 0){
+    if (sunny_unclaimed_rewards == 0 && saber_unclaimed_rewards == 0 && orca_unclaimed_rewards == 0 && usdc_unclaimed_rewards == 0){
       notify({
         message: 'You dont have any rewards to claim',
         type: "error",
@@ -979,6 +984,10 @@ export function StakeStats() {
       let associated_Sunny_account_address_info = await connection.getAccountInfo(associated_Sunny_account_address);
         //check if lp token is initialized or not
       if (!associated_Sunny_account_address_info) {
+          notify({
+            message: 'Creating reward account....',
+            type: "info",
+          });
           ////console.log("Create associated_Sunny_account_address");
           let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
@@ -1012,6 +1021,10 @@ export function StakeStats() {
       let associated_Saber_account_address_info = await connection.getAccountInfo(associated_Saber_account_address);
         //check if lp token is initialized or not
       if (!associated_Saber_account_address_info) {
+          notify({
+            message: 'Creating reward account....',
+            type: "info",
+          });
           ////console.log("Create associated_Saber_account_address");
           let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
@@ -1039,7 +1052,80 @@ export function StakeStats() {
           }
       }
 
-      //TODO: Orca in mainnet to create associated token account
+      //Orca in mainnet to create associated token account
+      let associated_Orca_account_address = await findAssociatedTokenAddress(publicKey,ORCA_MINT_ADDRESS);
+      ////console.log('associated_Saber_account_address',associated_Saber_account_address.toBase58());
+      //check if associated_USDC_token_account_address is is_initialized
+      let associated_Orca_account_address_info = await connection.getAccountInfo(associated_Orca_account_address);
+        //check if lp token is initialized or not
+      if (!associated_Orca_account_address_info) {
+          notify({
+            message: 'Creating reward account....',
+            type: "info",
+          });
+          ////console.log("Create associated_Saber_account_address");
+          let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
+              SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
+              TOKEN_PROGRAM_ID,
+              ORCA_MINT_ADDRESS,
+              associated_Orca_account_address,
+              publicKey,
+              publicKey
+          );
+          let txid = await sendTransaction(connection,wallet,
+              [associated_token_account_address_creationIx
+              ],
+            []);
+          if (!txid){
+            notify({
+              message: 'Something wrong with your request!',
+              type: "error",
+            });
+            return;
+          }else{
+            notify({
+              message: 'Initialize Associated Token Account successfully',
+              type: "success",
+            });
+          }
+      }
+      //USDC in mainnet to create associated token account
+      let associated_USDC_account_address = await findAssociatedTokenAddress(publicKey,USDC_MINT_ADDRESS);
+      ////console.log('associated_Saber_account_address',associated_Saber_account_address.toBase58());
+      //check if associated_USDC_token_account_address is is_initialized
+      let associated_USDC_account_address_info = await connection.getAccountInfo(associated_USDC_account_address);
+        //check if lp token is initialized or not
+      if (!associated_USDC_account_address_info) {
+          notify({
+            message: 'Creating reward account....',
+            type: "info",
+          });
+          ////console.log("Create associated_Saber_account_address");
+          let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
+              SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
+              TOKEN_PROGRAM_ID,
+              USDC_MINT_ADDRESS,
+              associated_USDC_account_address,
+              publicKey,
+              publicKey
+          );
+          let txid = await sendTransaction(connection,wallet,
+              [associated_token_account_address_creationIx
+              ],
+            []);
+          if (!txid){
+            notify({
+              message: 'Something wrong with your request!',
+              type: "error",
+            });
+            return;
+          }else{
+            notify({
+              message: 'Initialize Associated Token Account successfully',
+              type: "success",
+            });
+          }
+      }
 
       filters = [
             {
@@ -1272,7 +1358,7 @@ export function StakeStats() {
 
                   <div className='grid grid-cols-3 bg-gray-200 rounded-b-md px-3 '>
                     <Text  size={"14px"} className="col-span-2" opacity={"50%"}></Text>
-                    <Text className='' size={"14px"}color={'white'}>{orca_unclaimed_rewards?formatNumberWithoutRounding.format(orca_unclaimed_rewards):'0.00'} O </Text>
+                    <Text className='' size={"14px"}color={'white'}>{orca_unclaimed_rewards?formatNumberWithoutRounding.format(orca_unclaimed_rewards):'0.00'} O, {usdc_unclaimed_rewards?formatNumberWithoutRounding.format(usdc_unclaimed_rewards):'0.00'} U  </Text>
                   </div>
 
                   <div className='text-grid cursor-pointer grid grid-cols-1 mt-7 '>
