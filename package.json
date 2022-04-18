@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/superbonds.finance"
   },
-  "homepage": "https://devnet.superbonds.finance/",
+  "homepage": "https://mainnet.superbonds.finance/",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
