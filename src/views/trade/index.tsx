@@ -1109,7 +1109,7 @@ export function TradeView() {
       setBondValueMaturity_90(bondValueMaturity);
     }
   }
-
+ 
     return (
         <div className="w-screen h-screen bg-black">
             <div  className="w-9/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
@@ -1474,7 +1474,7 @@ export function TradeView() {
                   <div className="pb-3 flex justify-between flex-wrap">
                     <div className='flex justify-between sm:flex-col sm:justify-start flex-wrap sm:pb-3'>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 2? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(2)}>MY Trades</Text>
-                      <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>MY Pending Redemptions <Text>8</Text></Text>
+                      <Text style={{ color: myPendingData.length>0 ? '#7CFA4C' : 'white'}} className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>MY Pending Redemptions<Text style={{color:"red"}}>{myPendingData.length>0?`(${pending})`:''}</Text></Text>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 1? 'border-b-2 border-green-100' : '')} transform size='14px' onClick={()=>onShowAllTrades(1)}>Recent Trades</Text>
                     </div>
                     <div>
