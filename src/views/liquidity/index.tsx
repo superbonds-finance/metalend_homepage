@@ -63,17 +63,17 @@ export function LiquidityView() {
 
   const getAllBalances = async () => {
     if (!wallet) {
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Sol network',
+      //   type: "error",
+      // });
       return;
     }
     if (!wallet.publicKey) {
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     //setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
@@ -104,7 +104,7 @@ export function LiquidityView() {
     const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
     const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
     setData30pool(decodedPoolDataState);
-    console.log(decodedPoolDataState)
+    //console.log(decodedPoolDataState)
     let transactionFeeSuperB = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber() / (10**USDC_DECIMALS);
     setTransactionFees(transactionFeeSuperB)
 
@@ -172,7 +172,7 @@ export function LiquidityView() {
     })
     if (!ProceedForRemoveLiquidity) return;
 
-    console.log('remove Liquidity', pool, unformatInputNumber(lq_amount30), unformatInputNumber(lq_amount90));
+    //console.log('remove Liquidity', pool, unformatInputNumber(lq_amount30), unformatInputNumber(lq_amount90));
     if (!wallet) {
       notify({
         message: 'Please connect to Solana network',
@@ -227,16 +227,16 @@ export function LiquidityView() {
     }
 
     let associated_token_account_address = await findAssociatedTokenAddress(publicKey, lp_token_mint_address);
-    console.log('associated_token_account_address', associated_token_account_address.toBase58());
+    //console.log('associated_token_account_address', associated_token_account_address.toBase58());
     let USDCassociated_token_account_address = await findAssociatedTokenAddress(publicKey, USDC_MINT_ADDRESS);
     let USDCassociated_token_account = await connection.getAccountInfo(USDCassociated_token_account_address);
-    console.log('USDCassociated_token_account_address', USDCassociated_token_account_address.toBase58());
+    //console.log('USDCassociated_token_account_address', USDCassociated_token_account_address.toBase58());
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey, SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address', associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address', associated_SUPERB_token_account_address.toBase58());
 
     //Create new LP token Account and transfer  amount to it
     const lp_token_account = new Account();
-    console.log('lp_token_account', lp_token_account.publicKey.toBase58());
+    //console.log('lp_token_account', lp_token_account.publicKey.toBase58());
     const createLPTokenAccountIx = SystemProgram.createAccount({
       programId: TOKEN_PROGRAM_ID,
       space: AccountLayout.span,
@@ -251,7 +251,7 @@ export function LiquidityView() {
     let withdraw_fees = (lp_token_amount * lp_token_price) * RemoveLiquidityFees/100;
     let min_receive_amount = ((lp_token_amount * lp_token_price) - withdraw_fees) * 0.95; //slippage is 5%
 
-    console.log("min_receive_amount",min_receive_amount.toFixed(6));
+    //console.log("min_receive_amount",min_receive_amount.toFixed(6));
     const buffers = [
       Buffer.from(Uint8Array.of(11, 0,
          ...new Numberu64(parseFloat(lp_token_amount) * (10 ** LP_TOKEN_DECIMALS)).toBuffer(),
@@ -264,7 +264,7 @@ export function LiquidityView() {
 
     if (!USDCassociated_token_account) {
       //create transaction to initialize new Associated Token Account then transfer
-      console.log('Initialize Associated Account...');
+      //console.log('Initialize Associated Account...');
       let usdc_associated_token_account_creationIx = Token.createAssociatedTokenAccountInstruction(
         SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
         TOKEN_PROGRAM_ID,
@@ -307,7 +307,7 @@ export function LiquidityView() {
           message: 'Removed Liquidity successfully',
           type: "success",
         });
-        await delay(2000);
+        await delay(3000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();
@@ -338,7 +338,7 @@ export function LiquidityView() {
       let txid = await sendTransaction(connection, wallet,
         [createLPTokenAccountIx, initLP_TOKENAccountIx, transferLPTokensToTempAccIx,
           removeLiquidityIx]
-        , [lp_token_account], false);
+        , [lp_token_account]);
       if (!txid) {
         notify({
           message: 'Something wrong with your request!',
@@ -349,7 +349,7 @@ export function LiquidityView() {
           message: 'Removed Liquidity successfully',
           type: "success",
         });
-        await delay(2000);
+        await delay(3000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();
@@ -441,7 +441,7 @@ export function LiquidityView() {
     let SuperB_fee = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber();
 
     let total_USDC = pool == 30 ? parseFloat(unformatInputNumber(lq_amount30)) * (1 + USDC_fee) : parseFloat(unformatInputNumber(lq_amount90)) * (1 + USDC_fee);
-    //console.log(total_USDC, SuperB_fee, SuperBbalance);
+    ////console.log(total_USDC, SuperB_fee, SuperBbalance);
     //Check if user has enough balance
     if (USDCbalance < total_USDC) {
       notify({
@@ -472,11 +472,11 @@ export function LiquidityView() {
     ];
 
     let associated_token_account_address = await findAssociatedTokenAddress(publicKey, USDC_MINT_ADDRESS);
-    //console.log('associated_token_account_address', associated_token_account_address.toBase58());
+    ////console.log('associated_token_account_address', associated_token_account_address.toBase58());
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey, SUPERB_MINT_ADDRESS);
-    //console.log('associated_SUPERB_token_account_address', associated_SUPERB_token_account_address.toBase58());
-    //console.log('SUPERB_MINT_ADDRESS', SUPERB_MINT_ADDRESS.toBase58());
-    //console.log('publicKey', publicKey.toBase58());
+    ////console.log('associated_SUPERB_token_account_address', associated_SUPERB_token_account_address.toBase58());
+    ////console.log('SUPERB_MINT_ADDRESS', SUPERB_MINT_ADDRESS.toBase58());
+    ////console.log('publicKey', publicKey.toBase58());
     //Create new SUPERB token Account and transfer FEE amount to it
 
     let lp_associated_token_account_address = await findAssociatedTokenAddress(publicKey, lp_token_mint_address);
@@ -487,7 +487,7 @@ export function LiquidityView() {
 
     if (!lp_associated_token_account) {
       //create transaction to initialize new Associated Token Account then transfer
-      console.log('Initialize Associated Account...');
+      //console.log('Initialize Associated Account...');
       lp_associated_token_account_creationIx = Token.createAssociatedTokenAccountInstruction(
         SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
         TOKEN_PROGRAM_ID,
@@ -518,7 +518,7 @@ export function LiquidityView() {
 
       let txid = await sendTransaction(connection, wallet,
         [lp_associated_token_account_creationIx, addLiquidityIx]
-        , [], false);
+        , []);
       if (!txid) {
         notify({
           message: 'Something wrong with your request!',
@@ -530,7 +530,7 @@ export function LiquidityView() {
           message: 'Added Liquidity successfully',
           type: "success",
         });
-        await delay(2000);
+        await delay(3000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();
@@ -559,7 +559,7 @@ export function LiquidityView() {
       });
       let txid = await sendTransaction(connection, wallet,
         [addLiquidityIx]
-        , [], false);
+        , []);
       if (!txid) {
         notify({
           message: 'Something wrong with your request!',
@@ -570,7 +570,7 @@ export function LiquidityView() {
           message: 'Added Liquidity successfully',
           type: "success",
         });
-        await delay(2000);
+        await delay(3000);
         await readPoolData_30();
         await readPoolData_90();
         await getAllBalances();
@@ -614,14 +614,14 @@ export function LiquidityView() {
 
               <HoverToolTip className='text-grid  cursor-pointer grid grid-cols-3'>
                 <Text weight='true' className="col-span-2" opacity={"0.75"}>Add Liquidity Price
-                  <Tooltip placement="rightTop" title={'The value of 1 LP token when adding USDC as liquidity to LP Pool'}> <ImInfo className='info-circle'/></Tooltip> 
+                  <Tooltip placement="rightTop" title={'The value of 1 LP token when adding USDC as liquidity to LP Pool'}> <ImInfo className='info-circle'/></Tooltip>
                 </Text>
                 <Text className='break-all'>{1.000000} </Text>
               </HoverToolTip>
 
               <HoverToolTip className='text-grid  cursor-pointer grid grid-cols-3'>
                 <Text weight='true' className="col-span-2" opacity={"0.75"}>Remove Liquidity Price
-                  <Tooltip placement="rightTop" title={'The amount of USDC redeemable for 1 LP token'}> <ImInfo className='info-circle '/></Tooltip> 
+                  <Tooltip placement="rightTop" title={'The amount of USDC redeemable for 1 LP token'}> <ImInfo className='info-circle '/></Tooltip>
                 </Text>
                 <Text className='break-all'>{data30pool ? (data30pool.lp_price / 1000000).toFixed(6) : "..."} </Text>
               </HoverToolTip>
@@ -680,14 +680,14 @@ export function LiquidityView() {
 
               <HoverToolTip className='text-grid  cursor-pointer grid grid-cols-3'>
                 <Text weight='true' className="col-span-2" opacity={"0.75"}>Add Liquidity Price
-                  <Tooltip placement="rightTop" title={'The value of 1 LP token when adding USDC as liquidity to LP Pool'}> <ImInfo className='info-circle'/></Tooltip> 
+                  <Tooltip placement="rightTop" title={'The value of 1 LP token when adding USDC as liquidity to LP Pool'}> <ImInfo className='info-circle'/></Tooltip>
                 </Text>
                 <Text className='break-all'>{1.000000} </Text>
               </HoverToolTip>
 
               <HoverToolTip className='text-grid  cursor-pointer grid grid-cols-3'>
                 <Text weight='true' className="col-span-2" opacity={"0.75"}>Remove Liquidity Price
-                  <Tooltip placement="rightTop" title={'The amount of USDC redeemable for 1 LP token'}> <ImInfo className='info-circle'/></Tooltip> 
+                  <Tooltip placement="rightTop" title={'The amount of USDC redeemable for 1 LP token'}> <ImInfo className='info-circle'/></Tooltip>
                 </Text>
                 <Text className='break-all'>{data90pool ? (data90pool.lp_price / 1000000).toFixed(6) : "..."} </Text>
               </HoverToolTip>

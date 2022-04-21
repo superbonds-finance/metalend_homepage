@@ -78,7 +78,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
   const [lq_amount90,setLQ_Amount90] = useState("");
   // const [sb_amount,setSB_Amount] = useState("");
   // const [sol_sb_lp_amount,setSOL_SB_LP_Amount] = useState("");
-  console.log("data30pool",data30pool)
+  //console.log("data30pool",data30pool)
   const onChangeLQ_amount30 = useCallback( (e) => {
     const { value } = e.target;
     setLQ_Amount30(formatInputNumber(value));
@@ -104,17 +104,17 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
 
   const getAllBalances = async () => {
     if ( !wallet){
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Sol network',
+      //   type: "error",
+      // });
       return;
     }
     if (!wallet.publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     //setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
@@ -152,7 +152,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     const APY90LP:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/LP_90_Staking_APY');
     setAPY90LP(APY90LP.data.APY)
    }
-   
+
    useEffect(()=>{
     fetchAPY()
    },[])
@@ -189,7 +189,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     });
     if (resp.length > 0){
       let decodedData = TRADER_LAYOUT.decode(resp[0].account.data);
-      console.log(decodedData);
+      //console.log(decodedData);
       setTraderData(decodedData);
     }
 
@@ -216,7 +216,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
 
     // const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
     // const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-    // console.log(decodedStakingDataState);
+    // //console.log(decodedStakingDataState);
     // setStakingData(decodedStakingDataState);
 
     // const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
@@ -239,7 +239,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     setData90pool(decodedPoolDataState);
     let transactionFeeSuperB = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber() / (10**USDC_DECIMALS);
     setTransactionFees(transactionFeeSuperB)
-    
+
   }
 
   const [sunny_unclaimed_rewards,setSunny_Unclaimed_Rewards] = useState(0);
@@ -282,7 +282,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     saber_reward_accounts = [];
 
     resp.forEach(element => {
-      console.log(element);
+      //console.log(element);
       let farming_reward = FARMING_REWARD_LAYOUT.decode(element.account.data);
       let total_reward = new BN(farming_reward.total_reward, 10, "le").toNumber() / 1000000;
       let lp_staked_30 = farming_reward.total_lp_token_staked[0] / 1000000;
@@ -332,7 +332,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
    const message = `
     <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
       <div class="table2">
-        <table class="w-full"> 
+        <table class="w-full">
             <tr>
               <th class="text-left">
                 <span class="th_span small_font_td_span">
@@ -403,7 +403,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Proceed = true;
-          //console.log(Proceed);
+          ////console.log(Proceed);
         }
       })
       if (!Proceed) return;
@@ -440,10 +440,10 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       return;
     }
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
 
     let associated_LP_Token_token_account_address = await findAssociatedTokenAddress(publicKey,lp_token_mint_address);
-    console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
+    //console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
     let buffers = null;
     if (!isClaim){
        buffers = [
@@ -473,18 +473,35 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
     let [SuperB_pda_address/* ,SuperB_pda_NONCE */] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
     if (resp.length == 0){
-      console.log('Initializing Trader Data Account and Stake...');
+      //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
-      console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+      //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: trader_Data_account.publicKey
       });
@@ -514,7 +531,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
 
       let txid = await sendTransaction(connection,wallet,
           [createTraderDataAccountIx,stakeLP_TokenIx]
-        ,[trader_Data_account],false);
+        ,[trader_Data_account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -533,14 +550,14 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
             type: "success",
           });
         }
-        await delay(2000);
+        await delay(3000);
         onRefresh();
         getAllLiquidityBalances()
       }
     }
 
     else{
-      console.log('Stake...');
+      //console.log('Stake...');
       const stakeLP_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -566,7 +583,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
 
       let txid = await sendTransaction(connection,wallet,
           [stakeLP_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -585,7 +602,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
             type: "success",
           });
         }
-        await delay(2000);
+        await delay(3000);
         onRefresh();
        getAllLiquidityBalances()
       }
@@ -599,7 +616,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     const message = `
      <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
        <div class="table2">
-         <table class="w-full"> 
+         <table class="w-full">
              <tr>
                <th class="text-left">
                  <span class="th_span small_font_td_span">
@@ -610,7 +627,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
                  <b>${UnstakingFees}</b>%</span>
                </td>
              </tr>
- 
+
              <tr>
                <th class="text-left">
                  <span class="th_span small_font_td_span">
@@ -669,7 +686,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Proceed = true;
-          //console.log(Proceed);
+          ////console.log(Proceed);
         }
       });
       if (!Proceed) return;
@@ -705,10 +722,10 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       return;
     }
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
 
     let associated_LP_Token_token_account_address = await findAssociatedTokenAddress(publicKey,lp_token_mint_address);
-    console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
+    //console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
 
     let [SuperB_pda_address/* ,SuperB_pda_NONCE */] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
@@ -733,7 +750,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
 
     if (resp.length == 0){
@@ -745,7 +762,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       return;
     }
     else{
-      console.log('Unstake...');
+      //console.log('Unstake...');
       let [staked_lp_token_pda_address/* ,staked_lp_token_pda_NONCE */] = await PublicKey.findProgramAddress([ new PublicKey(decodedPoolDataState.Staked_LP_Token_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
       const unstakeLP_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
@@ -773,7 +790,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
 
       let txid = await sendTransaction(connection,wallet,
           [unstakeLP_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -784,7 +801,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           message: 'Unstake Request Sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(3000);
         onRefresh();
         getAllLiquidityBalances()
       }
@@ -806,7 +823,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
       {/* <i className={"fas fa-exchange-alt fa-lg mr-1 " + classes.exchange_icon} aria-hidden="true" /> */}
       <div className="text-center">
         <Text className='text-grid cursor-pointer' size={"16px"} transform={"true"}>LP STAKING
-        <Tooltip placement="rightTop" title={'Stake your LP commitment to earn yield'}> 
+        <Tooltip placement="rightTop" title={'Stake your LP commitment to earn yield'}>
         <ImInfo  className=' info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip></Text>
       </div>
 
@@ -827,7 +844,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           </div>
           <div className="text-grid flex flex-col text-center bg-gray-900 rounded-md  mt-5 my-3 py-3 my-1" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
             <Text className='select-none w-9/12 mx-auto px-2' size='16px' weight='600' color='white'>APY
-              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className=' cursor-pointer info-circle-hide' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
+              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className=' cursor-pointer info-circle-hide' style={{width:"13px", marginBottom:"3px"}}/></Tooltip>
             </Text>
             <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY30LP)>0?formatNumberWithoutRounding.format(APY30LP):"0.00"}%</strong></span></Text>
           </div>
@@ -867,7 +884,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
         {/* <i className={"fas fa-exchange-alt fa-lg mr-1 " + classes.exchange_icon} aria-hidden="true" /> */}
         <div className="text-center">
           <Text className='text-grid cursor-pointer' size={"16px"} transform={"true"}>LP STAKING
-          <Tooltip placement="rightTop" title={'Stake your LP commitment to earn yield'}> 
+          <Tooltip placement="rightTop" title={'Stake your LP commitment to earn yield'}>
           <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip></Text>
       </div>
 
@@ -889,7 +906,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           </div>
           <div className="text-grid flex flex-col text-center bg-gray-900 rounded-md py-3 mt-5 my-3" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
             <Text className='select-none w-9/12 mx-auto px-2' size='16px' weight='600' color='white'>APY
-              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className='cursor-pointer info-circle-hide ' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
+              <Tooltip placement="bottom" title={'Estimated yield earned for staking LP tokens'}> <ImInfo className='cursor-pointer info-circle-hide ' style={{width:"13px", marginBottom:"3px"}}/></Tooltip>
             </Text>
             <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong>{(APY90LP)>0?formatNumberWithoutRounding.format(APY90LP):"0.00"}%</strong></span></Text>
           </div>

@@ -72,13 +72,13 @@ export const HomeView = () => {
       if (data30pool) {
         setAdjustedLiquidity30(new BN(data30pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
         setTradeLiquidityAvailability30(data30pool.trade_liquidity_availability/10000);
-        //console.log(data30pool.trade_liquidity_availability,new BN(data30pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
+        ////console.log(data30pool.trade_liquidity_availability,new BN(data30pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
       }
       if (data90pool) {
 
         setAdjustedLiquidity90(new BN(data90pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
         setTradeLiquidityAvailability90(data90pool.trade_liquidity_availability/10000);
-        //console.log(data90pool.trade_liquidity_availability);
+        ////console.log(data90pool.trade_liquidity_availability);
       }
     }, [data30pool,data90pool]);
 
@@ -100,7 +100,7 @@ export const HomeView = () => {
 
       const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-       //console.log("asas",decodedPoolDataState)
+       ////console.log("asas",decodedPoolDataState)
       setData30pool(decodedPoolDataState);
 
     }
@@ -143,7 +143,7 @@ export const HomeView = () => {
       // }
       const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
       const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-      //console.log(decodedPoolDataState);
+      ////console.log(decodedPoolDataState);
       let bond_yield = decodedPoolDataState.pool_yield_vector[0]/100;
       setBond_Yield30(bond_yield);
       bond_yield =  decodedPoolDataState.pool_yield_vector[1]/100;
@@ -817,7 +817,9 @@ export const HomeView = () => {
                     size="15px"
                     opacity="0.5"
                   >
-                     Up to 18% fixed yield through bonds with various maturities. Powered by LP underwriting.
+                     Up to
+                     <CardText>{' '}{bond_yield90}%{' '}</CardText> 
+                       fixed yield through bonds with various maturities. Powered by LP underwriting.
                   </CardText>
                 </div>
               </div>

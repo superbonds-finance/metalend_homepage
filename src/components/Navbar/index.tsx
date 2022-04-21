@@ -78,7 +78,7 @@ export default function Navbar(props: {
       </a>
     </div>
   </div>
-   
+
   </>);
 
   return (
@@ -93,7 +93,7 @@ export default function Navbar(props: {
             }
             alt="SuperB"
           />
-           
+
         </div>
       </div>
 
@@ -186,7 +186,7 @@ export default function Navbar(props: {
             </Popover>
           </>
         )}
- 
+
       </div>
     </div>
   );

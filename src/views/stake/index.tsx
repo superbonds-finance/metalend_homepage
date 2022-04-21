@@ -28,7 +28,7 @@ import {ButtonText,Text,HeroText,HoverToolTip} from "./stake.styled";
 import BN from "bn.js";
 import axios from 'axios';
 import {AxiosResponse} from 'axios';
-import { 
+import {
   Numberu64,numberFormatter,
   convertTimeStamp,
   getTokenBalance,delay,
@@ -89,7 +89,7 @@ export function StakeView() {
     setSOL_SB_LP_Amount(formatInputNumber(value));
   },[]);
 
-  
+
   // const [SOLbalance,setSOLbalance] = useState(0);
   const [USDCbalance,setUSDCbalance] = useState<any>(0);
   const [SuperBbalance,setSuperBbalance] = useState<any>(0);
@@ -107,7 +107,7 @@ export function StakeView() {
     const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
     setStakingPool(decodedPoolDataState);
-  
+
   }
 
   const readPoolData_30 = async () => {
@@ -119,17 +119,17 @@ export function StakeView() {
 
   const getAllBalances = async () => {
     if ( !wallet){
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Sol network',
+      //   type: "error",
+      // });
       return;
     }
     if (!wallet.publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     //setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
@@ -137,14 +137,14 @@ export function StakeView() {
     setLP30balance(await getTokenBalance(connection,wallet.publicKey,LP_TOKEN_30_MINT_ADDRESS,LP_TOKEN_DECIMALS));
     setLP90balance(await getTokenBalance(connection,wallet.publicKey,LP_TOKEN_90_MINT_ADDRESS,LP_TOKEN_DECIMALS));
     setSuperBbalance(await getTokenBalance(connection,wallet.publicKey,SUPERB_MINT_ADDRESS,SUPERB_DECIMALS));
-    
+
   }
 
   const fetchAPY= async ()=>{
     const APY30LP:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/SB_Staking_APY ');
     setAPYSBLP(APY30LP.data.APY)
    }
-   
+
    useEffect(()=>{
     fetchAPY()
    },[])
@@ -197,7 +197,7 @@ export function StakeView() {
     });
     if (resp.length > 0){
       let decodedData = TRADER_LAYOUT.decode(resp[0].account.data);
-      console.log(decodedData);
+      //console.log(decodedData);
       setTraderData(decodedData);
     }
 
@@ -220,12 +220,12 @@ export function StakeView() {
     }
     const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-    console.log(decodedPoolDataState)
+    //console.log(decodedPoolDataState)
     setPlatformData(decodedPoolDataState);
 
     const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-    console.log(decodedStakingDataState);
+    //console.log(decodedStakingDataState);
     setStakingData(decodedStakingDataState);
 
     const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
@@ -274,7 +274,7 @@ export function StakeView() {
     saber_reward_accounts = [];
 
     resp.forEach(element => {
-      console.log(element);
+      //console.log(element);
       let farming_reward = FARMING_REWARD_LAYOUT.decode(element.account.data);
       let total_reward = new BN(farming_reward.total_reward, 10, "le").toNumber() / 1000000;
       let lp_staked_30 = farming_reward.total_lp_token_staked[0] / 1000000;
@@ -317,15 +317,15 @@ export function StakeView() {
     setOrca_Unclaimed_Rewards(Math.round(Orca_rewards*1000000)/1000000);
 
   }
- 
-  
-   
+
+
+
   const onStakeSB = async (isClaim=false) => {
     const fees=stakingPool.stake_SB_fee/100
     const message = `
     <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
       <div class="table2">
-        <table class="w-full"> 
+        <table class="w-full">
             <tr>
               <th class="text-left">
                 <span class="th_span small_font_td_span">
@@ -401,7 +401,7 @@ export function StakeView() {
     }
 
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
     let buffers = null;
     if (!isClaim)
      buffers = [
@@ -429,18 +429,35 @@ export function StakeView() {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
     let [SuperB_pda_address,SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
     if (resp.length == 0){
-      console.log('Initializing Trader Data Account and Stake...');
+      //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
-      console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+      //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: trader_Data_account.publicKey
       });
@@ -468,7 +485,7 @@ export function StakeView() {
 
       let txid = await sendTransaction(connection,wallet,
           [createTraderDataAccountIx,stakeSB_TokenIx]
-        ,[trader_Data_account],false);
+        ,[trader_Data_account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -479,12 +496,12 @@ export function StakeView() {
           message: 'Staking Request Sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(3000);
         onRefresh();
       }
     }
     else{
-      //console.log('Stake...');
+      ////console.log('Stake...');
       const stakeSB_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -508,7 +525,7 @@ export function StakeView() {
 
       let txid = await sendTransaction(connection,wallet,
           [stakeSB_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -528,20 +545,20 @@ export function StakeView() {
           });
         }
 
-        await delay(2000);
+        await delay(3000);
         onRefresh();
       }
     }
 
 
   }
-  console.log(stakingPool)
+  //console.log(stakingPool)
   const onUnstakeSB = async () => {
     let fees=stakingPool.unstake_SB_fee/100;
     const message = `
     <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
       <div class="table2">
-        <table class="w-full"> 
+        <table class="w-full">
             <tr>
               <th class="text-left">
                 <span class="th_span small_font_td_span">
@@ -613,7 +630,7 @@ export function StakeView() {
     }
 
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
 
     const buffers = [
       Buffer.from(Uint8Array.of(21,2, ...new Numberu64(parseFloat(unformatInputNumber(sb_amount)) * (10**SUPERB_DECIMALS)).toBuffer()))
@@ -636,7 +653,7 @@ export function StakeView() {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
 
     if (resp.length == 0){
@@ -647,7 +664,7 @@ export function StakeView() {
       return;
     }
     else{
-      console.log('Unstaking...');
+      //console.log('Unstaking...');
       let [staked_SuperB_pda_address,staked_SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.Staked_SB_Token_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
       let [SuperB_pda_address,SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
@@ -674,7 +691,7 @@ export function StakeView() {
 
       let txid = await sendTransaction(connection,wallet,
           [unstakeSB_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -685,7 +702,7 @@ export function StakeView() {
           message: 'Unstaking Request Sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -696,7 +713,7 @@ export function StakeView() {
     await getAllBalances();
   }
 
-  
+
   return (
     <div className="w-screen h-screen bg-black">
       <div  className="w-7/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 lg:w-11/12 md:w-12/12" style={{maxWidth:"1000px"}}>
@@ -719,7 +736,7 @@ export function StakeView() {
           SuperBbalance={SuperBbalance}
           divStyle=' 3xl:justify-center 2xxl:justify-center 2xl:justify-center xl:justify-center lg:justify-center md:justify-center sm:justify-center '
         />
-        
+
 
         <div className=" mt-8 pt-0 w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full bg-gray-300 neon-bottom-card selected-box-neon rounded-md mx-auto">
           <div className="w-full bg-green-100 py-2 rounded-t-md text-center">
@@ -739,12 +756,12 @@ export function StakeView() {
                   <div className="flex flex-col">
                     <Text className='select-none' size={"14px"} color={"#7c7c7c"} weight='bold' >Staked:</Text>
                     <Text className='cursor-pointer' onClick={()=>setSB_Amount(formatInputNumber(String(numberFormatter.format(new BN(traderData.total_SuperB_staked, 10, "le").toNumber()/1000000))))}>{traderData ? numberFormatter.format(new BN(traderData.total_SuperB_staked, 10, "le").toNumber()/1000000): '0.00'}</Text>
-                   
+
                   </div>
                 </div>
                 <div className="text-grid flex flex-col text-center rounded-md py-3 mt-2" style={{background:'linear-gradient(0deg, rgba(124, 250, 76, 0.2), rgba(124, 250, 76, 0.2)), #1F2933'}}>
                   <Text className='select-none w-9/12 mx-auto px-2'  size='16px' weight='600' color='white'>APY
-                    <Tooltip placement="bottom" title={' Estimated yield earned for staking SB token'}> <ImInfo className='cursor-pointer info-circle-hide' style={{width:"13px", marginBottom:"3px"}}/></Tooltip> 
+                    <Tooltip placement="bottom" title={' Estimated yield earned for staking SB token'}> <ImInfo className='cursor-pointer info-circle-hide' style={{width:"13px", marginBottom:"3px"}}/></Tooltip>
                   </Text>
                   <Text className="select-none" size={"19px"} color={"#9CF61C"}><span style={{color: "#9CF61C"}}><strong> {(APYSBLP)>0?formatNumberWithoutRounding.format(APYSBLP):"0.00"}% </strong></span></Text>
                 </div>
@@ -782,7 +799,7 @@ export function StakeView() {
             <div className="text-center">
               <Text size ={"19px"} transform={"true"}>STAKE SB</Text>
             </div>
-            
+
             <div className="bg-gray-200 py-3 pl-3 pr-3  mt-2 rounded-md">
               <table className="w-full">
                 <tr>
@@ -795,10 +812,10 @@ export function StakeView() {
                 </tr>
               </table>
             </div>
-            
+
             <div className="text-center bg-gray-200 py-3 px-3 border rounded-md mt-3">
               <Text className="block" opacity={"0.5"}>Enter SB Token</Text>
-              <input 
+              <input
                 maxLength={20}
                 onKeyDown={numOnly}
                 onKeyPress={noSpecial}
@@ -808,8 +825,8 @@ export function StakeView() {
                 className="w-full py-2 px-2 h-10 mt-3 rounded-md bg-gray-400
                 focus:outline-none ring-1 ring-green-100 focus:ring-green-100 focus:border-transparent placeholder-green-100" placeholder="Token Amount" />
             </div>
-            
-            
+
+
             <div className="grid grid-cols-2 gap-2 mt-3">
               <div>
                 <button onClick={()=>onStakeSB()} className="border-2 hover:bg-green-100 hover:text-black rounded-md w-full border-green-100 px-6 py-1.5 inline-block">
