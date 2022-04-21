@@ -59,7 +59,7 @@ export  function MyAccountView() {
 
     if(wallet && publicKey) fetchPrivateAPI(10,0)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet]);
+  }, [wallet.publicKey]);
   const getTraderDataAccount = async () => {
     if ( !wallet){
       notify({

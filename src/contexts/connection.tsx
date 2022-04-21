@@ -24,8 +24,8 @@ export const ENDPOINTS = [
   {
     name: "mainnet-beta" as ENV,
     //endpoint: "https://api.mainnet-beta.solana.com/",
-    //endpoint: "https://solana-api.projectserum.com",
-    endpoint: "https://aged-icy-breeze.solana-mainnet.quiknode.pro/33147446f8ef72867443a72d3ecd74826367a3f0/",
+    endpoint: "https://solana-api.projectserum.com",
+    //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
     chainID: ChainID.MainnetBeta,
   },
   {
@@ -92,19 +92,19 @@ export function ConnectionProvider({ children = undefined as any }) {
   // The websocket library solana/web3.js uses closes its websocket connection when the subscription list
   // is empty after opening its first time, preventing subsequent subscriptions from receiving responses.
   // This is a hack to prevent the list from every getting empty
-  useEffect(() => {
-    const id = connection.onAccountChange(new Account().publicKey, () => {});
-    return () => {
-      connection.removeAccountChangeListener(id);
-    };
-  }, [connection]);
+  // useEffect(() => {
+  //   const id = connection.onAccountChange(new Account().publicKey, () => {});
+  //   return () => {
+  //     connection.removeAccountChangeListener(id);
+  //   };
+  // }, [connection]);
 
-  useEffect(() => {
-    const id = connection.onSlotChange(() => null);
-    return () => {
-      connection.removeSlotChangeListener(id);
-    };
-  }, [connection]);
+  // useEffect(() => {
+  //   const id = connection.onSlotChange(() => null);
+  //   return () => {
+  //     connection.removeSlotChangeListener(id);
+  //   };
+  // }, [connection]);
 
   useEffect(() => {
     const id = sendConnection.onAccountChange(

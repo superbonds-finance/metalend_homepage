@@ -80,7 +80,7 @@ export const RedeemView = () => {
     onShowTradeInformation();
     getAllBalances();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet]);
+  }, [wallet.publicKey]);
   const onShowTradeInformation = async () => {
     if ( !wallet){
       notify({

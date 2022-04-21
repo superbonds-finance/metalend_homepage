@@ -96,25 +96,26 @@ export function StakeView() {
   const [LP30balance,setLP30balance] = useState<any>(0);
   const [LP90balance,setLP90balance] = useState<any>(0);
   const [SOL_SB_LPbalance,setSOL_SB_LPbalance] = useState<any>(0);
-  const [stakingPool, setStakingPool] = useState<any>();
+
   const [traderData,setTraderData] = useState<any>(null);
   const [PlatformData, setPlatformData] = useState<any>();
   const [StakingData, setStakingData] = useState<any>();
   const [SuperB_Rewards_Balance,setSuperB_Rewards_Balance] = useState(0);
   const [transactionFees,setTransactionFees] = useState<any>();
 
-  const getStakingPoolData = async () => {
-    const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
-    const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-    setStakingPool(decodedPoolDataState);
-
-  }
 
   const readPoolData_30 = async () => {
     const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
     const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
     let transactionFeeSuperB = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber() / (10**USDC_DECIMALS);
-    setTransactionFees(transactionFeeSuperB)
+    setTransactionFees(transactionFeeSuperB);
+  }
+
+  const onRefresh = async () =>{
+    await getTraderDataAccount();
+    await getPlatformData();
+    await getAllBalances();
+    // console.log('here')
   }
 
   const getAllBalances = async () => {
@@ -145,25 +146,24 @@ export function StakeView() {
     setAPYSBLP(APY30LP.data.APY)
    }
 
-   useEffect(()=>{
+  useEffect(()=>{
     fetchAPY()
    },[])
 
   useEffect(() => {
-    getStakingPoolData()
     readPoolData_30()
     if (!wallet.publicKey) return;
     onRefresh();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet]);
+  }, [wallet.publicKey]);
 
-  useEffect(() => {
-    if (!wallet.publicKey) return;
-    if (!traderData || !PlatformData) return;
-    getRewardDataAccount();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [traderData,PlatformData]);
-
+  // useEffect(() => {
+  //   if (!wallet.publicKey) return;
+  //   if (!traderData || !PlatformData) return;
+  //   getRewardDataAccount();
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [traderData,PlatformData]);
+  //
   const getTraderDataAccount = async () => {
     if ( !wallet){
       notify({
@@ -203,125 +203,126 @@ export function StakeView() {
 
   }
   const getPlatformData = async () => {
-    if ( !wallet){
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
-      return;
-    }
-    let publicKey = wallet.publicKey;
-    if (!publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
-      return;
-    }
-    const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
-    const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-    //console.log(decodedPoolDataState)
+    const response:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/platformData ');
+    let decodedPoolDataState = response.data as PlatformDataLayout;
     setPlatformData(decodedPoolDataState);
-
-    const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
-    const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-    //console.log(decodedStakingDataState);
-    setStakingData(decodedStakingDataState);
-
-    const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
-    const decodeSuperB_Rewards_Account_ADDRESS = AccountLayout.decode(encodeSuperB_Rewards_Account_ADDRESS);
-    let SuperB_Rewards_Balance = new BN(decodeSuperB_Rewards_Account_ADDRESS.amount, 10, "le").toNumber() / (10**SUPERB_DECIMALS);
-    setSuperB_Rewards_Balance(SuperB_Rewards_Balance);
+    // if ( !wallet){
+    //   notify({
+    //     message: 'Please connect to Sol network',
+    //     type: "error",
+    //   });
+    //   return;
+    // }
+    // let publicKey = wallet.publicKey;
+    // if (!publicKey){
+    //   notify({
+    //     message: 'Please connect to Solana network',
+    //     type: "error",
+    //   });
+    //   return;
+    // }
+    // const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
+    // const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
+    // //console.log(decodedPoolDataState)
+    // setPlatformData(decodedPoolDataState);
+    //
+    // const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
+    // const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
+    // //console.log(decodedStakingDataState);
+    // setStakingData(decodedStakingDataState);
+    //
+    // const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
+    // const decodeSuperB_Rewards_Account_ADDRESS = AccountLayout.decode(encodeSuperB_Rewards_Account_ADDRESS);
+    // let SuperB_Rewards_Balance = new BN(decodeSuperB_Rewards_Account_ADDRESS.amount, 10, "le").toNumber() / (10**SUPERB_DECIMALS);
+    // setSuperB_Rewards_Balance(SuperB_Rewards_Balance);
   }
 
   const [sunny_unclaimed_rewards,setSunny_Unclaimed_Rewards] = useState(0);
   const [saber_unclaimed_rewards,setSaber_Unclaimed_Rewards] = useState(0);
   const [orca_unclaimed_rewards,setOrca_Unclaimed_Rewards] = useState(0);
-
-  const getRewardDataAccount = async () => {
-    if ( !wallet){
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
-      return;
-    }
-    let publicKey = wallet.publicKey;
-    if (!publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
-      return;
-    }
-    let trader_Data_account = null;
-    let filters = [
-          {
-            "dataSize":176
-          }];
-    const resp = await connection.getProgramAccounts(SUPERBONDS_PROGRAM_ID, {
-      commitment: connection.commitment,
-      filters,
-      encoding: 'base64',
-    });
-
-    if (resp.length == 0) return;
-
-    let Sunny_rewards = 0;
-    let Saber_rewards = 0;
-    let Orca_rewards = 0;
-    sunny_reward_accounts = [];
-    saber_reward_accounts = [];
-
-    resp.forEach(element => {
-      //console.log(element);
-      let farming_reward = FARMING_REWARD_LAYOUT.decode(element.account.data);
-      let total_reward = new BN(farming_reward.total_reward, 10, "le").toNumber() / 1000000;
-      let lp_staked_30 = farming_reward.total_lp_token_staked[0] / 1000000;
-      let lp_staked_90 = farming_reward.total_lp_token_staked[1] / 1000000;
-      if (total_reward>0 && (lp_staked_30 > 0 || lp_staked_90 > 0 ))
-      {
-        //process reward_data
-        let timestamp = new BN(farming_reward.received_at, 10, "le").toNumber();
-        let token_account = farming_reward.token_account.toBase58();
-
-        let sunny_last_update = traderData ? traderData.last_update_external_farming[0] : 0;
-
-        if (sunny_last_update != 0 && sunny_last_update < timestamp){
-          //qualify for Rewards
-          if (token_account == PlatformData.reserved_token_accounts[0].toBase58()){
-            //Sunny
-            Sunny_rewards += total_reward * PlatformData.pool_risk_factor_vector[0]/1000000 * ((traderData.total_LP_Token_staked_vector[0]/1000000) /  lp_staked_30);
-            Sunny_rewards += total_reward * PlatformData.pool_risk_factor_vector[1]/1000000 * ((traderData.total_LP_Token_staked_vector[1]/1000000) /  lp_staked_90);
-            sunny_reward_accounts.push(element.pubkey);
-          }
-
-        }
-
-        let saber_last_update = traderData ? traderData.last_update_external_farming[1] : 0;
-
-        if (saber_last_update != 0 && saber_last_update < timestamp){
-          //qualify for Rewards
-          if (token_account == PlatformData.reserved_token_accounts[1].toBase58()){
-            //Saber
-            Saber_rewards += total_reward * PlatformData.pool_risk_factor_vector[0]/1000000 * ((traderData.total_LP_Token_staked_vector[0]/1000000) /  lp_staked_30);
-            Saber_rewards += total_reward * PlatformData.pool_risk_factor_vector[1]/1000000 * ((traderData.total_LP_Token_staked_vector[1]/1000000) /  lp_staked_90);
-            saber_reward_accounts.push(element.pubkey);
-          }
-        }
-      }
-
-    });
-    setSunny_Unclaimed_Rewards(Math.round(Sunny_rewards*1000000)/1000000);
-    setSaber_Unclaimed_Rewards(Math.round(Saber_rewards*1000000)/1000000);
-    setOrca_Unclaimed_Rewards(Math.round(Orca_rewards*1000000)/1000000);
-
-  }
-
-
+  //
+  // const getRewardDataAccount = async () => {
+  //   if ( !wallet){
+  //     notify({
+  //       message: 'Please connect to Sol network',
+  //       type: "error",
+  //     });
+  //     return;
+  //   }
+  //   let publicKey = wallet.publicKey;
+  //   if (!publicKey){
+  //     notify({
+  //       message: 'Please connect to Solana network',
+  //       type: "error",
+  //     });
+  //     return;
+  //   }
+  //   let trader_Data_account = null;
+  //   let filters = [
+  //         {
+  //           "dataSize":176
+  //         }];
+  //   const resp = await connection.getProgramAccounts(SUPERBONDS_PROGRAM_ID, {
+  //     commitment: connection.commitment,
+  //     filters,
+  //     encoding: 'base64',
+  //   });
+  //
+  //   if (resp.length == 0) return;
+  //
+  //   let Sunny_rewards = 0;
+  //   let Saber_rewards = 0;
+  //   let Orca_rewards = 0;
+  //   sunny_reward_accounts = [];
+  //   saber_reward_accounts = [];
+  //
+  //   resp.forEach(element => {
+  //     //console.log(element);
+  //     let farming_reward = FARMING_REWARD_LAYOUT.decode(element.account.data);
+  //     let total_reward = new BN(farming_reward.total_reward, 10, "le").toNumber() / 1000000;
+  //     let lp_staked_30 = farming_reward.total_lp_token_staked[0] / 1000000;
+  //     let lp_staked_90 = farming_reward.total_lp_token_staked[1] / 1000000;
+  //     if (total_reward>0 && (lp_staked_30 > 0 || lp_staked_90 > 0 ))
+  //     {
+  //       //process reward_data
+  //       let timestamp = new BN(farming_reward.received_at, 10, "le").toNumber();
+  //       let token_account = farming_reward.token_account.toBase58();
+  //
+  //       let sunny_last_update = traderData ? traderData.last_update_external_farming[0] : 0;
+  //
+  //       if (sunny_last_update != 0 && sunny_last_update < timestamp){
+  //         //qualify for Rewards
+  //         if (token_account == PlatformData.reserved_token_accounts[0].toBase58()){
+  //           //Sunny
+  //           Sunny_rewards += total_reward * PlatformData.pool_risk_factor_vector[0]/1000000 * ((traderData.total_LP_Token_staked_vector[0]/1000000) /  lp_staked_30);
+  //           Sunny_rewards += total_reward * PlatformData.pool_risk_factor_vector[1]/1000000 * ((traderData.total_LP_Token_staked_vector[1]/1000000) /  lp_staked_90);
+  //           sunny_reward_accounts.push(element.pubkey);
+  //         }
+  //
+  //       }
+  //
+  //       let saber_last_update = traderData ? traderData.last_update_external_farming[1] : 0;
+  //
+  //       if (saber_last_update != 0 && saber_last_update < timestamp){
+  //         //qualify for Rewards
+  //         if (token_account == PlatformData.reserved_token_accounts[1].toBase58()){
+  //           //Saber
+  //           Saber_rewards += total_reward * PlatformData.pool_risk_factor_vector[0]/1000000 * ((traderData.total_LP_Token_staked_vector[0]/1000000) /  lp_staked_30);
+  //           Saber_rewards += total_reward * PlatformData.pool_risk_factor_vector[1]/1000000 * ((traderData.total_LP_Token_staked_vector[1]/1000000) /  lp_staked_90);
+  //           saber_reward_accounts.push(element.pubkey);
+  //         }
+  //       }
+  //     }
+  //
+  //   });
+  //   setSunny_Unclaimed_Rewards(Math.round(Sunny_rewards*1000000)/1000000);
+  //   setSaber_Unclaimed_Rewards(Math.round(Saber_rewards*1000000)/1000000);
+  //   setOrca_Unclaimed_Rewards(Math.round(Orca_rewards*1000000)/1000000);
+  //
+  // }
 
   const onStakeSB = async (isClaim=false) => {
-    const fees=stakingPool.stake_SB_fee/100
+    const fees=PlatformData.stake_SB_fee/100
     const message = `
     <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
       <div class="table2">
@@ -554,7 +555,7 @@ export function StakeView() {
   }
   //console.log(stakingPool)
   const onUnstakeSB = async () => {
-    let fees=stakingPool.unstake_SB_fee/100;
+    let fees=PlatformData.unstake_SB_fee/100;
     const message = `
     <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
       <div class="table2">
@@ -707,11 +708,7 @@ export function StakeView() {
       }
     }
   }
-  const onRefresh = async () =>{
-    await getTraderDataAccount();
-    await getPlatformData();
-    await getAllBalances();
-  }
+
 
 
   return (

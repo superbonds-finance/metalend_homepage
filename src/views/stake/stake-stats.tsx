@@ -98,7 +98,7 @@ export function StakeStats() {
     onRefresh();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet]);
+  }, [wallet.publicKey]);
 
   useEffect(() => {
     if (!wallet.publicKey) return;

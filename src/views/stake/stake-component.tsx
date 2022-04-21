@@ -131,7 +131,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
     if (!wallet.publicKey) return;
     onRefresh();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet]);
+  }, [wallet.publicKey]);
 
   useEffect(() => {
     if(refreshStakeBalance>0) onRefresh()

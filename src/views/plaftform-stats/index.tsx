@@ -42,37 +42,16 @@ export function PlatformStatsView() {
     const connection = useConnection();
     const wallet = useWallet();
 
-    // const [SOLbalance,setSOLbalance] = useState(0);
-    // const [USDCbalance,setUSDCbalance] = useState<any>(0);
-    // const [SuperBbalance,setSuperBbalance] = useState<any>(0);
-    // const [LP30balance,setLP30balance] = useState<any>(0);
-    // const [LP90balance,setLP90balance] = useState<any>(0);
-    // const [SOL_SB_LPbalance,setSOL_SB_LPbalance] = useState<any>(0);
-    // const [PlatformData, setPlatformData] = useState<any>();
     const [StakingData, setStakingData] = useState<any>();
     const [SuperB_Rewards_Balance,setSuperB_Rewards_Balance] = useState(0);
 
     const getAllBalances = async () => {
       if ( !wallet){
-        // notify({
-        //   message: 'Please connect to Sol network',
-        //   type: "error",
-        // });
         return;
       }
       if (!wallet.publicKey){
-        // notify({
-        //   message: 'Please connect to Solana network',
-        //   type: "error",
-        // });
         return;
       }
-      // setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
-      // setUSDCbalance(await getTokenBalance(connection,wallet.publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
-      // setLP30balance(await getTokenBalance(connection,wallet.publicKey,LP_TOKEN_30_MINT_ADDRESS,LP_TOKEN_DECIMALS));
-      // setLP90balance(await getTokenBalance(connection,wallet.publicKey,LP_TOKEN_90_MINT_ADDRESS,LP_TOKEN_DECIMALS));
-      // setSuperBbalance(await getTokenBalance(connection,wallet.publicKey,SUPERB_MINT_ADDRESS,SUPERB_DECIMALS));
-      // setSOL_SB_LPbalance(await getTokenBalance(connection,wallet.publicKey,SOL_SB_LP_MINT_ADDRESS,SOL_SB_LP_TOKEN_DECIMALS));
     }
 
     useEffect( () => {
@@ -80,7 +59,7 @@ export function PlatformStatsView() {
       getPlatformData()
       getAllBalances();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [wallet]);
+    }, [wallet.publicKey]);
 
 
     const onGetFreeSol = async () => {
