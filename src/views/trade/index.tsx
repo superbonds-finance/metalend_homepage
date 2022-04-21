@@ -58,10 +58,11 @@ import PoligonInActive from "../../assets/polygon_trade_inactive.png";
 import { ImInfo } from 'react-icons/im';
 import { Tooltip } from 'antd';
 
+let loaded30 = false;
+
 export function TradeView() {
     const connection = useConnection();
     const wallet = useWallet();
-    //const [loaded,setLoaded] = useState(false);
 
     const [data30pool,setData30pool] = useState<any>();
     const [data90pool,setData90pool] = useState<any>();
@@ -125,7 +126,7 @@ export function TradeView() {
 
     const [bondValue_90,setBondValue_90] = useState(0);
     const [bondValueMaturity_90,setBondValueMaturity_90] = useState(0);
-    const [stakingPool, setStakingPool] = useState<any>();
+    const [platformData, setPlatformData] = useState<any>();
     const [lq_amount30, setLQ_Amount30] = useState<any>("");
     const [lq_amount90, setLQ_Amount90] = useState<any>("");
 
@@ -142,10 +143,10 @@ export function TradeView() {
     useEffect(() => {
       readPoolData_30();
       readPoolData_90();
-      getStakingPoolData();
+      getPlatformData();
       onShowAllTrades(2);
       getAllBalances();
-    }, [wallet]);
+    }, [wallet.publicKey]);
 
     useEffect(() => {
       //if (!wallet.publicKey) return;
@@ -184,17 +185,20 @@ export function TradeView() {
       //   });
       //   return;
       // }
+      // const data = {"pool":30};
+      // const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPoolData',data);
+      // console.log('api pool 30 data',response.data)
 
       const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
 
       setData30pool(decodedPoolDataState);
+      console.log('rpc pool 30 data',decodedPoolDataState);
 
       const encodeSuperBonds_Rewards_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.SuperBonds_Rewards_Pool), 'singleGossip'))!.data;
       const decodeSuperBonds_Rewards_Pool_Account_ADDRESS = AccountLayout.decode(encodeSuperBonds_Rewards_Pool_Account_ADDRESS);
       let SuperBonds_Rewards_Pool_Balance = new BN(decodeSuperBonds_Rewards_Pool_Account_ADDRESS.amount, 10, "le").toNumber() / (10**USDC_DECIMALS);
       setSuperBonds_Rewards_Pool_30_Balance(SuperBonds_Rewards_Pool_Balance);
-
 
     }
     const readPoolData_90 = async () => {
@@ -216,37 +220,31 @@ export function TradeView() {
       const encodedPoolDataState = (await connection.getAccountInfo(POOL_90_ADDRESS, 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
       setData90pool(decodedPoolDataState);
+      console.log('rpc pool 90 data',decodedPoolDataState);
 
       const encodeSuperBonds_Rewards_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.SuperBonds_Rewards_Pool), 'singleGossip'))!.data;
       const decodeSuperBonds_Rewards_Pool_Account_ADDRESS = AccountLayout.decode(encodeSuperBonds_Rewards_Pool_Account_ADDRESS);
       let SuperBonds_Rewards_Pool_Balance = new BN(decodeSuperBonds_Rewards_Pool_Account_ADDRESS.amount, 10, "le").toNumber() / (10**USDC_DECIMALS);
       setSuperBonds_Rewards_Pool_90_Balance(SuperBonds_Rewards_Pool_Balance);
+
     }
-    const getStakingPoolData = async () => {
-      // if ( !wallet){
-      //   notify({
-      //     message: 'Please connect to Sol network',
-      //     type: "error",
-      //   });
-      //   return;
-      // }
-      // let publicKey = wallet.publicKey;
-      // if (!publicKey){
-      //   notify({
-      //     message: 'Please connect to Solana network',
-      //     type: "error",
-      //   });
-      //   return;
-      // }
-      const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
-      const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-      ////console.log(decodedPoolDataState);
-      setStakingPool(decodedPoolDataState);
+    const getPlatformData = async () => {
+      //
+      const response:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/platformData ');
+      let decodedPoolDataState = response.data as PlatformDataLayout;
+      //console.log('api platform data',decodedPoolDataState)
+
+      // const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
+      // const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
+      console.log('rpc platform data',decodedPoolDataState);
+
+      setPlatformData(decodedPoolDataState);
       let bond_yield = decodedPoolDataState.pool_yield_vector[0]/100;
       setBond_Yield30(bond_yield);
       bond_yield =  decodedPoolDataState.pool_yield_vector[1]/100;
 
       setBond_Yield90(bond_yield);
+
 
     }
 
@@ -636,10 +634,10 @@ export function TradeView() {
               { pubkey: nft_associated_token_account_address, isSigner: false, isWritable: false },
               { pubkey: NFT_Mint_account.publicKey, isSigner: false, isWritable: false },
               { pubkey: new PublicKey(datapool.LP_Pool), isSigner: false, isWritable: true },
-              { pubkey: new PublicKey(stakingPool.SuperB_Pool), isSigner: false, isWritable: true },
+              { pubkey: new PublicKey(platformData.SuperB_Pool), isSigner: false, isWritable: true },
               { pubkey: new PublicKey(datapool.Traders_Pool), isSigner: false, isWritable: true },
               { pubkey: new PublicKey(datapool.SuperBonds_Rewards_Pool), isSigner: false, isWritable: true },
-              { pubkey: new PublicKey(stakingPool.Treasury), isSigner: false, isWritable: true },
+              { pubkey: new PublicKey(platformData.Treasury), isSigner: false, isWritable: true },
               { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
               { pubkey: SUPERB_MINT_ADDRESS, isSigner: false, isWritable: true},
               { pubkey: lp_token_mint_address, isSigner: false, isWritable: true},
@@ -693,7 +691,7 @@ export function TradeView() {
             await delay(3000);
             readPoolData_30();
             readPoolData_90();
-            getStakingPoolData();
+            getPlatformData();
             //onShowAllTrades(2);
             await delay(3000);
             fetchPrivateAPI(10,0);
@@ -719,10 +717,10 @@ export function TradeView() {
               { pubkey: nft_associated_token_account_address, isSigner: false, isWritable: false },
               { pubkey: NFT_Mint_account.publicKey, isSigner: false, isWritable: false },
               { pubkey: new PublicKey(datapool.LP_Pool), isSigner: false, isWritable: true },
-              { pubkey: new PublicKey(stakingPool.SuperB_Pool), isSigner: false, isWritable: true },
+              { pubkey: new PublicKey(platformData.SuperB_Pool), isSigner: false, isWritable: true },
               { pubkey: new PublicKey(datapool.Traders_Pool), isSigner: false, isWritable: true },
               { pubkey: new PublicKey(datapool.SuperBonds_Rewards_Pool), isSigner: false, isWritable: true },
-              { pubkey: new PublicKey(stakingPool.Treasury), isSigner: false, isWritable: true },
+              { pubkey: new PublicKey(platformData.Treasury), isSigner: false, isWritable: true },
               { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
               { pubkey: SUPERB_MINT_ADDRESS, isSigner: false, isWritable: true},
               { pubkey: lp_token_mint_address, isSigner: false, isWritable: true},
@@ -775,7 +773,7 @@ export function TradeView() {
             await delay(3000);
             readPoolData_30();
             readPoolData_90();
-            getStakingPoolData();
+            getPlatformData();
             //onShowAllTrades(2);
             await delay(5000);
             fetchPublicAPI(10,0);
@@ -862,7 +860,7 @@ export function TradeView() {
     useEffect(()=>{
       let publicKey = wallet.publicKey;
       if(wallet && publicKey) fetchPrivateAPI(10,0)
-    },[wallet])
+    },[wallet.publicKey])
 
     useEffect(()=>{
       fetchPublicAPI(10,0);

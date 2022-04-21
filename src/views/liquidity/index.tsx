@@ -46,6 +46,8 @@ import { HeaderCard } from "../../components/HeaderCard";
 import { Tooltip } from "antd";
 import { ImInfo } from "react-icons/im";
 
+import axios from 'axios';
+import {AxiosResponse} from 'axios';
 
 export function LiquidityView() {
 
@@ -95,25 +97,31 @@ export function LiquidityView() {
     readPoolData_90();
     getAllBalances();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet]);
+  }, [wallet.publicKey]);
 
 
 
   const readPoolData_30 = async () => {
 
-    const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
-    const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-    setData30pool(decodedPoolDataState);
-    //console.log(decodedPoolDataState)
-    let transactionFeeSuperB = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber() / (10**USDC_DECIMALS);
-    setTransactionFees(transactionFeeSuperB)
+    const data = {"pool":30};
+    const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPoolData',data);
+    console.log('api pool 30 data',response.data)
+    // console.log(parseInt(response.data.transaction_fee_SuperB, 16))
+    // const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
+    // const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
+    setData30pool(response.data);
+    // //console.log(decodedPoolDataState)
+    // let transactionFeeSuperB = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber() / (10**USDC_DECIMALS);
+    setTransactionFees(parseInt(response.data.transaction_fee_SuperB, 16))
 
   }
   const readPoolData_90 = async () => {
-
-    const encodedPoolDataState = (await connection.getAccountInfo(POOL_90_ADDRESS, 'singleGossip'))!.data;
-    const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-    setData90pool(decodedPoolDataState);
+    const data = {"pool":90};
+    const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPoolData',data);
+    console.log('api pool 90 data',response.data)
+    // const encodedPoolDataState = (await connection.getAccountInfo(POOL_90_ADDRESS, 'singleGossip'))!.data;
+    // const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
+    setData90pool(response.data);
   }
 
   const onChangeLQ_amount30 = useCallback((e) => {

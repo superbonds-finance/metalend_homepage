@@ -42,7 +42,7 @@ export  function ClaimNFTView() {
   useEffect( () => {
     if (!wallet.publicKey) return;
 
-  }, [wallet]);
+  }, [wallet.publicKey]);
 
   const onCheck = async () => {
     setMyNFT_dataSource([]);

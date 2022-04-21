@@ -65,7 +65,7 @@ export const HomeView = () => {
       getStakingPoolData();
       onShowAllTrades(2);
       // getAllBalances();
-    }, [wallet]);
+    }, [wallet.publicKey]);
 
     useEffect(() => {
       //if (!wallet.publicKey) return;
@@ -214,7 +214,7 @@ export const HomeView = () => {
     useEffect(()=>{
       let publicKey = wallet.publicKey;
       if(wallet && publicKey) fetchPrivateAPI(10,0)
-    },[wallet])
+    },[wallet.publicKey])
 
     useEffect(()=>{
       fetchPublicAPI(10,0);
