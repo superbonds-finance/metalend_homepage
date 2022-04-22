@@ -171,7 +171,7 @@ export  function ClaimNFTView() {
       return;
     }
     let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-    if (SOL_balance <= 0.001){
+    if (SOL_balance <= 0.005){
       notify({
         message: 'You have low Sol balance',
         type: "info",
@@ -233,12 +233,29 @@ export  function ClaimNFTView() {
     let new_owner_Data_pk = null;
 
     if (resp.length == 0){
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
       let new_owner_Data_account = new Account();
       //console.log('new_owner_Data_account',new_owner_Data_account.publicKey.toBase58());
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: new_owner_Data_account.publicKey
       });

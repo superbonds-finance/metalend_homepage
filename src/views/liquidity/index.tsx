@@ -135,6 +135,10 @@ export function LiquidityView() {
     setLQ_Amount90(formatInputNumber(value));
   }, []);
   const onRemoveLiquidity = async (pool: any) => {
+    notify({
+      message: 'Please connect to Solana network',
+      type: "error",
+    });
     let RemoveLiquidityFees=pool===30?data30pool.remove_liquidity_fee_USDC/100:data90pool.remove_liquidity_fee_USDC/100;
 
     const message = `
@@ -197,7 +201,7 @@ export function LiquidityView() {
       return;
     }
     let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-    if (SOL_balance <= 0.001){
+    if (SOL_balance <= 0.005){
       notify({
         message: 'You have low Sol balance',
         type: "info",
@@ -242,13 +246,31 @@ export function LiquidityView() {
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey, SUPERB_MINT_ADDRESS);
     //console.log('associated_SUPERB_token_account_address', associated_SUPERB_token_account_address.toBase58());
 
+    let rentExemption = 0;
+    try{
+      rentExemption = await connection.getMinimumBalanceForRentExemption(AccountLayout.span, 'singleGossip');
+      if (rentExemption == 0){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+    } catch(e){
+      notify({
+        message: 'Please try again, connection to Solana blockchain was interrupted',
+        type: "error",
+      });
+      return;
+    }
+
     //Create new LP token Account and transfer  amount to it
     const lp_token_account = new Account();
     //console.log('lp_token_account', lp_token_account.publicKey.toBase58());
     const createLPTokenAccountIx = SystemProgram.createAccount({
       programId: TOKEN_PROGRAM_ID,
       space: AccountLayout.span,
-      lamports: await connection.getMinimumBalanceForRentExemption(AccountLayout.span, 'singleGossip'),
+      lamports: rentExemption,
       fromPubkey: publicKey,
       newAccountPubkey: lp_token_account.publicKey
     });
@@ -429,7 +451,7 @@ export function LiquidityView() {
       return;
     }
     let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-    if (SOL_balance <= 0.001){
+    if (SOL_balance <= 0.005){
       notify({
         message: 'You have low Sol balance',
         type: "info",

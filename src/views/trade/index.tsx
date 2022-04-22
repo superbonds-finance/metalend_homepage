@@ -193,7 +193,7 @@ export function TradeView() {
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
 
       setData30pool(decodedPoolDataState);
-      console.log('rpc pool 30 data',decodedPoolDataState);
+      //console.log('rpc pool 30 data',decodedPoolDataState);
 
       const encodeSuperBonds_Rewards_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.SuperBonds_Rewards_Pool), 'singleGossip'))!.data;
       const decodeSuperBonds_Rewards_Pool_Account_ADDRESS = AccountLayout.decode(encodeSuperBonds_Rewards_Pool_Account_ADDRESS);
@@ -220,7 +220,7 @@ export function TradeView() {
       const encodedPoolDataState = (await connection.getAccountInfo(POOL_90_ADDRESS, 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
       setData90pool(decodedPoolDataState);
-      console.log('rpc pool 90 data',decodedPoolDataState);
+      //console.log('rpc pool 90 data',decodedPoolDataState);
 
       const encodeSuperBonds_Rewards_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.SuperBonds_Rewards_Pool), 'singleGossip'))!.data;
       const decodeSuperBonds_Rewards_Pool_Account_ADDRESS = AccountLayout.decode(encodeSuperBonds_Rewards_Pool_Account_ADDRESS);
@@ -236,7 +236,7 @@ export function TradeView() {
 
       // const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
       // const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-      console.log('rpc platform data',decodedPoolDataState);
+      //console.log('rpc platform data',decodedPoolDataState);
 
       setPlatformData(decodedPoolDataState);
       let bond_yield = decodedPoolDataState.pool_yield_vector[0]/100;
@@ -299,7 +299,7 @@ export function TradeView() {
         return;
       }
       let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-      if (SOL_balance <= 0.001){
+      if (SOL_balance <= 0.005){
         notify({
           message: 'You have low Sol balance',
           type: "info",
@@ -892,7 +892,7 @@ export function TradeView() {
         return;
       }
       let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-      if (SOL_balance <= 0.001){
+      if (SOL_balance <= 0.005){
         notify({
           message: 'You have low Sol balance',
           type: "info",
@@ -1109,7 +1109,7 @@ export function TradeView() {
       setBondValueMaturity_90(bondValueMaturity);
     }
   }
- 
+
     return (
         <div className="w-screen h-screen bg-black">
             <div  className="w-9/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
@@ -1173,8 +1173,8 @@ export function TradeView() {
                                 <Text className='text-grid cursor-pointer w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                 <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}>
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
-                                <Text className="hex_number" 
-                                size={CalculateHexNumberSize(((APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):'0.00').length)} 
+                                <Text className="hex_number"
+                                size={CalculateHexNumberSize(((APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):'0.00').length)}
                                 color={"#9CF61C"}>
                                   <span style={{color:"#9CF61C"}}>
                                     <strong>{(APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):"0.00"}%</strong>
@@ -1346,8 +1346,8 @@ export function TradeView() {
                                   <Text className='w-9/12 text-grid cursor-pointer mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                   <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}>
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
-                                  <Text className="hex_number" 
-                                  size={CalculateHexNumberSize(((APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00').length)} 
+                                  <Text className="hex_number"
+                                  size={CalculateHexNumberSize(((APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00').length)}
                                   color={"#9CF61C"}>
                                     <span style={{color: "#9CF61C"}}>
                                       <strong>{(APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00'}%</strong>
@@ -1381,7 +1381,7 @@ export function TradeView() {
                                       <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
                                       <HoverToolTip noColor className="text-grid flex flex-col">
                                           <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >SuperBonds Pool
-                                            <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during SuperBonds periods'}> 
+                                            <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during SuperBonds periods'}>
                                             <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                           </Text>
                                           <Text size={"19px"} color={(superBonds_status90 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"white"}><span ><strong>{(SuperBonds_Rewards_Pool_90_Balance).toFixed(2)}</strong></span></Text>

@@ -12,7 +12,7 @@ export function notify({
   description = undefined as any,
   txid = "",
   type = "info",
-  placement = "bottomLeft",
+  placement = "bottomLeft"
 }) {
   if (txid) {
     //   <Link
@@ -35,5 +35,7 @@ export function notify({
     style: {
       backgroundColor: "#007500",
     },
+    duration: 10,
+
   });
 }

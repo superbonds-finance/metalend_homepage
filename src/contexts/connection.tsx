@@ -25,6 +25,7 @@ export const ENDPOINTS = [
     name: "mainnet-beta" as ENV,
     //endpoint: "https://api.mainnet-beta.solana.com/",
     endpoint: "https://solana-api.projectserum.com",
+    //endpoint: "https://rpc.ankr.com/solana",
     //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
     chainID: ChainID.MainnetBeta,
   },
@@ -55,8 +56,8 @@ const ConnectionContext = React.createContext<ConnectionConfig>({
   setEndpoint: () => {},
   slippage: DEFAULT_SLIPPAGE,
   setSlippage: (val: number) => {},
-  connection: new Connection(DEFAULT, "recent"),
-  sendConnection: new Connection(DEFAULT, "recent"),
+  connection: new Connection(DEFAULT, "confirmed"),
+  sendConnection: new Connection(DEFAULT, "confirmed"),
   env: ENDPOINTS[0].name,
   tokens: [],
   tokenMap: new Map<string, TokenInfo>(),
@@ -73,12 +74,14 @@ export function ConnectionProvider({ children = undefined as any }) {
     DEFAULT_SLIPPAGE.toString()
   );
 
-  const connection = useMemo(() => new Connection(endpoint, "recent"), [
-    endpoint,
-  ]);
-  const sendConnection = useMemo(() => new Connection(endpoint, "recent"), [
-    endpoint,
-  ]);
+  // const connection = useMemo(() => new Connection(endpoint, "recent"), [
+  //   endpoint,
+  // ]);
+  // const sendConnection = useMemo(() => new Connection(endpoint, "recent"), [
+  //   endpoint,
+  // ]);
+  const connection = new Connection(endpoint, "confirmed");
+  const sendConnection = new Connection(endpoint, "confirmed");
 
   const chain =
     ENDPOINTS.find((end) => end.endpoint === endpoint) || ENDPOINTS[0];
@@ -98,30 +101,30 @@ export function ConnectionProvider({ children = undefined as any }) {
   //     connection.removeAccountChangeListener(id);
   //   };
   // }, [connection]);
-
+  //
   // useEffect(() => {
   //   const id = connection.onSlotChange(() => null);
   //   return () => {
   //     connection.removeSlotChangeListener(id);
   //   };
   // }, [connection]);
-
-  useEffect(() => {
-    const id = sendConnection.onAccountChange(
-      new Account().publicKey,
-      () => {}
-    );
-    return () => {
-      sendConnection.removeAccountChangeListener(id);
-    };
-  }, [sendConnection]);
-
-  useEffect(() => {
-    const id = sendConnection.onSlotChange(() => null);
-    return () => {
-      sendConnection.removeSlotChangeListener(id);
-    };
-  }, [sendConnection]);
+  //
+  // useEffect(() => {
+  //   const id = sendConnection.onAccountChange(
+  //     new Account().publicKey,
+  //     () => {}
+  //   );
+  //   return () => {
+  //     sendConnection.removeAccountChangeListener(id);
+  //   };
+  // }, [sendConnection]);
+  //
+  // useEffect(() => {
+  //   const id = sendConnection.onSlotChange(() => null);
+  //   return () => {
+  //     sendConnection.removeSlotChangeListener(id);
+  //   };
+  // }, [sendConnection]);
 
   return (
     <ConnectionContext.Provider
@@ -146,9 +149,9 @@ export function useConnection() {
   return useContext(ConnectionContext).connection as Connection;
 }
 
-export function useSendConnection() {
-  return useContext(ConnectionContext)?.sendConnection;
-}
+// export function useSendConnection() {
+//   return useContext(ConnectionContext)?.sendConnection;
+// }
 
 export function useConnectionConfig() {
   const context = useContext(ConnectionContext);
