@@ -406,7 +406,7 @@ export const RedeemView = () => {
                 <div className='flex pt-6 justify-around flex-col items-center'>
                     <div className="flex w-6/12 md:w-full md:mt-3 flex-col bg-gray-300 py-3 px-7 mt-4  rounded-md md:ml-0 sm:py-3 sm:px-2">
                         <div className="text-center">
-                            <Text weight={'true'} size ={"16px"} transform={"true"} color={"#7CFA4C"}>Redeem NFT Bond Trade Token</Text>
+                            <Text weight={'true'} size ={"16px"} transform={"true"} color={"#7CFA4C"}>Bond Redemption</Text>
                         </div>
                         <div className="flex justify-between py-2 px-2  mt-3 ß rounded-md" style={{'background':' linear-gradient(89.52deg, rgba(124, 250, 76, 0.1) 15.18%, rgba(124, 250, 76, 0) 76.06%), #1F2933'}}>
                           <Text className='' weight size="14px" opacity="0.5">Trade Account:</Text>
