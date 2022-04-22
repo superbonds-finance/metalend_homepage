@@ -52,7 +52,7 @@ export function Routes() {
     <HashRouter basename={"/"}>
       <ConnectionProvider>
         <WalletProvider wallets={wallets} autoConnect>
-          <AccountsProvider>
+          {/* <AccountsProvider> */}
 
               <AppLayout>
                 <Switch>
@@ -71,7 +71,7 @@ export function Routes() {
                 </Switch>
               </AppLayout>
 
-          </AccountsProvider>
+            {/* </AccountsProvider> */}
         </WalletProvider>
       </ConnectionProvider>
     </HashRouter>

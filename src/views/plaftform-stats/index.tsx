@@ -65,7 +65,7 @@ export function PlatformStatsView() {
     const onGetFreeSol = async () => {
       if ( !wallet){
         notify({
-          message: 'Please connect to Sol network',
+          message: 'Please connect to Solana network',
           type: "error",
         });
         return;
@@ -115,7 +115,7 @@ export function PlatformStatsView() {
     const onGetFreeToken = async (_type:number) => {
       if ( !wallet){
         notify({
-          message: 'Please connect to Sol network',
+          message: 'Please connect to Solana network',
           type: "error",
         });
         return;

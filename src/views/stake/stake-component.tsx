@@ -105,7 +105,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
   const getAllBalances = async () => {
     if ( !wallet){
       // notify({
-      //   message: 'Please connect to Sol network',
+      //   message: 'Please connect to Solana network',
       //   type: "error",
       // });
       return;
@@ -159,7 +159,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
   const getTraderDataAccount = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -197,7 +197,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
   const getPlatformData = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -249,7 +249,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
   const getRewardDataAccount = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -374,7 +374,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
 
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -538,21 +538,37 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           type: "error",
         });
       }else{
-        if (!isClaim){
-          notify({
-            message: 'Staking Request Sent',
-            type: "success",
-          });
-        }
-        else{
-          notify({
-            message: 'Claim SuperB Rewards from ' + pool+'-days Pool LP Staking Sent',
-            type: "success",
-          });
-        }
-        await delay(3000);
-        onRefresh();
-        getAllLiquidityBalances()
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              if (!isClaim){
+                notify({
+                  message: 'Staking Request Sent',
+                  type: "success",
+                });
+              }
+              else{
+                notify({
+                  message: 'Claim SuperB Rewards from ' + pool+'-days Pool LP Staking Sent',
+                  type: "success",
+                });
+              }
+              onRefresh();
+              getAllLiquidityBalances()
+              return;
+            }
+
+
+        notify({
+          message: 'Cannot confirm transaction.',
+          type: "error",
+        });
+
       }
     }
 
@@ -590,21 +606,36 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           type: "error",
         });
       }else{
-        if (!isClaim){
-          notify({
-            message: 'Staking Request Sent',
-            type: "success",
-          });
-        }
-        else{
-          notify({
-            message: 'Claim SuperB Rewards from Pool LP Staking Sent',
-            type: "success",
-          });
-        }
-        await delay(3000);
-        onRefresh();
-       getAllLiquidityBalances()
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              if (!isClaim){
+                notify({
+                  message: 'Staking Request Sent',
+                  type: "success",
+                });
+              }
+              else{
+                notify({
+                  message: 'Claim SuperB Rewards from ' + pool+'-days Pool LP Staking Sent',
+                  type: "success",
+                });
+              }
+              onRefresh();
+              getAllLiquidityBalances()
+              return;
+            }
+
+
+        notify({
+          message: 'Cannot confirm transaction.',
+          type: "error",
+        });
       }
     }
 
@@ -658,7 +689,7 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
 
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -797,13 +828,30 @@ export const StakeViewComponent: React.FC<{ poolType: string ,getAllLiquidityBal
           type: "error",
         });
       }else{
+
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              notify({
+                message: 'Unstake Request Sent',
+                type: "success",
+              });
+              onRefresh();
+              getAllLiquidityBalances()
+              return;
+            }
+
+
         notify({
-          message: 'Unstake Request Sent',
-          type: "success",
+          message: 'Cannot confirm transaction.',
+          type: "error",
         });
-        await delay(3000);
-        onRefresh();
-        getAllLiquidityBalances()
+
       }
     }
 

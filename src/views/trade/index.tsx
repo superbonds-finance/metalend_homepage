@@ -80,7 +80,7 @@ export function TradeView() {
     const getAllBalances = async () => {
       if ( !wallet){
         // notify({
-        //   message: 'Please connect to Sol network',
+        //   message: 'Please connect to Solana network',
         //   type: "error",
         // });
         return;
@@ -146,6 +146,7 @@ export function TradeView() {
       getPlatformData();
       onShowAllTrades(2);
       getAllBalances();
+
     }, [wallet.publicKey]);
 
     useEffect(() => {
@@ -171,9 +172,11 @@ export function TradeView() {
     }, [data30pool,data90pool]);
 
     const readPoolData_30 = async () => {
+        // let transaction_info = await connection.getConfirmedTransaction("SjUkzvu61q7DHddEB2Rk3LU5nyqS16Wvaajko4LJP1bdb5coJAypm4MYMGgJiaDQV9YfgtAPwjoBAbMfmwnBM1Q","confirmed");
+        // console.log(transaction_info);
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -193,7 +196,7 @@ export function TradeView() {
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
 
       setData30pool(decodedPoolDataState);
-      console.log('rpc pool 30 data',decodedPoolDataState);
+      //console.log('rpc pool 30 data',decodedPoolDataState);
 
       const encodeSuperBonds_Rewards_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.SuperBonds_Rewards_Pool), 'singleGossip'))!.data;
       const decodeSuperBonds_Rewards_Pool_Account_ADDRESS = AccountLayout.decode(encodeSuperBonds_Rewards_Pool_Account_ADDRESS);
@@ -204,7 +207,7 @@ export function TradeView() {
     const readPoolData_90 = async () => {
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -220,7 +223,7 @@ export function TradeView() {
       const encodedPoolDataState = (await connection.getAccountInfo(POOL_90_ADDRESS, 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
       setData90pool(decodedPoolDataState);
-      console.log('rpc pool 90 data',decodedPoolDataState);
+      //console.log('rpc pool 90 data',decodedPoolDataState);
 
       const encodeSuperBonds_Rewards_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.SuperBonds_Rewards_Pool), 'singleGossip'))!.data;
       const decodeSuperBonds_Rewards_Pool_Account_ADDRESS = AccountLayout.decode(encodeSuperBonds_Rewards_Pool_Account_ADDRESS);
@@ -236,7 +239,7 @@ export function TradeView() {
 
       // const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
       // const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-      console.log('rpc platform data',decodedPoolDataState);
+      //console.log('rpc platform data',decodedPoolDataState);
 
       setPlatformData(decodedPoolDataState);
       let bond_yield = decodedPoolDataState.pool_yield_vector[0]/100;
@@ -283,9 +286,10 @@ export function TradeView() {
     };
 
     const onTrade = async (pool:any) =>{
+
       if ( !wallet){
         notify({
-          message: 'Please connect to Sol network',
+          message: 'Please connect to Solana network',
           type: "error",
         });
         return;
@@ -299,7 +303,7 @@ export function TradeView() {
         return;
       }
       let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-      if (SOL_balance <= 0.001){
+      if (SOL_balance <= 0.005){
         notify({
           message: 'You have low Sol balance',
           type: "info",
@@ -669,6 +673,29 @@ export function TradeView() {
             type: "error",
           });
         }else{
+          console.log(txid1);
+          notify({
+            message: 'Checking transaction status...',
+            type: "info",
+          });
+          //await delay(10000);
+          console.log(txid1);
+          let transaction_info = await connection.getConfirmedTransaction(txid1+"","confirmed");
+          console.log(transaction_info);
+
+          let continue_step2 = false;
+          if (transaction_info)
+            if (transaction_info.meta)
+              if (transaction_info.meta.err == null){
+                continue_step2 = true;
+              }
+          if (!continue_step2){
+            notify({
+              message: 'Something wrong with your request!',
+              type: "error",
+            });
+            return;
+          }
           notify({
             message: 'Step 2: Creating the trade ...',
             type: "success",
@@ -678,25 +705,47 @@ export function TradeView() {
                 TradeIx
               ]
             ,[trade_state_account,NFT_Mint_account,trader_Data_account]);
-          if (!txid1){
+          if (!txid2){
             notify({
               message: 'Something wrong with your request!',
               type: "error",
             });
           }else{
+            console.log(txid2);
             notify({
-              message: 'Added Trade successfully',
-              type: "success",
+              message: 'Checking transaction status...',
+              type: "info",
             });
-            await delay(3000);
-            readPoolData_30();
-            readPoolData_90();
-            getPlatformData();
-            //onShowAllTrades(2);
-            await delay(3000);
-            fetchPrivateAPI(10,0);
-            fetchPublicAPI(10,0);
-            setOffset(0)
+            //await delay(10000);
+            console.log(txid2);
+            let transaction_info = await connection.getConfirmedTransaction(txid2+"","confirmed");
+            console.log(transaction_info);
+
+            if (transaction_info)
+              if (transaction_info.meta)
+                if (transaction_info.meta.err == null){
+                  notify({
+                    message: 'Trade added successfully',
+                    type: "info",
+                  });
+                  readPoolData_30();
+                  readPoolData_90();
+                  getPlatformData();
+                  //onShowAllTrades(2);
+                  await delay(3000);
+                  fetchPrivateAPI(10,0);
+                  fetchPublicAPI(10,0);
+                  setOffset(0);
+                  return;
+                }
+
+
+            notify({
+              message: 'Cannot confirm transaction.',
+              type: "error",
+            });
+
+
           }
         }
       }
@@ -750,6 +799,30 @@ export function TradeView() {
             type: "error",
           });
         }else{
+          console.log(txid1);
+          notify({
+            message: 'Checking transaction status...',
+            type: "info",
+          });
+          //await delay(10000);
+          console.log(txid1);
+          let transaction_info = await connection.getConfirmedTransaction(txid1+"","confirmed");
+          console.log(transaction_info);
+
+          let continue_step2 = false;
+          if (transaction_info)
+            if (transaction_info.meta)
+              if (transaction_info.meta.err == null){
+                continue_step2 = true;
+              }
+          if (!continue_step2){
+            notify({
+              message: 'Something wrong with your request!',
+              type: "error",
+            });
+            return;
+          }
+
           notify({
             message: 'Step 2: Creating the trade ...',
             type: "success",
@@ -760,26 +833,45 @@ export function TradeView() {
                 TradeIx
               ]
             ,[trade_state_account,NFT_Mint_account]);
-          if (!txid1){
+          if (!txid2){
             notify({
               message: 'Something wrong with your request!',
               type: "error",
             });
           }else{
+            console.log(txid2);
             notify({
-              message: 'New trade request sent successfully',
-              type: "success",
+              message: 'Checking transaction status...',
+              type: "info",
             });
-            await delay(3000);
-            readPoolData_30();
-            readPoolData_90();
-            getPlatformData();
-            //onShowAllTrades(2);
-            await delay(5000);
-            fetchPublicAPI(10,0);
-            fetchPrivateAPI(10,0);
-            setOffset(0);
-            getAllBalances();
+            //await delay(10000);
+            console.log(txid2);
+            let transaction_info = await connection.getConfirmedTransaction(txid2+"","confirmed");
+            console.log(transaction_info);
+
+            if (transaction_info)
+              if (transaction_info.meta)
+                if (transaction_info.meta.err == null){
+                  notify({
+                    message: 'Trade added successfully',
+                    type: "info",
+                  });
+                  readPoolData_30();
+                  readPoolData_90();
+                  getPlatformData();
+                  //onShowAllTrades(2);
+                  await delay(3000);
+                  fetchPrivateAPI(10,0);
+                  fetchPublicAPI(10,0);
+                  setOffset(0);
+                  return;
+                }
+
+
+            notify({
+              message: 'Cannot confirm transaction.',
+              type: "error",
+            });
           }
         }
 
@@ -878,7 +970,7 @@ export function TradeView() {
     const onSettle = async (pool:any,owner:any,usdc_account:any,data_account:any,amount:number) =>{
       if ( !wallet){
         notify({
-          message: 'Please connect to Sol network',
+          message: 'Please connect to Solana network',
           type: "error",
         });
         return;
@@ -892,7 +984,7 @@ export function TradeView() {
         return;
       }
       let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-      if (SOL_balance <= 0.001){
+      if (SOL_balance <= 0.005){
         notify({
           message: 'You have low Sol balance',
           type: "info",
@@ -1109,7 +1201,7 @@ export function TradeView() {
       setBondValueMaturity_90(bondValueMaturity);
     }
   }
- 
+
     return (
         <div className="w-screen h-screen bg-black">
             <div  className="w-9/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
@@ -1173,8 +1265,8 @@ export function TradeView() {
                                 <Text className='text-grid cursor-pointer w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                 <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}>
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
-                                <Text className="hex_number" 
-                                size={CalculateHexNumberSize(((APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):'0.00').length)} 
+                                <Text className="hex_number"
+                                size={CalculateHexNumberSize(((APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):'0.00').length)}
                                 color={"#9CF61C"}>
                                   <span style={{color:"#9CF61C"}}>
                                     <strong>{(APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):"0.00"}%</strong>
@@ -1346,8 +1438,8 @@ export function TradeView() {
                                   <Text className='w-9/12 text-grid cursor-pointer mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
                                   <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}>
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
-                                  <Text className="hex_number" 
-                                  size={CalculateHexNumberSize(((APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00').length)} 
+                                  <Text className="hex_number"
+                                  size={CalculateHexNumberSize(((APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00').length)}
                                   color={"#9CF61C"}>
                                     <span style={{color: "#9CF61C"}}>
                                       <strong>{(APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00'}%</strong>
@@ -1381,7 +1473,7 @@ export function TradeView() {
                                       <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
                                       <HoverToolTip noColor className="text-grid flex flex-col">
                                           <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >SuperBonds Pool
-                                            <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during SuperBonds periods'}> 
+                                            <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during SuperBonds periods'}>
                                             <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                           </Text>
                                           <Text size={"19px"} color={(superBonds_status90 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"white"}><span ><strong>{(SuperBonds_Rewards_Pool_90_Balance).toFixed(2)}</strong></span></Text>

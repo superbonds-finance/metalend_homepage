@@ -53,7 +53,7 @@ export const FarmingRewardsView = () => {
   const getAllBalances = async () => {
     if ( !wallet){
       // notify({
-      //   message: 'Please connect to Sol network',
+      //   message: 'Please connect to Solana network',
       //   type: "error",
       // });
       return;
@@ -105,7 +105,7 @@ export const FarmingRewardsView = () => {
   // const getRewardDataAccount = async () => {
   //   if ( !wallet){
   //     notify({
-  //       message: 'Please connect to Sol network',
+  //       message: 'Please connect to Solana network',
   //       type: "error",
   //     });
   //     return;
@@ -150,7 +150,7 @@ export const FarmingRewardsView = () => {
   const getRewardRequestAccount = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;

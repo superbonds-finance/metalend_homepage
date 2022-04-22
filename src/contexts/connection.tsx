@@ -13,6 +13,7 @@ import { ExplorerLink } from "../components/ExplorerLink";
 import { setProgramIds } from "../utils/ids";
 import { cache, getMultipleAccounts, MintParser } from "./accounts";
 import { TokenListProvider, ENV as ChainID, TokenInfo } from "@solana/spl-token-registry";
+import { delay} from "../utils/utils";
 
 export type ENV =
   | "mainnet-beta"
@@ -22,17 +23,29 @@ export type ENV =
 
 export const ENDPOINTS = [
   {
-    name: "mainnet-beta" as ENV,
-    //endpoint: "https://api.mainnet-beta.solana.com/",
-    endpoint: "https://solana-api.projectserum.com",
+    name: "mainnet-beta-ankr" as ENV,
+    endpoint: "https://rpc.ankr.com/solana/d37b6b8b8656e4b66b92cb4ed5b004d0f2eda1dae120e3a6cc90ff06121398ae",
     //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
     chainID: ChainID.MainnetBeta,
   },
   {
-    name: "devnet" as ENV,
-    endpoint: clusterApiUrl("devnet"),
-    chainID: ChainID.Devnet,
-  }
+    name: "mainnet-beta-serum" as ENV,
+    endpoint: "https://solana-api.projectserum.com",
+    //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
+    chainID: ChainID.MainnetBeta,
+  },
+
+  {
+    name: "mainnet-beta-solana" as ENV,
+    endpoint: "https://api.mainnet-beta.solana.com/",
+    //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
+    chainID: ChainID.MainnetBeta,
+  },
+  // {
+  //   name: "devnet" as ENV,
+  //   endpoint: clusterApiUrl("devnet"),
+  //   chainID: ChainID.Devnet,
+  // }
 ];
 
 const DEFAULT = ENDPOINTS[0].endpoint;
@@ -55,8 +68,8 @@ const ConnectionContext = React.createContext<ConnectionConfig>({
   setEndpoint: () => {},
   slippage: DEFAULT_SLIPPAGE,
   setSlippage: (val: number) => {},
-  connection: new Connection(DEFAULT, "recent"),
-  sendConnection: new Connection(DEFAULT, "recent"),
+  connection: new Connection(DEFAULT, "confirmed"),
+  sendConnection: new Connection(DEFAULT, "confirmed"),
   env: ENDPOINTS[0].name,
   tokens: [],
   tokenMap: new Map<string, TokenInfo>(),
@@ -73,12 +86,14 @@ export function ConnectionProvider({ children = undefined as any }) {
     DEFAULT_SLIPPAGE.toString()
   );
 
-  const connection = useMemo(() => new Connection(endpoint, "recent"), [
-    endpoint,
-  ]);
-  const sendConnection = useMemo(() => new Connection(endpoint, "recent"), [
-    endpoint,
-  ]);
+  // const connection = useMemo(() => new Connection(endpoint, "recent"), [
+  //   endpoint,
+  // ]);
+  // const sendConnection = useMemo(() => new Connection(endpoint, "recent"), [
+  //   endpoint,
+  // ]);
+  const connection = new Connection(endpoint, "confirmed");
+  const sendConnection = new Connection(endpoint, "confirmed");
 
   const chain =
     ENDPOINTS.find((end) => end.endpoint === endpoint) || ENDPOINTS[0];
@@ -98,30 +113,30 @@ export function ConnectionProvider({ children = undefined as any }) {
   //     connection.removeAccountChangeListener(id);
   //   };
   // }, [connection]);
-
+  //
   // useEffect(() => {
   //   const id = connection.onSlotChange(() => null);
   //   return () => {
   //     connection.removeSlotChangeListener(id);
   //   };
   // }, [connection]);
-
-  useEffect(() => {
-    const id = sendConnection.onAccountChange(
-      new Account().publicKey,
-      () => {}
-    );
-    return () => {
-      sendConnection.removeAccountChangeListener(id);
-    };
-  }, [sendConnection]);
-
-  useEffect(() => {
-    const id = sendConnection.onSlotChange(() => null);
-    return () => {
-      sendConnection.removeSlotChangeListener(id);
-    };
-  }, [sendConnection]);
+  //
+  // useEffect(() => {
+  //   const id = sendConnection.onAccountChange(
+  //     new Account().publicKey,
+  //     () => {}
+  //   );
+  //   return () => {
+  //     sendConnection.removeAccountChangeListener(id);
+  //   };
+  // }, [sendConnection]);
+  //
+  // useEffect(() => {
+  //   const id = sendConnection.onSlotChange(() => null);
+  //   return () => {
+  //     sendConnection.removeSlotChangeListener(id);
+  //   };
+  // }, [sendConnection]);
 
   return (
     <ConnectionContext.Provider
@@ -146,9 +161,9 @@ export function useConnection() {
   return useContext(ConnectionContext).connection as Connection;
 }
 
-export function useSendConnection() {
-  return useContext(ConnectionContext)?.sendConnection;
-}
+// export function useSendConnection() {
+//   return useContext(ConnectionContext)?.sendConnection;
+// }
 
 export function useConnectionConfig() {
   const context = useContext(ConnectionContext);
@@ -222,7 +237,7 @@ export const sendTransaction = async (
   const rawTransaction = transaction.serialize();
   let options = {
     skipPreflight: true,
-    commitment: "singleGossip",
+    commitment: "confirmed",
   };
 
   const txid = await connection.sendRawTransaction(rawTransaction, options);
@@ -232,40 +247,28 @@ export const sendTransaction = async (
       message: 'Waiting for confirmation...',
       type: "info",
     });
+
     //console.log('confirm Transaction...',txid);
     try{
-      const status = (
-        await connection.confirmTransaction(
-          txid,
-          options && (options.commitment as any)
-        )
-      ).value;
-
-      if (status?.err) {
-        // const errors = await getErrorForTransaction(connection, txid);
-        // notify({
-        //   message: "Transaction failed...",
-        //   description: (
-        //     <>
-        //       {errors.map((err) => (
-        //         <div>{err}</div>
-        //       ))}
-        //       <ExplorerLink address={txid} type="transaction" />
-        //     </>
-        //   ),
-        //   type: "error",
-        // });
-        return -1;
-        // throw new Error(
-        //   `Raw transaction ${txid} failed (${JSON.stringify(status)})`
-        // );
-      }
+      let confirmation = await connection.confirmTransaction(
+        txid,
+        "confirmed"
+      );
+      console.log('confirmation',confirmation);
+      let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+      console.log('transaction_info',transaction_info);
+      await delay(7000);
     }
     catch (e){
-      return -1;
+      console.log(e);
+      let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+      console.log('transaction_info',transaction_info);
+      return txid;
     }
 
+
   }
+
 
   return txid;
 };

@@ -66,7 +66,7 @@ export function LiquidityView() {
   const getAllBalances = async () => {
     if (!wallet) {
       // notify({
-      //   message: 'Please connect to Sol network',
+      //   message: 'Please connect to Solana network',
       //   type: "error",
       // });
       return;
@@ -112,7 +112,7 @@ export function LiquidityView() {
     setData30pool(response.data);
     // //console.log(decodedPoolDataState)
     // let transactionFeeSuperB = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber() / (10**USDC_DECIMALS);
-    setTransactionFees(parseInt(response.data.transaction_fee_SuperB, 16))
+    setTransactionFees(parseInt(response.data.transaction_fee_SuperB, 16)/ (10**USDC_DECIMALS))
 
   }
   const readPoolData_90 = async () => {
@@ -135,6 +135,7 @@ export function LiquidityView() {
     setLQ_Amount90(formatInputNumber(value));
   }, []);
   const onRemoveLiquidity = async (pool: any) => {
+
     let RemoveLiquidityFees=pool===30?data30pool.remove_liquidity_fee_USDC/100:data90pool.remove_liquidity_fee_USDC/100;
 
     const message = `
@@ -197,7 +198,7 @@ export function LiquidityView() {
       return;
     }
     let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-    if (SOL_balance <= 0.001){
+    if (SOL_balance <= 0.005){
       notify({
         message: 'You have low Sol balance',
         type: "info",
@@ -242,13 +243,31 @@ export function LiquidityView() {
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey, SUPERB_MINT_ADDRESS);
     //console.log('associated_SUPERB_token_account_address', associated_SUPERB_token_account_address.toBase58());
 
+    let rentExemption = 0;
+    try{
+      rentExemption = await connection.getMinimumBalanceForRentExemption(AccountLayout.span, 'singleGossip');
+      if (rentExemption == 0){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+    } catch(e){
+      notify({
+        message: 'Please try again, connection to Solana blockchain was interrupted',
+        type: "error",
+      });
+      return;
+    }
+
     //Create new LP token Account and transfer  amount to it
     const lp_token_account = new Account();
     //console.log('lp_token_account', lp_token_account.publicKey.toBase58());
     const createLPTokenAccountIx = SystemProgram.createAccount({
       programId: TOKEN_PROGRAM_ID,
       space: AccountLayout.span,
-      lamports: await connection.getMinimumBalanceForRentExemption(AccountLayout.span, 'singleGossip'),
+      lamports: rentExemption,
       fromPubkey: publicKey,
       newAccountPubkey: lp_token_account.publicKey
     });
@@ -311,15 +330,30 @@ export function LiquidityView() {
           type: "error",
         });
       } else {
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              notify({
+                message: 'Liquidity removed successfully',
+                type: "info",
+              });
+              await readPoolData_30();
+              await readPoolData_90();
+              await getAllBalances();
+              setRefreshStakeBalance((prev: number)=> prev + 1)
+              return;
+            }
+
+
         notify({
-          message: 'Removed Liquidity successfully',
-          type: "success",
+          message: 'Cannot confirm transaction.',
+          type: "error",
         });
-        await delay(3000);
-        await readPoolData_30();
-        await readPoolData_90();
-        await getAllBalances();
-        setRefreshStakeBalance((prev: number)=> prev + 1)
 
       }
     }
@@ -353,15 +387,30 @@ export function LiquidityView() {
           type: "error",
         });
       } else {
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              notify({
+                message: 'Liquidity removed successfully',
+                type: "info",
+              });
+              await readPoolData_30();
+              await readPoolData_90();
+              await getAllBalances();
+              setRefreshStakeBalance((prev: number)=> prev + 1)
+              return;
+            }
+
+
         notify({
-          message: 'Removed Liquidity successfully',
-          type: "success",
+          message: 'Cannot confirm transaction.',
+          type: "error",
         });
-        await delay(3000);
-        await readPoolData_30();
-        await readPoolData_90();
-        await getAllBalances();
-        setRefreshStakeBalance((prev: number)=> prev + 1)
       }
     }
 
@@ -429,7 +478,7 @@ export function LiquidityView() {
       return;
     }
     let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-    if (SOL_balance <= 0.001){
+    if (SOL_balance <= 0.005){
       notify({
         message: 'You have low Sol balance',
         type: "info",
@@ -534,15 +583,31 @@ export function LiquidityView() {
         });
         await getAllBalances();
       } else {
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              notify({
+                message: 'Liquidity added successfully',
+                type: "info",
+              });
+              await readPoolData_30();
+              await readPoolData_90();
+              await getAllBalances();
+              setRefreshStakeBalance((prev: number)=> prev + 1)
+              return;
+            }
+
+
         notify({
-          message: 'Added Liquidity successfully',
-          type: "success",
+          message: 'Cannot confirm transaction.',
+          type: "error",
         });
-        await delay(3000);
-        await readPoolData_30();
-        await readPoolData_90();
-        await getAllBalances();
-        setRefreshStakeBalance((prev: number)=> prev + 1)
+
       }
     }
     else if (lp_associated_token_account) {
@@ -574,15 +639,30 @@ export function LiquidityView() {
           type: "error",
         });
       } else {
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              notify({
+                message: 'Liquidity added successfully',
+                type: "info",
+              });
+              await readPoolData_30();
+              await readPoolData_90();
+              await getAllBalances();
+              setRefreshStakeBalance((prev: number)=> prev + 1)
+              return;
+            }
+
+
         notify({
-          message: 'Added Liquidity successfully',
-          type: "success",
+          message: 'Cannot confirm transaction.',
+          type: "error",
         });
-        await delay(3000);
-        await readPoolData_30();
-        await readPoolData_90();
-        await getAllBalances();
-        setRefreshStakeBalance((prev: number)=> prev + 1)
       }
     }
 

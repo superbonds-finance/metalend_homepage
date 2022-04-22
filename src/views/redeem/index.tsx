@@ -52,7 +52,7 @@ export const RedeemView = () => {
   const getAllBalances = async () => {
     if ( !wallet){
       // notify({
-      //   message: 'Please connect to Sol network',
+      //   message: 'Please connect to Solana network',
       //   type: "error",
       // });
       return;
@@ -84,7 +84,7 @@ export const RedeemView = () => {
   const onShowTradeInformation = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -154,7 +154,7 @@ export const RedeemView = () => {
   const onRedeem = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -168,7 +168,7 @@ export const RedeemView = () => {
       return;
     }
     let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-    if (SOL_balance <= 0.001){
+    if (SOL_balance <= 0.005){
       notify({
         message: 'You have low Sol balance',
         type: "info",
@@ -246,6 +246,11 @@ export const RedeemView = () => {
     })
     //console.log('here',Proceed);
     if (!Proceed) return;
+
+    notify({
+      message: 'Preparing...',
+      type: "info",
+    });
 
     //Create new SuperB token Account and transfer fee amount to it
     let superB_associated_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
@@ -385,12 +390,29 @@ export const RedeemView = () => {
         type: "error",
       });
     }else{
+      //await delay(10000);
+      console.log(txid);
+      let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+      console.log(transaction_info);
+
+      if (transaction_info)
+        if (transaction_info.meta)
+          if (transaction_info.meta.err == null){
+            notify({
+              message: 'Redeemed successfully',
+              type: "success",
+            });
+            await delay(3000);
+            history.push("/trade");
+            return;
+          }
+
+
       notify({
-        message: 'Redemption Request Sent',
-        type: "success",
+        message: 'Cannot confirm transaction.',
+        type: "error",
       });
-      await delay(3000);
-      history.push("/trade");
+
     }
   }
   const handleCopy=()=>[
