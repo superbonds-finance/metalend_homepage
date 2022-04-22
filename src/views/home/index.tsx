@@ -817,7 +817,9 @@ export const HomeView = () => {
                     size="15px"
                     opacity="0.5"
                   >
-                     Up to 18% fixed yield through bonds with various maturities. Powered by LP underwriting.
+                     Up to
+                     <CardText>{' '}{bond_yield90}%{' '}</CardText> 
+                       fixed yield through bonds with various maturities. Powered by LP underwriting.
                   </CardText>
                 </div>
               </div>
@@ -1052,7 +1054,7 @@ export const HomeView = () => {
 
         <div className=" flex justify-center">
           <Text>
-            Copyright © 2021 <strong>SuperBonds</strong>
+            Copyright © 2022 <strong>SuperBonds</strong>
           </Text>
         </div>
       </footer>
