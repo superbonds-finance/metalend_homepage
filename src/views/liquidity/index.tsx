@@ -112,7 +112,7 @@ export function LiquidityView() {
     setData30pool(response.data);
     // //console.log(decodedPoolDataState)
     // let transactionFeeSuperB = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber() / (10**USDC_DECIMALS);
-    setTransactionFees(parseInt(response.data.transaction_fee_SuperB, 16))
+    setTransactionFees(parseInt(response.data.transaction_fee_SuperB, 16)/ (10**USDC_DECIMALS))
 
   }
   const readPoolData_90 = async () => {
