@@ -49,7 +49,7 @@ export  function ClaimNFTView() {
 
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -157,7 +157,7 @@ export  function ClaimNFTView() {
   const onClaim = async (trade_owner:string,nft:string,trade_account:string) => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;

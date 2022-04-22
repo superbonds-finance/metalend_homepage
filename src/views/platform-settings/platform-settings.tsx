@@ -260,7 +260,7 @@ export const StakingManagementView = () => {
   const readPlatformData = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -292,7 +292,7 @@ export const StakingManagementView = () => {
   const readAllMultiSig = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;

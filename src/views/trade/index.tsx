@@ -80,7 +80,7 @@ export function TradeView() {
     const getAllBalances = async () => {
       if ( !wallet){
         // notify({
-        //   message: 'Please connect to Sol network',
+        //   message: 'Please connect to Solana network',
         //   type: "error",
         // });
         return;
@@ -146,6 +146,7 @@ export function TradeView() {
       getPlatformData();
       onShowAllTrades(2);
       getAllBalances();
+
     }, [wallet.publicKey]);
 
     useEffect(() => {
@@ -171,9 +172,11 @@ export function TradeView() {
     }, [data30pool,data90pool]);
 
     const readPoolData_30 = async () => {
+        // let transaction_info = await connection.getConfirmedTransaction("SjUkzvu61q7DHddEB2Rk3LU5nyqS16Wvaajko4LJP1bdb5coJAypm4MYMGgJiaDQV9YfgtAPwjoBAbMfmwnBM1Q","confirmed");
+        // console.log(transaction_info);
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -204,7 +207,7 @@ export function TradeView() {
     const readPoolData_90 = async () => {
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -283,9 +286,10 @@ export function TradeView() {
     };
 
     const onTrade = async (pool:any) =>{
+
       if ( !wallet){
         notify({
-          message: 'Please connect to Sol network',
+          message: 'Please connect to Solana network',
           type: "error",
         });
         return;
@@ -669,6 +673,29 @@ export function TradeView() {
             type: "error",
           });
         }else{
+          console.log(txid1);
+          notify({
+            message: 'Checking transaction status...',
+            type: "info",
+          });
+          //await delay(10000);
+          console.log(txid1);
+          let transaction_info = await connection.getConfirmedTransaction(txid1+"","confirmed");
+          console.log(transaction_info);
+
+          let continue_step2 = false;
+          if (transaction_info)
+            if (transaction_info.meta)
+              if (transaction_info.meta.err == null){
+                continue_step2 = true;
+              }
+          if (!continue_step2){
+            notify({
+              message: 'Something wrong with your request!',
+              type: "error",
+            });
+            return;
+          }
           notify({
             message: 'Step 2: Creating the trade ...',
             type: "success",
@@ -678,25 +705,47 @@ export function TradeView() {
                 TradeIx
               ]
             ,[trade_state_account,NFT_Mint_account,trader_Data_account]);
-          if (!txid1){
+          if (!txid2){
             notify({
               message: 'Something wrong with your request!',
               type: "error",
             });
           }else{
+            console.log(txid2);
             notify({
-              message: 'Added Trade successfully',
-              type: "success",
+              message: 'Checking transaction status...',
+              type: "info",
             });
-            await delay(3000);
-            readPoolData_30();
-            readPoolData_90();
-            getPlatformData();
-            //onShowAllTrades(2);
-            await delay(3000);
-            fetchPrivateAPI(10,0);
-            fetchPublicAPI(10,0);
-            setOffset(0)
+            //await delay(10000);
+            console.log(txid2);
+            let transaction_info = await connection.getConfirmedTransaction(txid2+"","confirmed");
+            console.log(transaction_info);
+
+            if (transaction_info)
+              if (transaction_info.meta)
+                if (transaction_info.meta.err == null){
+                  notify({
+                    message: 'Trade added successfully',
+                    type: "info",
+                  });
+                  readPoolData_30();
+                  readPoolData_90();
+                  getPlatformData();
+                  //onShowAllTrades(2);
+                  await delay(3000);
+                  fetchPrivateAPI(10,0);
+                  fetchPublicAPI(10,0);
+                  setOffset(0);
+                  return;
+                }
+
+
+            notify({
+              message: 'Cannot confirm transaction.',
+              type: "error",
+            });
+
+
           }
         }
       }
@@ -750,6 +799,30 @@ export function TradeView() {
             type: "error",
           });
         }else{
+          console.log(txid1);
+          notify({
+            message: 'Checking transaction status...',
+            type: "info",
+          });
+          //await delay(10000);
+          console.log(txid1);
+          let transaction_info = await connection.getConfirmedTransaction(txid1+"","confirmed");
+          console.log(transaction_info);
+
+          let continue_step2 = false;
+          if (transaction_info)
+            if (transaction_info.meta)
+              if (transaction_info.meta.err == null){
+                continue_step2 = true;
+              }
+          if (!continue_step2){
+            notify({
+              message: 'Something wrong with your request!',
+              type: "error",
+            });
+            return;
+          }
+
           notify({
             message: 'Step 2: Creating the trade ...',
             type: "success",
@@ -760,26 +833,45 @@ export function TradeView() {
                 TradeIx
               ]
             ,[trade_state_account,NFT_Mint_account]);
-          if (!txid1){
+          if (!txid2){
             notify({
               message: 'Something wrong with your request!',
               type: "error",
             });
           }else{
+            console.log(txid2);
             notify({
-              message: 'New trade request sent successfully',
-              type: "success",
+              message: 'Checking transaction status...',
+              type: "info",
             });
-            await delay(3000);
-            readPoolData_30();
-            readPoolData_90();
-            getPlatformData();
-            //onShowAllTrades(2);
-            await delay(5000);
-            fetchPublicAPI(10,0);
-            fetchPrivateAPI(10,0);
-            setOffset(0);
-            getAllBalances();
+            //await delay(10000);
+            console.log(txid2);
+            let transaction_info = await connection.getConfirmedTransaction(txid2+"","confirmed");
+            console.log(transaction_info);
+
+            if (transaction_info)
+              if (transaction_info.meta)
+                if (transaction_info.meta.err == null){
+                  notify({
+                    message: 'Trade added successfully',
+                    type: "info",
+                  });
+                  readPoolData_30();
+                  readPoolData_90();
+                  getPlatformData();
+                  //onShowAllTrades(2);
+                  await delay(3000);
+                  fetchPrivateAPI(10,0);
+                  fetchPublicAPI(10,0);
+                  setOffset(0);
+                  return;
+                }
+
+
+            notify({
+              message: 'Cannot confirm transaction.',
+              type: "error",
+            });
           }
         }
 
@@ -878,7 +970,7 @@ export function TradeView() {
     const onSettle = async (pool:any,owner:any,usdc_account:any,data_account:any,amount:number) =>{
       if ( !wallet){
         notify({
-          message: 'Please connect to Sol network',
+          message: 'Please connect to Solana network',
           type: "error",
         });
         return;

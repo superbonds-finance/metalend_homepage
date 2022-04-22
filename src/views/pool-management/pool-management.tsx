@@ -397,7 +397,7 @@ export const PoolManagementView = () => {
   const readPoolData_30 = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -444,7 +444,7 @@ export const PoolManagementView = () => {
   const readPoolData_90 = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -543,7 +543,7 @@ export const PoolManagementView = () => {
   const claimTreasury = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;

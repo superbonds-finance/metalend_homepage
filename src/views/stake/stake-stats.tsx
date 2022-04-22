@@ -73,7 +73,7 @@ export function StakeStats() {
   const getAllBalances = async () => {
     if ( !wallet){
       // notify({
-      //   message: 'Please connect to Sol network',
+      //   message: 'Please connect to Solana network',
       //   type: "error",
       // });
       return;
@@ -117,7 +117,7 @@ export function StakeStats() {
   const getTraderDataAccount = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -155,7 +155,7 @@ export function StakeStats() {
   const getPlatformData = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -192,7 +192,7 @@ export function StakeStats() {
   const getRewardDataAccount = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -224,7 +224,7 @@ export function StakeStats() {
 
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -382,7 +382,7 @@ export function StakeStats() {
   const onStake = async (pool:number,isClaim=false) => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -547,20 +547,36 @@ export function StakeStats() {
           type: "error",
         });
       }else{
-        if (!isClaim){
-          notify({
-            message: 'Staking Request Sent',
-            type: "success",
-          });
-        }
-        else{
-          notify({
-            message: 'Claim SuperB Rewards from ' + pool+'-days Pool LP Staking Sent',
-            type: "success",
-          });
-        }
-        await delay(3000);
-        onRefresh();
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              if (!isClaim){
+                notify({
+                  message: 'Staking Request Sent',
+                  type: "success",
+                });
+              }
+              else{
+                notify({
+                  message: 'Claim SuperB Rewards from ' + pool+'-days Pool LP Staking Sent',
+                  type: "success",
+                });
+              }
+              onRefresh();
+              return;
+            }
+
+
+        notify({
+          message: 'Cannot confirm transaction.',
+          type: "error",
+        });
+
       }
     }
     else{
@@ -620,7 +636,7 @@ export function StakeStats() {
   const onStakeSB = async (isClaim=false) => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -816,7 +832,7 @@ export function StakeStats() {
   const onClaim = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -841,13 +857,30 @@ export function StakeStats() {
     // if (usdc_unclaimed_rewards!=0){
     //   await onClaimExternalReward(3)
     // }
-    if (unclaimed_SuperB_Staking !=0)
+    if (unclaimed_SuperB_Staking !=0){
+      notify({
+        message: 'Claiming SB Staking Rewards....',
+        type: "info",
+      });
       await onStakeSB(true);
+    }
 
-    if (unclaimed_LP_30_Staking !=0)
+
+    if (unclaimed_LP_30_Staking !=0){
+      notify({
+        message: 'Claiming 30-day Staking Rewards....',
+        type: "info",
+      });
       await onStake(30,true);
-    if (unclaimed_LP_90_Staking !=0)
+    }
+
+    if (unclaimed_LP_90_Staking !=0){
+      notify({
+        message: 'Claiming 90-day Staking Rewards....',
+        type: "info",
+      });
       await onStake(90,true);
+    }
 
     if (unclaimed_Trading_Rewards == 0 ){
       await delay(3000);
@@ -858,7 +891,10 @@ export function StakeStats() {
     //Claim Trade Rewards
     // const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
     // const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-
+    notify({
+      message: 'Claiming Trade Rewards....',
+      type: "info",
+    });
     const encodedStakingDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedStakingDataState = PLATFORM_DATA_LAYOUT.decode(encodedStakingDataState) as PlatformDataLayout;
 
@@ -937,7 +973,7 @@ export function StakeStats() {
   const onClaimExternal = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -957,6 +993,10 @@ export function StakeStats() {
       });
       return;
     }
+    notify({
+      message: 'Claiming 3rd party Rewards....',
+      type: "info",
+    });
 
       let trader_Data_account = null;
       let filters = [
@@ -985,7 +1025,7 @@ export function StakeStats() {
         //check if lp token is initialized or not
       if (!associated_Sunny_account_address_info) {
           notify({
-            message: 'Creating reward account....',
+            message: 'Creating SUNNY reward account....',
             type: "info",
           });
           ////console.log("Create associated_Sunny_account_address");
@@ -1008,10 +1048,29 @@ export function StakeStats() {
             });
             return;
           }else{
-            notify({
-              message: 'Initialize Associated Token Account successfully',
-              type: "success",
-            });
+            //await delay(10000);
+            console.log(txid);
+            let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+            console.log(transaction_info);
+            let created_ok = false;
+            if (transaction_info)
+              if (transaction_info.meta)
+                if (transaction_info.meta.err == null){
+                  notify({
+                    message: 'Initialize Associated Token Account successfully',
+                    type: "success",
+                  });
+                  created_ok = true;
+                }
+
+            if (!created_ok){
+              notify({
+                message: 'Cannot confirm transaction.',
+                type: "error",
+              });
+              return;
+            }
+
           }
       }
 
@@ -1022,7 +1081,7 @@ export function StakeStats() {
         //check if lp token is initialized or not
       if (!associated_Saber_account_address_info) {
           notify({
-            message: 'Creating reward account....',
+            message: 'Creating SABER reward account....',
             type: "info",
           });
           ////console.log("Create associated_Saber_account_address");
@@ -1045,10 +1104,28 @@ export function StakeStats() {
             });
             return;
           }else{
-            notify({
-              message: 'Initialize Associated Token Account successfully',
-              type: "success",
-            });
+            //await delay(10000);
+            console.log(txid);
+            let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+            console.log(transaction_info);
+            let created_ok = false;
+            if (transaction_info)
+              if (transaction_info.meta)
+                if (transaction_info.meta.err == null){
+                  notify({
+                    message: 'Initialize Associated Token Account successfully',
+                    type: "success",
+                  });
+                  created_ok = true;
+                }
+
+            if (!created_ok){
+              notify({
+                message: 'Cannot confirm transaction.',
+                type: "error",
+              });
+              return;
+            }
           }
       }
 
@@ -1060,7 +1137,7 @@ export function StakeStats() {
         //check if lp token is initialized or not
       if (!associated_Orca_account_address_info) {
           notify({
-            message: 'Creating reward account....',
+            message: 'Creating ORCA reward account....',
             type: "info",
           });
           ////console.log("Create associated_Saber_account_address");
@@ -1083,10 +1160,28 @@ export function StakeStats() {
             });
             return;
           }else{
-            notify({
-              message: 'Initialize Associated Token Account successfully',
-              type: "success",
-            });
+            //await delay(10000);
+            console.log(txid);
+            let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+            console.log(transaction_info);
+            let created_ok = false;
+            if (transaction_info)
+              if (transaction_info.meta)
+                if (transaction_info.meta.err == null){
+                  notify({
+                    message: 'Initialize Associated Token Account successfully',
+                    type: "success",
+                  });
+                  created_ok = true;
+                }
+
+            if (!created_ok){
+              notify({
+                message: 'Cannot confirm transaction.',
+                type: "error",
+              });
+              return;
+            }
           }
       }
       //USDC in mainnet to create associated token account
@@ -1097,7 +1192,7 @@ export function StakeStats() {
         //check if lp token is initialized or not
       if (!associated_USDC_account_address_info) {
           notify({
-            message: 'Creating reward account....',
+            message: 'Creating USDC reward account....',
             type: "info",
           });
           ////console.log("Create associated_Saber_account_address");
@@ -1120,10 +1215,28 @@ export function StakeStats() {
             });
             return;
           }else{
-            notify({
-              message: 'Initialize Associated Token Account successfully',
-              type: "success",
-            });
+            //await delay(10000);
+            console.log(txid);
+            let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+            console.log(transaction_info);
+            let created_ok = false;
+            if (transaction_info)
+              if (transaction_info.meta)
+                if (transaction_info.meta.err == null){
+                  notify({
+                    message: 'Initialize Associated Token Account successfully',
+                    type: "success",
+                  });
+                  created_ok = true;
+                }
+
+            if (!created_ok){
+              notify({
+                message: 'Cannot confirm transaction.',
+                type: "error",
+              });
+              return;
+            }
           }
       }
 
@@ -1203,13 +1316,29 @@ export function StakeStats() {
           type: "error",
         });
       }else{
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              notify({
+                message: '3rd Party Rewards Claim Request Sent. It might take up to 2 minutes to process.',
+                type: "success",
+              });
+              onRefresh();
+              getRewardDataAccount();
+              return;
+            }
+
+
         notify({
-          message: '3rd Party Rewards Claim Request Sent. It might take up to 2 minutes to process.',
-          type: "success",
+          message: 'Cannot confirm transaction.',
+          type: "error",
         });
-        await delay(3000);
-        onRefresh();
-        getRewardDataAccount();
+
       }
 
   }
@@ -1310,7 +1439,7 @@ export function StakeStats() {
                 <div className="pb-6 pt-1 pl-1 pr-1 rounded-md ">
                   <div className='text-grid cursor-pointer grid grid-cols-1'>
                     <Text size='16px' weight color='#7cfa4d'>Bond Purchaser Stats
-                      <Tooltip placement="rightTop" title={'The live value of all your outstanding bonds and all attributable SB not claimed'}> 
+                      <Tooltip placement="rightTop" title={'The live value of all your outstanding bonds and all attributable SB not claimed'}>
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>
@@ -1326,7 +1455,7 @@ export function StakeStats() {
 
                   <div className='text-grid cursor-pointer grid grid-cols-1 mt-7'>
                     <Text size='16px' weight color='#7cfa4d'>Bond LP Stats
-                      <Tooltip placement="rightTop" title={'The number of staked LP tokens in each respective pool including all unclaimed rewards, consisting of SB and 3rd party tokens(Other Rewards)'}> 
+                      <Tooltip placement="rightTop" title={'The number of staked LP tokens in each respective pool including all unclaimed rewards, consisting of SB and 3rd party tokens(Other Rewards)'}>
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>

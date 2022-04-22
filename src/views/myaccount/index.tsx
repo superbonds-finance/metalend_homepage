@@ -31,7 +31,7 @@ export  function MyAccountView() {
   const getAllBalances = async () => {
     if ( !wallet){
       // notify({
-      //   message: 'Please connect to Sol network',
+      //   message: 'Please connect to Solana network',
       //   type: "error",
       // });
       return;
@@ -63,7 +63,7 @@ export  function MyAccountView() {
   const getTraderDataAccount = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;

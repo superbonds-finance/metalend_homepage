@@ -121,7 +121,7 @@ export function StakeView() {
   const getAllBalances = async () => {
     if ( !wallet){
       // notify({
-      //   message: 'Please connect to Sol network',
+      //   message: 'Please connect to Solana network',
       //   type: "error",
       // });
       return;
@@ -167,7 +167,7 @@ export function StakeView() {
   const getTraderDataAccount = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -208,7 +208,7 @@ export function StakeView() {
     setPlatformData(decodedPoolDataState);
     // if ( !wallet){
     //   notify({
-    //     message: 'Please connect to Sol network',
+    //     message: 'Please connect to Solana network',
     //     type: "error",
     //   });
     //   return;
@@ -244,7 +244,7 @@ export function StakeView() {
   // const getRewardDataAccount = async () => {
   //   if ( !wallet){
   //     notify({
-  //       message: 'Please connect to Sol network',
+  //       message: 'Please connect to Solana network',
   //       type: "error",
   //     });
   //     return;
@@ -367,7 +367,7 @@ export function StakeView() {
     if (!ProceedForStake) return;
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -493,12 +493,27 @@ export function StakeView() {
           type: "error",
         });
       }else{
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              notify({
+                message: 'Staked successfully',
+                type: "success",
+              });
+              onRefresh();
+              return;
+            }
+
+
         notify({
-          message: 'Staking Request Sent',
-          type: "success",
+          message: 'Cannot confirm transaction.',
+          type: "error",
         });
-        await delay(3000);
-        onRefresh();
       }
     }
     else{
@@ -533,21 +548,36 @@ export function StakeView() {
           type: "error",
         });
       }else{
-        if (!isClaim){
-          notify({
-            message: 'Staking Request Sent',
-            type: "success",
-          });
-        }
-        else{
-          notify({
-            message: 'Claim SuperB Rewards from SuperB Staking Sent',
-            type: "success",
-          });
-        }
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
 
-        await delay(3000);
-        onRefresh();
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+
+              if (!isClaim){
+                notify({
+                  message: 'Staking Request Sent',
+                  type: "success",
+                });
+              }
+              else{
+                notify({
+                  message: 'Claim SuperB Rewards from SuperB Staking Sent',
+                  type: "success",
+                });
+              }
+              onRefresh();
+              return;
+            }
+
+
+        notify({
+          message: 'Cannot confirm transaction.',
+          type: "error",
+        });
       }
     }
 
@@ -600,7 +630,7 @@ export function StakeView() {
     if (!ProceedForStake) return;
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -699,12 +729,27 @@ export function StakeView() {
           type: "error",
         });
       }else{
+        //await delay(10000);
+        console.log(txid);
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        console.log(transaction_info);
+
+        if (transaction_info)
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              notify({
+                message: 'Unstaked successfully',
+                type: "success",
+              });
+              onRefresh();
+              return;
+            }
+
+
         notify({
-          message: 'Unstaking Request Sent',
-          type: "success",
+          message: 'Cannot confirm transaction.',
+          type: "error",
         });
-        await delay(3000);
-        onRefresh();
       }
     }
   }

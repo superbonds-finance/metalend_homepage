@@ -85,7 +85,7 @@ export const HomeView = () => {
     const readPoolData_30 = async () => {
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -107,7 +107,7 @@ export const HomeView = () => {
     const readPoolData_90 = async () => {
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -128,7 +128,7 @@ export const HomeView = () => {
     const getStakingPoolData = async () => {
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
