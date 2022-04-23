@@ -140,13 +140,13 @@ export function TradeView() {
       setAllTrade(_type);
     };
 
+     
     useEffect(() => {
       readPoolData_30();
       readPoolData_90();
       getPlatformData();
       onShowAllTrades(2);
       getAllBalances();
-
     }, [wallet.publicKey]);
 
     useEffect(() => {

@@ -597,7 +597,7 @@ export const HomeView = () => {
                 alt="..."
                 style={{ height: "38px", width: "150px" }}
               />
-              <div className="flex my-0 ml-2 sm:ml-1.5 sm:mt-2  ">
+              {/* <div className="flex my-0 ml-2 sm:ml-1.5 sm:mt-2  ">
                 <img
                   onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
                   className="w-8 select-none cursor-pointer Z-40"
@@ -616,7 +616,7 @@ export const HomeView = () => {
                 >
                   Jupiter
                 </Jupiter>
-              </div>
+              </div> */}
              </div>
             </div>
           </div>
