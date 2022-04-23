@@ -373,7 +373,11 @@ export function StakeStats() {
         message: '3rd Party Rewards Claim Request Sent',
         type: "success",
       });
-      await delay(3000);
+      notify({
+        message: 'Updating balance...',
+        type: "success",
+      });
+      await delay(5000);
       onRefresh();
       getRewardDataAccount();
     }
@@ -548,34 +552,27 @@ export function StakeStats() {
         });
       }else{
         //await delay(10000);
-        console.log(txid);
-        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-        console.log(transaction_info);
 
-        if (transaction_info)
-          if (transaction_info.meta)
-            if (transaction_info.meta.err == null){
-              if (!isClaim){
-                notify({
-                  message: 'Staking Request Sent',
-                  type: "success",
-                });
-              }
-              else{
-                notify({
-                  message: 'Claim SuperB Rewards from ' + pool+'-days Pool LP Staking Sent',
-                  type: "success",
-                });
-              }
-              onRefresh();
-              return;
-            }
-
-
+        if (!isClaim){
+          notify({
+            message: 'Staking Request Sent',
+            type: "success",
+          });
+        }
+        else{
+          notify({
+            message: 'Claim SuperB Rewards from ' + pool+'-days Pool LP Staking Sent',
+            type: "success",
+          });
+        }
         notify({
-          message: 'Cannot confirm transaction.',
-          type: "error",
+          message: 'Updating balance...',
+          type: "success",
         });
+        await delay(5000);
+        onRefresh();
+        return;
+
 
       }
     }
@@ -625,7 +622,11 @@ export function StakeStats() {
             type: "success",
           });
         }
-        await delay(3000);
+        notify({
+          message: 'Updating balance...',
+          type: "success",
+        });
+        await delay(5000);
         onRefresh();
       }
     }
@@ -767,7 +768,11 @@ export function StakeStats() {
           message: 'Staking Request Sent',
           type: "success",
         });
-        await delay(3000);
+        notify({
+          message: 'Updating balance...',
+          type: "success",
+        });
+        await delay(5000);
         onRefresh();
       }
     }
@@ -815,8 +820,11 @@ export function StakeStats() {
             type: "success",
           });
         }
-
-        await delay(3000);
+        notify({
+          message: 'Updating balance...',
+          type: "success",
+        });
+        await delay(5000);
         onRefresh();
       }
     }
@@ -1048,28 +1056,12 @@ export function StakeStats() {
             });
             return;
           }else{
-            //await delay(10000);
-            console.log(txid);
-            let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-            console.log(transaction_info);
-            let created_ok = false;
-            if (transaction_info)
-              if (transaction_info.meta)
-                if (transaction_info.meta.err == null){
-                  notify({
-                    message: 'Initialize Associated Token Account successfully',
-                    type: "success",
-                  });
-                  created_ok = true;
-                }
 
-            if (!created_ok){
               notify({
-                message: 'Cannot confirm transaction.',
-                type: "error",
+                message: 'Initialize Associated Token Account successfully',
+                type: "success",
               });
-              return;
-            }
+
 
           }
       }
@@ -1104,28 +1096,12 @@ export function StakeStats() {
             });
             return;
           }else{
-            //await delay(10000);
-            console.log(txid);
-            let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-            console.log(transaction_info);
-            let created_ok = false;
-            if (transaction_info)
-              if (transaction_info.meta)
-                if (transaction_info.meta.err == null){
-                  notify({
-                    message: 'Initialize Associated Token Account successfully',
-                    type: "success",
-                  });
-                  created_ok = true;
-                }
 
-            if (!created_ok){
               notify({
-                message: 'Cannot confirm transaction.',
-                type: "error",
+                message: 'Initialize Associated Token Account successfully',
+                type: "success",
               });
-              return;
-            }
+
           }
       }
 
@@ -1160,28 +1136,12 @@ export function StakeStats() {
             });
             return;
           }else{
-            //await delay(10000);
-            console.log(txid);
-            let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-            console.log(transaction_info);
-            let created_ok = false;
-            if (transaction_info)
-              if (transaction_info.meta)
-                if (transaction_info.meta.err == null){
-                  notify({
-                    message: 'Initialize Associated Token Account successfully',
-                    type: "success",
-                  });
-                  created_ok = true;
-                }
 
-            if (!created_ok){
-              notify({
-                message: 'Cannot confirm transaction.',
-                type: "error",
-              });
-              return;
-            }
+            notify({
+              message: 'Initialize Associated Token Account successfully',
+              type: "success",
+            });
+
           }
       }
       //USDC in mainnet to create associated token account
@@ -1215,28 +1175,12 @@ export function StakeStats() {
             });
             return;
           }else{
-            //await delay(10000);
-            console.log(txid);
-            let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-            console.log(transaction_info);
-            let created_ok = false;
-            if (transaction_info)
-              if (transaction_info.meta)
-                if (transaction_info.meta.err == null){
-                  notify({
-                    message: 'Initialize Associated Token Account successfully',
-                    type: "success",
-                  });
-                  created_ok = true;
-                }
 
-            if (!created_ok){
-              notify({
-                message: 'Cannot confirm transaction.',
-                type: "error",
-              });
-              return;
-            }
+            notify({
+              message: 'Initialize Associated Token Account successfully',
+              type: "success",
+            });
+
           }
       }
 
@@ -1316,28 +1260,15 @@ export function StakeStats() {
           type: "error",
         });
       }else{
-        //await delay(10000);
-        console.log(txid);
-        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-        console.log(transaction_info);
 
-        if (transaction_info)
-          if (transaction_info.meta)
-            if (transaction_info.meta.err == null){
-              notify({
-                message: '3rd Party Rewards Claim Request Sent. It might take up to 2 minutes to process.',
-                type: "success",
-              });
-              onRefresh();
-              getRewardDataAccount();
-              return;
-            }
+          notify({
+            message: '3rd Party Rewards Claim Request Sent. It might take up to 2 minutes to process.',
+            type: "success",
+          });
+          onRefresh();
+          getRewardDataAccount();
+          return;
 
-
-        notify({
-          message: 'Cannot confirm transaction.',
-          type: "error",
-        });
 
       }
 

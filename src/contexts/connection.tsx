@@ -250,20 +250,35 @@ export const sendTransaction = async (
 
     //console.log('confirm Transaction...',txid);
     try{
-      let confirmation = await connection.confirmTransaction(
-        txid,
-        "confirmed"
-      );
-      console.log('confirmation',confirmation);
-      let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-      console.log('transaction_info',transaction_info);
-      await delay(7000);
+      let count = 0;
+      while (count<30){
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        //console.log('transaction_info',transaction_info);
+        if (transaction_info){
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              return txid;
+            }
+          }
+        await delay(2000);
+        count +=2;
+        if (count % 10 == 0){
+          notify({
+            message: 'Waiting for confirmation...',
+            type: "info",
+          });
+        }
+      }
+      // let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+      // console.log('transaction_info',transaction_info);
+      // await delay(7000);
+      return -1;
     }
     catch (e){
       console.log(e);
-      let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-      console.log('transaction_info',transaction_info);
-      return txid;
+      // let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+      // console.log('transaction_info',transaction_info);
+      return -1;
     }
 
 

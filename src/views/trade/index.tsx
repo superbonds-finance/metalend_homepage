@@ -674,28 +674,7 @@ export function TradeView() {
           });
         }else{
           console.log(txid1);
-          notify({
-            message: 'Checking transaction status...',
-            type: "info",
-          });
-          //await delay(10000);
-          console.log(txid1);
-          let transaction_info = await connection.getConfirmedTransaction(txid1+"","confirmed");
-          console.log(transaction_info);
 
-          let continue_step2 = false;
-          if (transaction_info)
-            if (transaction_info.meta)
-              if (transaction_info.meta.err == null){
-                continue_step2 = true;
-              }
-          if (!continue_step2){
-            notify({
-              message: 'Something wrong with your request!',
-              type: "error",
-            });
-            return;
-          }
           notify({
             message: 'Step 2: Creating the trade ...',
             type: "success",
@@ -711,42 +690,30 @@ export function TradeView() {
               type: "error",
             });
           }else{
-            console.log(txid2);
+
             notify({
-              message: 'Checking transaction status...',
+              message: 'Trade added successfully',
               type: "info",
             });
-            //await delay(10000);
-            console.log(txid2);
-            let transaction_info = await connection.getConfirmedTransaction(txid2+"","confirmed");
-            console.log(transaction_info);
-
-            if (transaction_info)
-              if (transaction_info.meta)
-                if (transaction_info.meta.err == null){
-                  notify({
-                    message: 'Trade added successfully',
-                    type: "info",
-                  });
-                  readPoolData_30();
-                  readPoolData_90();
-                  getPlatformData();
-                  //onShowAllTrades(2);
-                  await delay(3000);
-                  fetchPrivateAPI(10,0);
-                  fetchPublicAPI(10,0);
-                  setOffset(0);
-                  return;
-                }
-
-
             notify({
-              message: 'Cannot confirm transaction.',
-              type: "error",
+              message: 'Updating balance...',
+              type: "success",
             });
+            await delay(5000);
+            readPoolData_30();
+            readPoolData_90();
+            getPlatformData();
+            notify({
+              message: 'Updating the list ...',
+              type: "info",
+            });
+            await delay(5000);
+            fetchPrivateAPI(10,0);
+            fetchPublicAPI(10,0);
+            setOffset(0);
+            return;
 
-
-          }
+        }
         }
       }
       else{
@@ -799,29 +766,6 @@ export function TradeView() {
             type: "error",
           });
         }else{
-          console.log(txid1);
-          notify({
-            message: 'Checking transaction status...',
-            type: "info",
-          });
-          //await delay(10000);
-          console.log(txid1);
-          let transaction_info = await connection.getConfirmedTransaction(txid1+"","confirmed");
-          console.log(transaction_info);
-
-          let continue_step2 = false;
-          if (transaction_info)
-            if (transaction_info.meta)
-              if (transaction_info.meta.err == null){
-                continue_step2 = true;
-              }
-          if (!continue_step2){
-            notify({
-              message: 'Something wrong with your request!',
-              type: "error",
-            });
-            return;
-          }
 
           notify({
             message: 'Step 2: Creating the trade ...',
@@ -839,42 +783,31 @@ export function TradeView() {
               type: "error",
             });
           }else{
-            console.log(txid2);
             notify({
-              message: 'Checking transaction status...',
+              message: 'Trade added successfully',
               type: "info",
             });
-            //await delay(10000);
-            console.log(txid2);
-            let transaction_info = await connection.getConfirmedTransaction(txid2+"","confirmed");
-            console.log(transaction_info);
-
-            if (transaction_info)
-              if (transaction_info.meta)
-                if (transaction_info.meta.err == null){
-                  notify({
-                    message: 'Trade added successfully',
-                    type: "info",
-                  });
-                  readPoolData_30();
-                  readPoolData_90();
-                  getPlatformData();
-                  //onShowAllTrades(2);
-                  await delay(3000);
-                  fetchPrivateAPI(10,0);
-                  fetchPublicAPI(10,0);
-                  setOffset(0);
-                  return;
-                }
-
-
             notify({
-              message: 'Cannot confirm transaction.',
-              type: "error",
+              message: 'Updating balance...',
+              type: "success",
             });
-          }
-        }
+            await delay(5000);
+            readPoolData_30();
+            readPoolData_90();
+            getPlatformData();
+            notify({
+              message: 'Updating the list ...',
+              type: "info",
+            });
+            await delay(5000);
+            fetchPrivateAPI(10,0);
+            fetchPublicAPI(10,0);
+            setOffset(0);
+            return;
 
+          }
+
+        }
       }
     };
 
