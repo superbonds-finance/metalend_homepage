@@ -390,14 +390,7 @@ export const RedeemView = () => {
         type: "error",
       });
     }else{
-      //await delay(10000);
-      console.log(txid);
-      let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-      console.log(transaction_info);
 
-      if (transaction_info)
-        if (transaction_info.meta)
-          if (transaction_info.meta.err == null){
             notify({
               message: 'Redeemed successfully',
               type: "success",
@@ -405,13 +398,7 @@ export const RedeemView = () => {
             await delay(3000);
             history.push("/trade");
             return;
-          }
 
-
-      notify({
-        message: 'Cannot confirm transaction.',
-        type: "error",
-      });
 
     }
   }

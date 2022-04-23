@@ -493,27 +493,19 @@ export function StakeView() {
           type: "error",
         });
       }else{
-        //await delay(10000);
-        console.log(txid);
-        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-        console.log(transaction_info);
 
-        if (transaction_info)
-          if (transaction_info.meta)
-            if (transaction_info.meta.err == null){
-              notify({
-                message: 'Staked successfully',
-                type: "success",
-              });
-              onRefresh();
-              return;
-            }
+          notify({
+            message: 'Staked successfully',
+            type: "success",
+          });
+          notify({
+            message: 'Updating balance. Staked balance can take a while to update.',
+            type: "success",
+          });
+          await delay(5000);
+          onRefresh();
+          return;
 
-
-        notify({
-          message: 'Cannot confirm transaction.',
-          type: "error",
-        });
       }
     }
     else{
@@ -548,36 +540,27 @@ export function StakeView() {
           type: "error",
         });
       }else{
-        //await delay(10000);
-        console.log(txid);
-        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-        console.log(transaction_info);
 
-        if (transaction_info)
-          if (transaction_info.meta)
-            if (transaction_info.meta.err == null){
+          if (!isClaim){
+            notify({
+              message: 'Staking Request Sent',
+              type: "success",
+            });
+          }
+          else{
+            notify({
+              message: 'Claim SuperB Rewards from SuperB Staking Sent',
+              type: "success",
+            });
+          }
+          notify({
+            message: 'Updating balance. Staked balance can take a while to update.',
+            type: "success",
+          });
+          await delay(5000);
+          onRefresh();
+          return;
 
-              if (!isClaim){
-                notify({
-                  message: 'Staking Request Sent',
-                  type: "success",
-                });
-              }
-              else{
-                notify({
-                  message: 'Claim SuperB Rewards from SuperB Staking Sent',
-                  type: "success",
-                });
-              }
-              onRefresh();
-              return;
-            }
-
-
-        notify({
-          message: 'Cannot confirm transaction.',
-          type: "error",
-        });
       }
     }
 
@@ -729,27 +712,19 @@ export function StakeView() {
           type: "error",
         });
       }else{
-        //await delay(10000);
-        console.log(txid);
-        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
-        console.log(transaction_info);
 
-        if (transaction_info)
-          if (transaction_info.meta)
-            if (transaction_info.meta.err == null){
-              notify({
-                message: 'Unstaked successfully',
-                type: "success",
-              });
-              onRefresh();
-              return;
-            }
+          notify({
+            message: 'Unstaked successfully',
+            type: "success",
+          });
+          notify({
+            message: 'Updating balance. Staked balance can take a while to update.',
+            type: "success",
+          });
+          await delay(5000);
+          onRefresh();
+          return;
 
-
-        notify({
-          message: 'Cannot confirm transaction.',
-          type: "error",
-        });
       }
     }
   }
