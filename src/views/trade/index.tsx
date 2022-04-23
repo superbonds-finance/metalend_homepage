@@ -63,7 +63,7 @@ let loaded30 = false;
 export function TradeView() {
     const connection = useConnection();
     const wallet = useWallet();
-
+    const [inerterval,setClearInerterval]= useState<any>();
     const [data30pool,setData30pool] = useState<any>();
     const [data90pool,setData90pool] = useState<any>();
     const [APY,setAPY] = useState<any>();
@@ -286,7 +286,7 @@ export function TradeView() {
     };
 
     const onTrade = async (pool:any) =>{
-
+      
       if ( !wallet){
         notify({
           message: 'Please connect to Solana network',
@@ -707,12 +707,10 @@ export function TradeView() {
               message: 'Updating the list ...',
               type: "info",
             });
-            await delay(5000);
-            fetchPrivateAPI(10,0);
-            fetchPublicAPI(10,0);
-            setOffset(0);
-            return;
-
+            dataRefetch()
+            setClearInerterval(setInterval(() => {
+              dataRefetch()
+            }, 3000));
         }
         }
       }
@@ -799,17 +797,22 @@ export function TradeView() {
               message: 'Updating the list ...',
               type: "info",
             });
-            await delay(5000);
-            fetchPrivateAPI(10,0);
-            fetchPublicAPI(10,0);
-            setOffset(0);
+            dataRefetch()
+            setClearInerterval(setInterval(() => {
+              dataRefetch()
+            }, 3000));
             return;
-
           }
 
         }
       }
     };
+
+    const dataRefetch=()=>{
+      fetchPrivateAPI(10,0);
+      fetchPublicAPI(10,0);
+      setOffset(0);
+    }
 
     const fetchPublicAPI=async (limit:Number,offset:Number)=>{
       //Get All Trades
@@ -1087,6 +1090,8 @@ export function TradeView() {
 
     }
     const handlePagination=(limit:number,x_paginationcursor:number)=>{
+      if(inerterval)
+        clearInterval(inerterval)
      // //console.log(offset)
       if(x_paginationcursor>0) {
         setOffset(offset+x_paginationcursor);
