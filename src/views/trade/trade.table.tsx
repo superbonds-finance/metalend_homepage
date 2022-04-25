@@ -19,7 +19,7 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data: Array<stri
     if (tradeType ==="all_trade")
     return (
         <div>
-            <table className="w-full block overflow-x-auto " style={{"borderCollapse":"separate","borderSpacing":data && data.length>0?'0px 4px':'0px 0px',"borderRadius":"1.5em","maxHeight":"337px","minHeight":data && data.length>0? "380px":"100px","backgroundColor":data && data.length>0?"#1a232b": "#28333F"}}>
+            <table className="w-full block overflow-x-auto " style={{"borderCollapse":"separate","borderSpacing":data && data.length>0?'0px 4px':'0px 0px',"borderRadius":"1.5em","maxHeight":"337px","minHeight":/* data && data.length>0?  */"380px"/* :"100px" */,"backgroundColor":data && data.length>0?"#1a232b": "#28333F"}}>
                 <tr className="bg-gray-300 ">
                     <th className="sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Pool</Text></th>
                     <th className="sticky-header py-2 px-4  text-center min-w-td"><Text opacity='0.5' size='13px'>Trade Owner</Text></th>
@@ -71,7 +71,7 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data: Array<stri
 
     if (tradeType ==="my_trade")
     return (<div>
-        <table className="w-full block overflow-x-auto " style={{"borderCollapse":"separate","borderSpacing":data && data.length>0?'0px 4px':'0px 0px',"borderRadius":"1.5em","maxHeight":"450px","minHeight":data && data.length>0? "380px":"100px","backgroundColor":data && data.length>0?"#1a232b": "#28333F"}}>
+        <table className="w-full block overflow-x-auto " style={{"borderCollapse":"separate","borderSpacing":data && data.length>0?'0px 4px':'0px 0px',"borderRadius":"1.5em","maxHeight":"450px","minHeight":/* data && data.length>0?  */"380px"/* :"100px" */,"backgroundColor":data && data.length>0?"#1a232b": "#28333F"}}>
             <tr className="bg-gray-300 ">
                 <th className="sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Redeem</Text></th>
                 <th className="sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Pool</Text></th>
@@ -132,7 +132,7 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data: Array<stri
     return (
         // <div className="overflow-x-auto w-full h-full" style={{"borderRadius":"1.5em"}}>
         <div>
-        <table className="w-full block overflow-x-auto" style={{"borderRadius":"1.5em","borderCollapse":"separate","borderSpacing":data && data.length>0?'0px 4px':'0px 0px',"maxHeight":"370px","minHeight":data && data.length>0? "380px":"100px","backgroundColor":data && data.length>0?"#1a232b": "#28333F"}}>
+        <table className="w-full block overflow-x-auto" style={{"borderRadius":"1.5em","borderCollapse":"separate","borderSpacing":data && data.length>0?'0px 4px':'0px 0px',"maxHeight":"370px","minHeight":/* data && data.length>0?  */"380px"/* :"100px" */,"backgroundColor":data && data.length>0?"#1a232b": "#28333F"}}>
             <tr className="bg-gray-300 ">
                 <th className="th-width-auto-calc sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Pool</Text></th>
                 <th className="th-width-auto-calc sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Owner</Text></th>
