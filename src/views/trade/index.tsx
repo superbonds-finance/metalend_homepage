@@ -1139,7 +1139,36 @@ export function TradeView() {
       setBondValueMaturity_90(bondValueMaturity);
     }
   }
-
+   const POOL_30_ADDRESS = new PublicKey(
+    "EnFgZ2knSv7jyVmdskfXSNULyaHYwgp7NTs1KU4GYSFe"
+  );
+const pending=[
+  {
+  data_account:"A9ujCnG4dHszyz8vGARfbEYhuJvrQgvBFpQKEWiZi3E5",
+  pool:"EnFgZ2knSv7jyVmdskfXSNULyaHYwgp7NTs1KU4GYSFe",
+  owner:"5GMAa4GXqWswZ7K527F7sWTAKFga1iuE5TfSBhuuTPmc",
+  usdc_account:"",
+  amount:100,
+  requested_at:1650689737000
+},
+{
+  data_account:"A9ujCnG4dHszyz8vGARfbEYhuJvrQgvBFpQKEWiZi3E5",
+  pool:"EnFgZ2knSv7jyVmdskfXSNULyaHYwgp7NTs1KU4GYSFe",
+  owner:"5GMAa4GXqWswZ7K527F7sWTAKFga1iuE5TfSBhuuTPmc",
+  usdc_account:"",
+  amount:100,
+  requested_at:1650689737000
+},
+{
+  data_account:"A9ujCnG4dHszyz8vGARfbEYhuJvrQgvBFpQKEWiZi3E5",
+  pool:"EnFgZ2knSv7jyVmdskfXSNULyaHYwgp7NTs1KU4GYSFe",
+  owner:"5GMAa4GXqWswZ7K527F7sWTAKFga1iuE5TfSBhuuTPmc",
+  usdc_account:"",
+  amount:100,
+  requested_at:1650689737000
+},
+]
+console.log(myTradeData)
     return (
         <div className="w-screen h-screen bg-black">
             <div  className="w-9/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
@@ -1531,7 +1560,7 @@ export function TradeView() {
                   {showAllTrade==3 &&
                     <TradeTableComponent
                       tradeType='my_pending_trade'
-                      data={myPendingData}
+                      data={pending}
                       onSettle={onSettle}
                     />
                   }

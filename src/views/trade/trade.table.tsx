@@ -7,7 +7,7 @@ import {  truncateStr,convertTimeStamp} from "../../utils/utils";
 import {
     POOL_30_ADDRESS
   } from "../../utils/ids";
-export const TradeTableComponent: React.FC<{ tradeType: string ,data: Array<string>,onSettle:Function}> = ({ tradeType,data,onSettle}) => {
+export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettle:Function}> = ({ tradeType,data,onSettle}) => {
 
     const CopyAction=()=>{
         notify({
