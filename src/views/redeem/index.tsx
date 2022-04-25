@@ -5,7 +5,8 @@ import { useParams,useHistory } from "react-router-dom";
 import { notify } from "../../utils/notifications";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useConnection,sendTransaction } from "../../contexts/connection";
-import { SUPERBONDS_PROGRAM_ID,
+import { 
+         SUPERBONDS_PROGRAM_ID,
          USDC_MINT_ADDRESS,
          SUPERB_MINT_ADDRESS,
          POOL_30_ADDRESS,

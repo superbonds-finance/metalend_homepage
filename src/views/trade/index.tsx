@@ -102,7 +102,7 @@ export function TradeView() {
     }
 
     const [bond_yield30,setBond_Yield30] = useState(0);
-    const [stopFetchPendingTrade,setStopFetchPendingTrade] = useState(false);
+    const [stopFetchingTrades,setStopFetchingTrades] = useState(false);
     const [superbondsStatus30,setSuperBondsStatus30] = useState(false);
     const [superbondsRate30,setSuperBondsRate30] = useState(1);
     const [adjustedLiquidity30,setAdjustedLiquidity30] = useState(0);
@@ -709,10 +709,7 @@ export function TradeView() {
               message: 'Updating the list ...',
               type: "info",
             });
-            dataRefetch()
-            setClearInerterval(setInterval(() => {
-              dataRefetch()
-            }, 3000));
+            setStopFetchingTrades(false)
         }
         }
       }
@@ -799,22 +796,13 @@ export function TradeView() {
               message: 'Updating the list ...',
               type: "info",
             });
-            dataRefetch()
-            setClearInerterval(setInterval(() => {
-              dataRefetch()
-            }, 3000));
+            setStopFetchingTrades(false)
             return;
           }
 
         }
       }
     };
-
-    const dataRefetch=()=>{
-      fetchPrivateAPI(10,0);
-      fetchPublicAPI(10,0);
-      setOffset(0);
-    }
 
     const fetchPublicAPI=async (limit:Number,offset:Number)=>{
       //Get All Trades
@@ -843,28 +831,38 @@ export function TradeView() {
     const fetchTrades=async (limit:Number,offset:Number)=>{
       let publicKey = wallet.publicKey;
       if(publicKey){
-      try {
-        const data = {limit,offset,trade_owner:publicKey.toString()};
-        const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getTrades',data);
-        setMyTradeData(response?.data?.trades)
+        try {
+          const data = {limit,offset,trade_owner:publicKey.toString()};
+          const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getTrades',data);
+          if(response.data.trades.length===0 && offset>0) {
+            fetchTrades(10,0)
+            setOffset(0)
+            return;
+          }
+          setMyTradeData(response?.data?.trades)
 
-      } catch (error) {
-        console.error(error);
-      }
+        } catch (error) {
+          console.error(error);
+        }
     }
     }
     const fetchPendingTrades=async (limit:Number,offset:Number)=>{
       let publicKey = wallet.publicKey;
       if(publicKey){
-      try {
-        const data = {limit,offset,owner:publicKey.toString()};
-        const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPendings',data);
-        setMyPendingData(response?.data?.pendings)
+        try {
+          const data = {limit,offset,owner:publicKey.toString()};
+          const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPendings',data);
+          if(response.data.pendings.length===0 && offset>0) {
+            fetchPendingTrades(10,0);
+            setOffset(0)
+            return;
+          }
+          setMyPendingData(response?.data?.pendings)
 
-      } catch (error) {
-        console.error(error);
+        } catch (error) {
+          console.error(error);
+        }
       }
-    }
     }
     const fetchPrivateAPI=async (limit:Number,offset:Number)=>{
       let publicKey = wallet.publicKey;
@@ -874,7 +872,7 @@ export function TradeView() {
             const data = {limit,offset,trade_owner:publicKey.toString()};
             const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getTrades',data);
             if(response.data.trades.length===0 && offset>0) {
-              fetchPrivateAPI(10,0)
+              
               setOffset(0)
               return;
             }
@@ -886,12 +884,12 @@ export function TradeView() {
         }
         //Get My Pendings
         if(showAllTrade===3){
-          setStopFetchPendingTrade(true)
+          
           try {
             const data = {limit,offset,owner:publicKey.toString()};
             const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPendings',data);
             if(response.data.pendings.length===0 && offset>0) {
-              fetchPrivateAPI(10,0);
+             
               setOffset(0)
               return;
             }
@@ -914,26 +912,15 @@ export function TradeView() {
     fetchAPY()
    },[])
 
-    useEffect(()=>{
+   useInterval(() => {
+      superBondsProcess();
       let publicKey = wallet.publicKey;
-      if(wallet && publicKey) {
+      if(!stopFetchingTrades)
+        fetchPublicAPI(10,0)
+      if(wallet && publicKey && !stopFetchingTrades) {
+        fetchPendingTrades(10,0)
         fetchTrades(10,0)
         }
-    },[wallet.publicKey])
-
-    useEffect(()=>{
-      fetchPublicAPI(10,0);
-      fetchTrades(10,0)
-    },[showAllTrade])
-
-   const ss= useInterval(() => {
-      superBondsProcess();
-      if(!stopFetchPendingTrade)
-      fetchPendingTrades(10,0)
-      // let publicKey = wallet.publicKey;
-      // if(wallet && publicKey){
-      //   superBondsProcess();
-      // }
     }, 3000);
  
  
@@ -1120,27 +1107,39 @@ export function TradeView() {
         }
         else setsuperBonds_status90('INACTIVE');
       }
-
-
     }
-    const handlePagination=(limit:number,x_paginationcursor:number)=>{
-      if(inerterval)
-        clearInterval(inerterval)
-   
-     // //console.log(offset)
-      if(x_paginationcursor>0) {
-        setOffset(offset+x_paginationcursor);
-        showAllTrade==1?fetchPublicAPI(limit,offset+x_paginationcursor):fetchPrivateAPI(limit,offset+x_paginationcursor);
-      }
-      else if(x_paginationcursor<0 && offset+x_paginationcursor>(-1)) {
-        setOffset(offset+x_paginationcursor);
-        showAllTrade==1?fetchPublicAPI(limit,offset+x_paginationcursor):fetchPrivateAPI(limit,offset+x_paginationcursor);
-      }
-      else{
+  const handlePagination=(limit:number,x_paginationcursor:number)=>{
+    setStopFetchingTrades(true)
+     
+    if(x_paginationcursor>0) {
+      setOffset(offset+x_paginationcursor);
+      if(showAllTrade===1)
+        fetchPublicAPI(limit,offset+x_paginationcursor)
+      else if(showAllTrade==2)
+        fetchTrades(limit,offset+x_paginationcursor)
+      else 
+        fetchPendingTrades(limit,offset+x_paginationcursor)
+    }
 
-         setOffset(offset+0);
-         showAllTrade==1?fetchPublicAPI(limit,x_paginationcursor):fetchPrivateAPI(limit,x_paginationcursor);
-        }
+    else if(x_paginationcursor<0 && offset+x_paginationcursor>(-1)) {
+      setOffset(offset+x_paginationcursor);
+      if(showAllTrade===1)
+        fetchPublicAPI(limit,offset+x_paginationcursor)
+      else if(showAllTrade==2)
+        fetchTrades(limit,offset+x_paginationcursor)
+      else
+        fetchPendingTrades(limit,offset+x_paginationcursor)
+    }
+  
+    else{
+        setOffset(offset+0);
+      if(showAllTrade===1)
+        fetchPublicAPI(limit,x_paginationcursor)
+      else if(showAllTrade==2)
+        fetchTrades(limit,x_paginationcursor)
+      else
+        fetchPendingTrades(limit,x_paginationcursor)
+    }
    }
 
    const findTradeUnit=(yld:number,day:number)=>{
@@ -1174,10 +1173,7 @@ export function TradeView() {
       setBondValueMaturity_90(bondValueMaturity);
     }
   }
-   const POOL_30_ADDRESS = new PublicKey(
-    "EnFgZ2knSv7jyVmdskfXSNULyaHYwgp7NTs1KU4GYSFe"
-  );
-
+ 
     return (
         <div className="w-screen h-screen bg-black">
             <div  className="w-9/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
