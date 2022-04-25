@@ -51,17 +51,17 @@ export const RedeemView = () => {
 
   const getAllBalances = async () => {
     if ( !wallet){
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     if (!wallet.publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     setUSDCbalance(await getTokenBalance(connection,wallet.publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
@@ -76,15 +76,15 @@ export const RedeemView = () => {
 
   useEffect(() => {
     if (!wallet.publicKey) return;
-    console.log('Here');
+    //console.log('Here');
     onShowTradeInformation();
     getAllBalances();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet]);
+  }, [wallet.publicKey]);
   const onShowTradeInformation = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -107,7 +107,7 @@ export const RedeemView = () => {
     }
     const encodedTradeDataState = trade_data_info.data;
     const decodedTradeDataState = TRADE_DATA_LAYOUT.decode(encodedTradeDataState);
-    console.log(decodedTradeDataState);
+    //console.log(decodedTradeDataState);
     setTradeData(decodedTradeDataState);
 
     const NFT_info = await connection.getAccountInfo(decodedTradeDataState.NFT);
@@ -125,7 +125,7 @@ export const RedeemView = () => {
     var maturity_at = 1000* new BN(decodedTradeDataState.maturity_date, 10, "le").toNumber();
     var now = new Date();
     const diffDays = Math.round(Math.abs((maturity_at - now.getTime()) / (1000)));
-    console.log(maturity_at,now,diffDays);
+    //console.log(maturity_at,now,diffDays);
     let current_bond_value = 0;
     if (maturity_at<now.getTime()) current_bond_value = Bond_at_maturity;
     else
@@ -154,7 +154,7 @@ export const RedeemView = () => {
   const onRedeem = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -168,7 +168,7 @@ export const RedeemView = () => {
       return;
     }
     let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-    if (SOL_balance <= 0.001){
+    if (SOL_balance <= 0.005){
       notify({
         message: 'You have low Sol balance',
         type: "info",
@@ -205,7 +205,7 @@ export const RedeemView = () => {
     const message = `
     <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
       <div class="table2">
-        <table class="w-full"> 
+        <table class="w-full">
             <tr>
               <th class="text-left">
                 <span class="th_span small_font_td_span">
@@ -231,7 +231,7 @@ export const RedeemView = () => {
       </div>
     </div>
     `
-    
+
     await Swal.fire({
       title: 'Redeem Confirmation',
       html:message,
@@ -241,11 +241,16 @@ export const RedeemView = () => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Proceed = true;
-        console.log(Proceed);
+        //console.log(Proceed);
       }
     })
-    console.log('here',Proceed);
+    //console.log('here',Proceed);
     if (!Proceed) return;
+
+    notify({
+      message: 'Preparing...',
+      type: "info",
+    });
 
     //Create new SuperB token Account and transfer fee amount to it
     let superB_associated_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
@@ -259,14 +264,14 @@ export const RedeemView = () => {
     const buffers = [
       Buffer.from(Uint8Array.of(17))
     ];
-    console.log('pool',tradeData.pool.toBase58(),'trade_account',trade_account,'NFT',tradeData.NFT.toBase58());
-    console.log('usdc_associated_token_account_address',usdc_associated_token_account_address.toBase58());
-    console.log('superB_associated_token_account_address',superB_associated_token_account_address.toBase58());
+    //console.log('pool',tradeData.pool.toBase58(),'trade_account',trade_account,'NFT',tradeData.NFT.toBase58());
+    //console.log('usdc_associated_token_account_address',usdc_associated_token_account_address.toBase58());
+    //console.log('superB_associated_token_account_address',superB_associated_token_account_address.toBase58());
 
     const NFT_info = await connection.getAccountInfo(tradeData.NFT);
     if (!NFT_info) return;
     // const NFT_data = MintLayout.decode(NFT_info.data);
-    //console.log(new PublicKey(NFT_data.mint));
+    ////console.log(new PublicKey(NFT_data.mint));
     //Check if current user has any NFT with this NFT Mint Account
     let NFT_Balance = await getTokenBalance(connection,publicKey,tradeData.NFT,0);
     if (NFT_Balance != 1 ){
@@ -278,7 +283,7 @@ export const RedeemView = () => {
     }
 
     let nft_associated_token_account_address = await findAssociatedTokenAddress(publicKey,tradeData.NFT);
-    console.log('nft_associated_token_account_address',nft_associated_token_account_address.toBase58());
+    //console.log('nft_associated_token_account_address',nft_associated_token_account_address.toBase58());
     const Burn_one_NFT_Ix = Token.createBurnInstruction(
       TOKEN_PROGRAM_ID,
       tradeData.NFT,
@@ -304,7 +309,7 @@ export const RedeemView = () => {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     if (resp.length == 0 ){
       notify({
         message: 'Cannot find Trader Data Account',
@@ -313,13 +318,30 @@ export const RedeemView = () => {
       return;
     }
 
+    let rentExemption = 0;
+    try{
+      rentExemption = await connection.getMinimumBalanceForRentExemption(REDEEM_DATA_LAYOUT.span);
+      if (rentExemption == 0){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+    } catch(e){
+      notify({
+        message: 'Please try again, connection to Solana blockchain was interrupted',
+        type: "error",
+      });
+      return;
+    }
 
     const redeem_data_account = new Account();
-    console.log('redeem_data_account',redeem_data_account.publicKey.toString());
+    //console.log('redeem_data_account',redeem_data_account.publicKey.toString());
     const createRedeemDataAccountIx = SystemProgram.createAccount({
         programId: SUPERBONDS_PROGRAM_ID,
         space: REDEEM_DATA_LAYOUT.span,
-        lamports: await connection.getMinimumBalanceForRentExemption(REDEEM_DATA_LAYOUT.span),
+        lamports: rentExemption,
         fromPubkey: publicKey,
         newAccountPubkey: redeem_data_account.publicKey
     });
@@ -360,7 +382,7 @@ export const RedeemView = () => {
           RedeemIx,
           Burn_one_NFT_Ix
       ]
-      ,[redeem_data_account],false);
+      ,[redeem_data_account]);
 
     if (!txid){
       notify({
@@ -368,12 +390,16 @@ export const RedeemView = () => {
         type: "error",
       });
     }else{
-      notify({
-        message: 'Redemption Request Sent',
-        type: "success",
-      });
-      await delay(2000);
-      history.push("/trade");
+
+            notify({
+              message: 'Redeemed successfully',
+              type: "success",
+            });
+            await delay(3000);
+            history.push("/trade");
+            return;
+
+
     }
   }
   const handleCopy=()=>[
@@ -389,7 +415,7 @@ export const RedeemView = () => {
                 <div className='flex pt-6 justify-around flex-col items-center'>
                     <div className="flex w-6/12 md:w-full md:mt-3 flex-col bg-gray-300 py-3 px-7 mt-4  rounded-md md:ml-0 sm:py-3 sm:px-2">
                         <div className="text-center">
-                            <Text weight={'true'} size ={"16px"} transform={"true"} color={"#7CFA4C"}>Redeem NFT Bond Trade Token</Text>
+                            <Text weight={'true'} size ={"16px"} transform={"true"} color={"#7CFA4C"}>Bond Redemption</Text>
                         </div>
                         <div className="flex justify-between py-2 px-2  mt-3 ß rounded-md" style={{'background':' linear-gradient(89.52deg, rgba(124, 250, 76, 0.1) 15.18%, rgba(124, 250, 76, 0) 76.06%), #1F2933'}}>
                           <Text className='' weight size="14px" opacity="0.5">Trade Account:</Text>

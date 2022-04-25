@@ -42,37 +42,16 @@ export function PlatformStatsView() {
     const connection = useConnection();
     const wallet = useWallet();
 
-    // const [SOLbalance,setSOLbalance] = useState(0);
-    // const [USDCbalance,setUSDCbalance] = useState<any>(0);
-    // const [SuperBbalance,setSuperBbalance] = useState<any>(0);
-    // const [LP30balance,setLP30balance] = useState<any>(0);
-    // const [LP90balance,setLP90balance] = useState<any>(0);
-    // const [SOL_SB_LPbalance,setSOL_SB_LPbalance] = useState<any>(0);
-    // const [PlatformData, setPlatformData] = useState<any>();
     const [StakingData, setStakingData] = useState<any>();
     const [SuperB_Rewards_Balance,setSuperB_Rewards_Balance] = useState(0);
 
     const getAllBalances = async () => {
       if ( !wallet){
-        notify({
-          message: 'Please connect to Sol network',
-          type: "error",
-        });
         return;
       }
       if (!wallet.publicKey){
-        notify({
-          message: 'Please connect to Solana network',
-          type: "error",
-        });
         return;
       }
-      // setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
-      // setUSDCbalance(await getTokenBalance(connection,wallet.publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
-      // setLP30balance(await getTokenBalance(connection,wallet.publicKey,LP_TOKEN_30_MINT_ADDRESS,LP_TOKEN_DECIMALS));
-      // setLP90balance(await getTokenBalance(connection,wallet.publicKey,LP_TOKEN_90_MINT_ADDRESS,LP_TOKEN_DECIMALS));
-      // setSuperBbalance(await getTokenBalance(connection,wallet.publicKey,SUPERB_MINT_ADDRESS,SUPERB_DECIMALS));
-      // setSOL_SB_LPbalance(await getTokenBalance(connection,wallet.publicKey,SOL_SB_LP_MINT_ADDRESS,SOL_SB_LP_TOKEN_DECIMALS));
     }
 
     useEffect( () => {
@@ -80,13 +59,13 @@ export function PlatformStatsView() {
       getPlatformData()
       getAllBalances();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [wallet]);
+    }, [wallet.publicKey]);
 
 
     const onGetFreeSol = async () => {
       if ( !wallet){
         notify({
-          message: 'Please connect to Sol network',
+          message: 'Please connect to Solana network',
           type: "error",
         });
         return;
@@ -106,7 +85,7 @@ export function PlatformStatsView() {
           message: "Airdrop 1 SOL request Sent",
           type: "success",
         });
-        await delay(2000);
+        await delay(3000);
         // setSOLbalance(await connection.getBalance(publicKey)/(10**9));
       } catch (error) {
         notify({
@@ -120,12 +99,12 @@ export function PlatformStatsView() {
 
         // const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
         // const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-        // console.log(decodedPoolDataState);
+        // //console.log(decodedPoolDataState);
         // setPlatformData(decodedPoolDataState);
 
         const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
         const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-        console.log(decodedStakingDataState);
+        //console.log(decodedStakingDataState);
         setStakingData(decodedStakingDataState);
 
         const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
@@ -136,7 +115,7 @@ export function PlatformStatsView() {
     const onGetFreeToken = async (_type:number) => {
       if ( !wallet){
         notify({
-          message: 'Please connect to Sol network',
+          message: 'Please connect to Solana network',
           type: "error",
         });
         return;
@@ -181,7 +160,7 @@ export function PlatformStatsView() {
       let associated_token_account_address_info = await connection.getAccountInfo(associated_token_account_address);
         //check if lp token is initialized or not
       if (!associated_token_account_address_info) {
-          console.log("Create associated_token_account_address");
+          //console.log("Create associated_token_account_address");
           let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
@@ -193,7 +172,7 @@ export function PlatformStatsView() {
           let txid = await sendTransaction(connection,wallet,
               [associated_token_account_address_creationIx
               ],
-            [],false);
+            []);
           if (!txid){
             notify({
               message: 'Something wrong with your request!',
@@ -223,7 +202,7 @@ export function PlatformStatsView() {
           [
             getFreeTokensIx
         ]
-        ,[],false);
+        ,[]);
       if (!txid1){
         notify({
           message: 'Something wrong with your request!',
@@ -235,7 +214,7 @@ export function PlatformStatsView() {
           message: 'Request for Free Tokens sent!',
           type: "info",
         });
-        await delay(2000);
+        await delay(3000);
         // setUSDCbalance(await getTokenBalance(connection,publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
         // setSuperBbalance(await getTokenBalance(connection,publicKey,SUPERB_MINT_ADDRESS,SUPERB_DECIMALS));
         return;
@@ -247,7 +226,7 @@ export function PlatformStatsView() {
     <div className="w-screen h-screen bg-black ">
         <div className="w-11/12 my-0 mx-auto pt-28 " style={{maxWidth:"1540px"}}>
 
-           <div className="flex pt-6 justify-between flex-wrap ">
+           {/*<div className="flex pt-6 justify-between flex-wrap ">
                 <div className="flex flex-col w-full my-0 mx-auto 2xxl:mt-3 mb-3">
                     <div className="flex w-7/12 mx-auto md:w-full my-0 flex-wrap justify-evenly sm:flex-col sm:w-9/12">
                         <button className="border-2 rounded-md border-green-100 px-6 py-1.5 inline-block sm:mb-5"  onClick={() => onGetFreeSol()}>
@@ -261,7 +240,7 @@ export function PlatformStatsView() {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div>*/}
 
             <div className="flex flex-col w-7/12 mx-auto my-0 mt-5 md:w-full  bg-gray-300 py-5 px-7 xl:px-3 rounded-md X">
                 <div className="text-center">

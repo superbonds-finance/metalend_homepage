@@ -138,7 +138,7 @@ export const PoolManagementView = () => {
       setYieldIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -149,10 +149,10 @@ export const PoolManagementView = () => {
         message: 'Updated successfully',
         type: "success",
       });
-      await delay(2000);
+      await delay(3000);
       onRefresh();
     }
-    //console.log(txid);
+    ////console.log(txid);
   }
   const onCreate = async (pool:any) => {
 
@@ -193,7 +193,7 @@ export const PoolManagementView = () => {
 
       //
       const pool_state_account = new Account();
-      console.log('pool_state_account',pool_state_account.publicKey.toString());
+      //console.log('pool_state_account',pool_state_account.publicKey.toString());
       const createPoolStateAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: POOL_DATA_LAYOUT.span,
@@ -204,7 +204,7 @@ export const PoolManagementView = () => {
       //
       //Create USDC Token Account to hold Liquidity from Provider
       const LP_Pool_Account = new Account();
-      console.log('LP_Pool_Account',LP_Pool_Account.publicKey.toBase58());
+      //console.log('LP_Pool_Account',LP_Pool_Account.publicKey.toBase58());
       const createLP_Pool_AccountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: AccountLayout.span,
@@ -216,7 +216,7 @@ export const PoolManagementView = () => {
 
       //Create Token Account to hold USDC from Trader
       const Trader_Pool_Account = new Account();
-      console.log('Trader_Pool_Account',Trader_Pool_Account.publicKey.toBase58());
+      //console.log('Trader_Pool_Account',Trader_Pool_Account.publicKey.toBase58());
       const createTrader_Pool_AccountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: AccountLayout.span,
@@ -229,7 +229,7 @@ export const PoolManagementView = () => {
 
       //Create Token Account to hold SuperBonds Pool USDC
       const SuperBonds_Pool_Account = new Account();
-      console.log('SuperBonds_Pool_Account',SuperBonds_Pool_Account.publicKey.toBase58());
+      //console.log('SuperBonds_Pool_Account',SuperBonds_Pool_Account.publicKey.toBase58());
       const createSuperBonds_Pool_AccountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: AccountLayout.span,
@@ -242,9 +242,9 @@ export const PoolManagementView = () => {
       const buffers = [
         Buffer.from(Uint8Array.of(0, ...new Numberu32(pool).toBuffer()))
       ];
-      console.log(Buffer.concat(buffers));
+      //console.log(Buffer.concat(buffers));
       const LP_Mint_Account = new Account();
-      console.log('LP_Mint_Account',LP_Mint_Account.publicKey.toString());
+      //console.log('LP_Mint_Account',LP_Mint_Account.publicKey.toString());
       let [LP_TOKEN_PDA/* , LP_TOKEN_NONCE */] = await PublicKey.findProgramAddress([LP_Mint_Account.publicKey.toBuffer()], SUPERBONDS_PROGRAM_ID);
 
       const createLP_Mint_AccountIx = SystemProgram.createAccount({
@@ -258,7 +258,7 @@ export const PoolManagementView = () => {
 
       //Create Token Account to hold Staked LP Token
       const Staked_LP_Token_Account = new Account();
-      console.log('Staked_LP_Token_Account',Staked_LP_Token_Account.publicKey.toBase58());
+      //console.log('Staked_LP_Token_Account',Staked_LP_Token_Account.publicKey.toBase58());
       const createStaked_LP_Token_AccountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: AccountLayout.span,
@@ -294,7 +294,7 @@ export const PoolManagementView = () => {
             createTrader_Pool_AccountIx,initTrader_Pool_AccountIx,
             createSuperBonds_Pool_AccountIx,initSuperBonds_Pool_AccountIx
         ]
-        ,[pool_state_account,LP_Pool_Account,Trader_Pool_Account,SuperBonds_Pool_Account],false);
+        ,[pool_state_account,LP_Pool_Account,Trader_Pool_Account,SuperBonds_Pool_Account]);
       if (!txid1){
         notify({
           message: 'Something wrong with your request!',
@@ -307,7 +307,7 @@ export const PoolManagementView = () => {
             createLP_Mint_AccountIx,initLP_Mint_AccountIx,
             createStaked_LP_Token_AccountIx,initStaked_LP_Token_AccountIx,
             initPoolIx],
-        [pool_state_account,LP_Pool_Account,Trader_Pool_Account,SuperBonds_Pool_Account,LP_Mint_Account,Staked_LP_Token_Account],false);
+        [pool_state_account,LP_Pool_Account,Trader_Pool_Account,SuperBonds_Pool_Account,LP_Mint_Account,Staked_LP_Token_Account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -318,7 +318,7 @@ export const PoolManagementView = () => {
           message: 'Created Pool successfully',
           type: "success",
         });
-        await delay(2000);
+        await delay(3000);
         onRefresh();
       }
 
@@ -378,7 +378,7 @@ export const PoolManagementView = () => {
 
     let txid = await sendTransaction(connection,wallet,
         [farmIx]
-      ,[],false);
+      ,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -389,7 +389,7 @@ export const PoolManagementView = () => {
         message: 'External Farming Request Sent',
         type: "success",
       });
-      await delay(2000);
+      await delay(3000);
       onRefresh();
     }
   }
@@ -397,7 +397,7 @@ export const PoolManagementView = () => {
   const readPoolData_30 = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -412,7 +412,7 @@ export const PoolManagementView = () => {
 
     const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
     const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-    console.log(decodedPoolDataState);
+    //console.log(decodedPoolDataState);
     setData30pool(decodedPoolDataState);
 
     const encodeUSDC_LP_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.LP_Pool), 'singleGossip'))!.data;
@@ -444,7 +444,7 @@ export const PoolManagementView = () => {
   const readPoolData_90 = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -459,7 +459,7 @@ export const PoolManagementView = () => {
 
     const encodedPoolDataState = (await connection.getAccountInfo(POOL_90_ADDRESS, 'singleGossip'))!.data;
     const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-    console.log(decodedPoolDataState);
+    //console.log(decodedPoolDataState);
     setData90pool(decodedPoolDataState);
 
     const encodeUSDC_LP_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.LP_Pool), 'singleGossip'))!.data;
@@ -511,7 +511,7 @@ export const PoolManagementView = () => {
 
     const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-    console.log(decodedPoolDataState);
+    //console.log(decodedPoolDataState);
     setStakingPool(decodedPoolDataState);
 
   }
@@ -534,16 +534,16 @@ export const PoolManagementView = () => {
     }
 
     let [PDA/* , nonce */] = await PublicKey.findProgramAddress([LP_TOKEN_30_MINT_ADDRESS.toBuffer()], SUPERBONDS_PROGRAM_ID);
-    console.log('LP Token 30 PDA:','spl-token authorize',LP_TOKEN_30_MINT_ADDRESS.toString(),'mint',PDA.toString());
+    //console.log('LP Token 30 PDA:','spl-token authorize',LP_TOKEN_30_MINT_ADDRESS.toString(),'mint',PDA.toString());
     [PDA/* , nonce */] = await PublicKey.findProgramAddress([LP_TOKEN_90_MINT_ADDRESS.toBuffer()], SUPERBONDS_PROGRAM_ID);
-    console.log('LP Token 90 PDA:','spl-token authorize',LP_TOKEN_90_MINT_ADDRESS.toString(),'mint',PDA.toString());
+    //console.log('LP Token 90 PDA:','spl-token authorize',LP_TOKEN_90_MINT_ADDRESS.toString(),'mint',PDA.toString());
 
   }
 
   const claimTreasury = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -594,7 +594,7 @@ export const PoolManagementView = () => {
 
     let txid = await sendTransaction(connection,wallet,
         [claimSuperBTreasuryIx]
-      ,[],false);
+      ,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -605,7 +605,7 @@ export const PoolManagementView = () => {
         message: 'Claim Request Sent',
         type: "success",
       });
-      await delay(2000);
+      await delay(3000);
       onRefresh();
     }
   }
@@ -636,7 +636,7 @@ export const PoolManagementView = () => {
       });
       return;
     }
-    console.log(deposit_amount);
+    //console.log(deposit_amount);
 
     let pool_address = pool == 30 ? POOL_30_ADDRESS : POOL_90_ADDRESS;
     const encodedStakingDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
@@ -656,7 +656,7 @@ export const PoolManagementView = () => {
     const buffers = [
       Buffer.from(Uint8Array.of(33, ...new Numberu64(deposit_amount*(10**USDC_DECIMALS)).toBuffer()))
     ];
-    //console.log(Buffer.concat(buffers));
+    ////console.log(Buffer.concat(buffers));
     const depositIx = new TransactionInstruction({
         programId: SUPERBONDS_PROGRAM_ID,
         keys: [
@@ -673,7 +673,7 @@ export const PoolManagementView = () => {
       depositIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -684,10 +684,10 @@ export const PoolManagementView = () => {
         message: 'Deposit Request sent successfully',
         type: "success",
       });
-      await delay(2000);
+      await delay(3000);
       onRefresh();
     }
-    //console.log(txid);
+    ////console.log(txid);
   }
 
   const setSuperBonds = async (pool:number,status:number) => {
@@ -706,7 +706,7 @@ export const PoolManagementView = () => {
       });
       return;
     }
-    console.log(deposit_amount);
+    //console.log(deposit_amount);
 
     let pool_address = pool == 30 ? POOL_30_ADDRESS : POOL_90_ADDRESS;
     const encodedStakingDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
@@ -726,7 +726,7 @@ export const PoolManagementView = () => {
     const buffers = [
       Buffer.from(Uint8Array.of(9,status))
     ];
-    //console.log(Buffer.concat(buffers));
+    ////console.log(Buffer.concat(buffers));
     const setSuperBondsIx = new TransactionInstruction({
         programId: SUPERBONDS_PROGRAM_ID,
         keys: [
@@ -740,7 +740,7 @@ export const PoolManagementView = () => {
       setSuperBondsIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -751,10 +751,10 @@ export const PoolManagementView = () => {
         message: 'Set SuperBonds Status Request sent successfully',
         type: "success",
       });
-      await delay(2000);
+      await delay(3000);
       onRefresh();
     }
-    //console.log(txid);
+    ////console.log(txid);
   }
 
   const withdrawFund = async (_type: number, amount: number) =>{
@@ -832,7 +832,7 @@ export const PoolManagementView = () => {
     const buffers = [
       Buffer.from(Uint8Array.of(41,...new Numberu64(amount*(10**decimals)).toBuffer()))
     ];
-    //console.log(Buffer.concat(buffers));
+    ////console.log(Buffer.concat(buffers));
     const withdrawFundIx = new TransactionInstruction({
         programId: SUPERBONDS_PROGRAM_ID,
         keys: [
@@ -849,7 +849,7 @@ export const PoolManagementView = () => {
       withdrawFundIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -860,7 +860,7 @@ export const PoolManagementView = () => {
         message: 'Withdraw Request sent successfully',
         type: "success",
       });
-      await delay(2000);
+      await delay(3000);
       onRefresh();
     }
   }
@@ -910,7 +910,7 @@ export const PoolManagementView = () => {
     const buffers = [
       Buffer.from(Uint8Array.of(43))
     ];
-    //console.log(Buffer.concat(buffers));
+    ////console.log(Buffer.concat(buffers));
     const updateLPPriceIx = new TransactionInstruction({
         programId: SUPERBONDS_PROGRAM_ID,
         keys: [
@@ -927,7 +927,7 @@ export const PoolManagementView = () => {
       updateLPPriceIx
     ];
 
-    let txid = await sendTransaction(connection,wallet,transactions,[],false);
+    let txid = await sendTransaction(connection,wallet,transactions,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -938,7 +938,7 @@ export const PoolManagementView = () => {
         message: 'update LP Price request sent successfully',
         type: "success",
       });
-      await delay(2000);
+      await delay(3000);
       onRefresh();
     }
   }

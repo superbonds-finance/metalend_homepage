@@ -38,7 +38,7 @@ export default function Navbar(props: {
 
   const Links = (<>
   <div className="flex md:flex-col">
-    <div className="flex justify-between" style={{height: '42px'}}>
+    <div className="flex justify-between" style={{height: '38px'}}>
       <button
           onClick={() =>
             window.open("https://res.cloudinary.com/drr1rnoxf/image/upload/v1649780638/SuperBonds_Audit_Report_caey88.pdf")
@@ -52,10 +52,9 @@ export default function Navbar(props: {
 
        
       <button
-        onClick={() =>
-          window.open(
-            "https://res.cloudinary.com/drr1rnoxf/image/upload/v1642360290/SB_Whitepaper-compressed_lafdtl.pdf"
-            )
+        
+         onClick={() =>
+          handlePush("/trade")
         }
         className="hover:bg-green-100 text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-4 md:px-3 sm:px-2 py-0 inline-block ml-3"
       >
@@ -79,7 +78,7 @@ export default function Navbar(props: {
       </a>
     </div>
   </div>
-   
+
   </>);
 
   return (
@@ -94,7 +93,7 @@ export default function Navbar(props: {
             }
             alt="SuperB"
           />
-           
+
         </div>
       </div>
 
@@ -187,7 +186,7 @@ export default function Navbar(props: {
             </Popover>
           </>
         )}
- 
+
       </div>
     </div>
   );

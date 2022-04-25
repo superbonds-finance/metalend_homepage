@@ -42,14 +42,14 @@ export  function ClaimNFTView() {
   useEffect( () => {
     if (!wallet.publicKey) return;
 
-  }, [wallet]);
+  }, [wallet.publicKey]);
 
   const onCheck = async () => {
     setMyNFT_dataSource([]);
 
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -78,7 +78,7 @@ export  function ClaimNFTView() {
       });
       return;
     }
-    //console.log("NFT",NFT_info.data);
+    ////console.log("NFT",NFT_info.data);
     if (NFT_info.data.length != 82) {
       notify({
         message: 'This is not NFT Mint Account',
@@ -97,7 +97,7 @@ export  function ClaimNFTView() {
     }
 
     const NFT_data = MintLayout.decode(NFT_info.data);
-    console.log("NFT_data",NFT_data);
+    //console.log("NFT_data",NFT_data);
 
     let filters = [
       {"dataSize":132},
@@ -113,7 +113,7 @@ export  function ClaimNFTView() {
       filters,
       encoding: 'base64',
     });
-    console.log(resp);
+    //console.log(resp);
     if (resp.length == 0) {
       notify({
         message: 'There is no active trade with this NFT',
@@ -149,7 +149,7 @@ export  function ClaimNFTView() {
 
 
       }
-      console.log(myNFTs);
+      //console.log(myNFTs);
       setMyNFT_dataSource(myNFTs);
     }
   };
@@ -157,7 +157,7 @@ export  function ClaimNFTView() {
   const onClaim = async (trade_owner:string,nft:string,trade_account:string) => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -171,7 +171,7 @@ export  function ClaimNFTView() {
       return;
     }
     let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-    if (SOL_balance <= 0.001){
+    if (SOL_balance <= 0.005){
       notify({
         message: 'You have low Sol balance',
         type: "info",
@@ -201,7 +201,7 @@ export  function ClaimNFTView() {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
 
     if (resp.length == 0){
@@ -233,12 +233,29 @@ export  function ClaimNFTView() {
     let new_owner_Data_pk = null;
 
     if (resp.length == 0){
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
       let new_owner_Data_account = new Account();
-      console.log('new_owner_Data_account',new_owner_Data_account.publicKey.toBase58());
+      //console.log('new_owner_Data_account',new_owner_Data_account.publicKey.toBase58());
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: new_owner_Data_account.publicKey
       });
@@ -274,7 +291,7 @@ export  function ClaimNFTView() {
 
     let txid1 = await sendTransaction(connection,wallet,
         transactions
-      ,signers,false);
+      ,signers);
 
     if (!txid1){
       notify({

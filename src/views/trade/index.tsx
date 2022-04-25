@@ -58,11 +58,12 @@ import PoligonInActive from "../../assets/polygon_trade_inactive.png";
 import { ImInfo } from 'react-icons/im';
 import { Tooltip } from 'antd';
 
+let loaded30 = false;
+
 export function TradeView() {
     const connection = useConnection();
     const wallet = useWallet();
-    //const [loaded,setLoaded] = useState(false);
-
+    const [inerterval,setClearInerterval]= useState<any>();
     const [data30pool,setData30pool] = useState<any>();
     const [data90pool,setData90pool] = useState<any>();
     const [APY,setAPY] = useState<any>();
@@ -78,17 +79,17 @@ export function TradeView() {
 
     const getAllBalances = async () => {
       if ( !wallet){
-        notify({
-          message: 'Please connect to Sol network',
-          type: "error",
-        });
+        // notify({
+        //   message: 'Please connect to Solana network',
+        //   type: "error",
+        // });
         return;
       }
-      if (!wallet.publicKey){
-        notify({
-          message: 'Please connect to Solana network',
-          type: "error",
-        });
+      if (!wallet.publicKey ){
+        // notify({
+        //   message: 'Please connect to Solana network',
+        //   type: "error",
+        // });
         return;
       }
       //setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
@@ -105,7 +106,7 @@ export function TradeView() {
     const [adjustedLiquidity30,setAdjustedLiquidity30] = useState(0);
     const [tradeLiquidityAvailability30,setTradeLiquidityAvailability30] = useState(0);
     const [trade_fee_USDC30,setTrade_fee_USDC30] = useState(0);
-    
+
     const [transaction_fee_SuperB30,setTransaction_fee_SuperB30] = useState(0);
     const [SuperBonds_Rewards_Pool_30_Balance,setSuperBonds_Rewards_Pool_30_Balance] = useState(0);
     const [superBonds_status30,setsuperBonds_status30] = useState<any>("INACTIVE");
@@ -125,7 +126,7 @@ export function TradeView() {
 
     const [bondValue_90,setBondValue_90] = useState(0);
     const [bondValueMaturity_90,setBondValueMaturity_90] = useState(0);
-    const [stakingPool, setStakingPool] = useState<any>();
+    const [platformData, setPlatformData] = useState<any>();
     const [lq_amount30, setLQ_Amount30] = useState<any>("");
     const [lq_amount90, setLQ_Amount90] = useState<any>("");
 
@@ -139,13 +140,14 @@ export function TradeView() {
       setAllTrade(_type);
     };
 
+     
     useEffect(() => {
       readPoolData_30();
       readPoolData_90();
-      getStakingPoolData();
+      getPlatformData();
       onShowAllTrades(2);
       getAllBalances();
-    }, [wallet]);
+    }, [wallet.publicKey]);
 
     useEffect(() => {
       //if (!wallet.publicKey) return;
@@ -155,7 +157,7 @@ export function TradeView() {
         setTradeLiquidityAvailability30(data30pool.trade_liquidity_availability/10000);
         setTrade_fee_USDC30(data30pool.trade_fee_USDC/10000);
         setTransaction_fee_SuperB30(new BN(data30pool.transaction_fee_SuperB, 10, "le").toNumber());
-        //console.log(data30pool.trade_liquidity_availability,new BN(data30pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
+        ////console.log(data30pool.trade_liquidity_availability,new BN(data30pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
       }
       if (data90pool) {
 
@@ -164,15 +166,17 @@ export function TradeView() {
         setTradeLiquidityAvailability90(data90pool.trade_liquidity_availability/10000);
         setTrade_fee_USDC90(data90pool.trade_fee_USDC/10000);
         setTransaction_fee_SuperB90(new BN(data90pool.transaction_fee_SuperB, 10, "le").toNumber());
-        //console.log(data90pool.trade_liquidity_availability);
+        ////console.log(data90pool.trade_liquidity_availability);
       }
       superBondsProcess();
     }, [data30pool,data90pool]);
 
     const readPoolData_30 = async () => {
+        // let transaction_info = await connection.getConfirmedTransaction("SjUkzvu61q7DHddEB2Rk3LU5nyqS16Wvaajko4LJP1bdb5coJAypm4MYMGgJiaDQV9YfgtAPwjoBAbMfmwnBM1Q","confirmed");
+        // console.log(transaction_info);
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -184,23 +188,26 @@ export function TradeView() {
       //   });
       //   return;
       // }
+      // const data = {"pool":30};
+      // const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPoolData',data);
+      // console.log('api pool 30 data',response.data)
 
       const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
- 
+
       setData30pool(decodedPoolDataState);
+      //console.log('rpc pool 30 data',decodedPoolDataState);
 
       const encodeSuperBonds_Rewards_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.SuperBonds_Rewards_Pool), 'singleGossip'))!.data;
       const decodeSuperBonds_Rewards_Pool_Account_ADDRESS = AccountLayout.decode(encodeSuperBonds_Rewards_Pool_Account_ADDRESS);
       let SuperBonds_Rewards_Pool_Balance = new BN(decodeSuperBonds_Rewards_Pool_Account_ADDRESS.amount, 10, "le").toNumber() / (10**USDC_DECIMALS);
       setSuperBonds_Rewards_Pool_30_Balance(SuperBonds_Rewards_Pool_Balance);
 
-
     }
     const readPoolData_90 = async () => {
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -216,37 +223,31 @@ export function TradeView() {
       const encodedPoolDataState = (await connection.getAccountInfo(POOL_90_ADDRESS, 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
       setData90pool(decodedPoolDataState);
+      //console.log('rpc pool 90 data',decodedPoolDataState);
 
       const encodeSuperBonds_Rewards_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(decodedPoolDataState.SuperBonds_Rewards_Pool), 'singleGossip'))!.data;
       const decodeSuperBonds_Rewards_Pool_Account_ADDRESS = AccountLayout.decode(encodeSuperBonds_Rewards_Pool_Account_ADDRESS);
       let SuperBonds_Rewards_Pool_Balance = new BN(decodeSuperBonds_Rewards_Pool_Account_ADDRESS.amount, 10, "le").toNumber() / (10**USDC_DECIMALS);
       setSuperBonds_Rewards_Pool_90_Balance(SuperBonds_Rewards_Pool_Balance);
+
     }
-    const getStakingPoolData = async () => {
-      // if ( !wallet){
-      //   notify({
-      //     message: 'Please connect to Sol network',
-      //     type: "error",
-      //   });
-      //   return;
-      // }
-      // let publicKey = wallet.publicKey;
-      // if (!publicKey){
-      //   notify({
-      //     message: 'Please connect to Solana network',
-      //     type: "error",
-      //   });
-      //   return;
-      // }
-      const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
-      const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-      //console.log(decodedPoolDataState);
-      setStakingPool(decodedPoolDataState);
+    const getPlatformData = async () => {
+      //
+      const response:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/platformData ');
+      let decodedPoolDataState = response.data as PlatformDataLayout;
+      //console.log('api platform data',decodedPoolDataState)
+
+      // const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
+      // const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
+      //console.log('rpc platform data',decodedPoolDataState);
+
+      setPlatformData(decodedPoolDataState);
       let bond_yield = decodedPoolDataState.pool_yield_vector[0]/100;
       setBond_Yield30(bond_yield);
       bond_yield =  decodedPoolDataState.pool_yield_vector[1]/100;
-      
+
       setBond_Yield90(bond_yield);
+
 
     }
 
@@ -285,9 +286,10 @@ export function TradeView() {
     };
 
     const onTrade = async (pool:any) =>{
+      
       if ( !wallet){
         notify({
-          message: 'Please connect to Sol network',
+          message: 'Please connect to Solana network',
           type: "error",
         });
         return;
@@ -301,7 +303,7 @@ export function TradeView() {
         return;
       }
       let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-      if (SOL_balance <= 0.001){
+      if (SOL_balance <= 0.005){
         notify({
           message: 'You have low Sol balance',
           type: "info",
@@ -332,7 +334,7 @@ export function TradeView() {
 
       let toSend = bondYield > 0 ? bondValue*(1+trade_fee_USDC) : bondValueMaturity*(1+trade_fee_USDC);
       let superB_fee = pool == 30 ? transaction_fee_SuperB30 : transaction_fee_SuperB90;
-      //console.log('toSend',toSend,'superB_fee',superB_fee,'adjustedLiquidity',adjustedLiquidity);
+      ////console.log('toSend',toSend,'superB_fee',superB_fee,'adjustedLiquidity',adjustedLiquidity);
       if (bondValueMaturity-bondValue > tradeLiquidityAvailability * adjustedLiquidity){
         notify({
           message: 'Above Max Trade Limit',
@@ -447,18 +449,37 @@ export function TradeView() {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Proceed = true;
-          //console.log(Proceed);
+          ////console.log(Proceed);
         }
       })
-      //console.log('here',Proceed);
+      ////console.log('here',Proceed);
       if (!Proceed) return;
 
       const NFT_Mint_account = new Account();
-      //console.log('NFT_Mint_account',NFT_Mint_account.publicKey.toBase58());
+
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(MintLayout.span, 'singleGossip');
+        console.log(rentExemption);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+      ////console.log('NFT_Mint_account',NFT_Mint_account.publicKey.toBase58());
       const createNFT_Mint_accountIx = SystemProgram.createAccount({
           programId: TOKEN_PROGRAM_ID,
           space: MintLayout.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(MintLayout.span, 'singleGossip'),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: NFT_Mint_account.publicKey
       });
@@ -469,7 +490,7 @@ export function TradeView() {
         publicKey,
         null);
       let nft_associated_token_account_address = await findAssociatedTokenAddress(publicKey,NFT_Mint_account.publicKey);
-      //console.log('nft_associated_token_account_address',nft_associated_token_account_address.toBase58());
+      ////console.log('nft_associated_token_account_address',nft_associated_token_account_address.toBase58());
 
       let nft_associated_token_account_creationIx = Token.createAssociatedTokenAccountInstruction(
           SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
@@ -497,13 +518,36 @@ export function TradeView() {
         publicKey,
       []);
 
+      notify({
+        message: 'Preparing...',
+        type: "info",
+      });
+
       //Create Trade State Account to save trade information
       const trade_state_account = new Account();
-      //console.log('trade_state_account',trade_state_account.publicKey.toString());
+      ////console.log('trade_state_account',trade_state_account.publicKey.toString());
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADE_DATA_LAYOUT.span);
+        console.log(rentExemption);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+
       const createTradeStateAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADE_DATA_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADE_DATA_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: trade_state_account.publicKey
       });
@@ -518,7 +562,7 @@ export function TradeView() {
       //Calculate min_interest
       let longInterest = bondValueMaturity-bondValue;
       let min_interest = longInterest * 0.95;
-      console.log('min_interest',min_interest);
+      //console.log('min_interest',min_interest);
       const buffers = [
         Buffer.from(Uint8Array.of(15, ...new Numberu64(Math.round(toSend * (10**USDC_DECIMALS))).toBuffer(),
           ...new Numberu64(Math.round(min_interest * (10**USDC_DECIMALS))).toBuffer()
@@ -542,7 +586,7 @@ export function TradeView() {
         filters,
         encoding: 'base64',
       });
-      //console.log('resp',resp);
+      ////console.log('resp',resp);
       //return;
       let [SUPERBONDS_REWARD_PDA, SUPERBONDS_REWARD_NONCE] = await PublicKey.findProgramAddress([new PublicKey(datapool.SuperBonds_Rewards_Pool).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
@@ -552,13 +596,30 @@ export function TradeView() {
       let [SuperB_pda_address,SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
       if (resp.length == 0){
-        //console.log('Initializing Trader Data Account and Stake...');
+        ////console.log('Initializing Trader Data Account and Stake...');
         trader_Data_account = new Account();
-        //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+        ////console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+        let rentExemption = 0;
+        try{
+          rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+          if (rentExemption == 0){
+            notify({
+              message: 'Please try again, connection to Solana blockchain was interrupted',
+              type: "error",
+            });
+            return;
+          }
+        } catch(e){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
         const createTraderDataAccountIx = SystemProgram.createAccount({
             programId: SUPERBONDS_PROGRAM_ID,
             space: TRADER_LAYOUT.span,
-            lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+            lamports: rentExemption,
             fromPubkey: publicKey,
             newAccountPubkey: trader_Data_account.publicKey
         });
@@ -577,10 +638,10 @@ export function TradeView() {
               { pubkey: nft_associated_token_account_address, isSigner: false, isWritable: false },
               { pubkey: NFT_Mint_account.publicKey, isSigner: false, isWritable: false },
               { pubkey: new PublicKey(datapool.LP_Pool), isSigner: false, isWritable: true },
-              { pubkey: new PublicKey(stakingPool.SuperB_Pool), isSigner: false, isWritable: true },
+              { pubkey: new PublicKey(platformData.SuperB_Pool), isSigner: false, isWritable: true },
               { pubkey: new PublicKey(datapool.Traders_Pool), isSigner: false, isWritable: true },
               { pubkey: new PublicKey(datapool.SuperBonds_Rewards_Pool), isSigner: false, isWritable: true },
-              { pubkey: new PublicKey(stakingPool.Treasury), isSigner: false, isWritable: true },
+              { pubkey: new PublicKey(platformData.Treasury), isSigner: false, isWritable: true },
               { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
               { pubkey: SUPERB_MINT_ADDRESS, isSigner: false, isWritable: true},
               { pubkey: lp_token_mint_address, isSigner: false, isWritable: true},
@@ -604,7 +665,7 @@ export function TradeView() {
               createTradeStateAccountIx,
               createTraderDataAccountIx
           ]
-          ,[trade_state_account,NFT_Mint_account,trader_Data_account],false);
+          ,[trade_state_account,NFT_Mint_account,trader_Data_account]);
 
         if (!txid1){
           notify({
@@ -612,6 +673,8 @@ export function TradeView() {
             type: "error",
           });
         }else{
+          console.log(txid1);
+
           notify({
             message: 'Step 2: Creating the trade ...',
             type: "success",
@@ -620,27 +683,35 @@ export function TradeView() {
               [
                 TradeIx
               ]
-            ,[trade_state_account,NFT_Mint_account,trader_Data_account],false);
-          if (!txid1){
+            ,[trade_state_account,NFT_Mint_account,trader_Data_account]);
+          if (!txid2){
             notify({
               message: 'Something wrong with your request!',
               type: "error",
             });
           }else{
+
             notify({
-              message: 'Added Trade successfully',
+              message: 'Trade added successfully',
+              type: "info",
+            });
+            notify({
+              message: 'Updating balance...',
               type: "success",
             });
-            await delay(2000);
+            await delay(5000);
             readPoolData_30();
             readPoolData_90();
-            getStakingPoolData();
-            //onShowAllTrades(2);
-            await delay(2000);
-            fetchPrivateAPI(10,0);
-            fetchPublicAPI(10,0);
-            setOffset(0)
-          }
+            getPlatformData();
+            notify({
+              message: 'Updating the list ...',
+              type: "info",
+            });
+            dataRefetch()
+            setClearInerterval(setInterval(() => {
+              dataRefetch()
+            }, 3000));
+        }
         }
       }
       else{
@@ -660,10 +731,10 @@ export function TradeView() {
               { pubkey: nft_associated_token_account_address, isSigner: false, isWritable: false },
               { pubkey: NFT_Mint_account.publicKey, isSigner: false, isWritable: false },
               { pubkey: new PublicKey(datapool.LP_Pool), isSigner: false, isWritable: true },
-              { pubkey: new PublicKey(stakingPool.SuperB_Pool), isSigner: false, isWritable: true },
+              { pubkey: new PublicKey(platformData.SuperB_Pool), isSigner: false, isWritable: true },
               { pubkey: new PublicKey(datapool.Traders_Pool), isSigner: false, isWritable: true },
               { pubkey: new PublicKey(datapool.SuperBonds_Rewards_Pool), isSigner: false, isWritable: true },
-              { pubkey: new PublicKey(stakingPool.Treasury), isSigner: false, isWritable: true },
+              { pubkey: new PublicKey(platformData.Treasury), isSigner: false, isWritable: true },
               { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
               { pubkey: SUPERB_MINT_ADDRESS, isSigner: false, isWritable: true},
               { pubkey: lp_token_mint_address, isSigner: false, isWritable: true},
@@ -684,9 +755,8 @@ export function TradeView() {
               nft_associated_token_account_creationIx,
               Mint_one_NFT_Ix,
               Disable_Mint_Ix,
-              createTradeStateAccountIx
           ]
-          ,[trade_state_account,NFT_Mint_account],false);
+          ,[NFT_Mint_account]);
 
         if (!txid1){
           notify({
@@ -694,40 +764,55 @@ export function TradeView() {
             type: "error",
           });
         }else{
+
           notify({
             message: 'Step 2: Creating the trade ...',
             type: "success",
           });
           let txid2 = await sendTransaction(connection,wallet,
               [
+                createTradeStateAccountIx,
                 TradeIx
               ]
-            ,[trade_state_account,NFT_Mint_account],false);
-          if (!txid1){
+            ,[trade_state_account,NFT_Mint_account]);
+          if (!txid2){
             notify({
               message: 'Something wrong with your request!',
               type: "error",
             });
           }else{
             notify({
-              message: 'New trade request sent successfully',
+              message: 'Trade added successfully',
+              type: "info",
+            });
+            notify({
+              message: 'Updating balance...',
               type: "success",
             });
-            await delay(2000);
+            await delay(5000);
             readPoolData_30();
             readPoolData_90();
-            getStakingPoolData();
-            //onShowAllTrades(2);
-            await delay(2000);
-            fetchPublicAPI(10,0);
-            fetchPrivateAPI(10,0);
-            setOffset(0);
-            getAllBalances();
+            getPlatformData();
+            notify({
+              message: 'Updating the list ...',
+              type: "info",
+            });
+            dataRefetch()
+            setClearInerterval(setInterval(() => {
+              dataRefetch()
+            }, 3000));
+            return;
           }
-        }
 
+        }
       }
     };
+
+    const dataRefetch=()=>{
+      fetchPrivateAPI(10,0);
+      fetchPublicAPI(10,0);
+      setOffset(0);
+    }
 
     const fetchPublicAPI=async (limit:Number,offset:Number)=>{
       //Get All Trades
@@ -803,7 +888,7 @@ export function TradeView() {
     useEffect(()=>{
       let publicKey = wallet.publicKey;
       if(wallet && publicKey) fetchPrivateAPI(10,0)
-    },[wallet])
+    },[wallet.publicKey])
 
     useEffect(()=>{
       fetchPublicAPI(10,0);
@@ -816,12 +901,12 @@ export function TradeView() {
       // if(wallet && publicKey){
       //   superBondsProcess();
       // }
-    }, 1000);
+    }, 3000);
 
     const onSettle = async (pool:any,owner:any,usdc_account:any,data_account:any,amount:number) =>{
       if ( !wallet){
         notify({
-          message: 'Please connect to Sol network',
+          message: 'Please connect to Solana network',
           type: "error",
         });
         return;
@@ -835,7 +920,7 @@ export function TradeView() {
         return;
       }
       let SOL_balance = await connection.getBalance(publicKey)/(10**9);
-      if (SOL_balance <= 0.001){
+      if (SOL_balance <= 0.005){
         notify({
           message: 'You have low Sol balance',
           type: "info",
@@ -849,7 +934,7 @@ export function TradeView() {
         });
         return;
       }
-      //console.log(pool,POOL_30_ADDRESS,POOL_90_ADDRESS);
+      ////console.log(pool,POOL_30_ADDRESS,POOL_90_ADDRESS);
 
       const encodedPoolDataState = (await connection.getAccountInfo(new PublicKey(pool), 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
@@ -902,7 +987,7 @@ export function TradeView() {
           [
             settleIx
         ]
-        ,[],false);
+        ,[]);
 
       if (!txid){
         notify({
@@ -914,7 +999,7 @@ export function TradeView() {
           message: 'Settle Request Sent',
           type: "success",
         });
-        await delay(2000);
+        await delay(3000);
       }
     }
 
@@ -951,7 +1036,7 @@ export function TradeView() {
             else if (diff >0) {
                 superbonds_rate = data30pool.superBonds_rate/100;
             }
-            //console.log('superbonds_rate',superbonds_rate);
+            ////console.log('superbonds_rate',superbonds_rate);
             setSuperBondsRate30(superbonds_rate);
 
             setBondValueMaturity_30(bondValue * ((1 + (superbonds_rate*bond_yield30/100))**(30/365)))
@@ -993,7 +1078,7 @@ export function TradeView() {
             else if (diff >0) {
                 superbonds_rate = data90pool.superBonds_rate/100;
             }
-            //console.log('superbonds_rate',superbonds_rate);
+            ////console.log('superbonds_rate',superbonds_rate);
             setSuperBondsRate90(superbonds_rate);
             setBondValueMaturity_90(bondValue * ((1 + (superbonds_rate*bond_yield90/100))**(90/365)))
           }
@@ -1005,7 +1090,9 @@ export function TradeView() {
 
     }
     const handlePagination=(limit:number,x_paginationcursor:number)=>{
-     // console.log(offset)
+      if(inerterval)
+        clearInterval(inerterval)
+     // //console.log(offset)
       if(x_paginationcursor>0) {
         setOffset(offset+x_paginationcursor);
         showAllTrade==1?fetchPublicAPI(limit,offset+x_paginationcursor):fetchPrivateAPI(limit,offset+x_paginationcursor);
@@ -1015,7 +1102,7 @@ export function TradeView() {
         showAllTrade==1?fetchPublicAPI(limit,offset+x_paginationcursor):fetchPrivateAPI(limit,offset+x_paginationcursor);
       }
       else{
-       
+
          setOffset(offset+0);
          showAllTrade==1?fetchPublicAPI(limit,x_paginationcursor):fetchPrivateAPI(limit,x_paginationcursor);
         }
@@ -1031,8 +1118,8 @@ export function TradeView() {
   }
 
   const handleMaxBalance=(pool:number)=>{
-    
-    //let amonuntForTradeAfterFeesDeduction=(USDCbalance - (USDCbalance*(trade_fee_USDC/100))) 
+
+    //let amonuntForTradeAfterFeesDeduction=(USDCbalance - (USDCbalance*(trade_fee_USDC/100)))
     if(pool===30){
       let netAmount=formatNumberWithoutRounding.format(USDCbalance-(USDCbalance*trade_fee_USDC30))
       setLQ_Amount30(netAmount)
@@ -1052,7 +1139,7 @@ export function TradeView() {
       setBondValueMaturity_90(bondValueMaturity);
     }
   }
- 
+
     return (
         <div className="w-screen h-screen bg-black">
             <div  className="w-9/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
@@ -1114,10 +1201,10 @@ export function TradeView() {
                             <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2 xs:col-span-1 main_hex">
                               <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url('https://res.cloudinary.com/drr1rnoxf/image/upload/v1649338054/Group_1312_m4dht4.png')`}}>
                                 <Text className='text-grid cursor-pointer w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
-                                <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}> 
+                                <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}>
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
-                                <Text className="hex_number" 
-                                size={CalculateHexNumberSize(((APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):'0.00').length)} 
+                                <Text className="hex_number"
+                                size={CalculateHexNumberSize(((APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):'0.00').length)}
                                 color={"#9CF61C"}>
                                   <span style={{color:"#9CF61C"}}>
                                     <strong>{(APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):"0.00"}%</strong>
@@ -1142,7 +1229,7 @@ export function TradeView() {
                                     <HoverToolTip noColor className="flex flex-col justify-start">
 
                                         <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >Total Bonds Available
-                                          <Tooltip placement="bottom" title={'Total USDC value of bonds that can be purchased given the USDC value of capital in the LP pool'}> 
+                                          <Tooltip placement="bottom" title={'Total USDC value of bonds that can be purchased given the USDC value of capital in the LP pool'}>
                                           <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                         </Text>
                                         <Text size={"19px"} color={(superBonds_status30 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"white"}><span ><strong>{bond_yield30 ?formatNumberWithoutRounding.format((adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1))/0.35):"0.00"}</strong></span></Text>
@@ -1151,9 +1238,9 @@ export function TradeView() {
                                     <div className="lg:hidden md:block sm:hidden" style={{paddingLeft:'6px' , borderLeft: '3px solid '+ ((superBonds_status30 ==='ACTIVE' )? '#1A232B':'#5C7188')/* ,height: '-1px' */}}></div>
                                     <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status30 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
                                     <HoverToolTip noColor className="text-grid flex flex-col">
-                                 
+
                                         <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >SuperBonds Pool
-                                          <Tooltip placement="bottom" title={'Amount of USDC that is eligible for payment as interest during SuperBonds periods'}> 
+                                          <Tooltip placement="bottom" title={'Amount of USDC that is eligible for payment as interest during SuperBonds periods'}>
                                           <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                         </Text>
                                         <Text size={"19px"} color={(superBonds_status30 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"white"}><span ><strong>{(SuperBonds_Rewards_Pool_30_Balance).toFixed(2)}</strong></span></Text>
@@ -1166,38 +1253,38 @@ export function TradeView() {
                                 <div className="w-full p-4 rounded-md bg-gray-400" >
                                   <HoverToolTip className='text-grid grid grid-cols-3 cursor-pointer'>
                                     <Text weight='true' className="col-span-2 inline " opacity={"0.75"}>Fixed Yield
-                                      <Tooltip placement="rightTop" title={'The guaranteed yield upon maturity, in USDC, expressed in annualized terms'}> <ImInfo  className='info-circle'  /></Tooltip> 
+                                      <Tooltip placement="rightTop" title={'The guaranteed yield upon maturity, in USDC, expressed in annualized terms'}> <ImInfo  className='info-circle'  /></Tooltip>
                                     </Text>
                                     <Text className="" size={"19px"} color={"#7CFA4C"}><span style={{color: bond_yield30>=0 ? "#7CFA4C" : "red"}}><strong>{superbondsStatus30 ? Math.floor(bond_yield30*superbondsRate30*100)/100 : bond_yield30}%</strong></span></Text>
                                   </HoverToolTip>
 
                                   <HoverToolTip className='text-grid grid grid-cols-3 cursor-pointer'>
                                     <Text weight='true' className="col-span-2" opacity={"0.75"}>Days to Maturity
-                                    <Tooltip placement="rightTop" title={'The period of time after which the bond can be redeemed for its full value'}> 
+                                    <Tooltip placement="rightTop" title={'The period of time after which the bond can be redeemed for its full value'}>
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                     </Text>
-                                    
+
                                     <Text className='' size={"19px"}color={'white'}>30</Text>
                                   </HoverToolTip>
                                 </div>
                                 <div className="w-full p-4 rounded-md">
                                   <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"} >Max Trade
-                                        <Tooltip placement="rightTop" title={'Largest possible trade size at any given point in time'}> 
+                                        <Tooltip placement="rightTop" title={'Largest possible trade size at any given point in time'}>
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
                                       <span className="break-all"><Text size='15px'>{bond_yield30 ?formatNumberWithoutRounding.format(adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1)):"0.00"}</Text>&nbsp;<Text className='whitespace-nowrap' size='12px'>USDC</Text></span>
                                     </HoverToolTip>
 
                                     <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Entrance
-                                      <Tooltip placement="rightTop" title={' Amount paid by the trader and the amount on which the fixed interest is tabulated. Fees not included in calculation'}> 
+                                      <Tooltip placement="rightTop" title={' Amount paid by the trader and the amount on which the fixed interest is tabulated. Fees not included in calculation'}>
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
                                       <Text className='break-all' size={"19px"}color={'white'}><Text size='15px'>{formatNumberWithoutRounding.format(bondValue_30)}</Text>&nbsp;<Text className='whitespace-nowrap' size='12px'>USDC</Text></Text>
                                     </HoverToolTip>
 
                                     <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Maturity
-                                        <Tooltip placement="rightTop" title={'The gross amount (principal + interest) the trader will get back at maturity. Fees not included in calculation'}> 
+                                        <Tooltip placement="rightTop" title={'The gross amount (principal + interest) the trader will get back at maturity. Fees not included in calculation'}>
                                         <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                       </Text>
                                       <Text className='break-all' size={"19px"}color={'white'}><Text size='15px'><Text className='' size={"19px"}color={'white'}><Text size='15px'>{formatNumberWithoutRounding.format(bondValueMaturity_30)}</Text>&nbsp;<Text className='whitespace-nowrap' size='12px'>USDC</Text></Text></Text></Text>
@@ -1287,10 +1374,10 @@ export function TradeView() {
                               <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2 xs:col-span-1 main_hex">
                                 <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url('https://res.cloudinary.com/drr1rnoxf/image/upload/v1649338054/Group_1312_m4dht4.png')`}}>
                                   <Text className='w-9/12 text-grid cursor-pointer mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
-                                  <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}> 
+                                  <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}>
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
-                                  <Text className="hex_number" 
-                                  size={CalculateHexNumberSize(((APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00').length)} 
+                                  <Text className="hex_number"
+                                  size={CalculateHexNumberSize(((APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00').length)}
                                   color={"#9CF61C"}>
                                     <span style={{color: "#9CF61C"}}>
                                       <strong>{(APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00'}%</strong>
@@ -1313,8 +1400,8 @@ export function TradeView() {
                               <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 xs:col-span-1 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status90 ==='ACTIVE')? '#263B31':'#161D23'}}>
                                   <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
                                       <HoverToolTip noColor className="flex flex-col justify-start">
-                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >Total Bonds Available
-                                            <Tooltip placement="bottom" title={'Total USDC value of bonds that can be purchased given the USDC value of capital in the LP pool'}> 
+                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >Total Bonds Available
+                                            <Tooltip placement="bottom" title={'Total USDC value of bonds that can be purchased given the USDC value of capital in the LP pool'}>
                                             <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                           </Text>
                                           <Text size={"19px"} color={(superBonds_status90 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"white"}><span ><strong>{bond_yield90 ? formatNumberWithoutRounding.format((adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1))/0.35):"0.00"}</strong></span></Text>
@@ -1324,7 +1411,7 @@ export function TradeView() {
                                       <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
                                       <HoverToolTip noColor className="text-grid flex flex-col">
                                           <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >SuperBonds Pool
-                                            <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during SuperBonds periods'}> 
+                                            <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during SuperBonds periods'}>
                                             <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                           </Text>
                                           <Text size={"19px"} color={(superBonds_status90 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"white"}><span ><strong>{(SuperBonds_Rewards_Pool_90_Balance).toFixed(2)}</strong></span></Text>
@@ -1340,7 +1427,7 @@ export function TradeView() {
                                 <div className="w-full p-4 rounded-md bg-gray-400" >
                                 <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                     <Text weight='true' className="col-span-2" opacity={"0.75"} >Fixed Yield
-                                      <Tooltip placement="rightTop" title={'The guaranteed yield upon maturity, in USDC, expressed in annualized terms'}> 
+                                      <Tooltip placement="rightTop" title={'The guaranteed yield upon maturity, in USDC, expressed in annualized terms'}>
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                     </Text>
                                     <Text weight='true' size={"19px"} color={"#7CFA4C"}><span style={{color: bond_yield90>=0 ? "#7CFA4C" : "red"}}><strong>{superbondsStatus90 ? Math.floor(bond_yield90*superbondsRate90*100)/100 : bond_yield90}%</strong></span></Text>
@@ -1348,7 +1435,7 @@ export function TradeView() {
 
                                   <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                     <Text weight='true' className="col-span-2" opacity={"0.75"}>Days to Maturity
-                                      <Tooltip placement="rightTop" title={'The period of time after which the bond can be redeemed for its full value'}> 
+                                      <Tooltip placement="rightTop" title={'The period of time after which the bond can be redeemed for its full value'}>
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
                                     <Text weight='true' className='' size={"19px"}color={'white'}>90</Text>
                                   </HoverToolTip>
@@ -1356,7 +1443,7 @@ export function TradeView() {
                                 <div className="w-full p-4 rounded-md">
                                   <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                     <Text weight='true' className="col-span-2 " opacity={"50%"} >Max Trade
-                                      <Tooltip placement="rightTop" title={'Largest possible trade size at any given point in time'}> 
+                                      <Tooltip placement="rightTop" title={'Largest possible trade size at any given point in time'}>
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                     </Text>
                                     <span className="break-all"><Text size='15px'>{bond_yield90 ? formatNumberWithoutRounding.format(adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1)):"0.00"}</Text>&nbsp;<Text className='whitespace-nowrap' size='12px'>USDC</Text></span>
@@ -1364,7 +1451,7 @@ export function TradeView() {
 
                                     <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Entrance
-                                        <Tooltip placement="rightTop" title={' Amount paid by the trader and the amount on which the fixed interest is tabulated. Fees not included in calculation'}> 
+                                        <Tooltip placement="rightTop" title={' Amount paid by the trader and the amount on which the fixed interest is tabulated. Fees not included in calculation'}>
                                         <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                       </Text>
                                       <Text className='break-all' size={"19px"}color={'white'}><Text size='15px'>{formatNumberWithoutRounding.format(bondValue_90)}</Text>&nbsp;<Text className='whitespace-nowrap' size='12px'>USDC</Text></Text>
@@ -1372,7 +1459,7 @@ export function TradeView() {
 
                                     <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                       <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Maturity
-                                        <Tooltip placement="rightTop" title={'The gross amount (principal + interest) the trader will get back at maturity. Fees not included in calculation'}> 
+                                        <Tooltip placement="rightTop" title={'The gross amount (principal + interest) the trader will get back at maturity. Fees not included in calculation'}>
                                         <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                       </Text>
                                       <Text className='break-all' size={"19px"}color={'white'}><Text size='15px'><Text className='' size={"19px"}color={'white'}><Text size='15px'>{formatNumberWithoutRounding.format(bondValueMaturity_90)}</Text>&nbsp;<Text className='whitespace-nowrap' size='12px'>USDC</Text></Text></Text></Text>
@@ -1417,7 +1504,7 @@ export function TradeView() {
                   <div className="pb-3 flex justify-between flex-wrap">
                     <div className='flex justify-between sm:flex-col sm:justify-start flex-wrap sm:pb-3'>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 2? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(2)}>MY Trades</Text>
-                      <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>MY Pending Redemptions</Text>
+                      <Text style={{ color: myPendingData?.length>0 ? '#7CFA4C' : 'white'}} className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>MY Pending Redemptions<Text style={{color:"red"}}>{myPendingData?.length>0?`(${myPendingData?.length})`:''}</Text></Text>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 1? 'border-b-2 border-green-100' : '')} transform size='14px' onClick={()=>onShowAllTrades(1)}>Recent Trades</Text>
                     </div>
                     <div>

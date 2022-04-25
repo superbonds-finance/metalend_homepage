@@ -65,27 +65,27 @@ export const HomeView = () => {
       getStakingPoolData();
       onShowAllTrades(2);
       // getAllBalances();
-    }, [wallet]);
+    }, [wallet.publicKey]);
 
     useEffect(() => {
       //if (!wallet.publicKey) return;
       if (data30pool) {
         setAdjustedLiquidity30(new BN(data30pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
         setTradeLiquidityAvailability30(data30pool.trade_liquidity_availability/10000);
-        //console.log(data30pool.trade_liquidity_availability,new BN(data30pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
+        ////console.log(data30pool.trade_liquidity_availability,new BN(data30pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
       }
       if (data90pool) {
 
         setAdjustedLiquidity90(new BN(data90pool.adjustedLiquidity, 10, "le").toNumber()/1000000);
         setTradeLiquidityAvailability90(data90pool.trade_liquidity_availability/10000);
-        //console.log(data90pool.trade_liquidity_availability);
+        ////console.log(data90pool.trade_liquidity_availability);
       }
     }, [data30pool,data90pool]);
 
     const readPoolData_30 = async () => {
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -100,14 +100,14 @@ export const HomeView = () => {
 
       const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
       const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-       //console.log("asas",decodedPoolDataState)
+       ////console.log("asas",decodedPoolDataState)
       setData30pool(decodedPoolDataState);
 
     }
     const readPoolData_90 = async () => {
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -128,7 +128,7 @@ export const HomeView = () => {
     const getStakingPoolData = async () => {
       // if ( !wallet){
       //   notify({
-      //     message: 'Please connect to Sol network',
+      //     message: 'Please connect to Solana network',
       //     type: "error",
       //   });
       //   return;
@@ -143,7 +143,7 @@ export const HomeView = () => {
       // }
       const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
       const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-      //console.log(decodedPoolDataState);
+      ////console.log(decodedPoolDataState);
       let bond_yield = decodedPoolDataState.pool_yield_vector[0]/100;
       setBond_Yield30(bond_yield);
       bond_yield =  decodedPoolDataState.pool_yield_vector[1]/100;
@@ -214,7 +214,7 @@ export const HomeView = () => {
     useEffect(()=>{
       let publicKey = wallet.publicKey;
       if(wallet && publicKey) fetchPrivateAPI(10,0)
-    },[wallet])
+    },[wallet.publicKey])
 
     useEffect(()=>{
       fetchPublicAPI(10,0);
@@ -597,7 +597,7 @@ export const HomeView = () => {
                 alt="..."
                 style={{ height: "38px", width: "150px" }}
               />
-              <div className="flex my-0 ml-2 sm:ml-1.5 sm:mt-2  ">
+              {/* <div className="flex my-0 ml-2 sm:ml-1.5 sm:mt-2  ">
                 <img
                   onClick={() => window.open("https://jup.ag/swap/USDC-SB")}
                   className="w-8 select-none cursor-pointer Z-40"
@@ -616,7 +616,7 @@ export const HomeView = () => {
                 >
                   Jupiter
                 </Jupiter>
-              </div>
+              </div> */}
              </div>
             </div>
           </div>
@@ -817,7 +817,9 @@ export const HomeView = () => {
                     size="15px"
                     opacity="0.5"
                   >
-                     Up to 18% fixed yield through bonds with various maturities. Powered by LP underwriting.
+                     Up to
+                     <CardText>{' '}{bond_yield90}%{' '}</CardText> 
+                       fixed yield through bonds with various maturities. Powered by LP underwriting.
                   </CardText>
                 </div>
               </div>

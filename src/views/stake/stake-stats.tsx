@@ -15,6 +15,7 @@ import { SUPERBONDS_PROGRAM_ID,
          PLATFORM_DATA_ACCOUNT,
          SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
          SUNNY_MINT_ADDRESS, SABER_MINT_ADDRESS, ORCA_MINT_ADDRESS,
+         USDC_MINT_ADDRESS
        } from "../../utils/ids";
 import { findAssociatedTokenAddress } from "../../contexts/accounts";
 import { useInterval } from "../../hooks";
@@ -44,7 +45,7 @@ import {
 import Swal from 'sweetalert2';
 import { Tooltip } from "antd";
 import { ImInfo } from "react-icons/im";
- 
+
 interface ParamTypes {
   trade_account: string
 }
@@ -61,7 +62,6 @@ export function StakeStats() {
   const [sb_amount] = useState("");
   const [sol_sb_lp_amount] = useState("");
 
-
   const [SuperBbalance,setSuperBbalance] = useState<any>(0);
   const [LP30balance,setLP30balance] = useState<any>(0);
   const [LP90balance,setLP90balance] = useState<any>(0);
@@ -72,17 +72,17 @@ export function StakeStats() {
 
   const getAllBalances = async () => {
     if ( !wallet){
-      notify({
-        message: 'Please connect to Sol network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     if (!wallet.publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
+      // notify({
+      //   message: 'Please connect to Solana network',
+      //   type: "error",
+      // });
       return;
     }
     //setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
@@ -98,7 +98,7 @@ export function StakeStats() {
     onRefresh();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wallet]);
+  }, [wallet.publicKey]);
 
   useEffect(() => {
     if (!wallet.publicKey) return;
@@ -117,7 +117,7 @@ export function StakeStats() {
   const getTraderDataAccount = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -147,7 +147,7 @@ export function StakeStats() {
     });
     if (resp.length > 0){
       let decodedData = TRADER_LAYOUT.decode(resp[0].account.data);
-      console.log(decodedData);
+      //console.log(decodedData);
       setTraderData(decodedData);
     }
 
@@ -155,7 +155,7 @@ export function StakeStats() {
   const getPlatformData = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -170,12 +170,12 @@ export function StakeStats() {
     }
     const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-    //console.log(decodedPoolDataState);
+    ////console.log(decodedPoolDataState);
     setPlatformData(decodedPoolDataState);
 
     const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-    //console.log(decodedStakingDataState);
+    ////console.log(decodedStakingDataState);
     setStakingData(decodedStakingDataState);
 
     // const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
@@ -187,11 +187,12 @@ export function StakeStats() {
   const [sunny_unclaimed_rewards,setSunny_Unclaimed_Rewards] = useState(0);
   const [saber_unclaimed_rewards,setSaber_Unclaimed_Rewards] = useState(0);
   const [orca_unclaimed_rewards,setOrca_Unclaimed_Rewards] = useState(0);
+  const [usdc_unclaimed_rewards,setUSDC_Unclaimed_Rewards] = useState(0);
 
   const getRewardDataAccount = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -208,10 +209,11 @@ export function StakeStats() {
       const data = {userAccount:publicKey.toString()};
       const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getRewards',data);
 
-      //console.log(response?.data.rewards.data.rewards);
+      ////console.log(response?.data.rewards.data.rewards);
       setSunny_Unclaimed_Rewards(response?.data.rewards.data.rewards.sunny);
       setSaber_Unclaimed_Rewards(response?.data.rewards.data.rewards.saber);
       setOrca_Unclaimed_Rewards(response?.data.rewards.data.rewards.orca);
+      setUSDC_Unclaimed_Rewards(response?.data.rewards.data.rewards.usdc);
     } catch (error) {
       console.error(error);
     }
@@ -222,7 +224,7 @@ export function StakeStats() {
 
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -276,15 +278,15 @@ export function StakeStats() {
     if (account_length > 50) account_length = 50;
     else if (account_length == 0) return;
 
-    console.log('account_length',account_length);
+    //console.log('account_length',account_length);
 
     let associated_token_account_address = await findAssociatedTokenAddress(publicKey,mint_account);
-    console.log('associated_token_account_address',associated_token_account_address.toBase58());
+    //console.log('associated_token_account_address',associated_token_account_address.toBase58());
     //check if associated_USDC_token_account_address is is_initialized
     let associated_token_account_address_info = await connection.getAccountInfo(associated_token_account_address);
       //check if lp token is initialized or not
     if (!associated_token_account_address_info) {
-        console.log("Create associated_token_account_address");
+        //console.log("Create associated_token_account_address");
         let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
             SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
             TOKEN_PROGRAM_ID,
@@ -296,7 +298,7 @@ export function StakeStats() {
         let txid = await sendTransaction(connection,wallet,
             [associated_token_account_address_creationIx
             ],
-          [],false);
+          []);
         if (!txid){
           notify({
             message: 'Something wrong with your request!',
@@ -360,7 +362,7 @@ export function StakeStats() {
 
     let txid = await sendTransaction(connection,wallet,
         [claimIx]
-      ,[],false);
+      ,[]);
     if (!txid){
       notify({
         message: 'Something wrong with your request!',
@@ -371,7 +373,11 @@ export function StakeStats() {
         message: '3rd Party Rewards Claim Request Sent',
         type: "success",
       });
-      await delay(2000);
+      notify({
+        message: 'Updating balance...',
+        type: "success",
+      });
+      await delay(5000);
       onRefresh();
       getRewardDataAccount();
     }
@@ -380,7 +386,7 @@ export function StakeStats() {
   const onStake = async (pool:number,isClaim=false) => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -409,7 +415,7 @@ export function StakeStats() {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Proceed = true;
-          //console.log(Proceed);
+          ////console.log(Proceed);
         }
       })
       if (!Proceed) return;
@@ -446,10 +452,10 @@ export function StakeStats() {
       return;
     }
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
 
     let associated_LP_Token_token_account_address = await findAssociatedTokenAddress(publicKey,lp_token_mint_address);
-    console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
+    //console.log('associated_LP_Token_token_account_address',associated_LP_Token_token_account_address.toBase58());
     let buffers = null;
     if (!isClaim){
        buffers = [
@@ -479,18 +485,36 @@ export function StakeStats() {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
     let [SuperB_pda_address/*,SuperB_pda_NONCE*/] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
     if (resp.length == 0){
-      console.log('Initializing Trader Data Account and Stake...');
+      //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
-      console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: trader_Data_account.publicKey
       });
@@ -520,13 +544,15 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [createTraderDataAccountIx,stakeLP_TokenIx]
-        ,[trader_Data_account],false);
+        ,[trader_Data_account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
           type: "error",
         });
       }else{
+        //await delay(10000);
+
         if (!isClaim){
           notify({
             message: 'Staking Request Sent',
@@ -539,12 +565,19 @@ export function StakeStats() {
             type: "success",
           });
         }
-        await delay(2000);
+        notify({
+          message: 'Updating balance...',
+          type: "success",
+        });
+        await delay(5000);
         onRefresh();
+        return;
+
+
       }
     }
     else{
-      console.log('Stake...');
+      //console.log('Stake...');
       const stakeLP_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -570,7 +603,7 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [stakeLP_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -589,7 +622,11 @@ export function StakeStats() {
             type: "success",
           });
         }
-        await delay(2000);
+        notify({
+          message: 'Updating balance...',
+          type: "success",
+        });
+        await delay(5000);
         onRefresh();
       }
     }
@@ -600,7 +637,7 @@ export function StakeStats() {
   const onStakeSB = async (isClaim=false) => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -635,7 +672,7 @@ export function StakeStats() {
     }
 
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
     let buffers = null;
     if (!isClaim)
      buffers = [
@@ -663,18 +700,36 @@ export function StakeStats() {
       filters,
       encoding: 'base64',
     });
-    console.log('resp',resp);
+    //console.log('resp',resp);
     //return;
     let [SuperB_pda_address,/* SuperB_pda_NONCE */] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
     if (resp.length == 0){
-      console.log('Initializing Trader Data Account and Stake...');
+      //console.log('Initializing Trader Data Account and Stake...');
       trader_Data_account = new Account();
-      console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
+
       const createTraderDataAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: TRADER_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: trader_Data_account.publicKey
       });
@@ -702,7 +757,7 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [createTraderDataAccountIx,stakeSB_TokenIx]
-        ,[trader_Data_account],false);
+        ,[trader_Data_account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -713,12 +768,16 @@ export function StakeStats() {
           message: 'Staking Request Sent',
           type: "success",
         });
-        await delay(2000);
+        notify({
+          message: 'Updating balance...',
+          type: "success",
+        });
+        await delay(5000);
         onRefresh();
       }
     }
     else{
-      //console.log('Stake...');
+      ////console.log('Stake...');
       const stakeSB_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -742,7 +801,7 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [stakeSB_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -761,8 +820,11 @@ export function StakeStats() {
             type: "success",
           });
         }
-
-        await delay(2000);
+        notify({
+          message: 'Updating balance...',
+          type: "success",
+        });
+        await delay(5000);
         onRefresh();
       }
     }
@@ -778,7 +840,7 @@ export function StakeStats() {
   const onClaim = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -800,16 +862,36 @@ export function StakeStats() {
     // if (orca_unclaimed_rewards!=0){
     //   await onClaimExternalReward(2)
     // }
-    if (unclaimed_SuperB_Staking !=0)
+    // if (usdc_unclaimed_rewards!=0){
+    //   await onClaimExternalReward(3)
+    // }
+    if (unclaimed_SuperB_Staking !=0){
+      notify({
+        message: 'Claiming SB Staking Rewards....',
+        type: "info",
+      });
       await onStakeSB(true);
+    }
 
-    if (unclaimed_LP_30_Staking !=0)
+
+    if (unclaimed_LP_30_Staking !=0){
+      notify({
+        message: 'Claiming 30-day Staking Rewards....',
+        type: "info",
+      });
       await onStake(30,true);
-    if (unclaimed_LP_90_Staking !=0)
+    }
+
+    if (unclaimed_LP_90_Staking !=0){
+      notify({
+        message: 'Claiming 90-day Staking Rewards....',
+        type: "info",
+      });
       await onStake(90,true);
+    }
 
     if (unclaimed_Trading_Rewards == 0 ){
-      await delay(2000);
+      await delay(3000);
       onRefresh();
       return;
     }
@@ -817,13 +899,16 @@ export function StakeStats() {
     //Claim Trade Rewards
     // const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
     // const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-
+    notify({
+      message: 'Claiming Trade Rewards....',
+      type: "info",
+    });
     const encodedStakingDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedStakingDataState = PLATFORM_DATA_LAYOUT.decode(encodedStakingDataState) as PlatformDataLayout;
 
 
     let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
+    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
     let buffers = [
         Buffer.from(Uint8Array.of(19,3, ...new Numberu64(0).toBuffer()))
        ];
@@ -845,12 +930,12 @@ export function StakeStats() {
       filters,
       encoding: 'base64',
     });
-    //console.log('resp',resp);
+    ////console.log('resp',resp);
     //return;
     let [SuperB_pda_address/* ,SuperB_pda_NONCE */] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
 
     if (resp.length > 0){
-      //console.log('Stake...');
+      ////console.log('Stake...');
       const stakeSB_TokenIx = new TransactionInstruction({
           programId: SUPERBONDS_PROGRAM_ID,
           keys: [
@@ -874,7 +959,7 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [stakeSB_TokenIx]
-        ,[],false);
+        ,[]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
@@ -888,7 +973,7 @@ export function StakeStats() {
           });
 
 
-        await delay(2000);
+        await delay(3000);
         onRefresh();
       }
     }
@@ -896,7 +981,7 @@ export function StakeStats() {
   const onClaimExternal = async () => {
     if ( !wallet){
       notify({
-        message: 'Please connect to Sol network',
+        message: 'Please connect to Solana network',
         type: "error",
       });
       return;
@@ -909,13 +994,17 @@ export function StakeStats() {
       });
       return;
     }
-    if (sunny_unclaimed_rewards == 0 && saber_unclaimed_rewards == 0 && orca_unclaimed_rewards == 0){
+    if (sunny_unclaimed_rewards == 0 && saber_unclaimed_rewards == 0 && orca_unclaimed_rewards == 0 && usdc_unclaimed_rewards == 0){
       notify({
         message: 'You dont have any rewards to claim',
         type: "error",
       });
       return;
     }
+    notify({
+      message: 'Claiming 3rd party Rewards....',
+      type: "info",
+    });
 
       let trader_Data_account = null;
       let filters = [
@@ -938,12 +1027,16 @@ export function StakeStats() {
       trader_Data_account = resp[0].pubkey;
       //Create associated_token_account_address for SUNNY/SABER if not created
       let associated_Sunny_account_address = await findAssociatedTokenAddress(publicKey,SUNNY_MINT_ADDRESS);
-      //console.log('associated_Sunny_account_address',associated_Sunny_account_address.toBase58());
+      ////console.log('associated_Sunny_account_address',associated_Sunny_account_address.toBase58());
       //check if associated_USDC_token_account_address is is_initialized
       let associated_Sunny_account_address_info = await connection.getAccountInfo(associated_Sunny_account_address);
         //check if lp token is initialized or not
       if (!associated_Sunny_account_address_info) {
-          //console.log("Create associated_Sunny_account_address");
+          notify({
+            message: 'Creating SUNNY reward account....',
+            type: "info",
+          });
+          ////console.log("Create associated_Sunny_account_address");
           let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
@@ -955,7 +1048,7 @@ export function StakeStats() {
           let txid = await sendTransaction(connection,wallet,
               [associated_token_account_address_creationIx
               ],
-            [],false);
+            []);
           if (!txid){
             notify({
               message: 'Something wrong with your request!',
@@ -963,20 +1056,27 @@ export function StakeStats() {
             });
             return;
           }else{
-            notify({
-              message: 'Initialize Associated Token Account successfully',
-              type: "success",
-            });
+
+              notify({
+                message: 'Initialize Associated Token Account successfully',
+                type: "success",
+              });
+
+
           }
       }
 
       let associated_Saber_account_address = await findAssociatedTokenAddress(publicKey,SABER_MINT_ADDRESS);
-      //console.log('associated_Saber_account_address',associated_Saber_account_address.toBase58());
+      ////console.log('associated_Saber_account_address',associated_Saber_account_address.toBase58());
       //check if associated_USDC_token_account_address is is_initialized
       let associated_Saber_account_address_info = await connection.getAccountInfo(associated_Saber_account_address);
         //check if lp token is initialized or not
       if (!associated_Saber_account_address_info) {
-          //console.log("Create associated_Saber_account_address");
+          notify({
+            message: 'Creating SABER reward account....',
+            type: "info",
+          });
+          ////console.log("Create associated_Saber_account_address");
           let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
               SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
@@ -988,7 +1088,7 @@ export function StakeStats() {
           let txid = await sendTransaction(connection,wallet,
               [associated_token_account_address_creationIx
               ],
-            [],false);
+            []);
           if (!txid){
             notify({
               message: 'Something wrong with your request!',
@@ -996,14 +1096,93 @@ export function StakeStats() {
             });
             return;
           }else{
+
+              notify({
+                message: 'Initialize Associated Token Account successfully',
+                type: "success",
+              });
+
+          }
+      }
+
+      //Orca in mainnet to create associated token account
+      let associated_Orca_account_address = await findAssociatedTokenAddress(publicKey,ORCA_MINT_ADDRESS);
+      ////console.log('associated_Saber_account_address',associated_Saber_account_address.toBase58());
+      //check if associated_USDC_token_account_address is is_initialized
+      let associated_Orca_account_address_info = await connection.getAccountInfo(associated_Orca_account_address);
+        //check if lp token is initialized or not
+      if (!associated_Orca_account_address_info) {
+          notify({
+            message: 'Creating ORCA reward account....',
+            type: "info",
+          });
+          ////console.log("Create associated_Saber_account_address");
+          let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
+              SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
+              TOKEN_PROGRAM_ID,
+              ORCA_MINT_ADDRESS,
+              associated_Orca_account_address,
+              publicKey,
+              publicKey
+          );
+          let txid = await sendTransaction(connection,wallet,
+              [associated_token_account_address_creationIx
+              ],
+            []);
+          if (!txid){
+            notify({
+              message: 'Something wrong with your request!',
+              type: "error",
+            });
+            return;
+          }else{
+
             notify({
               message: 'Initialize Associated Token Account successfully',
               type: "success",
             });
+
           }
       }
+      //USDC in mainnet to create associated token account
+      let associated_USDC_account_address = await findAssociatedTokenAddress(publicKey,USDC_MINT_ADDRESS);
+      ////console.log('associated_Saber_account_address',associated_Saber_account_address.toBase58());
+      //check if associated_USDC_token_account_address is is_initialized
+      let associated_USDC_account_address_info = await connection.getAccountInfo(associated_USDC_account_address);
+        //check if lp token is initialized or not
+      if (!associated_USDC_account_address_info) {
+          notify({
+            message: 'Creating USDC reward account....',
+            type: "info",
+          });
+          ////console.log("Create associated_Saber_account_address");
+          let associated_token_account_address_creationIx = Token.createAssociatedTokenAccountInstruction(
+              SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
+              TOKEN_PROGRAM_ID,
+              USDC_MINT_ADDRESS,
+              associated_USDC_account_address,
+              publicKey,
+              publicKey
+          );
+          let txid = await sendTransaction(connection,wallet,
+              [associated_token_account_address_creationIx
+              ],
+            []);
+          if (!txid){
+            notify({
+              message: 'Something wrong with your request!',
+              type: "error",
+            });
+            return;
+          }else{
 
-      //TODO: Orca in mainnet to create associated token account
+            notify({
+              message: 'Initialize Associated Token Account successfully',
+              type: "success",
+            });
+
+          }
+      }
 
       filters = [
             {
@@ -1028,14 +1207,30 @@ export function StakeStats() {
         });
         return;
       }
-
+      let rentExemption = 0;
+      try{
+        rentExemption = await connection.getMinimumBalanceForRentExemption(FARMING_REWARD_REQUEST_LAYOUT.span);
+        if (rentExemption == 0){
+          notify({
+            message: 'Please try again, connection to Solana blockchain was interrupted',
+            type: "error",
+          });
+          return;
+        }
+      } catch(e){
+        notify({
+          message: 'Please try again, connection to Solana blockchain was interrupted',
+          type: "error",
+        });
+        return;
+      }
       //Create Request Account to save request information
       const request_state_account = new Account();
-      //console.log('trade_state_account',trade_state_account.publicKey.toString());
+      ////console.log('trade_state_account',trade_state_account.publicKey.toString());
       const createRequestStateAccountIx = SystemProgram.createAccount({
           programId: SUPERBONDS_PROGRAM_ID,
           space: FARMING_REWARD_REQUEST_LAYOUT.span,
-          lamports: await connection.getMinimumBalanceForRentExemption(FARMING_REWARD_REQUEST_LAYOUT.span),
+          lamports: rentExemption,
           fromPubkey: publicKey,
           newAccountPubkey: request_state_account.publicKey
       });
@@ -1058,20 +1253,23 @@ export function StakeStats() {
 
       let txid = await sendTransaction(connection,wallet,
           [createRequestStateAccountIx,requestIx]
-        ,[request_state_account],false);
+        ,[request_state_account]);
       if (!txid){
         notify({
           message: 'Something wrong with your request!',
           type: "error",
         });
       }else{
-        notify({
-          message: '3rd Party Rewards Claim Request Sent. It might take up to 2 minutes to process.',
-          type: "success",
-        });
-        await delay(2000);
-        onRefresh();
-        getRewardDataAccount();
+
+          notify({
+            message: '3rd Party Rewards Claim Request Sent. It might take up to 2 minutes to process.',
+            type: "success",
+          });
+          onRefresh();
+          getRewardDataAccount();
+          return;
+
+
       }
 
   }
@@ -1113,8 +1311,8 @@ export function StakeStats() {
     }
     let my_total_staked_Trades = new BN(traderData.total_active_trades, 10, "le").toNumber()/1000000;
     let my_rewardDebt_Trades = new BN(traderData.rewardDebt_Trades, 10, "le").toNumber()/1000000;
-    // console.log('my_total_staked_Trades',my_total_staked_Trades);
-    // console.log('rewards',my_total_staked_Trades * _accAmountPerShare_Trades - my_rewardDebt_Trades);
+    // //console.log('my_total_staked_Trades',my_total_staked_Trades);
+    // //console.log('rewards',my_total_staked_Trades * _accAmountPerShare_Trades - my_rewardDebt_Trades);
     setUnclaimed_Trading_Rewards(my_total_staked_Trades * _accAmountPerShare_Trades - my_rewardDebt_Trades);
 
     //SuperB Staking Rewards Calculation
@@ -1168,11 +1366,11 @@ export function StakeStats() {
         <div className='flex flex-col w-5/12  lg:w-full md:w-full sm:w-full md:self-center pr-3 lg:pr-0 lg:pt-0'>
 
             <div className="flex flex-col w-full md:w-full bg-gray-300 py-8 px-3 xl:px-3 rounded-md neon-bottom-card selected-box-neon">
-                
+
                 <div className="pb-6 pt-1 pl-1 pr-1 rounded-md ">
                   <div className='text-grid cursor-pointer grid grid-cols-1'>
                     <Text size='16px' weight color='#7cfa4d'>Bond Purchaser Stats
-                      <Tooltip placement="rightTop" title={'The live value of all your outstanding bonds and all attributable SB not claimed'}> 
+                      <Tooltip placement="rightTop" title={'The live value of all your outstanding bonds and all attributable SB not claimed'}>
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>
@@ -1188,7 +1386,7 @@ export function StakeStats() {
 
                   <div className='text-grid cursor-pointer grid grid-cols-1 mt-7'>
                     <Text size='16px' weight color='#7cfa4d'>Bond LP Stats
-                      <Tooltip placement="rightTop" title={'The number of staked LP tokens in each respective pool including all unclaimed rewards, consisting of SB and 3rd party tokens(Other Rewards)'}> 
+                      <Tooltip placement="rightTop" title={'The number of staked LP tokens in each respective pool including all unclaimed rewards, consisting of SB and 3rd party tokens(Other Rewards)'}>
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>
@@ -1207,7 +1405,7 @@ export function StakeStats() {
                     <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Staked 90-Day Pool LP Token</Text>
                     <Text className='' size={"14px"}color={'white'}>{traderData ? formatNumberWithoutRounding.format(traderData.total_LP_Token_staked_vector[1]/1000000): null}</Text>
                   </div>
-                  
+
                   <div className='grid grid-cols-3 bg-gray-200 mt-0.5  px-3 py-1'>
                     <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Unclaimed 90-Day Pool SB</Text>
                     <Text className='' size={"14px"}color={'white'}>{formatNumberWithoutRounding.format(unclaimed_LP_90_Staking)}</Text>
@@ -1220,12 +1418,12 @@ export function StakeStats() {
 
                   <div className='grid grid-cols-3 bg-gray-200 rounded-b-md px-3 '>
                     <Text  size={"14px"} className="col-span-2" opacity={"50%"}></Text>
-                    <Text className='' size={"14px"}color={'white'}>{orca_unclaimed_rewards?formatNumberWithoutRounding.format(orca_unclaimed_rewards):'0.00'} O </Text>
+                    <Text className='' size={"14px"}color={'white'}>{orca_unclaimed_rewards?formatNumberWithoutRounding.format(orca_unclaimed_rewards):'0.00'} O, {usdc_unclaimed_rewards?formatNumberWithoutRounding.format(usdc_unclaimed_rewards):'0.00'} U  </Text>
                   </div>
 
                   <div className='text-grid cursor-pointer grid grid-cols-1 mt-7 '>
                     <Text size='16px' weight color='#7cfa4d'>SB Staking Stats
-                      <Tooltip placement="rightTop" title={'The number of SB staked and all attributable SB not claimed'}> 
+                      <Tooltip placement="rightTop" title={'The number of SB staked and all attributable SB not claimed'}>
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>
@@ -1239,7 +1437,7 @@ export function StakeStats() {
                     <Text className='' size={"14px"}color={'white'}>{formatNumberWithoutRounding.format(unclaimed_SuperB_Staking)}</Text>
                   </div>
 
-                     
+
                 </div>
                 <div className="grid grid-cols-2 gap-2 mt-3">
 

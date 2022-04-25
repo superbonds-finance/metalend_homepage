@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/superbonds.finance"
   },
-  "homepage": "https://devnet.superbonds.finance/",
+  "homepage": "https://mainnet.superbonds.finance/",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
@@ -32,7 +32,7 @@
     "@solana/wallet-adapter-base": "^0.6.0",
     "@solana/wallet-adapter-react": "^0.12.0",
     "@solana/wallet-adapter-wallets": "^0.10.0",
-    "@solana/web3.js": "^1.35.1",
+    "@solana/web3.js": "^1.38.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@types/react-router-dom": "^5.1.6",

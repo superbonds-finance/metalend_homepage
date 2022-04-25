@@ -8,7 +8,7 @@ export const HeaderText = styled.span`
   font-size: 28px;
   line-height: 34px;
   letter-spacing: 0.146643px;
-  text-transform: uppercase;
+ 
   color: #FFFFFF;
 `
 export const Text = styled.span`
@@ -39,7 +39,6 @@ line-height: 34px;
 letter-spacing: 0.146643px;
 text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
 color: #FFFFFF;
-  
 `
 
 export const CenterP = styled.p`
