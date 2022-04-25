@@ -140,6 +140,7 @@ export function TradeView() {
 
     const onShowAllTrades = async (_type:number) =>{
       setAllTrade(_type);
+      setOffset(0)
     };
  
      
@@ -864,45 +865,7 @@ export function TradeView() {
         }
       }
     }
-    const fetchPrivateAPI=async (limit:Number,offset:Number)=>{
-      let publicKey = wallet.publicKey;
-      if(publicKey){
-        if(showAllTrade===2){
-          try {
-            const data = {limit,offset,trade_owner:publicKey.toString()};
-            const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getTrades',data);
-            if(response.data.trades.length===0 && offset>0) {
-              
-              setOffset(0)
-              return;
-            }
-            setMyTradeData(response?.data?.trades)
-
-          } catch (error) {
-            console.error(error);
-          }
-        }
-        //Get My Pendings
-        if(showAllTrade===3){
-          
-          try {
-            const data = {limit,offset,owner:publicKey.toString()};
-            const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPendings',data);
-            if(response.data.pendings.length===0 && offset>0) {
-             
-              setOffset(0)
-              return;
-            }
-            setMyPendingData(response?.data?.pendings)
-
-          } catch (error) {
-            console.error(error);
-          }
-        }
-        
-      }
-    }
-
+     
    const fetchAPY= async ()=>{
     const response:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/Trade_Staking_APY');
     setAPY(response.data.APY)
