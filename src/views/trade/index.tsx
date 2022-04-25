@@ -57,7 +57,8 @@ import "./trade.css"
 import PoligonInActive from "../../assets/polygon_trade_inactive.png";
 import { ImInfo } from 'react-icons/im';
 import { Tooltip } from 'antd';
-
+import { Badge } from 'antd';
+ 
 let loaded30 = false;
 
 export function TradeView() {
@@ -101,6 +102,7 @@ export function TradeView() {
     }
 
     const [bond_yield30,setBond_Yield30] = useState(0);
+    const [stopFetchPendingTrade,setStopFetchPendingTrade] = useState(false);
     const [superbondsStatus30,setSuperBondsStatus30] = useState(false);
     const [superbondsRate30,setSuperBondsRate30] = useState(1);
     const [adjustedLiquidity30,setAdjustedLiquidity30] = useState(0);
@@ -139,7 +141,7 @@ export function TradeView() {
     const onShowAllTrades = async (_type:number) =>{
       setAllTrade(_type);
     };
-
+ 
      
     useEffect(() => {
       readPoolData_30();
@@ -408,11 +410,11 @@ export function TradeView() {
               <tr>
                 <th class="text-left">
                   <span class="th_span small_font_td_span">
-                    USDC Value: </span>
+                    Bond Value: </span>
                 </th>
                 <td class="text-right">
                   <span class="td_span small_font_td_span">
-                    ${Value_Message}</span>
+                    ${Value_Message} USDC</span>
                 </td>
               </tr>
               <tr>
@@ -432,7 +434,7 @@ export function TradeView() {
                 </th>
                 <td class="text-right">
                   <span class="td_span small_font_td_span">
-                    ${(superB_fee / (10**SUPERB_DECIMALS)).toFixed(3)} SB</span>
+                    ${(superB_fee / (10**SUPERB_DECIMALS)).toFixed(2)} SB</span>
                 </td>
               </tr>
           </table>
@@ -838,6 +840,32 @@ export function TradeView() {
       // }
     }
 
+    const fetchTrades=async (limit:Number,offset:Number)=>{
+      let publicKey = wallet.publicKey;
+      if(publicKey){
+      try {
+        const data = {limit,offset,trade_owner:publicKey.toString()};
+        const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getTrades',data);
+        setMyTradeData(response?.data?.trades)
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    }
+    const fetchPendingTrades=async (limit:Number,offset:Number)=>{
+      let publicKey = wallet.publicKey;
+      if(publicKey){
+      try {
+        const data = {limit,offset,owner:publicKey.toString()};
+        const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPendings',data);
+        setMyPendingData(response?.data?.pendings)
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    }
     const fetchPrivateAPI=async (limit:Number,offset:Number)=>{
       let publicKey = wallet.publicKey;
       if(publicKey){
@@ -856,9 +884,9 @@ export function TradeView() {
             console.error(error);
           }
         }
-
         //Get My Pendings
         if(showAllTrade===3){
+          setStopFetchPendingTrade(true)
           try {
             const data = {limit,offset,owner:publicKey.toString()};
             const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/getPendings',data);
@@ -873,6 +901,7 @@ export function TradeView() {
             console.error(error);
           }
         }
+        
       }
     }
 
@@ -887,22 +916,27 @@ export function TradeView() {
 
     useEffect(()=>{
       let publicKey = wallet.publicKey;
-      if(wallet && publicKey) fetchPrivateAPI(10,0)
+      if(wallet && publicKey) {
+        fetchTrades(10,0)
+        }
     },[wallet.publicKey])
 
     useEffect(()=>{
       fetchPublicAPI(10,0);
-      fetchPrivateAPI(10,0);
+      fetchTrades(10,0)
     },[showAllTrade])
 
-    useInterval(() => {
+   const ss= useInterval(() => {
       superBondsProcess();
+      if(!stopFetchPendingTrade)
+      fetchPendingTrades(10,0)
       // let publicKey = wallet.publicKey;
       // if(wallet && publicKey){
       //   superBondsProcess();
       // }
     }, 3000);
-
+ 
+ 
     const onSettle = async (pool:any,owner:any,usdc_account:any,data_account:any,amount:number) =>{
       if ( !wallet){
         notify({
@@ -1092,6 +1126,7 @@ export function TradeView() {
     const handlePagination=(limit:number,x_paginationcursor:number)=>{
       if(inerterval)
         clearInterval(inerterval)
+   
      // //console.log(offset)
       if(x_paginationcursor>0) {
         setOffset(offset+x_paginationcursor);
@@ -1142,33 +1177,7 @@ export function TradeView() {
    const POOL_30_ADDRESS = new PublicKey(
     "EnFgZ2knSv7jyVmdskfXSNULyaHYwgp7NTs1KU4GYSFe"
   );
-const pending=[
-  {
-  data_account:"A9ujCnG4dHszyz8vGARfbEYhuJvrQgvBFpQKEWiZi3E5",
-  pool:"EnFgZ2knSv7jyVmdskfXSNULyaHYwgp7NTs1KU4GYSFe",
-  owner:"5GMAa4GXqWswZ7K527F7sWTAKFga1iuE5TfSBhuuTPmc",
-  usdc_account:"",
-  amount:100,
-  requested_at:1650689737000
-},
-{
-  data_account:"A9ujCnG4dHszyz8vGARfbEYhuJvrQgvBFpQKEWiZi3E5",
-  pool:"EnFgZ2knSv7jyVmdskfXSNULyaHYwgp7NTs1KU4GYSFe",
-  owner:"5GMAa4GXqWswZ7K527F7sWTAKFga1iuE5TfSBhuuTPmc",
-  usdc_account:"",
-  amount:100,
-  requested_at:1650689737000
-},
-{
-  data_account:"A9ujCnG4dHszyz8vGARfbEYhuJvrQgvBFpQKEWiZi3E5",
-  pool:"EnFgZ2knSv7jyVmdskfXSNULyaHYwgp7NTs1KU4GYSFe",
-  owner:"5GMAa4GXqWswZ7K527F7sWTAKFga1iuE5TfSBhuuTPmc",
-  usdc_account:"",
-  amount:100,
-  requested_at:1650689737000
-},
-]
-console.log(myTradeData)
+
     return (
         <div className="w-screen h-screen bg-black">
             <div  className="w-9/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
@@ -1533,8 +1542,19 @@ console.log(myTradeData)
                   <div className="pb-3 flex justify-between flex-wrap">
                     <div className='flex justify-between sm:flex-col sm:justify-start flex-wrap sm:pb-3'>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 2? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(2)}>MY Trades</Text>
-                      <Text style={{ color: myPendingData?.length>0 ? '#7CFA4C' : 'white'}} className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>MY Pending Redemptions<Text style={{color:"red"}}>{myPendingData?.length>0?`(${myPendingData?.length})`:''}</Text></Text>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 1? 'border-b-2 border-green-100' : '')} transform size='14px' onClick={()=>onShowAllTrades(1)}>Recent Trades</Text>
+                   
+                        <Text color="white" className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>
+                          <Badge offset={[7,0]} count={myPendingData.length>9 ?"9+":myPendingData.length}>
+                          <Tooltip placement="top" title={'Redemption settlement time, on average, will be within 30 minutes. Settlement is contingent on individual blockchain and cross-chain traffic. If your transaction fails to settle, and more than one hour has lapsed, please contact support.'}>
+                            <Text  transform  size='14px' >
+                              MY Pending Redemptions  
+                            </Text>
+                            </Tooltip> 
+                            </Badge>
+                        </Text>
+                   
+                     
                     </div>
                     <div>
                       <div className="bg-gray-300 items-center align-middle py-2 px-5 rounded-md flex">
@@ -1560,7 +1580,7 @@ console.log(myTradeData)
                   {showAllTrade==3 &&
                     <TradeTableComponent
                       tradeType='my_pending_trade'
-                      data={pending}
+                      data={myPendingData}
                       onSettle={onSettle}
                     />
                   }

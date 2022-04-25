@@ -151,7 +151,7 @@ export const RedeemView = () => {
     )
     setTrade_dataSource(tableData);
   }
-  const onRedeem = async () => {
+  const onRedeem = async (my_trade:Object) => {
     if ( !wallet){
       notify({
         message: 'Please connect to Solana network',
@@ -216,6 +216,16 @@ export const RedeemView = () => {
                 <b>${USDC_fee_rate}</b>%</span>
               </td>
             </tr>
+            <tr>
+              <th class="text-left">
+                <span class="th_span small_font_td_span">
+                You Get: </span>
+              </th>
+              <td class="text-right">
+                <span class="td_span small_font_td_span">
+                <b>1234 USDC</b></span>
+              </td>
+            </tr>
 
             <tr>
               <th class="text-left">
@@ -224,7 +234,7 @@ export const RedeemView = () => {
               </th>
               <td class="text-right">
                 <span class="td_span small_font_td_span">
-                <b> ${superB_fee / (10**SUPERB_DECIMALS)}</b> SB</span>
+                <b> ${(superB_fee / (10**SUPERB_DECIMALS)).toFixed(2)}</b> SB</span>
               </td>
             </tr>
         </table>
@@ -408,6 +418,7 @@ export const RedeemView = () => {
         type: "success",
       })
   ]
+ 
   return (
     <>
         <div className="w-screen h-screen bg-black">
@@ -427,18 +438,27 @@ export const RedeemView = () => {
                         {isMyTrade &&
                             <div className="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
                                 <div className="w-full p-4 rounded-md" style={{"background":'#263B31'}}>
-                                    <table className="w-full">
-                                        <tr>
+                                    {Trade_dataSource && Trade_dataSource.length>0 && 
+                                      <table className="w-full">
+                                        {/* <tr>
                                             <th className="float-left"><Text opacity={"0.75"} >USDC Balance:</Text></th>
                                             <td  className="float-right"><Text size={"19px"} color={"#7CFA4C"}>{formatInputNumber(formatNumberWithoutRounding.format(USDCbalance))}</Text></td>
                                         </tr>
                                         <tr>
                                             <th className="float-left">  <Text opacity={"0.75"}>SB Balance:</Text></th>
                                             <td className="float-right" ><Text size={"19px"}color={'white'}>{formatInputNumber(String(SuperBbalance))}</Text></td>
+                                        </tr> */}
+                                          <tr>
+                                            <th className="float-left">  <Text size={"16px"} opacity={"0.75"}>Bond Value at Entrance:</Text></th>
+                                            <td className="float-right" ><Text size={"16px"} color={'white'}>{parseFloat(Trade_dataSource[0]?.bond_value).toFixed(1)} USDC</Text></td>
                                         </tr>
-                                    </table>
+                                        <tr>
+                                            <th className="float-left">  <Text size={"16px"} opacity={"0.75"}>Current Bond Value:</Text></th>
+                                            <td className="float-right" ><Text size={"16px"} color={'white'}>{parseFloat(Trade_dataSource[0]?.current_bond_value).toFixed(1)} USDC</Text></td>
+                                        </tr>
+                                    </table>}
                                 </div>
-                                <button onClick={()=>onRedeem()} className="rounded-sm mt-4 text-center bg-green-100 py-2 w-full">
+                                <button onClick={()=>onRedeem(Trade_dataSource[0])} className="rounded-sm mt-4 text-center bg-green-100 py-2 w-full">
                                     <Text color={"#000000"} weight='true'>REDEEM</Text>
                                 </button>
                             </div>
