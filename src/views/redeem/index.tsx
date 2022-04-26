@@ -5,7 +5,7 @@ import { useParams,useHistory } from "react-router-dom";
 import { notify } from "../../utils/notifications";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useConnection,sendTransaction } from "../../contexts/connection";
-import { 
+import {
          SUPERBONDS_PROGRAM_ID,
          USDC_MINT_ADDRESS,
          SUPERB_MINT_ADDRESS,
@@ -32,6 +32,7 @@ import {
 import {
           Token,
           TOKEN_PROGRAM_ID,
+          AccountLayout
  } from "@solana/spl-token";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {GlobalStyle,Text} from "./redeem.styled"
@@ -152,6 +153,79 @@ export const RedeemView = () => {
     )
     setTrade_dataSource(tableData);
   }
+  const calculateRedemption = async (state_pool:any) =>{
+
+    var now = new Date();
+    let unix_timestamp = now.getTime();
+    console.log(tradeData);
+    console.log(state_pool);
+
+    let toSend;
+    let toSend_Trader_LP;
+    let superbonds_fee_percentage;
+    let newTotal_longInterest = new BN(state_pool.longInterest_At_Maturity, 10, "le").toNumber();
+    let trade_bond_value = new BN(tradeData.bond_value, 10, "le").toNumber();
+    let trade_bond_value_at_maturity = new BN(tradeData.bond_value_at_maturity, 10, "le").toNumber();
+    let maturity_date = new BN(tradeData.maturity_date, 10, "le").toNumber();
+    let trade_issued_date = new BN(tradeData.issued_date, 10, "le").toNumber();
+    console.log(maturity_date);
+
+    if (maturity_date*1000 <= unix_timestamp){
+        //msg!("MATURED");
+        toSend = trade_bond_value_at_maturity;
+        superbonds_fee_percentage = state_pool.mature_redemption_fee_USDC;
+    }
+    else{ //NOT MATURED
+        //msg!("EARLY REDEMPTION");
+        let bond_yield = tradeData.bond_yield;
+        let trade_length = (unix_timestamp / 1000 - trade_issued_date);
+
+        let power_factor = Math.pow((10000.0 + bond_yield) / 10000.0,trade_length/ (365.0*24.0*60.0*60.0));
+
+        toSend = tradeData.bond_value * power_factor;
+        newTotal_longInterest = newTotal_longInterest - (trade_bond_value_at_maturity - trade_bond_value);
+
+        superbonds_fee_percentage = state_pool.early_redemption_fee_USDC;
+    }
+    toSend_Trader_LP = trade_bond_value;
+
+    //Senf FEE to SuperBonds Rewards Pool from LP POOL
+    let fee = toSend * superbonds_fee_percentage / 10000;
+    let superBonds_fee = fee * (state_pool.superBonds_income_ratio) / 10000;
+    let treasury_fee = fee * (state_pool.treasury_income_ratio) / 10000;
+
+    // const encodeTraders_Pool_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(state_pool.Traders_Pool), 'singleGossip'))!.data;
+    // const decodeTraders_Pool_Account_ADDRESS = AccountLayout.decode(encodeTraders_Pool_Account_ADDRESS);
+    // let Traders_Pool_Balance = new BN(decodeTraders_Pool_Account_ADDRESS.amount, 10, "le").toNumber();
+
+    console.log('toSend',toSend);
+    console.log('fee',fee);
+    console.log('superBonds_fee',superBonds_fee);
+    console.log('treasury_fee',treasury_fee);
+    return toSend - fee;
+    // let ret = {
+    //   to_receive_now:0,     //USDC will receive immediately
+    //   to_request_farm:0     //USDC will receive after farming
+    // }
+    //
+    // if (toSend - fee <= toSend_Trader_LP){
+    //   if (Traders_Pool_Balance >= toSend - fee) {
+    //     return toSend - fee;
+    //   }
+    //   else{
+    //     return -1 * (toSend - fee);
+    //   }
+    // }
+    // else{
+    //   let lp_pool_to_trade = (toSend - fee) - toSend_Trader_LP;
+    //   if (Traders_Pool_Balance >= toSend_Trader_LP) {
+    //     toSend_Trader_LP
+    //   }
+    //   else{
+    //     return -1 * toSend_Trader_LP
+    //   }
+    // }
+  }
   const onRedeem = async (my_trade:Object) => {
     if ( !wallet){
       notify({
@@ -184,6 +258,7 @@ export const RedeemView = () => {
     const encodedStakingDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
     const decodedStakingDataState = PLATFORM_DATA_LAYOUT.decode(encodedStakingDataState) as PlatformDataLayout;
 
+    let amount_to_receive = await calculateRedemption(decodedPoolDataState);
 
     let superB_fee = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber();
     if (SuperBbalance*(10**SUPERB_DECIMALS)  < superB_fee)
@@ -224,7 +299,7 @@ export const RedeemView = () => {
               </th>
               <td class="text-right">
                 <span class="td_span small_font_td_span">
-                <b>1234 USDC</b></span>
+                <b>${(amount_to_receive/(10**6)).toFixed(3)} USDC</b></span>
               </td>
             </tr>
 
@@ -403,7 +478,7 @@ export const RedeemView = () => {
     }else{
 
             notify({
-              message: 'Redeemed successfully',
+              message: 'Redemption Request Sent to Network',
               type: "success",
             });
             await delay(3000);
@@ -419,7 +494,7 @@ export const RedeemView = () => {
         type: "success",
       })
   ]
- 
+
   return (
     <>
         <div className="w-screen h-screen bg-black">
@@ -439,7 +514,7 @@ export const RedeemView = () => {
                         {isMyTrade &&
                             <div className="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
                                 <div className="w-full p-4 rounded-md" style={{"background":'#263B31'}}>
-                                    {Trade_dataSource && Trade_dataSource.length>0 && 
+                                    {Trade_dataSource && Trade_dataSource.length>0 &&
                                       <table className="w-full">
                                         {/* <tr>
                                             <th className="float-left"><Text opacity={"0.75"} >USDC Balance:</Text></th>

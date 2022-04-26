@@ -58,7 +58,7 @@ import PoligonInActive from "../../assets/polygon_trade_inactive.png";
 import { ImInfo } from 'react-icons/im';
 import { Tooltip } from 'antd';
 import { Badge } from 'antd';
- 
+
 let loaded30 = false;
 
 export function TradeView() {
@@ -142,8 +142,8 @@ export function TradeView() {
       setAllTrade(_type);
       setOffset(0)
     };
- 
-     
+
+
     useEffect(() => {
       readPoolData_30();
       readPoolData_90();
@@ -289,7 +289,7 @@ export function TradeView() {
     };
 
     const onTrade = async (pool:any) =>{
-      
+
       if ( !wallet){
         notify({
           message: 'Please connect to Solana network',
@@ -865,7 +865,7 @@ export function TradeView() {
         }
       }
     }
-     
+
    const fetchAPY= async ()=>{
     const response:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/Trade_Staking_APY');
     setAPY(response.data.APY)
@@ -885,8 +885,8 @@ export function TradeView() {
         fetchTrades(10,0)
         }
     }, 3000);
- 
- 
+
+
     const onSettle = async (pool:any,owner:any,usdc_account:any,data_account:any,amount:number) =>{
       if ( !wallet){
         notify({
@@ -1073,14 +1073,14 @@ export function TradeView() {
     }
   const handlePagination=(limit:number,x_paginationcursor:number)=>{
     setStopFetchingTrades(true)
-     
+
     if(x_paginationcursor>0) {
       setOffset(offset+x_paginationcursor);
       if(showAllTrade===1)
         fetchPublicAPI(limit,offset+x_paginationcursor)
       else if(showAllTrade==2)
         fetchTrades(limit,offset+x_paginationcursor)
-      else 
+      else
         fetchPendingTrades(limit,offset+x_paginationcursor)
     }
 
@@ -1093,7 +1093,7 @@ export function TradeView() {
       else
         fetchPendingTrades(limit,offset+x_paginationcursor)
     }
-  
+
     else{
         setOffset(offset+0);
       if(showAllTrade===1)
@@ -1136,7 +1136,7 @@ export function TradeView() {
       setBondValueMaturity_90(bondValueMaturity);
     }
   }
- 
+
     return (
         <div className="w-screen h-screen bg-black">
             <div  className="w-9/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 2xl:w-9/12 lg:w-11/12 xl:w-10/12 min-xxl:w-7/12  max-2xl:w-8/12">
@@ -1502,18 +1502,18 @@ export function TradeView() {
                     <div className='flex justify-between sm:flex-col sm:justify-start flex-wrap sm:pb-3'>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 2? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(2)}>MY Trades</Text>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 1? 'border-b-2 border-green-100' : '')} transform size='14px' onClick={()=>onShowAllTrades(1)}>Recent Trades</Text>
-                   
+
                         <Text color="white" className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>
                           <Badge offset={[7,0]} count={myPendingData.length>9 ?"9+":myPendingData.length}>
                           <Tooltip placement="top" title={'Redemption settlement time, on average, will be within 30 minutes. Settlement is contingent on individual blockchain and cross-chain traffic. If your transaction fails to settle, and more than one hour has lapsed, please contact support.'}>
                             <Text  transform  size='14px' >
-                              MY Pending Redemptions  
+                              MY Pending Redemptions
                             </Text>
-                            </Tooltip> 
+                            </Tooltip>
                             </Badge>
                         </Text>
-                   
-                     
+
+
                     </div>
                     <div>
                       <div className="bg-gray-300 items-center align-middle py-2 px-5 rounded-md flex">
