@@ -208,7 +208,7 @@ export  function MyAccountView() {
                         <td className="py-2 text-center">{parseFloat(value.current_bond_value).toFixed(3)}</td>
                         <td className="py-2 text-center">
                           <Link to={"/redeem/"+value.trade_account}>
-                            <button className="bg-green-100 rounded-md py-1 px-5"><Text color='black' transform='true' weight='true' size='11px'>Reedeem</Text></button>
+                            <button className="bg-green-100 rounded-md py-1 px-5"><Text color='black' transform='true' weight='true' size='11px'>Redeem</Text></button>
                            </Link>
                         </td>
                       </tr>

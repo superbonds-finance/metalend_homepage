@@ -93,7 +93,7 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
                     <tr className="bg-gray-200">
                     <td className="py-2 px-4 text-blue-100">
                         {value.redeem ? <Link to={"/redeem/"+value.redeem}>
-                            <button className="bg-green-100 rounded-md py-1 px-5"><Text color='black' transform='true' weight='true' size='11px'>Reedeem</Text></button>
+                            <button className="bg-green-100 rounded-md py-1 px-5"><Text color='black' transform='true' weight='true' size='11px'>Redeem</Text></button>
                             </Link> : null
                         }
                     </td>
