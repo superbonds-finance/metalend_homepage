@@ -4,9 +4,13 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {CenterP, Text} from "./trade.styled";
 import { Link } from "react-router-dom";
 import {  truncateStr,convertTimeStamp} from "../../utils/utils";
+import { Tooltip } from 'antd';
 import {
     POOL_30_ADDRESS
   } from "../../utils/ids";
+import { ImInfo } from 'react-icons/im';
+import './trade.css'
+
 export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettle:Function}> = ({ tradeType,data,onSettle}) => {
 
     const CopyAction=()=>{
@@ -86,6 +90,7 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
                 <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current Bond Value</Text></th>
                 <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Profit at Maturity</Text></th>
                 <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current Profit</Text></th>
+                
             </tr>
 
             {data && data.length>0 && data.map((value:any,key:any)=>{
@@ -132,7 +137,7 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
     return (
         // <div className="overflow-x-auto w-full h-full" style={{"borderRadius":"1.5em"}}>
         <div>
-        <table className="w-full block overflow-x-auto" style={{"borderRadius":"1.5em","borderCollapse":"separate","borderSpacing":data && data.length>0?'0px 4px':'0px 0px',"maxHeight":"370px","minHeight":/* data && data.length>0?  */"380px"/* :"100px" */,"backgroundColor":data && data.length>0?"#1a232b": "#28333F"}}>
+        <table className="processing-table w-full block overflow-x-auto" style={{"borderRadius":"1.5em","borderCollapse":"separate","borderSpacing":data && data.length>0?'0px 4px':'0px 0px',"maxHeight":"370px","minHeight":/* data && data.length>0?  */"380px"/* :"100px" */,"backgroundColor":data && data.length>0?"#1a232b": "#28333F"}}>
             <tr className="bg-gray-300 ">
                 <th className="th-width-auto-calc sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Pool</Text></th>
                 <th className="th-width-auto-calc sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Owner</Text></th>
@@ -140,6 +145,7 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
                 <th className="th-width-auto-calc sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Amount</Text></th>
                 <th className="th-width-auto-calc sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Request Time</Text></th>
                 <th className="th-width-auto-calc sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Redemption Data Account</Text></th>
+                <th className="th-width-auto-calc sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Status</Text></th>
 
             </tr>
             {data && data.length>0 && data.map((value:any,key:any)=>{
@@ -157,7 +163,14 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
                         <td className="py-2 px-2 text-blue-100 text-center">{truncateStr(value.data_account,7)}
                             <CopyToClipboard onCopy={CopyAction}  text={value.data_account}><i className="far fa-clone cursor-pointer  fa-s ml-1" aria-hidden="true" style={{color:"#7cfa4d"}}></i></CopyToClipboard>
                         </td>
-
+                        <td className=" py-2 px-2 text-blue-100 text-center cursor-pointer">
+                            <Text size='13px' >
+                                Processing
+                            </Text>
+                            <Tooltip placement="right" title={'Redemption settlement time, on average, will be within 30 minutes. Settlement is contingent on individual blockchain and cross-chain traffic. If your transaction fails to settle, and more than one hour has lapsed, please contact support.'}>
+                                <ImInfo  className='inline-block ml-0.5 text-white'  />
+                            </Tooltip>
+                        </td>
                     </tr>
                 </>
             })}

@@ -1136,6 +1136,24 @@ export function TradeView() {
       setBondValueMaturity_90(bondValueMaturity);
     }
   }
+  const pending=[
+   {
+  data_account:"A9ujCnG4dHszyz8vGARfbEYhuJvrQgvBFpQKEWiZi3E5",
+  pool:"30-day",
+  owner:"5GMAa4GXqWswZ7K527F7sWTAKFga1iuE5TfSBhuuTPmc",
+  usdc_account:"",
+  amount:100,
+  requested_at:1650689737000
+},
+{
+  data_account:"A9ujCnG4dHszyz8vGARfbEYhuJvrQgvBFpQKEWiZi3E5",
+  pool:"30-day",
+  owner:"5GMAa4GXqWswZ7K527F7sWTAKFga1iuE5TfSBhuuTPmc",
+  usdc_account:"",
+  amount:100,
+  requested_at:1650689737000
+},
+  ]
 
     return (
         <div className="w-screen h-screen bg-black">
@@ -1539,7 +1557,7 @@ export function TradeView() {
                   {showAllTrade==3 &&
                     <TradeTableComponent
                       tradeType='my_pending_trade'
-                      data={myPendingData}
+                      data={pending}
                       onSettle={onSettle}
                     />
                   }

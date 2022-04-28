@@ -3,6 +3,16 @@
     box-shadow: 0px 3px 9px #40BA12;
 }
  
+
+.processing-table-row:hover  +  .processing-info {
+   display: inline-block;
+}
+
+.processing-info{
+   display: none;
+}
+
+ 
 .text-grid:hover  .info-circle,.text-grid:hover  .info-circle-hide,.info-circle-show{
     display: inline;
     opacity: 1;
