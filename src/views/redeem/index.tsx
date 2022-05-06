@@ -37,6 +37,8 @@ import {
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {GlobalStyle,Text} from "./redeem.styled"
 import Swal from 'sweetalert2';
+import axios from 'axios';
+import {AxiosResponse} from 'axios';
 
 interface ParamTypes {
   trade_account: string
@@ -476,14 +478,17 @@ export const RedeemView = () => {
         type: "error",
       });
     }else{
-
-            notify({
-              message: 'Redemption Request Sent to Network',
-              type: "success",
-            });
-            await delay(3000);
-            history.push("/trade");
-            return;
+      const data = {"NFT":tradeData.NFT,"type":"remove"};
+      const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/addTradeRequest',data);
+      console.log(response);
+      // console.log('api pool 30 data',response.data)
+      notify({
+        message: 'Redemption Request Sent to Network',
+        type: "success",
+      });
+      await delay(3000);
+      history.push("/trade");
+      return;
 
 
     }
@@ -566,11 +571,11 @@ export const RedeemView = () => {
                                 <tr className="bg-gray-200">
                                 <td className="py-2 px-2 text-blue-100 text-center"><Text  size='13px'>{value.pool}</Text></td>
                                 <td className="py-2 px-2 text-blue-100 text-center">
-                                  <a className='text-blue-100 hover:text-blue-100' target="_blank" href={"https://explorer.solana.com/address/"+value.trade_owner+"?cluster=devnet"}>{truncateStr(value.trade_owner,3)}</a>
+                                  <a className='text-blue-100 hover:text-blue-100' target="_blank" href={"https://explorer.solana.com/address/"+value.trade_owner}>{truncateStr(value.trade_owner,3)}</a>
                                   <CopyToClipboard onCopy={handleCopy}  text={value.trade_owner}><i className="far fa-clone cursor-pointer  fa-s ml-1" aria-hidden="true" style={{color:"#7cfa4d"}}></i></CopyToClipboard>
                                 </td>
                                 <td className="py-2 px-2 text-blue-100 text-center">
-                                  <a className='text-blue-100 hover:text-blue-100'  target="_blank" href={"https://explorer.solana.com/address/"+value.nft+"?cluster=devnet"}>{truncateStr(value.nft,3)}</a>
+                                  <a className='text-blue-100 hover:text-blue-100'  target="_blank" href={"https://explorer.solana.com/address/"+value.nft}>{truncateStr(value.nft,3)}</a>
                                   <CopyToClipboard onCopy={handleCopy}  text={value.nft}><i className="far fa-clone cursor-pointer  fa-s ml-1" aria-hidden="true" style={{color:"#7cfa4d"}}></i></CopyToClipboard>
                                 </td>
                                 <td className="py-2 px-2 text-blue-100 text-center">

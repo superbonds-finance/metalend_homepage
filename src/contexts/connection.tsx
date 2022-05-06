@@ -272,13 +272,13 @@ export const sendTransaction = async (
       // let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
       // console.log('transaction_info',transaction_info);
       // await delay(7000);
-      return -1;
+      return null;
     }
     catch (e){
       console.log(e);
       // let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
       // console.log('transaction_info',transaction_info);
-      return -1;
+      return null;
     }
 
 
