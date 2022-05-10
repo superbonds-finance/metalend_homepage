@@ -712,6 +712,7 @@ export function TradeView() {
               message: 'Updating the list ...',
               type: "info",
             });
+            await getAllBalances();
             setStopFetchingTrades(false)
         }
         }
@@ -803,6 +804,7 @@ export function TradeView() {
               type: "info",
             });
             setStopFetchingTrades(false)
+            await getAllBalances();
             return;
           }
 
