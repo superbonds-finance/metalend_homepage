@@ -150,6 +150,7 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
             </tr>
             {data && data.length>0 && data.map((value:any,key:any)=>{
                 return <>
+                 <Tooltip placement="topRight" title={'Redemption settlement time, on average, will be within 30 minutes. Settlement is contingent on individual blockchain and cross-chain traffic. If your transaction fails to settle, and more than one hour has lapsed, please contact support.'}>
                     <tr className="bg-gray-200 text-grid cursor-pointer">
                         <td className="py-2 px-2 text-blue-100 text-center"><Text  size='13px'>{value.pool == POOL_30_ADDRESS.toBase58() ? "30-day" : "90-day"}</Text></td>
                         <td className="py-2 px-2 text-blue-100 text-center">{truncateStr(value.owner,7)}
@@ -167,11 +168,12 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
                             <Text size='13px' >
                                 Processing
                             </Text>
-                            <Tooltip placement="right" title={'Redemption settlement time, on average, will be within 30 minutes. Settlement is contingent on individual blockchain and cross-chain traffic. If your transaction fails to settle, and more than one hour has lapsed, please contact support.'}>
+                            {/* <Tooltip placement="right" title={'Redemption settlement time, on average, will be within 30 minutes. Settlement is contingent on individual blockchain and cross-chain traffic. If your transaction fails to settle, and more than one hour has lapsed, please contact support.'}>
                                 <ImInfo  className='info-circle inline-block ml-0.5 text-green-100' style={{fontSize:'13px'}} />
-                            </Tooltip>
+                            </Tooltip> */}
                         </td>
                     </tr>
+                    </Tooltip>
                 </>
             })}
             {data && data.length==0 &&
