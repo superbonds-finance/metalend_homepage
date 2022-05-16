@@ -238,7 +238,7 @@
 }
 
 .wallet-adapter-modal-menu-button {
-    border: 1px solid #9cf61c;
+    /* border: 1px solid #9cf61c; */
     height: 44px;
     padding-left: 24px;
     display: flex;
@@ -250,9 +250,9 @@
     border: transparent;
 }
 
-.ant-btn-text:hover, .ant-btn-text:focus{
+/* .ant-btn-text:hover, .ant-btn-text:focus{
     border: 1px solid #9cf61c;
-}
+} */
 .ant-btn-text:hover > span, .ant-btn-text:focus> span{
     color: #9cf61c
 }
@@ -298,4 +298,15 @@
     padding-right: 16px;
     padding-top: 8px;
     padding-bottom: 8px;
+}
+
+.ant-menu-item:nth-child(odd) {
+    background-color: #28333f;
+}
+
+.ant-menu-submenu .ant-menu-item:nth-child(even) {
+    background-color: #28333f;
+}
+.ant-menu-submenu .ant-menu-item:nth-child(odd) {
+    background-color: #141414;
 }
