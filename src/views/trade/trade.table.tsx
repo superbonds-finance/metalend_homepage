@@ -150,7 +150,8 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
             </tr>
             {data && data.length>0 && data.map((value:any,key:any)=>{
                 return <>
-                    <tr className="bg-gray-200 text-grid">
+                 <Tooltip placement="topRight" title={'Redemption settlement time, on average, will be within 30 minutes. Settlement is contingent on individual blockchain and cross-chain traffic. If your transaction fails to settle, and more than one hour has lapsed, please contact support.'}>
+                    <tr className="bg-gray-200 text-grid cursor-pointer">
                         <td className="py-2 px-2 text-blue-100 text-center"><Text  size='13px'>{value.pool == POOL_30_ADDRESS.toBase58() ? "30-day" : "90-day"}</Text></td>
                         <td className="py-2 px-2 text-blue-100 text-center">{truncateStr(value.owner,7)}
                             <CopyToClipboard onCopy={CopyAction}  text={value.owner}><i className="far fa-clone cursor-pointer  fa-s ml-1" aria-hidden="true" style={{color:"#7cfa4d"}}></i></CopyToClipboard>
@@ -167,11 +168,12 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
                             <Text size='13px' >
                                 Processing
                             </Text>
-                            <Tooltip placement="right" title={'Redemption settlement time, on average, will be within 30 minutes. Settlement is contingent on individual blockchain and cross-chain traffic. If your transaction fails to settle, and more than one hour has lapsed, please contact support.'}>
-                                <ImInfo  className='info-circle inline-block ml-0.5 text-white'  />
-                            </Tooltip>
+                            {/* <Tooltip placement="right" title={'Redemption settlement time, on average, will be within 30 minutes. Settlement is contingent on individual blockchain and cross-chain traffic. If your transaction fails to settle, and more than one hour has lapsed, please contact support.'}>
+                                <ImInfo  className='info-circle inline-block ml-0.5 text-green-100' style={{fontSize:'13px'}} />
+                            </Tooltip> */}
                         </td>
                     </tr>
+                    </Tooltip>
                 </>
             })}
             {data && data.length==0 &&

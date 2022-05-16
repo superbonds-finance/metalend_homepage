@@ -710,6 +710,7 @@ export function TradeView() {
               message: 'Updating the list ...',
               type: "info",
             });
+            await getAllBalances();
             setStopFetchingTrades(false)
         }
         }
@@ -798,6 +799,7 @@ export function TradeView() {
               type: "info",
             });
             setStopFetchingTrades(false)
+            await getAllBalances();
             return;
           }
 
@@ -1136,24 +1138,7 @@ export function TradeView() {
       setBondValueMaturity_90(bondValueMaturity);
     }
   }
-  const pending=[
-   {
-  data_account:"A9ujCnG4dHszyz8vGARfbEYhuJvrQgvBFpQKEWiZi3E5",
-  pool:"30-day",
-  owner:"5GMAa4GXqWswZ7K527F7sWTAKFga1iuE5TfSBhuuTPmc",
-  usdc_account:"",
-  amount:100,
-  requested_at:1650689737000
-},
-{
-  data_account:"A9ujCnG4dHszyz8vGARfbEYhuJvrQgvBFpQKEWiZi3E5",
-  pool:"30-day",
-  owner:"5GMAa4GXqWswZ7K527F7sWTAKFga1iuE5TfSBhuuTPmc",
-  usdc_account:"",
-  amount:100,
-  requested_at:1650689737000
-},
-  ]
+
 
     return (
         <div className="w-screen h-screen bg-black">
@@ -1520,14 +1505,11 @@ export function TradeView() {
                     <div className='flex justify-between sm:flex-col sm:justify-start flex-wrap sm:pb-3'>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 2? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(2)}>MY Trades</Text>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 1? 'border-b-2 border-green-100' : '')} transform size='14px' onClick={()=>onShowAllTrades(1)}>Recent Trades</Text>
-
                         <Text color="white" className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>
                           <Badge offset={[7,0]} count={myPendingData.length>9 ?"9+":myPendingData.length}>
-                          <Tooltip placement="top" title={'Redemption settlement time, on average, will be within 30 minutes. Settlement is contingent on individual blockchain and cross-chain traffic. If your transaction fails to settle, and more than one hour has lapsed, please contact support.'}>
                             <Text  transform  size='14px' >
                               MY Pending Redemptions
                             </Text>
-                            </Tooltip>
                             </Badge>
                         </Text>
 
@@ -1557,7 +1539,7 @@ export function TradeView() {
                   {showAllTrade==3 &&
                     <TradeTableComponent
                       tradeType='my_pending_trade'
-                      data={pending}
+                      data={myPendingData}
                       onSettle={onSettle}
                     />
                   }
