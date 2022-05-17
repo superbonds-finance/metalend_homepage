@@ -15,7 +15,8 @@ import {  HomeView,
           StakeView,
           GovernanceView,
           FarmingRewardsView,
-          PlatformStatsView
+          PlatformStatsView,
+          BuySBView
        } from "./views";
 
 import {
@@ -68,6 +69,7 @@ export function Routes() {
                   <Route exact path="/governance" children={<GovernanceView />} />
                   {/*<Route exact path="/farming_rewards" children={<FarmingRewardsView />} />*/}
                   <Route exact path="/platform" children={<PlatformStatsView />} />
+                  <Route exact path="/buy-SB" children={<BuySBView />} />
                 </Switch>
               </AppLayout>
 
