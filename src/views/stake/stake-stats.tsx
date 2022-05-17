@@ -1298,7 +1298,7 @@ export function StakeStats() {
     let time_range = Math.round((now.getTime()/1000 - PlatformData.start_time) / (90*24*60*60));
     let power_factor = Math.pow((10000.0 - PlatformData.decrease_rate)/10000.0, time_range);
     let currentRate =  PlatformData.start_rate * power_factor / 100.0;
-
+    // console.log('currentRate',currentRate);
     //Trading Rewards Calculation
     let _accAmountPerShare_Trades =  new BN(StakingData.accAmountPerShare_Trades, 10, "le").toNumber()/1000000;
     let lastRewardTime_Trades = new BN(StakingData.lastRewardTime_Trades, 10, "le").toNumber();
@@ -1306,13 +1306,13 @@ export function StakeStats() {
 
     if (now.getTime()/1000 > lastRewardTime_Trades && totalProductivity_Trades != 0) {
         let multiplier = now.getTime()/1000 - lastRewardTime_Trades;
-        let reward = multiplier * currentRate * PlatformData.superb_staking_reward_ratio / 10000;
+        let reward = multiplier * currentRate * PlatformData.bond_traders_ratio / 10000;
         _accAmountPerShare_Trades += reward / totalProductivity_Trades;
     }
     let my_total_staked_Trades = new BN(traderData.total_active_trades, 10, "le").toNumber()/1000000;
     let my_rewardDebt_Trades = new BN(traderData.rewardDebt_Trades, 10, "le").toNumber()/1000000;
-    // //console.log('my_total_staked_Trades',my_total_staked_Trades);
-    // //console.log('rewards',my_total_staked_Trades * _accAmountPerShare_Trades - my_rewardDebt_Trades);
+    // console.log('my_total_staked_Trades',my_total_staked_Trades,totalProductivity_Trades);
+    // console.log('rewards',my_total_staked_Trades * _accAmountPerShare_Trades - my_rewardDebt_Trades);
     setUnclaimed_Trading_Rewards(my_total_staked_Trades * _accAmountPerShare_Trades - my_rewardDebt_Trades);
 
     //SuperB Staking Rewards Calculation
