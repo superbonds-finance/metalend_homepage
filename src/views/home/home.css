@@ -301,11 +301,11 @@
 }
 
 .ant-menu-item:nth-child(odd) {
-    background-color: #28333f;
+    background-color: #1A232B;
 }
 
 .ant-menu-submenu .ant-menu-item:nth-child(even) {
-    background-color: #28333f;
+    background-color: #1A232B;
 }
 .ant-menu-submenu .ant-menu-item:nth-child(odd) {
     background-color: #141414;
