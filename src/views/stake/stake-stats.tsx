@@ -1338,7 +1338,7 @@ export function StakeStats() {
     if (now.getTime()/1000 > lastRewardTime_LP_Token30 && totalProductivity_LP_Token30 != 0) {
         let multiplier = now.getTime()/1000 - lastRewardTime_LP_Token30;
         let reward = risk_factor_30 * multiplier * currentRate * PlatformData.lp_token_holders_ratio / 10000;
-        _accAmountPerShare_LP_Token30 += reward / totalProductivity_LP_Token30;
+        _accAmountPerShare_LP_Token30 += (reward / totalProductivity_LP_Token30) * 100 / (parseFloat(PlatformData.risk_factor_x.toString()) + 100);
     }
     let my_total_staked_LP_Token30 = traderData.total_LP_Token_staked_vector[0]/1000000;
     let my_rewardDebt_LP_Token30 = traderData.rewardDebt_LP[0]/1000000;
@@ -1353,7 +1353,7 @@ export function StakeStats() {
     if (now.getTime()/1000 > lastRewardTime_LP_Token90 && totalProductivity_LP_Token90 != 0) {
         let multiplier = now.getTime()/1000 - lastRewardTime_LP_Token90;
         let reward = risk_factor_90 * multiplier * currentRate * PlatformData.lp_token_holders_ratio / 10000;
-        _accAmountPerShare_LP_Token90 += reward / totalProductivity_LP_Token90;
+        _accAmountPerShare_LP_Token90 += (reward / totalProductivity_LP_Token90) * 100 / (parseFloat(PlatformData.risk_factor_x.toString()) + 100);
     }
     let my_total_staked_LP_Token90 = traderData.total_LP_Token_staked_vector[1]/1000000;
     let my_rewardDebt_LP_Token90 = traderData.rewardDebt_LP[1]/1000000;
