@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { CloseButton, ModalWrapper } from "./buy-sb.styled";
 import logo1 from "../../assets/coinType/logo1.jpg";
 import logo2 from "../../assets/coinType/logo2.jpg";
@@ -10,6 +10,7 @@ import logo7 from "../../assets/coinType/logo7.jpg";
 import logo8 from "../../assets/coinType/logo8.jpg";
 import logo9 from "../../assets/coinType/logo9.jpg";
 import logo10 from "../../assets/coinType/logo10.jpg";
+import { useOutsideClick } from "./UseOutsideClick";
 
 interface ModalTypes {
   setShowModal: (e: boolean) => void,
@@ -18,14 +19,18 @@ interface ModalTypes {
 
 export default function Modal({ setShowModal, showModal }: ModalTypes) {
 
+  const dropDownRef = useRef(null);
+  useOutsideClick(dropDownRef, () => setShowModal(false));
+
   return (
     <>
       {showModal ? (
         <>
           <ModalWrapper
+            
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 outline-none focus:outline-none"
           >
-            <div className="relative w-auto my-6 mx-auto max-w-md">
+            <div ref={dropDownRef} className="relative w-auto my-6 sm:my-0 mx-auto max-w-md sm:max-w-full">
               {/*content*/}
               <div className="flex flex-col relative w-full h-full overflow-hidden text-left bg-gray-200 rounded-lg style1">
                 <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>

@@ -144,7 +144,11 @@ p{
   margin-bottom: 3px;
 }
 .text-white-50 {color: #8f9092}
-.style1{height: 732px; max-width: 448px;}
+.style1{height: 80vh;max-height: 670px;  max-width: 448px;}
+@media (max-width: 640px) { 
+  .style1{height: 100vh}
+ }
+
 .style2{height: 74px; max-height: 74px;}
 .style3{box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;}
 .style4{box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;}
@@ -203,8 +207,8 @@ p{
 .style57{display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;}
 .style58{position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;}
 .style59{flex-grow: 1; position: relative;}
-.style60{overflow: visible; height: 0px; width: 0px;}
-.style61{margin-top :30px; position: relative; height: 656px; width: 446px; overflow: auto; will-change: transform;}
+.style60{overflow: visible; height: 0px; width: 0px; height: 95%;}
+.style61{margin-top :30px; position: relative; height: 100%; width: 446px; overflow: auto; will-change: transform;}
 .style62{width: 100%;}
 .style63{max-height: 72px; height: 72px; position: absolute; left: 0px; top: 0px; width: 100%;}
 .style64{box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;}
