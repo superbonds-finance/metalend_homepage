@@ -59,13 +59,12 @@ import Modal from "./Modal";
 import logo2 from "../../assets/coinType/logo2.jpg";
 import logo3 from "../../assets/coinType/logo3.jpg";
 
+import {SettingModal} from "./setting-modal"
 
 interface ParamTypes {
   trade_account: string
 }
-let sunny_reward_accounts:any = [];
-let saber_reward_accounts:any = [];
-
+ 
 export function BuySBView() {
 
   const connection = useConnection();
@@ -73,8 +72,6 @@ export function BuySBView() {
   // const { trade_account } = useParams<ParamTypes>();
   const [showModal, setShowModal] = React.useState(false);
   const [APYSBLP,setAPYSBLP] = useState<any>();
-  const [lq_amount30,setLQ_Amount30] = useState("");
-  const [lq_amount90,setLQ_Amount90] = useState("");
   const [sb_amount,setSB_Amount] = useState("");
   const [sol_sb_lp_amount,setSOL_SB_LP_Amount] = useState("");
   const onChangeSB_amount = useCallback( (e) => {
@@ -82,15 +79,7 @@ export function BuySBView() {
     setSB_Amount(formatInputNumber(value));
   },[]);
 
-  // const onChangeLQ_amount30 = useCallback( (e) => {
-  //   const { value } = e.target;
-  //   setLQ_Amount30(value);
-  // },[]);
-
-  // const onChangeLQ_amount90 = useCallback( (e) => {
-  //   const { value } = e.target;
-  //   setLQ_Amount90(value);
-  // },[]);
+  
 
   const onChangeSOL_SB_LP_Amount = useCallback( (e) => {
     const { value } = e.target;
@@ -110,7 +99,7 @@ export function BuySBView() {
   const [StakingData, setStakingData] = useState<any>();
   const [SuperB_Rewards_Balance,setSuperB_Rewards_Balance] = useState(0);
   const [transactionFees,setTransactionFees] = useState<any>();
-
+  const [showSettingModal,setshowSettingModal] = useState<any>(false);
 
   const readPoolData_30 = async () => {
     const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
@@ -214,535 +203,13 @@ export function BuySBView() {
     const response:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/platformData ');
     let decodedPoolDataState = response.data as PlatformDataLayout;
     setPlatformData(decodedPoolDataState);
-    // if ( !wallet){
-    //   notify({
-    //     message: 'Please connect to Solana network',
-    //     type: "error",
-    //   });
-    //   return;
-    // }
-    // let publicKey = wallet.publicKey;
-    // if (!publicKey){
-    //   notify({
-    //     message: 'Please connect to Solana network',
-    //     type: "error",
-    //   });
-    //   return;
-    // }
-    // const encodedPoolDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
-    // const decodedPoolDataState = PLATFORM_DATA_LAYOUT.decode(encodedPoolDataState) as PlatformDataLayout;
-    // //console.log(decodedPoolDataState)
-    // setPlatformData(decodedPoolDataState);
-    //
-    // const encodedStakingDataState = (await connection.getAccountInfo(STAKING_DATA_ACCOUNT, 'singleGossip'))!.data;
-    // const decodedStakingDataState = STAKING_DATA_LAYOUT.decode(encodedStakingDataState) as StakingDataLayout;
-    // //console.log(decodedStakingDataState);
-    // setStakingData(decodedStakingDataState);
-    //
-    // const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
-    // const decodeSuperB_Rewards_Account_ADDRESS = AccountLayout.decode(encodeSuperB_Rewards_Account_ADDRESS);
-    // let SuperB_Rewards_Balance = new BN(decodeSuperB_Rewards_Account_ADDRESS.amount, 10, "le").toNumber() / (10**SUPERB_DECIMALS);
-    // setSuperB_Rewards_Balance(SuperB_Rewards_Balance);
   }
-
-  const [sunny_unclaimed_rewards,setSunny_Unclaimed_Rewards] = useState(0);
-  const [saber_unclaimed_rewards,setSaber_Unclaimed_Rewards] = useState(0);
-  const [orca_unclaimed_rewards,setOrca_Unclaimed_Rewards] = useState(0);
-  //
-  // const getRewardDataAccount = async () => {
-  //   if ( !wallet){
-  //     notify({
-  //       message: 'Please connect to Solana network',
-  //       type: "error",
-  //     });
-  //     return;
-  //   }
-  //   let publicKey = wallet.publicKey;
-  //   if (!publicKey){
-  //     notify({
-  //       message: 'Please connect to Solana network',
-  //       type: "error",
-  //     });
-  //     return;
-  //   }
-  //   let trader_Data_account = null;
-  //   let filters = [
-  //         {
-  //           "dataSize":176
-  //         }];
-  //   const resp = await connection.getProgramAccounts(SUPERBONDS_PROGRAM_ID, {
-  //     commitment: connection.commitment,
-  //     filters,
-  //     encoding: 'base64',
-  //   });
-  //
-  //   if (resp.length == 0) return;
-  //
-  //   let Sunny_rewards = 0;
-  //   let Saber_rewards = 0;
-  //   let Orca_rewards = 0;
-  //   sunny_reward_accounts = [];
-  //   saber_reward_accounts = [];
-  //
-  //   resp.forEach(element => {
-  //     //console.log(element);
-  //     let farming_reward = FARMING_REWARD_LAYOUT.decode(element.account.data);
-  //     let total_reward = new BN(farming_reward.total_reward, 10, "le").toNumber() / 1000000;
-  //     let lp_staked_30 = farming_reward.total_lp_token_staked[0] / 1000000;
-  //     let lp_staked_90 = farming_reward.total_lp_token_staked[1] / 1000000;
-  //     if (total_reward>0 && (lp_staked_30 > 0 || lp_staked_90 > 0 ))
-  //     {
-  //       //process reward_data
-  //       let timestamp = new BN(farming_reward.received_at, 10, "le").toNumber();
-  //       let token_account = farming_reward.token_account.toBase58();
-  //
-  //       let sunny_last_update = traderData ? traderData.last_update_external_farming[0] : 0;
-  //
-  //       if (sunny_last_update != 0 && sunny_last_update < timestamp){
-  //         //qualify for Rewards
-  //         if (token_account == PlatformData.reserved_token_accounts[0].toBase58()){
-  //           //Sunny
-  //           Sunny_rewards += total_reward * PlatformData.pool_risk_factor_vector[0]/1000000 * ((traderData.total_LP_Token_staked_vector[0]/1000000) /  lp_staked_30);
-  //           Sunny_rewards += total_reward * PlatformData.pool_risk_factor_vector[1]/1000000 * ((traderData.total_LP_Token_staked_vector[1]/1000000) /  lp_staked_90);
-  //           sunny_reward_accounts.push(element.pubkey);
-  //         }
-  //
-  //       }
-  //
-  //       let saber_last_update = traderData ? traderData.last_update_external_farming[1] : 0;
-  //
-  //       if (saber_last_update != 0 && saber_last_update < timestamp){
-  //         //qualify for Rewards
-  //         if (token_account == PlatformData.reserved_token_accounts[1].toBase58()){
-  //           //Saber
-  //           Saber_rewards += total_reward * PlatformData.pool_risk_factor_vector[0]/1000000 * ((traderData.total_LP_Token_staked_vector[0]/1000000) /  lp_staked_30);
-  //           Saber_rewards += total_reward * PlatformData.pool_risk_factor_vector[1]/1000000 * ((traderData.total_LP_Token_staked_vector[1]/1000000) /  lp_staked_90);
-  //           saber_reward_accounts.push(element.pubkey);
-  //         }
-  //       }
-  //     }
-  //
-  //   });
-  //   setSunny_Unclaimed_Rewards(Math.round(Sunny_rewards*1000000)/1000000);
-  //   setSaber_Unclaimed_Rewards(Math.round(Saber_rewards*1000000)/1000000);
-  //   setOrca_Unclaimed_Rewards(Math.round(Orca_rewards*1000000)/1000000);
-  //
-  // }
-
-  const onStakeSB = async (isClaim=false) => {
-    const fees=PlatformData.stake_SB_fee/100
-    const message = `
-    <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
-      <div class="table2">
-        <table class="w-full">
-            <tr>
-              <th class="text-left">
-                <span class="th_span small_font_td_span">
-                  SB Staking Fees: </span>
-              </th>
-              <td class="text-right">
-                <span class="td_span small_font_td_span">
-                <b>${fees}</b>%</span>
-              </td>
-            </tr>
-
-            <tr>
-              <th class="text-left">
-                <span class="th_span small_font_td_span">
-                  Platform Fees: </span>
-              </th>
-              <td class="text-right">
-                <span class="td_span small_font_td_span">
-                <b>${transactionFees}</b> SB</span>
-              </td>
-            </tr>
-        </table>
-      </div>
-    </div>
-    `
-    let ProceedForStake=false
-    await Swal.fire({
-      title: 'Staking Fees Confirmation',
-      html:message,
-      showCancelButton: true,
-      confirmButtonText: 'Confirm',
-      confirmButtonColor:'#7cfa4d'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        ProceedForStake = true
-      }
-    })
-    if (!ProceedForStake) return;
-    if ( !wallet){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
-      return;
-    }
-    let publicKey = wallet.publicKey;
-    if (!publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
-      return;
-    }
-
-    let sb_token_balance  = SuperBbalance;
-
-    const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
-    const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-
-    const encodedStakingDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
-    const decodedStakingDataState = PLATFORM_DATA_LAYOUT.decode(encodedStakingDataState) as PlatformDataLayout;
-
-    let SuperB_fee = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber();
-    if (!isClaim){
-      if (SuperBbalance*(10**SUPERB_DECIMALS)  < SuperB_fee + parseFloat(unformatInputNumber(sb_amount))* (10**SUPERB_DECIMALS))
-      {
-        notify({
-          message: 'You dont have enough SuperB to pay for transaction fee',
-          type: "error",
-        });
-        return;
-      }
-    }
-
-    let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
-    let buffers = null;
-    if (!isClaim)
-     buffers = [
-       Buffer.from(Uint8Array.of(19,2, ...new Numberu64(parseFloat(unformatInputNumber(sb_amount)) * (10**SUPERB_DECIMALS)).toBuffer()))
-      ];
-    else
-      buffers = [
-        Buffer.from(Uint8Array.of(19,2, ...new Numberu64(0).toBuffer()))
-       ];
-
-    //Look for Trader Data Account
-    let trader_Data_account = null;
-    let filters = [
-          {
-            "dataSize":560
-          },
-          {
-            "memcmp": {
-              "offset": 0,
-              "bytes": publicKey.toBase58()
-            }
-          }];
-    const resp = await connection.getProgramAccounts(SUPERBONDS_PROGRAM_ID, {
-      commitment: connection.commitment,
-      filters,
-      encoding: 'base64',
-    });
-    //console.log('resp',resp);
-    //return;
-    let [SuperB_pda_address,SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
-
-    if (resp.length == 0){
-      //console.log('Initializing Trader Data Account and Stake...');
-      trader_Data_account = new Account();
-      let rentExemption = 0;
-      try{
-        rentExemption = await connection.getMinimumBalanceForRentExemption(TRADER_LAYOUT.span);
-        if (rentExemption == 0){
-          notify({
-            message: 'Please try again, connection to Solana blockchain was interrupted',
-            type: "error",
-          });
-          return;
-        }
-      } catch(e){
-        notify({
-          message: 'Please try again, connection to Solana blockchain was interrupted',
-          type: "error",
-        });
-        return;
-      }
-      //console.log('trader_Data_account',trader_Data_account.publicKey.toBase58());
-      const createTraderDataAccountIx = SystemProgram.createAccount({
-          programId: SUPERBONDS_PROGRAM_ID,
-          space: TRADER_LAYOUT.span,
-          lamports: rentExemption,
-          fromPubkey: publicKey,
-          newAccountPubkey: trader_Data_account.publicKey
-      });
-
-      const stakeSB_TokenIx = new TransactionInstruction({
-          programId: SUPERBONDS_PROGRAM_ID,
-          keys: [
-              { pubkey: PLATFORM_DATA_ACCOUNT, isSigner: false, isWritable: true },
-              { pubkey: STAKING_DATA_ACCOUNT, isSigner: false, isWritable: true },
-              { pubkey: POOL_30_ADDRESS, isSigner: false, isWritable: true },
-              //Trader Data Account
-              { pubkey: trader_Data_account.publicKey, isSigner: false, isWritable: true },
-              { pubkey: publicKey, isSigner: true, isWritable: false },
-              { pubkey: new PublicKey(decodedStakingDataState.SuperB_Account), isSigner: false, isWritable: true },
-              { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
-              { pubkey: SuperB_pda_address, isSigner: false, isWritable: true},
-              { pubkey: associated_SUPERB_token_account_address, isSigner: false, isWritable: true },
-              { pubkey: new PublicKey(decodedStakingDataState.SuperB_Pool), isSigner: false, isWritable: true },
-              { pubkey: SUPERB_MINT_ADDRESS, isSigner: false, isWritable: true},
-              { pubkey: SYSVAR_RENT_PUBKEY, isSigner: false, isWritable: false},
-              { pubkey: new PublicKey(decodedStakingDataState.Staked_SB_Token_Account), isSigner: false, isWritable: true },
-          ],
-          data: Buffer.concat(buffers)
-      });
-
-      let txid = await sendTransaction(connection,wallet,
-          [createTraderDataAccountIx,stakeSB_TokenIx]
-        ,[trader_Data_account]);
-      if (!txid){
-        notify({
-          message: 'Something wrong with your request!',
-          type: "error",
-        });
-      }else{
-
-          notify({
-            message: 'Staked successfully',
-            type: "success",
-          });
-          notify({
-            message: 'Updating balance. Staked balance can take a while to update.',
-            type: "success",
-          });
-          await delay(5000);
-          onRefresh();
-          return;
-
-      }
-    }
-    else{
-      ////console.log('Stake...');
-      const stakeSB_TokenIx = new TransactionInstruction({
-          programId: SUPERBONDS_PROGRAM_ID,
-          keys: [
-            { pubkey: PLATFORM_DATA_ACCOUNT, isSigner: false, isWritable: true },
-            { pubkey: STAKING_DATA_ACCOUNT, isSigner: false, isWritable: true },
-            { pubkey: POOL_30_ADDRESS, isSigner: false, isWritable: true },
-            //Trader Data Account
-            { pubkey: resp[0].pubkey, isSigner: false, isWritable: true },
-            { pubkey: publicKey, isSigner: true, isWritable: false },
-            { pubkey: new PublicKey(decodedStakingDataState.SuperB_Account), isSigner: false, isWritable: true },
-            { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
-            { pubkey: SuperB_pda_address, isSigner: false, isWritable: true},
-            { pubkey: associated_SUPERB_token_account_address, isSigner: false, isWritable: true },
-            { pubkey: new PublicKey(decodedStakingDataState.SuperB_Pool), isSigner: false, isWritable: true },
-            { pubkey: SUPERB_MINT_ADDRESS, isSigner: false, isWritable: true},
-            { pubkey: SYSVAR_RENT_PUBKEY, isSigner: false, isWritable: false},
-            { pubkey: new PublicKey(decodedStakingDataState.Staked_SB_Token_Account), isSigner: false, isWritable: true },
-          ],
-          data: Buffer.concat(buffers)
-      });
-
-      let txid = await sendTransaction(connection,wallet,
-          [stakeSB_TokenIx]
-        ,[]);
-      if (!txid){
-        notify({
-          message: 'Something wrong with your request!',
-          type: "error",
-        });
-      }else{
-
-          if (!isClaim){
-            notify({
-              message: 'Staking Request Sent',
-              type: "success",
-            });
-          }
-          else{
-            notify({
-              message: 'Claim SuperB Rewards from SuperB Staking Sent',
-              type: "success",
-            });
-          }
-          notify({
-            message: 'Updating balance. Staked balance can take a while to update.',
-            type: "success",
-          });
-          await delay(5000);
-          onRefresh();
-          return;
-
-      }
-    }
-
-
-  }
-  //console.log(stakingPool)
-  const onUnstakeSB = async () => {
-    let fees=PlatformData.unstake_SB_fee/100;
-    const message = `
-    <div class="bg-gray-200 py-3 p-4 mt-3 sm:p-1 rounded-md">
-      <div class="table2">
-        <table class="w-full">
-            <tr>
-              <th class="text-left">
-                <span class="th_span small_font_td_span">
-                  SB Unstaking Fees: </span>
-              </th>
-              <td class="text-right">
-                <span class="td_span small_font_td_span">
-                <b>${fees}</b>%</span>
-              </td>
-            </tr>
-
-            <tr>
-              <th class="text-left">
-                <span class="th_span small_font_td_span">
-                  Platform Fees: </span>
-              </th>
-              <td class="text-right">
-                <span class="td_span small_font_td_span">
-                <b>${transactionFees}</b> SB</span>
-              </td>
-            </tr>
-        </table>
-      </div>
-    </div>
-    `
-    let ProceedForStake=false
-    await Swal.fire({
-      title: 'Unstaking Fees Confirmation',
-      html:message,
-      showCancelButton: true,
-      confirmButtonText: 'Confirm',
-      confirmButtonColor:'#7cfa4d'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        ProceedForStake = true
-      }
-    })
-    if (!ProceedForStake) return;
-    if ( !wallet){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
-      return;
-    }
-    let publicKey = wallet.publicKey;
-    if (!publicKey){
-      notify({
-        message: 'Please connect to Solana network',
-        type: "error",
-      });
-      return;
-    }
-
-    const encodedPoolDataState = (await connection.getAccountInfo(POOL_30_ADDRESS, 'singleGossip'))!.data;
-    const decodedPoolDataState = POOL_DATA_LAYOUT.decode(encodedPoolDataState) as PoolDataLayout;
-
-    const encodedStakingDataState = (await connection.getAccountInfo(PLATFORM_DATA_ACCOUNT, 'singleGossip'))!.data;
-    const decodedStakingDataState = PLATFORM_DATA_LAYOUT.decode(encodedStakingDataState) as PlatformDataLayout;
-
-    let SuperB_fee = new BN(decodedPoolDataState.transaction_fee_SuperB, 10, "le").toNumber();
-    if (SuperBbalance*(10**SUPERB_DECIMALS)  < SuperB_fee + parseFloat(unformatInputNumber(sb_amount)))
-    {
-      notify({
-        message: 'You dont have enough SuperB to pay for transaction fee',
-        type: "error",
-      });
-      return;
-    }
-
-    let associated_SUPERB_token_account_address = await findAssociatedTokenAddress(publicKey,SUPERB_MINT_ADDRESS);
-    //console.log('associated_SUPERB_token_account_address',associated_SUPERB_token_account_address.toBase58());
-
-    const buffers = [
-      Buffer.from(Uint8Array.of(21,2, ...new Numberu64(parseFloat(unformatInputNumber(sb_amount)) * (10**SUPERB_DECIMALS)).toBuffer()))
-    ];
-
-    //Look for Trader Data Account
-    let trader_Data_account = null;
-    let filters = [
-          {
-            "dataSize":560
-          },
-          {
-            "memcmp": {
-              "offset": 0,
-              "bytes": publicKey.toBase58()
-            }
-          }];
-    const resp = await connection.getProgramAccounts(SUPERBONDS_PROGRAM_ID, {
-      commitment: connection.commitment,
-      filters,
-      encoding: 'base64',
-    });
-    //console.log('resp',resp);
-    //return;
-
-    if (resp.length == 0){
-      notify({
-        message: 'Cannot find Trader Data Account!',
-        type: "error",
-      });
-      return;
-    }
-    else{
-      //console.log('Unstaking...');
-      let [staked_SuperB_pda_address,staked_SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.Staked_SB_Token_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
-      let [SuperB_pda_address,SuperB_pda_NONCE] = await PublicKey.findProgramAddress([new PublicKey(decodedStakingDataState.SuperB_Account).toBuffer()], SUPERBONDS_PROGRAM_ID);
-
-      const unstakeSB_TokenIx = new TransactionInstruction({
-          programId: SUPERBONDS_PROGRAM_ID,
-          keys: [
-              { pubkey: PLATFORM_DATA_ACCOUNT, isSigner: false, isWritable: true },
-              { pubkey: STAKING_DATA_ACCOUNT, isSigner: false, isWritable: true },
-              { pubkey: POOL_30_ADDRESS, isSigner: false, isWritable: true },
-              //Trader Data Account
-              { pubkey: resp[0].pubkey, isSigner: false, isWritable: true },
-              { pubkey: publicKey, isSigner: true, isWritable: false },
-              { pubkey: new PublicKey(decodedStakingDataState.SuperB_Account), isSigner: false, isWritable: true },
-              { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
-              { pubkey: SuperB_pda_address, isSigner: false, isWritable: true},
-              { pubkey: associated_SUPERB_token_account_address, isSigner: false, isWritable: true },
-              { pubkey: new PublicKey(decodedStakingDataState.SuperB_Pool), isSigner: false, isWritable: true },
-              { pubkey: SUPERB_MINT_ADDRESS, isSigner: false, isWritable: true},
-              { pubkey: new PublicKey(decodedStakingDataState.Staked_SB_Token_Account), isSigner: false, isWritable: true },
-              { pubkey: staked_SuperB_pda_address, isSigner: false, isWritable: true},
-          ],
-          data: Buffer.concat(buffers)
-      });
-
-      let txid = await sendTransaction(connection,wallet,
-          [unstakeSB_TokenIx]
-        ,[]);
-      if (!txid){
-        notify({
-          message: 'Something wrong with your request!',
-          type: "error",
-        });
-      }else{
-
-          notify({
-            message: 'Unstaked successfully',
-            type: "success",
-          });
-          notify({
-            message: 'Updating balance. Staked balance can take a while to update.',
-            type: "success",
-          });
-          await delay(5000);
-          onRefresh();
-          return;
-
-      }
-    }
-  }
-
-
 
   return (
+    <>
+ {showSettingModal &&  <SettingModal />}
     <div className="w-screen h-screen bg-black">
       <div  className="w-7/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 lg:w-11/12 md:w-12/12" style={{maxWidth:"1000px"}}>
-         
         <div className=" flex justify-end  mt-8 pt-0 w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full mx-auto">
             <MdRefresh className="text-2xl"/>
             <GoSettings className="ml-3 text-2xl"/>
@@ -848,7 +315,7 @@ export function BuySBView() {
             {/* <Text opacity={"50%"}>Fees:0.5%+500SB</Text> */}
             <div className="grid grid-cols-1 gap-2 mt-3">
               <div>
-                <button onClick={() => onStakeSB()} className="border-2 hover:bg-green-100 hover:text-black  rounded-md w-full border-green-100 px-6 py-1.5
+                <button   className="border-2 hover:bg-green-100 hover:text-black  rounded-md w-full border-green-100 px-6 py-1.5
               inline-block">
                   <ButtonText transform weight>Swap</ButtonText>
                 </button>
@@ -909,5 +376,6 @@ export function BuySBView() {
       <GlobalStyle />
       <Modal setShowModal={setShowModal} showModal={showModal} />
     </div>
+    </>
     )
 }
