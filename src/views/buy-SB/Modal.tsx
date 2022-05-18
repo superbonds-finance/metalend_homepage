@@ -1,34 +1,31 @@
-import React from "react";
+import React, { useRef } from "react";
 import { CloseButton, ModalWrapper } from "./buy-sb.styled";
-import logo1 from "../../assets/coinType/logo1.jpg";
-import logo2 from "../../assets/coinType/logo2.jpg";
-import logo3 from "../../assets/coinType/logo3.jpg";
-import logo4 from "../../assets/coinType/logo4.jpg";
-import logo5 from "../../assets/coinType/logo5.jpg";
-import logo6 from "../../assets/coinType/logo6.jpg";
-import logo7 from "../../assets/coinType/logo7.jpg";
-import logo8 from "../../assets/coinType/logo8.jpg";
-import logo9 from "../../assets/coinType/logo9.jpg";
-import logo10 from "../../assets/coinType/logo10.jpg";
+import { useOutsideClick } from "./UseOutsideClick";
+import { DropDown } from "./helper";
 
 interface ModalTypes {
-  setShowModal: (e: boolean) => void,
-  showModal: boolean
+  setShowModal: (e: string) => void,
+  showModal: string,
+  setInputState: (e: { label: string, seconadaryLabel: string, id: number }) => void,
 }
 
-export default function Modal({ setShowModal, showModal }: ModalTypes) {
+export default function Modal({ setShowModal, showModal, setInputState }: ModalTypes) {
+
+  const dropDownRef = useRef(null);
+  useOutsideClick(dropDownRef, () => setShowModal(''));
 
   return (
     <>
       {showModal ? (
         <>
           <ModalWrapper
+
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 outline-none focus:outline-none"
           >
-            <div className="relative w-auto my-6 mx-auto max-w-md">
+            <div ref={dropDownRef} className="relative w-auto my-6 sm:my-0 mx-auto max-w-md sm:max-w-full">
               {/*content*/}
               <div className="flex flex-col relative w-full h-full overflow-hidden text-left bg-gray-200 rounded-lg style1">
-                <CloseButton onClick={() => setShowModal(false)}>×</CloseButton>
+                <CloseButton onClick={() => setShowModal('')}>×</CloseButton>
                 {/* <div className="flex pt-3 px-5 style2">
                   <div className="flex items-center text-black text-white fill-current">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="inherit" xmlns="http://www.w3.org/2000/svg">
@@ -243,296 +240,37 @@ export default function Modal({ setShowModal, showModal }: ModalTypes) {
                   <div className="style60">
                     <div className="overflow-y-scroll mr-1 min-h-[12rem] px-5 style61">
                       <div className="style62">
-                        <li className="bg-gradient rounded py-4 cursor-pointer px-5 list-none bg-input-light bg-transparent style63" translate="no">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0 -mt-1">
-                              <div className="h-6 w-6 bg-gray-200 rounded-full">
-                                <span className="style64">
-                                  <span className="style65">
-                                    {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style66"*/}
-                                    <img
-                                      className="rounded-full"
-                                      src={logo1}
-                                      alt="..."
-                                    />
+                        {DropDown.map(({ label, seconadaryLabel, id }, index) => (
+                          <li onClick={() => { setInputState({ label, seconadaryLabel, id }); setShowModal(''); }} key={'coin' + index} className="bg-gradient rounded py-4 cursor-pointer px-5 list-none bg-input-light bg-transparent style63" style={{ top: `${72 * index}px` }} translate="no">
+                            <div className="flex items-center space-x-4">
+                              <div className="flex-shrink-0 -mt-1">
+                                <div className="h-6 w-6 bg-gray-200 rounded-full">
+                                  <span className="style64">
+                                    <span className="style65">
+                                      {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style66"*/}
+                                      <img
+                                        className="rounded-full"
+                                        src={require(`../../assets/coinType/logo${index + 1}.jpg`)}
+                                        alt="..."
+                                      />
+                                    </span>
+                                    {/* <img alt="soALEPH" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FCsZ5LZkDS7h9TDKjrbL7VAwQZ9nsRu8vJLhRYfmGaN8K%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FCsZ5LZkDS7h9TDKjrbL7VAwQZ9nsRu8vJLhRYfmGaN8K%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FCsZ5LZkDS7h9TDKjrbL7VAwQZ9nsRu8vJLhRYfmGaN8K%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style67"*/}
                                   </span>
-                                  {/* <img alt="soALEPH" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FCsZ5LZkDS7h9TDKjrbL7VAwQZ9nsRu8vJLhRYfmGaN8K%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FCsZ5LZkDS7h9TDKjrbL7VAwQZ9nsRu8vJLhRYfmGaN8K%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FCsZ5LZkDS7h9TDKjrbL7VAwQZ9nsRu8vJLhRYfmGaN8K%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style67"*/}
-                                </span>
+                                </div>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-white truncate">{label}</p>
+                                <p className="text-sm text-white-50 truncate">{seconadaryLabel}</p>
+                              </div>
+                              <div className="text-xs text-white-50 text-right">
+                                <p>
+                                </p>
+                                <p>
+                                </p>
                               </div>
                             </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-white truncate">soALEPH</p>
-                              <p className="text-sm text-white-50 truncate">Wrapped ALEPH (Sollet)</p>
-                            </div>
-                            <div className="text-xs text-white-50 text-right">
-                              <p>
-                              </p>
-                              <p>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="bg-gradient rounded py-4 cursor-pointer px-5 list-none style68" translate="no">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0 -mt-1">
-                              <div className="h-6 w-6 bg-gray-200 rounded-full">
-                                <span className="style69">
-                                  <span className="style70">
-                                    {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style71"*/}
-                                    <img
-                                      className="rounded-full"
-                                      src={logo2}
-                                      alt="..."
-                                    />
-                                  </span>
-                                  {/* <img alt="USDC" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FEPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FEPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FEPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style72"*/}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-white truncate">USDC</p>
-                              <p className="text-sm text-white-50 truncate">USD Coin</p>
-                            </div>
-                            <div className="text-xs text-white-50 text-right">
-                              <p>
-                              </p>
-                              <p>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="bg-gradient rounded py-4 cursor-pointer px-5 list-none style73" translate="no">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0 -mt-1">
-                              <div className="h-6 w-6 bg-gray-200 rounded-full">
-                                <span className="style74">
-                                  <span className="style75">
-                                    {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style76"*/}
-                                    <img
-                                      className="rounded-full"
-                                      src={logo3}
-                                      alt="..."
-                                    />
-                                  </span>
-                                  {/* <img alt="BTC" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2F9n4nbM75f5Ui33ZbPYXn59EwSgE8CGsHtAeTH5YFeJ9E%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2F9n4nbM75f5Ui33ZbPYXn59EwSgE8CGsHtAeTH5YFeJ9E%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2F9n4nbM75f5Ui33ZbPYXn59EwSgE8CGsHtAeTH5YFeJ9E%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style77"*/}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-white truncate">BTC</p>
-                              <p className="text-sm text-white-50 truncate">Wrapped Bitcoin (Sollet)</p>
-                            </div>
-                            <div className="text-xs text-white-50 text-right">
-                              <p>
-                              </p>
-                              <p>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="bg-gradient rounded py-4 cursor-pointer px-5 list-none style78" translate="no">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0 -mt-1">
-                              <div className="h-6 w-6 bg-gray-200 rounded-full">
-                                <span className="style79">
-                                  <span className="style80">
-                                    {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style81"*/}
-                                    <img
-                                      className="rounded-full"
-                                      src={logo4}
-                                      alt="..."
-                                    />
-                                  </span>
-                                  {/* <img alt="soETH" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2F2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2F2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2F2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style82"*/}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-white truncate">soETH</p>
-                              <p className="text-sm text-white-50 truncate">Wrapped Ethereum (Sollet)</p>
-                            </div>
-                            <div className="text-xs text-white-50 text-right">
-                              <p>
-                              </p>
-                              <p>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="bg-gradient rounded py-4 cursor-pointer px-5 list-none style83" translate="no">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0 -mt-1">
-                              <div className="h-6 w-6 bg-gray-200 rounded-full">
-                                <span className="style84">
-                                  <span className="style85">
-                                    {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style86"*/}
-                                    <img
-                                      className="rounded-full"
-                                      src={logo5}
-                                      alt="..."
-                                    />
-                                  </span>
-                                  {/* <img alt="SRM" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FSRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FSRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FSRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style87"*/}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-white truncate">SRM</p>
-                              <p className="text-sm text-white-50 truncate">Serum</p>
-                            </div>
-                            <div className="text-xs text-white-50 text-right">
-                              <p>
-                              </p>
-                              <p>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="bg-gradient rounded py-4 cursor-pointer px-5 list-none style88" translate="no">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0 -mt-1">
-                              <div className="h-6 w-6 bg-gray-200 rounded-full">
-                                <span className="style89">
-                                  <span className="style90">
-                                    {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style91"*/}
-                                    <img
-                                      className="rounded-full"
-                                      src={logo6}
-                                      alt="..."
-                                    />
-                                  </span>
-                                  {/* <img alt="soSUSHI" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FAR1Mtgh7zAtxuxGd2XPovXPVjcSdY3i4rQYisNadjfKy%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FAR1Mtgh7zAtxuxGd2XPovXPVjcSdY3i4rQYisNadjfKy%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FAR1Mtgh7zAtxuxGd2XPovXPVjcSdY3i4rQYisNadjfKy%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style92"*/}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-white truncate">soSUSHI</p>
-                              <p className="text-sm text-white-50 truncate">Wrapped SUSHI (Sollet)</p>
-                            </div>
-                            <div className="text-xs text-white-50 text-right">
-                              <p>
-                              </p>
-                              <p>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="bg-gradient rounded py-4 cursor-pointer px-5 list-none style93" translate="no">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0 -mt-1">
-                              <div className="h-6 w-6 bg-gray-200 rounded-full">
-                                <span className="style94">
-                                  <span className="style95">
-                                    {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style96"*/}
-                                    <img
-                                      className="rounded-full"
-                                      src={logo7}
-                                      alt="..."
-                                    />
-                                  </span>
-                                  {/* <img alt="soSXP" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FSF3oTvfWzEP3DTwGSvUXRrGTvr75pdZNnBLAH9bzMuX%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FSF3oTvfWzEP3DTwGSvUXRrGTvr75pdZNnBLAH9bzMuX%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FSF3oTvfWzEP3DTwGSvUXRrGTvr75pdZNnBLAH9bzMuX%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style97"*/}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-white truncate">soSXP</p>
-                              <p className="text-sm text-white-50 truncate">Wrapped SXP (Sollet)</p>
-                            </div>
-                            <div className="text-xs text-white-50 text-right">
-                              <p>
-                              </p>
-                              <p>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="bg-gradient rounded py-4 cursor-pointer px-5 list-none style98" translate="no">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0 -mt-1">
-                              <div className="h-6 w-6 bg-gray-200 rounded-full">
-                                <span className="style99">
-                                  <span className="style100">
-                                    {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style101"*/}
-                                    <img
-                                      className="rounded-full"
-                                      src={logo8}
-                                      alt="..."
-                                    />
-                                  </span>
-                                  {/* <img alt="MSRM" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FMSRMcoVyrFxnSgo5uXwone5SKcGhT1KEJMFEkMEWf9L%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FMSRMcoVyrFxnSgo5uXwone5SKcGhT1KEJMFEkMEWf9L%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FMSRMcoVyrFxnSgo5uXwone5SKcGhT1KEJMFEkMEWf9L%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style102"*/}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-white truncate">MSRM</p>
-                              <p className="text-sm text-white-50 truncate">MegaSerum</p>
-                            </div>
-                            <div className="text-xs text-white-50 text-right">
-                              <p>
-                              </p>
-                              <p>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="bg-gradient rounded py-4 cursor-pointer px-5 list-none style103" translate="no">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0 -mt-1">
-                              <div className="h-6 w-6 bg-gray-200 rounded-full">
-                                <span className="style104">
-                                  <span className="style105">
-                                    {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style106"*/}
-                                    <img
-                                      className="rounded-full"
-                                      src={logo9}
-                                      alt="..."
-                                    />
-                                  </span>
-                                  {/* <img alt="soFTT" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FAGFEad2et2ZJif9jaGpdMixQqvW5i81aBdvKe7PHNfz3%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FAGFEad2et2ZJif9jaGpdMixQqvW5i81aBdvKe7PHNfz3%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FAGFEad2et2ZJif9jaGpdMixQqvW5i81aBdvKe7PHNfz3%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style107"*/}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-white truncate">soFTT</p>
-                              <p className="text-sm text-white-50 truncate">Wrapped FTT (Sollet)</p>
-                            </div>
-                            <div className="text-xs text-white-50 text-right">
-                              <p>
-                              </p>
-                              <p>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="bg-gradient rounded py-4 cursor-pointer px-5 list-none style108" translate="no">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex-shrink-0 -mt-1">
-                              <div className="h-6 w-6 bg-gray-200 rounded-full">
-                                <span className="style109">
-                                  <span className="style110">
-                                    {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style111"*/}
-                                    <img
-                                      className="rounded-full"
-                                      src={logo10}
-                                      alt="..."
-                                    />
-                                  </span>
-                                  {/* <img alt="soYFI" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2F3JSf5tPeuscJGtaCp5giEiDhv51gQ4v3zWg8DGgyLfAB%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2F3JSf5tPeuscJGtaCp5giEiDhv51gQ4v3zWg8DGgyLfAB%2Flogo.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2F3JSf5tPeuscJGtaCp5giEiDhv51gQ4v3zWg8DGgyLfAB%2Flogo.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full style112"*/}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-white truncate">soYFI</p>
-                              <p className="text-sm text-white-50 truncate">Wrapped YFI (Sollet)</p>
-                            </div>
-                            <div className="text-xs text-white-50 text-right">
-                              <p>
-                              </p>
-                              <p>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
+                          </li>
+                        ))}
                       </div>
                     </div>
                   </div>
