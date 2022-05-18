@@ -24,7 +24,7 @@ import {PLATFORM_DATA_LAYOUT,PlatformDataLayout} from "../../utils/platform_data
 import {STAKING_DATA_LAYOUT,StakingDataLayout} from "../../utils/staking_data_layout";
 import {TRADER_LAYOUT/* ,TraderLayout */} from "../../utils/trader_layout";
 import {FARMING_REWARD_LAYOUT} from "../../utils/farming_reward_layout";
-import {ButtonText,Text,HeroText,HoverToolTip} from "./buy-sb.styled";
+import {ButtonText,Text,HeroText,HoverToolTip, InputWrapper} from "./buy-sb.styled";
 import BN from "bn.js";
 import axios from 'axios';
 import {AxiosResponse} from 'axios';
@@ -55,6 +55,10 @@ import { Tooltip } from "antd";
 import { ImInfo } from "react-icons/im";
 import MenuDivider from "antd/lib/menu/MenuDivider";
 import { SHOW_PARENT } from "rc-tree-select";
+import Modal from "./Modal";
+import logo2 from "../../assets/coinType/logo2.jpg";
+import logo3 from "../../assets/coinType/logo3.jpg";
+
 
 interface ParamTypes {
   trade_account: string
@@ -67,6 +71,7 @@ export function BuySBView() {
   const connection = useConnection();
   const wallet = useWallet();
   // const { trade_account } = useParams<ParamTypes>();
+  const [showModal, setShowModal] = React.useState(false);
   const [APYSBLP,setAPYSBLP] = useState<any>();
   const [lq_amount30,setLQ_Amount30] = useState("");
   const [lq_amount90,setLQ_Amount90] = useState("");
@@ -768,12 +773,37 @@ export function BuySBView() {
 
               <div className="text-center bg-gray-200 py-3 px-3 border rounded-md mt-3">
                 <Text className="block" opacity={"0.5"} weight='bold'>You Pay</Text>
-                <input maxLength={20}
-                  onKeyDown={numOnly}
-                  onKeyPress={noSpecial}
-                  onChange={onChangeSB_amount} value={sb_amount}
-                  className="w-full py-2 px-2 h-10 mt-3 rounded-md bg-gray-400 focus:outline-none  focus:ring-green-100 focus:border-transparent placeholder-green-100"
-                  placeholder="SB Token Amount" />
+                <InputWrapper className='bg-gray-400 rounded-md mt-3 px-3 py-2 flex justify-between items-center'>
+                  <button type="button" onClick={()=>setShowModal(true)} className="py-2 px-2 rounded-lg flex items-center hover:bg-gray-200">
+                    <div className="w-6 h-6 text-xs flex items-center justify-center rounded-full">
+                      <span className='span1'>
+                        <span className='span2'>
+                        {/* <img alt="logo" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2724%27%20height=%2724%27/%3e" style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"> */}
+                        <img
+                          className="rounded-full"
+                          src={logo2}
+                          alt="..."
+                        />
+                        </span>
+                        {/* <img alt="USDC" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FEPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FEPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v%2Flogo.png&amp;w=48&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FEPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v%2Flogo.png&amp;w=48&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"> */}
+                      </span>
+                  </div>
+                  <div className="ml-4 mr-2 font-semibold" translate="no">USDC</div>
+                  <div className="text-white fill-current">
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="inherit" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683416 -0.097631 1.31658 -0.097631 1.7071 0.292893L4.99999 3.58579L8.29288 0.292893C8.6834 -0.0976311 9.31657 -0.0976311 9.70709 0.292893C10.0976 0.683417 10.0976 1.31658 9.70709 1.70711L5.7071 5.70711C5.31657 6.09763 4.68341 6.09763 4.29289 5.70711L0.292893 1.70711C-0.0976309 1.31658 -0.0976309 0.683417 0.292893 0.292893Z" fill="inherit">
+                    </path>
+                  </svg>
+                  </div>
+                  </button>
+                  <input maxLength={20}
+                    style={{textAlign:'right'}}
+                    onKeyDown={numOnly}
+                    onKeyPress={noSpecial}
+                    onChange={onChangeSB_amount} value={sb_amount}
+                    className="w-full py-2 px-2 h-10 rounded-md bg-gray-400 focus:outline-none  focus:ring-green-100 focus:border-transparent placeholder-green-100"
+                    placeholder="SB Token Amount" />
+                  </InputWrapper>
               </div>
               <div className="flex text-center justify-center" >
                   <MdSwapVert className="text-3xl" />
@@ -781,12 +811,38 @@ export function BuySBView() {
 
               <div className="text-center bg-gray-200 py-3 px-3 border rounded-md mt-3">
                 <Text className="block" opacity={"0.5"} weight='bold'>You Get</Text>
-                <input maxLength={20}
-                  onKeyDown={numOnly}
-                  onKeyPress={noSpecial}
-                  onChange={onChangeSB_amount} value={sb_amount}
-                  className="w-full py-2 px-2 h-10 mt-3 rounded-md bg-gray-400 focus:outline-none   focus:ring-green-100 focus:border-transparent placeholder-green-100"
-                  placeholder="SB Token Amount" />
+                <InputWrapper className='bg-gray-400 rounded-md mt-3 px-3 py-2 flex justify-between items-center'>
+                  <button type="button" onClick={()=>setShowModal(true)} className="py-2 px-2 rounded-lg flex items-center hover:bg-gray-200">
+                    <div className="w-6 h-6 text-xs flex items-center justify-center rounded-full">
+                      <span className='span1'>
+                        <span className='span2'>
+                        {/* <img alt="logo" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2724%27%20height=%2724%27/%3e" style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"> */}
+                        <img
+                          className="rounded-full"
+                          src={logo3}
+                          alt="..."
+                        />
+                        </span>
+                        {/* <img alt="USDC" srcset="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FEPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v%2Flogo.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FEPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v%2Flogo.png&amp;w=48&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2Fsolana-labs%2Ftoken-list%2Fmain%2Fassets%2Fmainnet%2FEPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v%2Flogo.png&amp;w=48&amp;q=75" decoding="async" data-nimg="intrinsic" className="rounded-full" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"> */}
+                      </span>
+                  </div>
+                  <div className="ml-4 mr-2 font-semibold" translate="no">BTC</div>
+                  <div className="text-white fill-current">
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="inherit" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683416 -0.097631 1.31658 -0.097631 1.7071 0.292893L4.99999 3.58579L8.29288 0.292893C8.6834 -0.0976311 9.31657 -0.0976311 9.70709 0.292893C10.0976 0.683417 10.0976 1.31658 9.70709 1.70711L5.7071 5.70711C5.31657 6.09763 4.68341 6.09763 4.29289 5.70711L0.292893 1.70711C-0.0976309 1.31658 -0.0976309 0.683417 0.292893 0.292893Z" fill="inherit">
+                    </path>
+                  </svg>
+                  </div>
+                  </button>
+                  <input maxLength={20}
+                    style={{textAlign:'right'}}
+                    onKeyDown={numOnly}
+                    onKeyPress={noSpecial}
+                    onChange={onChangeSB_amount} value={sb_amount}
+                    className="w-full py-2 px-2 h-10 rounded-md bg-gray-400 focus:outline-none  focus:ring-green-100 focus:border-transparent placeholder-green-100"
+                    placeholder="SB Token Amount" />
+                  </InputWrapper>
+                
               </div>
             </div>
             {/* <Text opacity={"50%"}>Fees:0.5%+500SB</Text> */}
@@ -851,6 +907,7 @@ export function BuySBView() {
         </div> */}
       </div>
       <GlobalStyle />
+      <Modal setShowModal={setShowModal} showModal={showModal} />
     </div>
     )
 }
