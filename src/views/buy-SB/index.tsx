@@ -223,7 +223,7 @@ export function BuySBView() {
       style={{ maxWidth: "500px" }}
     >
       
-      <div className="flex justify-center md:flex-wrap ">
+      <div className="card flex justify-center md:flex-wrap ">
         <div className="flex flex-col w-12/12 2xl:w-11/12 xl:w-11/12 md:w-8/12 sm:w-12/12 py-5 px-4 md:my-4 md:mx-0 mt-2 sm:py-0 sm:px-0 md:mb-1">
           <div className="p-1 rounded-3xl">
             <div className="individual-section text-center bg-gray-400 py-3 px-3 border rounded-2xl mt-3">

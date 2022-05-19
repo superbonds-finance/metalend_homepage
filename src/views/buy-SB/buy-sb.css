@@ -66,8 +66,7 @@
     background-color: rgb(20 16 65/var(--tw-bg-opacity)); 
 }
 .main-background{
-    background: rgb(13,59,115);
-    background: linear-gradient(100deg, rgba(13,59,115,1) 70%, rgba(1,19,142,0.9990371148459384) 100%);
+   background-color: #06182b;
 }
 .swap-button{
     background: linear-gradient(162deg,#3bd0d833 28.7%,#3bd0d800);
