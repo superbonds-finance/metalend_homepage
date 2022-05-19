@@ -24,7 +24,7 @@ export default function Modal({ setShowModal, showModal, setInputState }: ModalT
           >
             <div ref={dropDownRef} className="relative w-auto my-6 sm:my-0 mx-auto max-w-md sm:max-w-full">
               {/*content*/}
-              <div className="flex flex-col relative w-full h-full overflow-hidden text-left bg-gray-200 rounded-lg style1">
+              <div className="flex flex-col relative w-full h-full overflow-hidden text-left rounded-lg style1">
                 <CloseButton onClick={() => setShowModal('')}>×</CloseButton>
                 {/* <div className="flex pt-3 px-5 style2">
                   <div className="flex items-center text-black text-white fill-current">

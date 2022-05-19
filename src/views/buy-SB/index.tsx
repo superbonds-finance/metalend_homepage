@@ -383,7 +383,7 @@ export function BuySBView() {
     showModal={showModal}
     setInputState={showModal === "pay" ? setYouPay : setYouGet}
   />
-</div>;
+</div>
 
     </>
     )
