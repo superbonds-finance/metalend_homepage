@@ -272,7 +272,7 @@ export function BuySBView() {
               </InputWrapper>
             </div>
             <div className="flex text-center justify-center mt-3 py-4">
-              <MdSwapVert className="text-blue-110 rounded-full cursor-pointer text-3xl border-2 border-solid border-blue-100 hover:rotate-45" onClick={()=>handleSwap()}/>
+              <MdSwapVert className="text-blue-110 rounded-full cursor-pointer text-3xl border-2 border-solid border-blue-100 hover:" onClick={()=>handleSwap()}/>
             </div>
 
             <div className="individual-section bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
