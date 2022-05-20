@@ -35,26 +35,13 @@ import {
   formatNumberWithoutRounding,
   formatInputNumber, unformatInputNumber,
   numOnly, noSpecial } from "../../utils/utils";
-import {
-  Account,
-  PublicKey,
-  SYSVAR_RENT_PUBKEY,
-  SystemProgram,
-  TransactionInstruction,
-} from '@solana/web3.js';
-import {  AccountLayout,
-          TOKEN_PROGRAM_ID,
- } from "@solana/spl-token";
+ 
 import Swal from 'sweetalert2';
 import '../../styles/trade.css';
 import { MdSwapVert ,MdRefresh} from "react-icons/md";
 import {GoSettings} from "react-icons/go"
 import { GlobalStyle } from "../redeem/redeem.styled";
-import { HeaderCard } from "../../components/HeaderCard";
-import { Tooltip } from "antd";
-import { ImInfo } from "react-icons/im";
-import MenuDivider from "antd/lib/menu/MenuDivider";
-import { SHOW_PARENT } from "rc-tree-select";
+ 
 import Modal from "./Modal";
 
 import {SettingModal} from "./setting-modal"
@@ -68,25 +55,22 @@ export function BuySBView() {
 
   const connection = useConnection();
   const wallet = useWallet();
-  // const { trade_account } = useParams<ParamTypes>();
   const [showModal, setShowModal] = React.useState('');
-  const [youPay, setYouPay] = React.useState(DropDown[2]);
-  const [youGet, setYouGet] = React.useState(DropDown[3]);
-  const [APYSBLP,setAPYSBLP] = useState<any>();
-  const [sb_amount,setSB_Amount] = useState("");
-  const [sol_sb_lp_amount,setSOL_SB_LP_Amount] = useState("");
-  const onChangeSB_amount = useCallback( (e) => {
-    const { value } = e.target;
-    setSB_Amount(formatInputNumber(value));
-  },[]);
-
+  const [youPay, setYouPay] = React.useState(DropDown[0]);
+  const [youGet, setYouGet] = React.useState(DropDown[1]);
+  const [inputAmount,setInputAmount] = useState("");
+  const [outputAmount,setOutputAmount] = useState("");
   
-
-  const onChangeSOL_SB_LP_Amount = useCallback( (e) => {
+  
+  const onChangeInputAmount = useCallback( (e) => {
     const { value } = e.target;
-    setSOL_SB_LP_Amount(formatInputNumber(value));
+    setInputAmount(formatInputNumber(value));
   },[]);
-
+  
+  const onChangeOutputAmount = useCallback( (e) => {
+    const { value } = e.target;
+    setOutputAmount(formatInputNumber(value));
+  },[]);
 
   // const [SOLbalance,setSOLbalance] = useState(0);
   const [USDCbalance,setUSDCbalance] = useState<any>(0);
@@ -97,8 +81,7 @@ export function BuySBView() {
 
   const [traderData,setTraderData] = useState<any>(null);
   const [PlatformData, setPlatformData] = useState<any>();
-  const [StakingData, setStakingData] = useState<any>();
-  const [SuperB_Rewards_Balance,setSuperB_Rewards_Balance] = useState(0);
+
   const [transactionFees,setTransactionFees] = useState<any>();
   const [showSettingModal,setshowSettingModal] = useState<any>(false);
 
@@ -131,22 +114,12 @@ export function BuySBView() {
       // });
       return;
     }
-    //setSOLbalance(await connection.getBalance(wallet.publicKey)/(10**9));
+  
     setUSDCbalance(await getTokenBalance(connection,wallet.publicKey,USDC_MINT_ADDRESS,USDC_DECIMALS));
-    setLP30balance(await getTokenBalance(connection,wallet.publicKey,LP_TOKEN_30_MINT_ADDRESS,LP_TOKEN_DECIMALS));
-    setLP90balance(await getTokenBalance(connection,wallet.publicKey,LP_TOKEN_90_MINT_ADDRESS,LP_TOKEN_DECIMALS));
     setSuperBbalance(await getTokenBalance(connection,wallet.publicKey,SUPERB_MINT_ADDRESS,SUPERB_DECIMALS));
 
   }
 
-  const fetchAPY= async ()=>{
-    const APY30LP:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/SB_Staking_APY ');
-    setAPYSBLP(APY30LP.data.APY)
-   }
-
-  useEffect(()=>{
-    fetchAPY()
-   },[])
 
   useEffect(() => {
     readPoolData_30()
@@ -155,13 +128,7 @@ export function BuySBView() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wallet.publicKey]);
 
-  // useEffect(() => {
-  //   if (!wallet.publicKey) return;
-  //   if (!traderData || !PlatformData) return;
-  //   getRewardDataAccount();
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [traderData,PlatformData]);
-  //
+   
   const getTraderDataAccount = async () => {
     if ( !wallet){
       notify({
@@ -214,16 +181,19 @@ export function BuySBView() {
     className="w-7/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 lg:w-11/12 md:w-12/12"
     style={{ maxWidth: "1000px" }}
   >
-    <div className=" flex justify-end  mt-8 pt-0 w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full mx-auto">
-      <MdRefresh className="text-2xl" />
-      <GoSettings className="ml-3 text-2xl" />
+    <div className="flex justify-center py-8 mt-10  w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full mx-auto">
+      {/* <MdRefresh className="text-2xl" />
+      <GoSettings className="ml-3 text-2xl" /> */}
+        <Text size='20px' weight className="block" opacity={"0.5"}>
+          SWAP SB 
+        </Text>
     </div>
     <div
-      className="main-card mt-2 pt-0 w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full  rounded-3xl mx-auto"
+      className="main-card mt-2  w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full  rounded-3xl mx-auto"
       style={{ maxWidth: "500px" }}
     >
       
-      <div className="card flex justify-center md:flex-wrap ">
+      <div className="sub-card rounded-3xl flex justify-center md:flex-wrap ">
         <div className="flex flex-col w-12/12 2xl:w-11/12 xl:w-11/12 md:w-8/12 sm:w-12/12 py-5 px-4 md:my-4 md:mx-0 mt-2 sm:py-0 sm:px-0 md:mb-1">
           <div className="p-1 rounded-3xl">
             <div className="individual-section text-center bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
@@ -236,7 +206,7 @@ export function BuySBView() {
                 </Text>
               </div>
 
-              <InputWrapper className="bg-gray-400 rounded-md flex justify-between items-center">
+              <InputWrapper className="bg-transparent rounded-md flex justify-between items-center">
                 <button
                   type="button"
                   onClick={() => setShowModal("pay")}
@@ -284,10 +254,10 @@ export function BuySBView() {
                   style={{ textAlign: "right" }}
                   onKeyDown={numOnly}
                   onKeyPress={noSpecial}
-                  onChange={onChangeSB_amount}
-                  value={sb_amount}
+                  onChange={onChangeInputAmount}
+                  value={inputAmount}
                   className="w-full py-2 px-2 h-10 rounded-md bg-gray-400 individual-section focus:outline-none focus:border-transparent placeholder-blue-600"
-                  placeholder="Amount"
+                  placeholder="Amount "
                 />
               </InputWrapper>
             </div>
@@ -304,7 +274,7 @@ export function BuySBView() {
                   Balance:1000
                 </Text>
               </div>
-              <InputWrapper className="bg-gray-400 rounded-md flex justify-between items-center">
+              <InputWrapper className="bg-transparent hover:bg-transparent  rounded-md flex justify-between items-center">
                 <button
                   type="button"
                   onClick={() => setShowModal("get")}
@@ -352,8 +322,8 @@ export function BuySBView() {
                   style={{ textAlign: "right" }}
                   onKeyDown={numOnly}
                   onKeyPress={noSpecial}
-                  onChange={onChangeSB_amount}
-                  value={sb_amount}
+                  onChange={onChangeOutputAmount}
+                  value={outputAmount}
                   className="w-full py-2 px-2 h-10 rounded-md individual-section bg-gray-400 focus:outline-none  focus:ring-green-100 focus:border-transparent placeholder-blue-600"
                   placeholder="Amount"
                 />
