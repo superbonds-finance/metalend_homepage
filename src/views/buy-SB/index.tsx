@@ -167,11 +167,21 @@ export function BuySBView() {
     }
 
   }
-  const getPlatformData = async () => {
-    const response:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/platformData ');
-    let decodedPoolDataState = response.data as PlatformDataLayout;
-    setPlatformData(decodedPoolDataState);
-  }
+    const getPlatformData = async () => {
+        const response:AxiosResponse<any> = await axios.get('https://mainnet-api.superbonds.finance/platformData ');
+        let decodedPoolDataState = response.data as PlatformDataLayout;
+        setPlatformData(decodedPoolDataState);
+    }
+    const handleSwap=()=>{
+     let tempGet=youGet;
+     setYouGet(youPay)
+     setYouPay(tempGet)
+
+     let tempAmount=inputAmount;
+     setInputAmount(outputAmount)
+     setOutputAmount(tempAmount)
+    }
+  
 
   return (
     <>
@@ -261,8 +271,8 @@ export function BuySBView() {
                 />
               </InputWrapper>
             </div>
-            <div className="flex text-center justify-center mt-3">
-              <MdSwapVert className="text-3xl" />
+            <div className="flex text-center justify-center mt-3 py-4">
+              <MdSwapVert className="text-blue-110 rounded-full cursor-pointer text-3xl border-2 border-solid border-blue-100 hover:rotate-45" onClick={()=>handleSwap()}/>
             </div>
 
             <div className="individual-section bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
