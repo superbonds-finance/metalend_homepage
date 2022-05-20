@@ -23,24 +23,24 @@ export type ENV =
 
 export const ENDPOINTS = [
   {
-    name: "mainnet-beta-ankr" as ENV,
+    name: "mainnet-beta" as ENV,
     endpoint: "https://rpc.ankr.com/solana/d37b6b8b8656e4b66b92cb4ed5b004d0f2eda1dae120e3a6cc90ff06121398ae",
     //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
     chainID: ChainID.MainnetBeta,
   },
-  {
-    name: "mainnet-beta-serum" as ENV,
-    endpoint: "https://solana-api.projectserum.com",
-    //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
-    chainID: ChainID.MainnetBeta,
-  },
-
-  {
-    name: "mainnet-beta-solana" as ENV,
-    endpoint: "https://api.mainnet-beta.solana.com/",
-    //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
-    chainID: ChainID.MainnetBeta,
-  },
+  // {
+  //   name: "mainnet-beta-serum" as ENV,
+  //   endpoint: "https://solana-api.projectserum.com",
+  //   //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
+  //   chainID: ChainID.MainnetBeta,
+  // },
+  //
+  // {
+  //   name: "mainnet-beta-solana" as ENV,
+  //   endpoint: "https://api.mainnet-beta.solana.com/",
+  //   //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
+  //   chainID: ChainID.MainnetBeta,
+  // },
   // {
   //   name: "devnet" as ENV,
   //   endpoint: clusterApiUrl("devnet"),
@@ -161,6 +161,10 @@ export function useConnection() {
   return useContext(ConnectionContext).connection as Connection;
 }
 
+export function useENV() {
+  return useContext(ConnectionContext).env as ENV;
+}
+
 // export function useSendConnection() {
 //   return useContext(ConnectionContext)?.sendConnection;
 // }
@@ -207,6 +211,78 @@ const getErrorForTransaction = async (connection: Connection, txid: string) => {
   }
 
   return errors;
+};
+export const sendTransactionJupiter = async (
+  connection: Connection,
+  wallet: any,
+  transactions: any[],
+  signers: Account[],
+) => {
+  if (!wallet?.publicKey) {
+    throw new Error("Wallet is not connected");
+  }
+  for (let serializedTransaction of transactions.filter(Boolean)) {
+    console.log(serializedTransaction);
+    // get transaction object from serialized transaction
+    let transaction = Transaction.from(Buffer.from(serializedTransaction, 'base64'))
+    console.log(transaction);
+    transaction.recentBlockhash = (
+      await connection.getRecentBlockhash("max")
+    ).blockhash;
+    transaction.setSigners(
+      // fee payied by the wallet owner
+      wallet.publicKey,
+      ...signers.map((s) => s.publicKey)
+    );
+
+    transaction = await wallet.signTransaction(transaction);
+
+    const rawTransaction = transaction.serialize();
+    let options = {
+      skipPreflight: true,
+      commitment: "confirmed",
+    };
+
+    const txid = await connection.sendRawTransaction(rawTransaction, options);
+    try{
+      let count = 0;
+      while (count<30){
+        let transaction_info = await connection.getConfirmedTransaction(txid+"","confirmed");
+        //console.log('transaction_info',transaction_info);
+        if (transaction_info){
+          if (transaction_info.meta)
+            if (transaction_info.meta.err == null){
+              return txid;
+            }
+          }
+        await delay(2000);
+        count +=2;
+        if (count % 10 == 0){
+          notify({
+            message: 'Waiting for confirmation...',
+            type: "info",
+          });
+        }
+      }
+      notify({
+        message: 'Something wrong with your request!',
+        type: "error",
+      });
+      return;
+    }
+    catch (e){
+      console.log(e);
+      notify({
+        message: 'Something wrong with your request!',
+        type: "error",
+      });
+      return;
+    }
+  }
+  notify({
+      message: 'Swap request sent',
+      type: "success",
+    });
 };
 
 export const sendTransaction = async (

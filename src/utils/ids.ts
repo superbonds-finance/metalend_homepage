@@ -62,7 +62,9 @@ export const SUPERB_MINT_ADDRESS = new PublicKey(
 export const USDC_MINT_ADDRESS = new PublicKey(
   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 );
-
+export const USDT_MINT_ADDRESS = new PublicKey(
+  "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"
+);
 
 export const SUNNY_MINT_ADDRESS = new PublicKey(
   "SUNNYWgPQmFxe9wTZzNK7iPnJ3vYDrkgnxJRJm1s3ag"
@@ -88,7 +90,7 @@ export const FREE_USDC_ADDRESS = new PublicKey(
   "74guvaeJ9VBo7j8FRtDv77wrKecCJAaF4rAWSFn3yyrY"
 );
 
-
+export const SOL_DECIMALS = 9;
 export const USDT_DECIMALS = 6;
 export const USDC_DECIMALS = 6;
 export const SUPERB_DECIMALS = 6;
@@ -97,6 +99,9 @@ export const SUNNY_TOKEN_DECIMALS = 6;
 export const SABER_TOKEN_DECIMALS = 6;
 export const ORCA_TOKEN_DECIMALS = 6;
 
+export const FEE_BPS = 10;
+export const FEE_COLLECTOR = new PublicKey(
+'4Hq6DvqaPViHPWFaF1yt1KXEbtUkjzVS9zSpeZ9zPaoQ');
 /*
     END OF SUPERBONDS IDS
 */
