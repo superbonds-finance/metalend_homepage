@@ -358,8 +358,8 @@ export  function ClaimNFTView() {
                     return <>
                       <tr className="bg-gray-200 my-2">
                         <td className="py-2 px-4"> <a className='text-blue-100 hover:text-blue-100' href={"#/redeem/"+value.trade_account}>{truncateStr(value.trade_account,5)}</a></td>
-                        <td className="py-2 px-4"><a className='text-blue-100 hover:text-blue-100' target="_blank" href={"https://explorer.solana.com/address/"+value.trade_owner+"?cluster=devnet"}>{truncateStr(value.trade_owner,5)}</a></td>
-                        <td className="py-2 px-4"><a className='text-blue-100 hover:text-blue-100' target="_blank" href={"https://explorer.solana.com/address/"+value.nft+"?cluster=devnet"}>{truncateStr(value.nft,5)}</a></td>
+                        <td className="py-2 px-4"><a className='text-blue-100 hover:text-blue-100' target="_blank" href={"https://explorer.solana.com/address/"+value.trade_owner}>{truncateStr(value.trade_owner,5)}</a></td>
+                        <td className="py-2 px-4"><a className='text-blue-100 hover:text-blue-100' target="_blank" href={"https://explorer.solana.com/address/"+value.nft}>{truncateStr(value.nft,5)}</a></td>
                         <td className="py-2 px-4">{parseFloat(value.yield) < 0 ? <span style={{color:"red"}}>{parseFloat(value.yield).toFixed(2)}%</span> : <span style={{color:"green"}}>{parseFloat(value.yield).toFixed(2)}%</span>}</td>
                         <td className="py-2 px-4">{parseFloat(value.current_value).toFixed(3)}</td>
                         <td className="py-2 px-4">

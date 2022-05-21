@@ -693,7 +693,9 @@ export function TradeView() {
               type: "error",
             });
           }else{
-
+            const data = {"NFT":NFT_Mint_account.publicKey.toBase58(),"type":"add"};
+            const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/addTradeRequest',data);
+            console.log(response);
             notify({
               message: 'Trade added successfully',
               type: "info",
@@ -782,6 +784,9 @@ export function TradeView() {
               type: "error",
             });
           }else{
+            const data = {"NFT":NFT_Mint_account.publicKey.toBase58(),"type":"add"};
+            const response:AxiosResponse<any> = await axios.post('https://mainnet-api.superbonds.finance/addTradeRequest',data);
+            console.log(response);
             notify({
               message: 'Trade added successfully',
               type: "info",

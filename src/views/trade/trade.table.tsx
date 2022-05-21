@@ -43,10 +43,10 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
                     return <>
                         <tr className="bg-gray-200">
                             <td className="py-2 px-2 text-blue-100 text-center "><Text  size='13px'>{value.pool}</Text></td>
-                            <td className="py-2 px-2 text-blue-100 text-center"><a className='text-blue-100 hover:text-blue-100' target="_blank" href={"https://explorer.solana.com/address/"+value.trade_owner+"?cluster=devnet"}>{truncateStr(value.trade_owner,3)}</a>
+                            <td className="py-2 px-2 text-blue-100 text-center"><a className='text-blue-100 hover:text-blue-100' target="_blank" href={"https://explorer.solana.com/address/"+value.trade_owner}>{truncateStr(value.trade_owner,3)}</a>
                                 <CopyToClipboard onCopy={CopyAction}  text={value.trade_owner}><i className="far fa-clone cursor-pointer  fa-s ml-1" aria-hidden="true" style={{color:"#7cfa4d"}}></i></CopyToClipboard>
                             </td>
-                            <td className="py-2 px-2 text-blue-100 text-center min-w-td"><a className='text-blue-100 hover:text-blue-100'  target="_blank" href={"https://explorer.solana.com/address/"+value.nft+"?cluster=devnet"}>{truncateStr(value.nft,3)}</a>
+                            <td className="py-2 px-2 text-blue-100 text-center min-w-td"><a className='text-blue-100 hover:text-blue-100'  target="_blank" href={"https://explorer.solana.com/address/"+value.nft}>{truncateStr(value.nft,3)}</a>
                                 <CopyToClipboard onCopy={CopyAction}  text={value.nft}><i className="far fa-clone cursor-pointer  fa-s ml-1" aria-hidden="true" style={{color:"#7cfa4d"}}></i></CopyToClipboard>
                             </td>
                             <td className="py-2 px-2 text-blue-100 text-center"><a className='text-blue-100 hover:text-blue-100' href={"#/redeem/"+value.trade_account}>{truncateStr(value.trade_account,3)}</a>
@@ -103,10 +103,10 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
                         }
                     </td>
                         <td className="py-2 px-2 text-blue-100 text-center "><Text  size='13px'>{value.pool}</Text></td>
-                        <td className="py-2 px-2 text-blue-100 text-center"><a className='text-blue-100 hover:text-blue-100' target="_blank" href={"https://explorer.solana.com/address/"+value.trade_owner+"?cluster=devnet"}>{truncateStr(value.trade_owner,3)}</a>
+                        <td className="py-2 px-2 text-blue-100 text-center"><a className='text-blue-100 hover:text-blue-100' target="_blank" href={"https://explorer.solana.com/address/"+value.trade_owner}>{truncateStr(value.trade_owner,3)}</a>
                             <CopyToClipboard onCopy={CopyAction}  text={value.trade_owner}><i className="far fa-clone cursor-pointer  fa-s ml-1" aria-hidden="true" style={{color:"#7cfa4d"}}></i></CopyToClipboard>
                         </td>
-                        <td className="py-2 px-2 text-blue-100 text-center min-w-td"><a className='text-blue-100 hover:text-blue-100'  target="_blank" href={"https://explorer.solana.com/address/"+value.nft+"?cluster=devnet"}>{truncateStr(value.nft,3)}</a>
+                        <td className="py-2 px-2 text-blue-100 text-center min-w-td"><a className='text-blue-100 hover:text-blue-100'  target="_blank" href={"https://explorer.solana.com/address/"+value.nft}>{truncateStr(value.nft,3)}</a>
                             <CopyToClipboard onCopy={CopyAction}  text={value.nft}><i className="far fa-clone cursor-pointer  fa-s ml-1" aria-hidden="true" style={{color:"#7cfa4d"}}></i></CopyToClipboard>
                         </td>
                         <td className="py-2 px-2 text-blue-100 text-center"><a className='text-blue-100 hover:text-blue-100' href={"#/redeem/"+value.trade_account}>{truncateStr(value.trade_account,3)}</a>
