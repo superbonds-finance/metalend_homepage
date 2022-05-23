@@ -133,6 +133,10 @@ export function BuySBView() {
     getInputBalance()
   }, [InputToken]);
 
+  useEffect(()=>{
+
+  },[])
+
   useEffect(() => {
     const getOutputBalance = async () =>{
       if ( !wallet){
@@ -292,14 +296,12 @@ export function BuySBView() {
     setYouGet(youPay)
     setYouPay(tempGet)
 
-    let tempAmount=inputAmount;
-    setInputAmount(outputAmount)
-    setOutputAmount(tempAmount)
-    
-    let tempBalance=InputBalance;
-    setInputBalance(OutputBalance)
-    setOutputBalance(tempBalance)
+    onChangeInputToken()
+    onChangeOutputToken()
+
    }
+
+  
   return (
     <>
  {showSettingModal &&  <SettingModal />}
