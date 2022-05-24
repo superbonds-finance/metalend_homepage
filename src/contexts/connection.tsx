@@ -28,19 +28,19 @@ export const ENDPOINTS = [
     //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
     chainID: ChainID.MainnetBeta,
   },
-  // {
-  //   name: "mainnet-beta-serum" as ENV,
-  //   endpoint: "https://solana-api.projectserum.com",
-  //   //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
-  //   chainID: ChainID.MainnetBeta,
-  // },
-  //
-  // {
-  //   name: "mainnet-beta-solana" as ENV,
-  //   endpoint: "https://api.mainnet-beta.solana.com/",
-  //   //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
-  //   chainID: ChainID.MainnetBeta,
-  // },
+  {
+    name: "mainnet-beta-serum" as ENV,
+    endpoint: "https://solana-api.projectserum.com",
+    //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
+    chainID: ChainID.MainnetBeta,
+  },
+
+  {
+    name: "mainnet-beta-solana" as ENV,
+    endpoint: "https://api.mainnet-beta.solana.com/",
+    //endpoint: "https://ancient-green-water.solana-mainnet.quiknode.pro/69aba09ec474a46ffe774c194455fd54081c9628/",
+    chainID: ChainID.MainnetBeta,
+  },
   // {
   //   name: "devnet" as ENV,
   //   endpoint: clusterApiUrl("devnet"),
