@@ -44,6 +44,7 @@ import {SettingModal} from "./setting-modal"
 import { DropDown } from "./helper";
 import fetch from 'cross-fetch'
 import { Transaction } from '@solana/web3.js';
+import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 interface ParamTypes {
   trade_account: string
@@ -69,12 +70,13 @@ export function BuySBView() {
   const [routes,setRoutes] = useState<any>([]);
 
   const onChangeInputToken = async () =>{
-    if ( !wallet){
-      return;
-    }
-    if (!wallet.publicKey){
-      return;
-    }
+    // if ( !wallet){
+    //   return;
+    // }
+    // if (!wallet.publicKey){
+    //   return;
+    // }
+   
     if (youPay.label == 'USDC'){
         setInputToken(USDC_MINT_ADDRESS);
         setInputDecimal(USDC_DECIMALS);
@@ -92,26 +94,27 @@ export function BuySBView() {
         setInputDecimal(SOL_DECIMALS);
     }
   }
+
   const onChangeOutputToken = async () =>{
-    if ( !wallet){
-      return;
-    }
-    if (!wallet.publicKey){
-      return;
-    }
-    if (youPay.label == 'USDC'){
+    // if ( !wallet){
+    //   return;
+    // }
+    // if (!wallet.publicKey){
+    //   return;
+    // }
+    if (youGet.label == 'USDC'){
         setOutputToken(USDC_MINT_ADDRESS);
         setOutputDecimal(USDC_DECIMALS);
     }
-    else if (youPay.label == 'USDT'){
+    else if (youGet.label == 'USDT'){
         setOutputToken(USDT_MINT_ADDRESS);
         setOutputDecimal(USDT_DECIMALS);
     }
-    else if (youPay.label == 'SB'){
+    else if (youGet.label == 'SB'){
         setOutputToken(SUPERB_MINT_ADDRESS);
         setOutputDecimal(SUPERB_DECIMALS);
     }
-    else if (youPay.label == 'SOL'){
+    else if (youGet.label == 'SOL'){
         setOutputToken(WRAPPED_SOL_MINT);
         setOutputDecimal(SOL_DECIMALS);
     }
@@ -133,6 +136,10 @@ export function BuySBView() {
     getInputBalance()
   }, [InputToken]);
 
+  useEffect(()=>{
+
+  },[])
+
   useEffect(() => {
     const getOutputBalance = async () =>{
       if ( !wallet){
@@ -152,6 +159,7 @@ export function BuySBView() {
 
   useEffect(() => {
     if (routes.length == 0 ) return;
+    console.log("youget",youGet)
     setOutputAmount(routes[0].outAmount / (10**OutputDecimal));
   }, [routes]);
 
@@ -269,6 +277,7 @@ export function BuySBView() {
   let jupiter = null;
   let routeMap = null;
   const loadJupiter = async () => {
+ 
     console.log(InputToken.toString(),OutputToken.toString(),inputAmount);
     const { data } = await (
       await fetch(
@@ -288,18 +297,26 @@ export function BuySBView() {
   }, [wallet.publicKey]);
 
   const handleSwap=()=>{
+    let TempDecimal=OutputDecimal
+    setOutputDecimal(InputDecimal)
+    setInputDecimal(TempDecimal)
+
+    let tempToken=OutputToken;
+    setOutputToken(InputToken)
+    setInputToken(tempToken)
+   
+
     let tempGet=youGet;
     setYouGet(youPay)
     setYouPay(tempGet)
-
-    let tempAmount=inputAmount;
-    setInputAmount(outputAmount)
-    setOutputAmount(tempAmount)
-    
-    let tempBalance=InputBalance;
-    setInputBalance(OutputBalance)
-    setOutputBalance(tempBalance)
+ 
+    let TempAmount=outputAmount;
+    setInputAmount(TempAmount)
    }
+  const handleModalSelection=(obj:any)=>{
+    showModal === "pay" ? setYouPay({...obj}) : setYouGet({...obj})
+  }
+  
   return (
     <>
  {showSettingModal &&  <SettingModal />}
@@ -480,6 +497,7 @@ export function BuySBView() {
     setShowModal={setShowModal}
     showModal={showModal}
     setInputState={showModal === "pay" ? setYouPay : setYouGet}
+    handleModalSelection={handleModalSelection}
   />
 </div>
 

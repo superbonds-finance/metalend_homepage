@@ -7,9 +7,10 @@ interface ModalTypes {
   setShowModal: (e: string) => void,
   showModal: string,
   setInputState: (e: { label: string, seconadaryLabel: string, id: number }) => void,
+  handleModalSelection:Function
 }
 
-export default function Modal({ setShowModal, showModal, setInputState }: ModalTypes) {
+export default function Modal({ setShowModal, showModal, setInputState,handleModalSelection }: ModalTypes) {
 
   const dropDownRef = useRef(null);
   useOutsideClick(dropDownRef, () => setShowModal(''));
@@ -241,7 +242,7 @@ export default function Modal({ setShowModal, showModal, setInputState }: ModalT
                     <div className="overflow-y-scroll mr-1 min-h-[12rem] px-5 style61">
                       <div className="style62">
                         {DropDown.map(({ label, seconadaryLabel, id }, index) => (
-                          <li onClick={() => { setInputState({ label, seconadaryLabel, id }); setShowModal(''); }} key={'coin' + index} className="bg-gradient rounded py-4 cursor-pointer px-5 list-none bg-input-light bg-transparent style63" style={{ top: `${72 * index}px` }} translate="no">
+                          <li onClick={() => { setInputState({ label, seconadaryLabel, id }); setShowModal(''); handleModalSelection({ label, seconadaryLabel, id }) }} key={'coin' + index} className="bg-gradient rounded py-4 cursor-pointer px-5 list-none bg-input-light bg-transparent style63" style={{ top: `${72 * index}px` }} translate="no">
                             <div className="flex items-center space-x-4">
                               <div className="flex-shrink-0 -mt-1">
                                 <div className="h-6 w-6 bg-gray-200 rounded-full">
