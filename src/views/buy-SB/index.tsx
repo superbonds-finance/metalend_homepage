@@ -189,6 +189,14 @@ export function BuySBView() {
     // console.log('here')
   }
   const onSwap = async () => {
+    if(youPay.label===youGet.label){
+    notify({
+        message: `can't swap if both coins are same`,
+        type: "error",
+        });
+        return
+    }
+
     console.log('onSwap');
     if ( !wallet){
       notify({
