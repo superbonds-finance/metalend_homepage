@@ -11,6 +11,9 @@ export const TopMenu = () => {
       <Link to="/trade">
           <Button size="large" type="text">Trade</Button>
       </Link>
+      <Link to="/buy-SB">
+          <Button size="large" type="text">Swap</Button>
+      </Link>
       <Link to="/liquidity">
           <Button size="large" type="text">Add/Remove Liquidity</Button>
       </Link>
