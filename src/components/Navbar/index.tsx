@@ -50,9 +50,9 @@ export default function Navbar(props: {
         </TextDoc>
       </button>
 
-       
+
       <button
-        
+
          onClick={() =>
           handlePush("/trade")
         }
@@ -127,6 +127,14 @@ export default function Navbar(props: {
               onClick={() => handlePush("/trade")}
             >
               <span className="text-sm tracking-wide">Trade</span>
+            </button>
+            <button
+              className={
+                path == "/buy-SB" ? "bg-gray-300  text-white rounded-md" : ""
+              }
+              onClick={() => handlePush("/buy-SB")}
+            >
+              <span className="text-sm tracking-wide">Swap</span>
             </button>
             <button
               className={

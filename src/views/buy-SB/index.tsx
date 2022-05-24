@@ -76,7 +76,7 @@ export function BuySBView() {
     // if (!wallet.publicKey){
     //   return;
     // }
-   
+
     if (youPay.label == 'USDC'){
         setInputToken(USDC_MINT_ADDRESS);
         setInputDecimal(USDC_DECIMALS);
@@ -174,7 +174,7 @@ export function BuySBView() {
   useEffect(() => {
     loadJupiter();
   }, [inputAmount,InputToken,OutputToken]);
-  
+
   const onChangeInputAmount = useCallback( async (e) => {
     const { value } = e.target;
     setInputAmount(parseFloat(value || 0 ));
@@ -209,7 +209,14 @@ export function BuySBView() {
     if (SOL_balance <= 0.005){
       notify({
         message: 'You have low Sol balance',
-        type: "info",
+        type: "error",
+      });
+      return;
+    }
+    if (parseFloat(InputBalance) < inputAmount) {
+      notify({
+        message: 'Not enough balance',
+        type: "error",
       });
       return;
     }
@@ -257,8 +264,29 @@ export function BuySBView() {
       type: "success",
     });
     console.log(setupTransaction, swapTransaction, cleanupTransaction);
-    await sendTransactionJupiter(connection,wallet,[setupTransaction, swapTransaction, cleanupTransaction],[]);
+    let txid1 = await sendTransactionJupiter(connection,wallet,[setupTransaction, swapTransaction, cleanupTransaction],[]);
+    if (!txid1){
+      notify({
+        message: 'Something wrong with your request!',
+        type: "error",
+      });
+    }else{
+      notify({
+        message: 'Successfully swapped',
+        type: "success",
+      });
 
+    }
+    await delay(2000);
+    if (youPay.label != 'SOL')
+      setInputBalance(await getTokenBalance(connection,publicKey,InputToken,InputDecimal));
+    else
+      setInputBalance(await connection.getBalance(publicKey)/(10**9));
+
+    if (youGet.label != 'SOL')
+      setOutputBalance(await getTokenBalance(connection,publicKey,OutputToken,OutputDecimal));
+    else
+      setOutputBalance(await connection.getBalance(publicKey)/(10**9));
   }
 
   const getAllBalances = async () => {
@@ -277,7 +305,7 @@ export function BuySBView() {
   let jupiter = null;
   let routeMap = null;
   const loadJupiter = async () => {
- 
+
     console.log(InputToken.toString(),OutputToken.toString(),inputAmount);
     const { data } = await (
       await fetch(
@@ -304,19 +332,19 @@ export function BuySBView() {
     let tempToken=OutputToken;
     setOutputToken(InputToken)
     setInputToken(tempToken)
-   
+
 
     let tempGet=youGet;
     setYouGet(youPay)
     setYouPay(tempGet)
- 
+
     let TempAmount=outputAmount;
     setInputAmount(TempAmount)
    }
   const handleModalSelection=(obj:any)=>{
     showModal === "pay" ? setYouPay({...obj}) : setYouGet({...obj})
   }
-  
+
   return (
     <>
  {showSettingModal &&  <SettingModal />}
