@@ -58,8 +58,8 @@ export function BuySBView() {
   const [showModal, setShowModal] = React.useState('');
   const [youPay, setYouPay] = React.useState(DropDown[0]);
   const [youGet, setYouGet] = React.useState(DropDown[1]);
-  const [inputAmount,setInputAmount] = useState(0);
-  const [outputAmount,setOutputAmount] = useState(0);
+  const [inputAmount,setInputAmount] = useState<any>("");
+  const [outputAmount,setOutputAmount] = useState<any>("");
 
   const [InputBalance,setInputBalance] = useState<any>(0);
   const [OutputBalance,setOutputBalance] = useState<any>(0);
@@ -352,9 +352,17 @@ export function BuySBView() {
   const handleModalSelection=(obj:any)=>{
     showModal === "pay" ? setYouPay({...obj}) : setYouGet({...obj})
   }
+    const handleMaxBalance=(type:string,balance:number,amount:string)=>{
+        if(type==='pay'){
+            amount==='half'? setInputAmount(balance/2): setInputAmount(balance)
+        }
+        if(type==='get'){
+            setOutputAmount(balance)
+        }
+    }
 
-  const getPayImageIndex=()=> DropDown.findIndex((elem) => elem.id === youPay.id) + 1
-  const getGetImageIndex=()=> DropDown.findIndex((elem) => elem.id === youGet.id) + 1
+    const getPayImageIndex=()=> DropDown.findIndex((elem) => elem.id === youPay.id) + 1
+    const getGetImageIndex=()=> DropDown.findIndex((elem) => elem.id === youGet.id) + 1
  
   return (
     <>
@@ -384,9 +392,18 @@ export function BuySBView() {
                 <Text className="block" opacity={"0.5"}>
                   From
                 </Text>
-                <Text className="block" opacity={"0.5"}>
-                  Balance: {InputBalance}
-                </Text>
+                <div className="flex gap-2">
+                    <Text className="block"  opacity={"0.5"}>
+                        Balance: {InputBalance}
+                    </Text>
+                    <button onClick={()=>handleMaxBalance('pay',InputBalance,'half')} className="bg-blue-110 py-0.1 px-1 rounded-md text-black font-semibold text-xs">
+                        HALF
+                    </button>
+                    <button onClick={()=>handleMaxBalance('pay',InputBalance,'max')} className="bg-blue-110 py-0.1 px-1 rounded-md text-black font-semibold text-xs">
+                        MAX
+                    </button>
+                </div>
+               
               </div>
 
               <InputWrapper className="bg-transparent rounded-md flex justify-between items-center">
@@ -434,6 +451,7 @@ export function BuySBView() {
                   maxLength={20}
                   style={{ textAlign: "right" }}
                   onKeyDown={numOnly}
+                  type='number'
                   onKeyPress={noSpecial}
                   onChange={onChangeInputAmount}
                   value={inputAmount}
