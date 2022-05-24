@@ -353,6 +353,9 @@ export function BuySBView() {
     showModal === "pay" ? setYouPay({...obj}) : setYouGet({...obj})
   }
 
+  const getPayImageIndex=()=> DropDown.findIndex((elem) => elem.id === youPay.id) + 1
+  const getGetImageIndex=()=> DropDown.findIndex((elem) => elem.id === youGet.id) + 1
+ 
   return (
     <>
  {showSettingModal &&  <SettingModal />}
@@ -399,9 +402,7 @@ export function BuySBView() {
                         <img
                           className="rounded-full"
                           src={require(`../../assets/coinType/logo${
-                            DropDown.findIndex(
-                              (elem) => elem.id === youPay.id
-                            ) + 1
+                            getPayImageIndex()
                           }.jpg`)}
                           alt="..."
                         />
@@ -467,9 +468,7 @@ export function BuySBView() {
                         <img
                           className="rounded-full"
                           src={require(`../../assets/coinType/logo${
-                            DropDown.findIndex(
-                              (elem) => elem.id === youGet.id
-                            ) + 1
+                            getGetImageIndex()
                           }.jpg`)}
                           alt="..."
                         />
