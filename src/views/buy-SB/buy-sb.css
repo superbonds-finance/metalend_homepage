@@ -73,3 +73,7 @@
     background: linear-gradient(162deg,#3bd0d833 28.7%,#3bd0d800);
     isolation: isolate;
 }
+.icon-swap:hover {
+  transform: rotate(45deg);
+  transition: all 0.25s ease-in-out;
+}
