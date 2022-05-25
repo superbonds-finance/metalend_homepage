@@ -31,7 +31,7 @@ font-size: ${(props) => (props.size ? props.size : '14px')};
 line-height: 22px;
 text-transform: ${(props) => (props.transform ? "uppercase" : 'non')};
 opacity: ${(props) => (props.opacity ? props.opacity : '')};
-
+color: ${(props) => (props.color ? props.color : '#FFFFFF')};
 `
 
 export const HeroText = styled.span`

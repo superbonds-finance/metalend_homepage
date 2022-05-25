@@ -177,8 +177,8 @@ export function BuySBView() {
 
   const onChangeInputAmount = useCallback( async (e) => {
     const { value } = e.target;
-    setInputAmount(parseFloat(value || 0 ));
-    if(!value) setOutputAmount(0)
+    setInputAmount(parseFloat(value || "" ));
+    if(!value) setOutputAmount("0.00")
   },[]);
 
   const [transactionFees,setTransactionFees] = useState<any>();
@@ -367,7 +367,7 @@ export function BuySBView() {
   return (
     <>
  {showSettingModal &&  <SettingModal />}
- <div className="main-background w-screen h-screen     ">
+ <div className="bg-black w-screen h-screen     ">
   <div
     className="w-7/12 my-0 mx-auto pt-20 lg:pt-24 md:pt-20 lg:w-11/12 md:w-12/12"
     style={{ maxWidth: "1000px" }}
@@ -375,38 +375,38 @@ export function BuySBView() {
     <div className="flex justify-center py-8 mt-10  w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full mx-auto">
       {/* <MdRefresh className="text-2xl" />
       <GoSettings className="ml-3 text-2xl" /> */}
-        <Text size='20px' weight className="block" opacity={"0.5"}>
-          TOKEN SWAP
+        <Text size='20px' weight className="block"  >
+          SB Swap
         </Text>
     </div>
     <div
-      className="main-card mt-2  w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full  rounded-3xl mx-auto"
-      style={{ maxWidth: "500px" }}
+      className="bg-gray-300  w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full  rounded-3xl mx-auto   border-green-100"
+      style={{ maxWidth: "500px" ,borderWidth:'1px'}}
     >
 
-      <div className="sub-card rounded-3xl flex justify-center md:flex-wrap ">
+      <div className="rounded-3xl flex justify-center md:flex-wrap ">
         <div className="flex flex-col w-12/12 2xl:w-11/12 xl:w-11/12 md:w-8/12 sm:w-12/12 py-5 px-4 md:my-4 md:mx-0 mt-2 sm:py-0 sm:px-0 md:mb-1">
           <div className="p-1 rounded-3xl">
-            <div className="individual-section text-center bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
+            <div className="bg-gray-200 text-center bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
               <div className="flex justify-between px-3">
-                <Text className="block" opacity={"0.5"}>
-                  From
+                <Text className="block"  >
+                  Enter Amount
                 </Text>
                 <div className="flex gap-2">
-                    <Text className="block"  opacity={"0.5"}>
+                    <Text className="block"  >
                         Balance: {InputBalance}
                     </Text>
-                    <button onClick={()=>handleMaxBalance('pay',InputBalance,'half')} className="bg-blue-110 py-0.1 px-1 rounded-md text-black font-semibold text-xs">
+                    <button onClick={()=>handleMaxBalance('pay',InputBalance,'half')} className="bg-green-100 py-0.1 px-1 rounded-md text-black font-semibold text-xs">
                         HALF
                     </button>
-                    <button onClick={()=>handleMaxBalance('pay',InputBalance,'max')} className="bg-blue-110 py-0.1 px-1 rounded-md text-black font-semibold text-xs">
+                    <button onClick={()=>handleMaxBalance('pay',InputBalance,'max')} className="bg-green-100 py-0.1 px-1 rounded-md text-black font-semibold text-xs">
                         MAX
                     </button>
                 </div>
                
               </div>
 
-              <InputWrapper className="bg-transparent rounded-md flex justify-between items-center">
+              <InputWrapper className="bg-transparent rounded-md flex justify-between items-center mt-3">
                 <button
                   type="button"
                   onClick={() => setShowModal("pay")}
@@ -455,21 +455,22 @@ export function BuySBView() {
                   onKeyPress={noSpecial}
                   onChange={onChangeInputAmount}
                   value={inputAmount}
-                  className="w-full py-2 px-2 h-10 rounded-md bg-gray-400 individual-section focus:outline-none focus:border-transparent placeholder-blue-600"
+                  className="w-full py-2 px-2 h-10 rounded-md bg-gray-400  bg-gray-400
+                  focus:outline-none  focus:ring-1 focus:ring-green-100 border-transparent font-bold border-transparent text-green-100 placeholder-green-100"
                   placeholder="Amount "
                 />
               </InputWrapper>
             </div>
             <div className="flex text-center justify-center mt-3 py-4">
-              <MdSwapVert className="text-blue-110 rounded-full cursor-pointer text-3xl border-2 border-solid border-blue-100 hover:" onClick={()=>handleSwap()}/>
+              <MdSwapVert className="text-green-100 rounded-full cursor-pointer text-3xl border-2 border-solid border-green-100 hover:" onClick={()=>handleSwap()}/>
             </div>
 
-            <div className="individual-section bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
+            <div className="bg-gray-200 bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
               <div className="flex justify-between px-3">
-                <Text className="block" opacity={"0.5"}>
-                  To
+                <Text className="block" >
+                  Amount You Get
                 </Text>
-                <Text className="block" opacity={"0.5"}>
+                <Text className="block"  >
                   Balance: {OutputBalance}
                 </Text>
               </div>
@@ -521,7 +522,8 @@ export function BuySBView() {
                   onKeyPress={noSpecial}
                   readOnly
                   value={outputAmount}
-                  className="w-full py-2 px-2 h-10 rounded-md individual-section bg-gray-400 focus:outline-none  focus:ring-green-100 focus:border-transparent placeholder-blue-600"
+                  className="w-full py-2 px-2 h-10 rounded-md bg-gray-400  bg-gray-400
+                  focus:outline-none  font-bold border-transparent text-green-100 placeholder-green-100"
                   placeholder="Amount"
                 />
               </InputWrapper>
@@ -529,13 +531,12 @@ export function BuySBView() {
           </div>
           {/* <Text opacity={"50%"}>Fees:0.5%+500SB</Text> */}
           <div className="grid grid-cols-1 gap-2 mt-3">
-            <div>
+            <div className="flex justify-center">
               <button
                 onClick={onSwap}
-                className="swap-button border-2   rounded-md w-full px-6 py-1.5
-              inline-block"
+                className="rounded-sm mt-4 text-center bg-green-100 py-2 w-12/12 transform transition hover:scale-105"
               >
-                <ButtonText transform weight>
+                <ButtonText  color={"#000000"}  transform weight>
                   Swap
                 </ButtonText>
               </button>
