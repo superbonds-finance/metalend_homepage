@@ -144,8 +144,8 @@ p{
   margin-bottom: 3px;
 }
 .text-white-50 {color: #8f9092}
-.style1{height: 80vh;max-height: 670px;  max-width: 448px;
-  background:linear-gradient(140.14deg, rgba(0, 182, 191, 0.15) 0%, rgba(27, 22, 89, 0.1) 86.61%), linear-gradient(321.82deg, rgb(24, 19, 77) 0%, rgb(27, 22, 89) 100%);}
+.style1{height: 70vh;max-height: 670px;  max-width: 448px;
+  background:linear-gradient(140.14deg,rgb(101 101 101 / 15%) 0%,rgb(133 133 133 / 10%) 86.61%),linear-gradient(321.82deg,rgb(20 26 33) 0%,rgb(20 26 33) 100%);}
 @media (max-width: 640px) { 
   .style1{height: 100vh}
  }
