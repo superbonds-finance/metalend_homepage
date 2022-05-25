@@ -251,7 +251,7 @@ export default function Modal({ setShowModal, showModal, setInputState, handleMo
                                       {/* <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e style66"*/}
                                       <img
                                         className="rounded-full"
-                                        src={require(`../../assets/coinType/logo${index + 1}.jpg`)}
+                                        src={require(`../../assets/coinType/logo${id}.jpg`)}
                                         alt="..."
                                       />
                                     </span>
