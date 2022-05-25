@@ -159,7 +159,7 @@ export function BuySBView() {
 
   useEffect(() => {
     if (routes.length == 0 ) return;
-    console.log("youget",youGet)
+  
     setOutputAmount(routes[0].outAmount / (10**OutputDecimal));
   }, [routes]);
 
@@ -177,8 +177,8 @@ export function BuySBView() {
 
   const onChangeInputAmount = useCallback( async (e) => {
     const { value } = e.target;
-    setInputAmount(parseFloat(value || "" ));
-    if(!value) setOutputAmount("0.00")
+    setInputAmount(parseFloat(value || 0.00 ));
+    if(!value) setOutputAmount(0.00)
   },[]);
 
   const [transactionFees,setTransactionFees] = useState<any>();
@@ -462,7 +462,7 @@ export function BuySBView() {
               </InputWrapper>
             </div>
             <div className="flex text-center justify-center mt-3 py-4">
-              <MdSwapVert className="text-green-100 rounded-full cursor-pointer text-3xl border-2 border-solid border-green-100 hover:" onClick={()=>handleSwap()}/>
+              <MdSwapVert className="icon-swap text-green-100 rounded-full cursor-pointer text-3xl border-2 border-solid border-green-100 hover:" onClick={()=>handleSwap()}/>
             </div>
 
             <div className="bg-gray-200 bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
