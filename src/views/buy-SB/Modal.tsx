@@ -7,10 +7,10 @@ interface ModalTypes {
   setShowModal: (e: string) => void,
   showModal: string,
   setInputState: (e: { label: string, seconadaryLabel: string, id: number }) => void,
-  handleModalSelection:Function
+  handleModalSelection: Function
 }
 
-export default function Modal({ setShowModal, showModal, setInputState,handleModalSelection }: ModalTypes) {
+export default function Modal({ setShowModal, showModal, setInputState, handleModalSelection }: ModalTypes) {
 
   const dropDownRef = useRef(null);
   useOutsideClick(dropDownRef, () => setShowModal(''));

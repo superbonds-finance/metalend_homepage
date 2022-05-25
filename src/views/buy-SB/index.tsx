@@ -476,6 +476,7 @@ export function BuySBView() {
               </div>
               <InputWrapper className="bg-transparent hover:bg-transparent  rounded-md flex justify-between items-center">
                 <button
+                  disabled
                   type="button"
                   onClick={() => setShowModal("get")}
                   className="py-2 px-2 rounded-lg flex items-center hover:bg-gray-200"
