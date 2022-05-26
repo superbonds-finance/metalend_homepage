@@ -35,6 +35,7 @@ import {
 import Swal from 'sweetalert2';
 import '../../styles/trade.css';
 import { MdSwapVert ,MdRefresh} from "react-icons/md";
+import {BsArrowDownCircleFill} from "react-icons/bs"
 import {GoSettings} from "react-icons/go"
 import { GlobalStyle } from "../redeem/redeem.styled";
 
@@ -388,10 +389,10 @@ export function BuySBView() {
         <div className="flex flex-col w-12/12 2xl:w-11/12 xl:w-11/12 md:w-8/12 sm:w-12/12 py-5 px-4 md:my-4 md:mx-0 mt-2 sm:py-0 sm:px-0 md:mb-1">
           <div className="p-1 rounded-3xl">
             <div className="bg-gray-200 text-center bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
-              <div className="flex justify-between px-3">
-                <Text className="block"  >
+              <div className="flex justify-end px-3">
+                {/* <Text className="block"  >
                   Enter Amount
-                </Text>
+                </Text> */}
                 <div className="flex gap-2">
                     <Text className="block"  >
                         Balance: {InputBalance}
@@ -457,19 +458,20 @@ export function BuySBView() {
                   value={inputAmount}
                   className="w-full py-2 px-2 h-10 rounded-md bg-gray-400  bg-gray-400
                   focus:outline-none  focus:ring-1 focus:ring-green-100 border-transparent font-bold border-transparent text-green-100 placeholder-green-100"
-                  placeholder="Amount "
+                  placeholder="Enter Amount"
                 />
               </InputWrapper>
             </div>
             <div className="flex text-center justify-center mt-3 py-4">
-              <MdSwapVert className="icon-swap text-green-100 rounded-full cursor-pointer text-3xl border-2 border-solid border-green-100 hover:" onClick={()=>handleSwap()}/>
+              {/* <MdSwapVert className="icon-swap text-green-100 rounded-full cursor-pointer text-3xl border-2 border-solid border-green-100 hover:" onClick={()=>handleSwap()}/> */}
+              <BsArrowDownCircleFill className="text-green-100 rounded-full cursor-pointer text-3xl border-2 border-solid border-green-100 hover:"/>
             </div>
 
             <div className="bg-gray-200 bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
-              <div className="flex justify-between px-3">
-                <Text className="block" >
+              <div className="flex justify-end px-3">
+                {/* <Text className="block" >
                   Amount You Get
-                </Text>
+                </Text> */}
                 <Text className="block"  >
                   Balance: {OutputBalance}
                 </Text>
@@ -525,7 +527,7 @@ export function BuySBView() {
                   value={outputAmount}
                   className="w-full py-2 px-2 h-10 rounded-md bg-gray-400  bg-gray-400
                   focus:outline-none  font-bold border-transparent text-green-100 placeholder-green-100"
-                  placeholder="Amount"
+                  placeholder="Amount You Get"
                 />
               </InputWrapper>
             </div>
