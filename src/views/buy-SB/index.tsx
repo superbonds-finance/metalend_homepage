@@ -411,11 +411,11 @@ export function BuySBView() {
                
               </div>
 
-              <InputWrapper className="bg-transparent rounded-md flex justify-between items-center mt-3">
+              <InputWrapper className="xs:flex-column bg-transparent rounded-md justify-between items-center mt-3">
                 <button
                   type="button"
                   onClick={() => setShowModal("pay")}
-                  className="py-2 px-2 rounded-lg flex items-center hover:bg-gray-200"
+                  className="btn1 py-2 px-2 rounded-lg flex items-center hover:bg-gray-200"
                 >
                   <div className="w-6 h-6 text-xs flex items-center justify-center rounded-full">
                     <span className="span1">
@@ -480,12 +480,12 @@ export function BuySBView() {
                   Balance: {OutputBalance}
                 </Text>
               </div>
-              <InputWrapper className="bg-transparent hover:bg-transparent  rounded-md flex justify-between items-center">
+              <InputWrapper className="xs:flex-column bg-transparent hover:bg-transparent  rounded-md flex justify-between items-center">
                 <button
                   disabled
                   type="button"
                   onClick={() => setShowModal("get")}
-                  className="py-2 px-2 pr-10 rounded-lg flex items-center hover:bg-gray-200"
+                  className="btn2 py-2 px-2 rounded-lg flex items-center hover:bg-gray-200"
                 >
                   <div className="w-6 h-6 text-xs flex items-center justify-center rounded-full">
                     <span className="span1">
@@ -537,7 +537,7 @@ export function BuySBView() {
             </div>
           </div>
           {/* <Text opacity={"50%"}>Fees:0.5%+500SB</Text> */}
-          <div className="grid grid-cols-1 gap-2 mt-3">
+          <div className="grid grid-cols-1 gap-2 mt-3 sm:mb-6">
             <div className="flex justify-center">
               <button
                 onClick={onSwap}
