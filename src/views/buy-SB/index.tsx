@@ -12,7 +12,49 @@ import { SUPERBONDS_PROGRAM_ID,
          SUPERB_DECIMALS,
          SOL_DECIMALS,
          FEE_BPS,
-         FEE_COLLECTOR
+         FEE_COLLECTOR,
+         BTC_TOKEN_DECIMALS,
+         ETH_TOKEN_DECIMALS,
+         ALEPH_TOKEN_DECIMALS,
+         SERUM_TOKEN_DECIMALS,
+         SUSHI_TOKEN_DECIMALS,
+         MSRM_TOKEN_DECIMALS,
+         FTT_TOKEN_DECIMALS,
+         YFI_TOKEN_DECIMALS,
+         SXP_TOKEN_DECIMALS,
+         LINK_TOKEN_DECIMALS,
+         HGET_TOKEN_DECIMALS,
+         CREAM_TOKEN_DECIMALS,
+         UBXT_TOKEN_DECIMALS,
+         HNT_TOKEN_DECIMALS,
+         FRONT_TOKEN_DECIMALS,
+         AKRO_TOKEN_DECIMALS,
+         HXRO_TOKEN_DECIMALS,
+         UNI_TOKEN_DECIMALS,
+         MATH_TOKEN_DECIMALS,
+         TOMO_TOKEN_DECIMALS,
+         LUA_TOKEN_DECIMALS,
+         BTC_MINT_ADDRESS,
+         ETH_MINT_ADDRESS,
+         ALEPH_MINT_ADDRESS,
+         SERUM_MINT_ADDRESS,
+         SUSHI_MINT_ADDRESS,
+         MSRM_MINT_ADDRESS,
+         FTT_MINT_ADDRESS,
+         YFI_MINT_ADDRESS,
+         SXP_MINT_ADDRESS,
+         LINK_MINT_ADDRESS,
+         HGET_MINT_ADDRESS,
+         CREAM_MINT_ADDRESS,
+         UBXT_MINT_ADDRESS,
+         HNT_MINT_ADDRESS,
+         FRONT_MINT_ADDRESS,
+         AKRO_MINT_ADDRESS,
+         HXRO_MINT_ADDRESS,
+         UNI_MINT_ADDRESS,
+         MATH_MINT_ADDRESS,
+         TOMO_MINT_ADDRESS,
+         LUA_MINT_ADDRESS,
        } from "../../utils/ids";
 import { findAssociatedTokenAddress } from "../../contexts/accounts";
 import {POOL_DATA_LAYOUT,PoolDataLayout} from "../../utils/pool_data_layout";
@@ -82,21 +124,109 @@ export function BuySBView() {
     //   return;
     // }
 
-    if (youPay.label == 'USDC'){
+    switch(youPay.label) {
+      case 'USDC':
         setInputToken(USDC_MINT_ADDRESS);
         setInputDecimal(USDC_DECIMALS);
-    }
-    else if (youPay.label == 'USDT'){
-        setInputToken(USDT_MINT_ADDRESS);
-        setInputDecimal(USDT_DECIMALS);
-    }
-    else if (youPay.label == 'SB'){
-        setInputToken(SUPERB_MINT_ADDRESS);
-        setInputDecimal(SUPERB_DECIMALS);
-    }
-    else if (youPay.label == 'SOL'){
-        setInputToken(WRAPPED_SOL_MINT);
-        setInputDecimal(SOL_DECIMALS);
+        break;
+      case 'USDT':
+          setInputToken(USDT_MINT_ADDRESS);
+          setInputDecimal(USDT_DECIMALS);
+        break;
+      case 'SB':
+          setInputToken(SUPERB_MINT_ADDRESS);
+          setInputDecimal(SUPERB_DECIMALS);
+        break;
+      case 'SOL':
+          setInputToken(WRAPPED_SOL_MINT);
+          setInputDecimal(SOL_DECIMALS);
+        break;
+      case 'soALEPH':
+          setInputToken(ALEPH_MINT_ADDRESS);
+          setInputDecimal(ALEPH_TOKEN_DECIMALS);
+        break;
+      case 'BTC':
+          setInputToken(BTC_MINT_ADDRESS);
+          setInputDecimal(BTC_TOKEN_DECIMALS);
+        break;
+      case 'soETH':
+          setInputToken(ETH_MINT_ADDRESS);
+          setInputDecimal(ETH_TOKEN_DECIMALS);
+        break;
+      case 'SRM':
+          setInputToken(SERUM_MINT_ADDRESS);
+          setInputDecimal(SERUM_TOKEN_DECIMALS);
+        break;
+      case 'soSUSHI':
+          setInputToken(SUSHI_MINT_ADDRESS);
+          setInputDecimal(SUSHI_TOKEN_DECIMALS);
+        break;
+      case 'MSRM':
+          setInputToken(MSRM_MINT_ADDRESS);
+          setInputDecimal(MSRM_TOKEN_DECIMALS);
+        break;
+      case 'soFTT':
+          setInputToken(FTT_MINT_ADDRESS);
+          setInputDecimal(FTT_TOKEN_DECIMALS);
+        break;
+      case 'soYFI':
+          setInputToken(YFI_MINT_ADDRESS);
+          setInputDecimal(YFI_TOKEN_DECIMALS);
+        break;
+      case 'soSXP':
+          setInputToken(SXP_MINT_ADDRESS);
+          setInputDecimal(SXP_TOKEN_DECIMALS);
+        break;
+      case 'soLINK':
+          setInputToken(LINK_MINT_ADDRESS);
+          setInputDecimal(LINK_TOKEN_DECIMALS);
+        break;
+      case 'soHGET':
+          setInputToken(HGET_MINT_ADDRESS);
+          setInputDecimal(HGET_TOKEN_DECIMALS);
+        break;
+      case 'soCREAM':
+          setInputToken(CREAM_MINT_ADDRESS);
+          setInputDecimal(CREAM_TOKEN_DECIMALS);
+        break;
+      case 'soUBXT':
+          setInputToken(UBXT_MINT_ADDRESS);
+          setInputDecimal(UBXT_TOKEN_DECIMALS);
+        break;
+      case 'soHNT':
+          setInputToken(HNT_MINT_ADDRESS);
+          setInputDecimal(HNT_TOKEN_DECIMALS);
+        break;
+      case 'soFRONT':
+          setInputToken(FRONT_MINT_ADDRESS);
+          setInputDecimal(FRONT_TOKEN_DECIMALS);
+        break;
+      case 'soAKRO':
+          setInputToken(AKRO_MINT_ADDRESS);
+          setInputDecimal(AKRO_TOKEN_DECIMALS);
+        break;
+      case 'soHXRO':
+          setInputToken(HXRO_MINT_ADDRESS);
+          setInputDecimal(HXRO_TOKEN_DECIMALS);
+        break;
+      case 'soUNI':
+          setInputToken(UNI_MINT_ADDRESS);
+          setInputDecimal(UNI_TOKEN_DECIMALS);
+        break;
+      case 'soMATH':
+          setInputToken(MATH_MINT_ADDRESS);
+          setInputDecimal(MATH_TOKEN_DECIMALS);
+        break;
+      case 'soTOMO':
+          setInputToken(TOMO_MINT_ADDRESS);
+          setInputDecimal(TOMO_TOKEN_DECIMALS);
+        break;
+      case 'soLUA':
+          setInputToken(LUA_MINT_ADDRESS);
+          setInputDecimal(LUA_TOKEN_DECIMALS);
+        break;
+      default:
+        // code block
     }
   }
 
@@ -107,22 +237,111 @@ export function BuySBView() {
     // if (!wallet.publicKey){
     //   return;
     // }
-    if (youGet.label == 'USDC'){
+    switch(youGet.label) {
+      case 'USDC':
         setOutputToken(USDC_MINT_ADDRESS);
         setOutputDecimal(USDC_DECIMALS);
+        break;
+      case 'USDT':
+          setOutputToken(USDT_MINT_ADDRESS);
+          setOutputDecimal(USDT_DECIMALS);
+        break;
+      case 'SB':
+          setOutputToken(SUPERB_MINT_ADDRESS);
+          setOutputDecimal(SUPERB_DECIMALS);
+        break;
+      case 'SOL':
+          setOutputToken(WRAPPED_SOL_MINT);
+          setOutputDecimal(SOL_DECIMALS);
+        break;
+      case 'soALEPH':
+          setOutputToken(ALEPH_MINT_ADDRESS);
+          setOutputDecimal(ALEPH_TOKEN_DECIMALS);
+        break;
+      case 'BTC':
+          setOutputToken(BTC_MINT_ADDRESS);
+          setOutputDecimal(BTC_TOKEN_DECIMALS);
+        break;
+      case 'soETH':
+          setOutputToken(ETH_MINT_ADDRESS);
+          setOutputDecimal(ETH_TOKEN_DECIMALS);
+        break;
+      case 'SRM':
+          setOutputToken(SERUM_MINT_ADDRESS);
+          setOutputDecimal(SERUM_TOKEN_DECIMALS);
+        break;
+      case 'soSUSHI':
+          setOutputToken(SUSHI_MINT_ADDRESS);
+          setOutputDecimal(SUSHI_TOKEN_DECIMALS);
+        break;
+      case 'MSRM':
+          setOutputToken(MSRM_MINT_ADDRESS);
+          setOutputDecimal(MSRM_TOKEN_DECIMALS);
+        break;
+      case 'soFTT':
+          setOutputToken(FTT_MINT_ADDRESS);
+          setOutputDecimal(FTT_TOKEN_DECIMALS);
+        break;
+      case 'soYFI':
+          setOutputToken(YFI_MINT_ADDRESS);
+          setOutputDecimal(YFI_TOKEN_DECIMALS);
+        break;
+      case 'soSXP':
+          setOutputToken(SXP_MINT_ADDRESS);
+          setOutputDecimal(SXP_TOKEN_DECIMALS);
+        break;
+      case 'soLINK':
+          setOutputToken(LINK_MINT_ADDRESS);
+          setOutputDecimal(LINK_TOKEN_DECIMALS);
+        break;
+      case 'soHGET':
+          setOutputToken(HGET_MINT_ADDRESS);
+          setOutputDecimal(HGET_TOKEN_DECIMALS);
+        break;
+      case 'soCREAM':
+          setOutputToken(CREAM_MINT_ADDRESS);
+          setOutputDecimal(CREAM_TOKEN_DECIMALS);
+        break;
+      case 'soUBXT':
+          setOutputToken(UBXT_MINT_ADDRESS);
+          setOutputDecimal(UBXT_TOKEN_DECIMALS);
+        break;
+      case 'soHNT':
+          setOutputToken(HNT_MINT_ADDRESS);
+          setOutputDecimal(HNT_TOKEN_DECIMALS);
+        break;
+      case 'soFRONT':
+          setOutputToken(FRONT_MINT_ADDRESS);
+          setOutputDecimal(FRONT_TOKEN_DECIMALS);
+        break;
+      case 'soAKRO':
+          setOutputToken(AKRO_MINT_ADDRESS);
+          setOutputDecimal(AKRO_TOKEN_DECIMALS);
+        break;
+      case 'soHXRO':
+          setOutputToken(HXRO_MINT_ADDRESS);
+          setOutputDecimal(HXRO_TOKEN_DECIMALS);
+        break;
+      case 'soUNI':
+          setOutputToken(UNI_MINT_ADDRESS);
+          setOutputDecimal(UNI_TOKEN_DECIMALS);
+        break;
+      case 'soMATH':
+          setOutputToken(MATH_MINT_ADDRESS);
+          setOutputDecimal(MATH_TOKEN_DECIMALS);
+        break;
+      case 'soTOMO':
+          setOutputToken(TOMO_MINT_ADDRESS);
+          setOutputDecimal(TOMO_TOKEN_DECIMALS);
+        break;
+      case 'soLUA':
+          setOutputToken(LUA_MINT_ADDRESS);
+          setOutputDecimal(LUA_TOKEN_DECIMALS);
+        break;
+      default:
+        // code block
     }
-    else if (youGet.label == 'USDT'){
-        setOutputToken(USDT_MINT_ADDRESS);
-        setOutputDecimal(USDT_DECIMALS);
-    }
-    else if (youGet.label == 'SB'){
-        setOutputToken(SUPERB_MINT_ADDRESS);
-        setOutputDecimal(SUPERB_DECIMALS);
-    }
-    else if (youGet.label == 'SOL'){
-        setOutputToken(WRAPPED_SOL_MINT);
-        setOutputDecimal(SOL_DECIMALS);
-    }
+
   }
 
   useEffect(() => {
@@ -164,7 +383,7 @@ export function BuySBView() {
 
   useEffect(() => {
     if (routes.length == 0 ) return;
-  
+
     setOutputAmount(routes[0].outAmount / (10**OutputDecimal));
   }, [routes]);
 
@@ -368,7 +587,7 @@ export function BuySBView() {
 
     // const getPayImageIndex=()=> DropDown.findIndex((elem) => elem.id === youPay.id) + 1
     // const getGetImageIndex=()=> DropDown.findIndex((elem) => elem.id === youGet.id) + 1
- 
+
   return (
     <>
  {showSettingModal &&  <SettingModal />}
@@ -408,7 +627,7 @@ export function BuySBView() {
                         MAX
                     </button>
                 </div>
-               
+
               </div>
 
               <InputWrapper className="bg-transparent rounded-md flex justify-between items-center mt-3">

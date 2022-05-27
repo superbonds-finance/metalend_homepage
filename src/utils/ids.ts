@@ -76,6 +76,71 @@ export const ORCA_MINT_ADDRESS = new PublicKey(
   "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE"
 );
 
+export const ALEPH_MINT_ADDRESS = new PublicKey(
+  "CsZ5LZkDS7h9TDKjrbL7VAwQZ9nsRu8vJLhRYfmGaN8K"
+);
+export const BTC_MINT_ADDRESS = new PublicKey(
+  "9n4nbM75f5Ui33ZbPYXn59EwSgE8CGsHtAeTH5YFeJ9E"
+);
+export const ETH_MINT_ADDRESS = new PublicKey(
+  "2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk"
+);
+export const SERUM_MINT_ADDRESS = new PublicKey(
+  "SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt"
+);
+export const SUSHI_MINT_ADDRESS = new PublicKey(
+  "AR1Mtgh7zAtxuxGd2XPovXPVjcSdY3i4rQYisNadjfKy"
+);
+export const MSRM_MINT_ADDRESS = new PublicKey(
+  "MSRMcoVyrFxnSgo5uXwone5SKcGhT1KEJMFEkMEWf9L"
+);
+export const FTT_MINT_ADDRESS = new PublicKey(
+  "AGFEad2et2ZJif9jaGpdMixQqvW5i81aBdvKe7PHNfz3"
+);
+export const YFI_MINT_ADDRESS = new PublicKey(
+  "3JSf5tPeuscJGtaCp5giEiDhv51gQ4v3zWg8DGgyLfAB"
+);
+export const SXP_MINT_ADDRESS = new PublicKey(
+  "SF3oTvfWzEP3DTwGSvUXRrGTvr75pdZNnBLAH9bzMuX"
+);
+export const LINK_MINT_ADDRESS = new PublicKey(
+  "CWE8jPTUYhdCTZYWPTe1o5DFqfdjzWKc9WKz6rSjQUdG"
+);
+export const HGET_MINT_ADDRESS = new PublicKey(
+  "BtZQfWqDGbk9Wf2rXEiWyQBdBY1etnUUn6zEphvVS7yN"
+);
+export const CREAM_MINT_ADDRESS = new PublicKey(
+  "5Fu5UUgbjpUvdBveb3a1JTNirL8rXtiYeSMWvKjtUNQv"
+);
+export const UBXT_MINT_ADDRESS = new PublicKey(
+  "873KLxCbz7s9Kc4ZzgYRtNmhfkQrhfyWGZJBmyCbC3ei"
+);
+export const HNT_MINT_ADDRESS = new PublicKey(
+  "HqB7uswoVg4suaQiDP3wjxob1G5WdZ144zhdStwMCq7e"
+);
+export const FRONT_MINT_ADDRESS = new PublicKey(
+  "9S4t2NEAiJVMvPdRYKVrfJpBafPBLtvbvyS3DecojQHw"
+);
+export const AKRO_MINT_ADDRESS = new PublicKey(
+  "6WNVCuxCGJzNjmMZoKyhZJwvJ5tYpsLyAtagzYASqBoF"
+);
+export const HXRO_MINT_ADDRESS = new PublicKey(
+  "DJafV9qemGp7mLMEn5wrfqaFwxsbLgUsGVS16zKRk9kc"
+);
+export const UNI_MINT_ADDRESS = new PublicKey(
+  "DEhAasscXF4kEGxFgJ3bq4PpVGp5wyUxMRvn6TzGVHaw"
+);
+export const MATH_MINT_ADDRESS = new PublicKey(
+  "GeDS162t9yGJuLEHPWXXGrb1zwkzinCgRwnT8vHYjKza"
+);
+export const TOMO_MINT_ADDRESS = new PublicKey(
+  "GXMvfY2jpQctDqZ9RoU3oWPhufKiCcFEfchvYumtX7jd"
+);
+export const LUA_MINT_ADDRESS = new PublicKey(
+  "EqWCKXfs3x47uVosDpTRgFniThL9Y8iCztJaapxbEaVX"
+);
+
+
 //Free Tokens for DevNet
 export const FREE_TOKEN_PROGRAM_ID = new PublicKey(
   "4e92qqeZREeSGro67eiZbmvSofSSME1E33U8B7Cq1R3y"
@@ -98,6 +163,27 @@ export const LP_TOKEN_DECIMALS = 6;
 export const SUNNY_TOKEN_DECIMALS = 6;
 export const SABER_TOKEN_DECIMALS = 6;
 export const ORCA_TOKEN_DECIMALS = 6;
+export const BTC_TOKEN_DECIMALS = 6;
+export const ETH_TOKEN_DECIMALS = 6;
+export const ALEPH_TOKEN_DECIMALS = 6;
+export const SERUM_TOKEN_DECIMALS = 6;
+export const SUSHI_TOKEN_DECIMALS = 6;
+export const MSRM_TOKEN_DECIMALS = 6;
+export const FTT_TOKEN_DECIMALS = 6;
+export const YFI_TOKEN_DECIMALS = 6;
+export const SXP_TOKEN_DECIMALS = 6;
+export const LINK_TOKEN_DECIMALS = 6;
+export const HGET_TOKEN_DECIMALS = 6;
+export const CREAM_TOKEN_DECIMALS = 6;
+export const UBXT_TOKEN_DECIMALS = 6;
+export const HNT_TOKEN_DECIMALS = 6;
+export const FRONT_TOKEN_DECIMALS = 6;
+export const AKRO_TOKEN_DECIMALS = 6;
+export const HXRO_TOKEN_DECIMALS = 6;
+export const UNI_TOKEN_DECIMALS = 6;
+export const MATH_TOKEN_DECIMALS = 6;
+export const TOMO_TOKEN_DECIMALS = 6;
+export const LUA_TOKEN_DECIMALS = 6;
 
 export const FEE_BPS = 10;
 export const FEE_COLLECTOR = new PublicKey(
