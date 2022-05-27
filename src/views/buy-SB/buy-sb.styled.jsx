@@ -136,6 +136,37 @@ justify-content: center;
 
 
 export const ModalWrapper = styled.div`
+
+
+.style61::-webkit-scrollbar {
+  display: block;
+  width: 5px;
+  height:10px;
+  background-color: #f5f5f500;
+}
+.style61::-webkit-scrollbar-track {
+  background: transparent;
+  -webkit-box-shadow: inset 0 0 20px rgba(142, 142, 142,0.3);
+  margin: 0 580px;
+  border-radius: 10px;
+}
+  
+.style61::-webkit-scrollbar-thumb {
+  background-color: #7cfa4c;
+  -webkit-box-shadow: none;
+  border-bottom: none;
+  border-radius: 10px;
+  border-top: none;
+}
+
+.style61::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}
+
+.style61::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+}
+
 z-index: 101;
 .bg-gradient:hover{
   background: rgba(0,0,0,.2);
