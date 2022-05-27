@@ -386,13 +386,13 @@ export function BuySBView() {
     </div>
     <div
       className="bg-gray-300  w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full  rounded-3xl mx-auto   border-green-100"
-      style={{ maxWidth: "500px" ,borderWidth:'1px'}}
+      style={{ maxWidth: "500px" ,borderWidth:'2px'}}
     >
 
-      <div className="rounded-3xl flex justify-center md:flex-wrap ">
+      <div className="rounded-3xl flex justify-center md:flex-wrap">
         <div className="flex flex-col w-12/12 2xl:w-11/12 xl:w-11/12 md:w-8/12 sm:w-12/12 py-5 px-4 md:my-4 md:mx-0 mt-2 sm:py-0 sm:px-0 md:mb-1">
           <div className="p-1 rounded-3xl">
-            <div className="bg-gray-200 text-center bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
+            <div className="bg-gray-200  border-green-100 text-center bg-gray-400 py-3 px-3 border rounded-2xl mt-3" style={{ borderWidth:'0.5px'}}>
               <div className="flex justify-end px-3">
                 {/* <Text className="block"  >
                   Enter Amount
@@ -471,7 +471,7 @@ export function BuySBView() {
               <BsArrowDownCircleFill className="text-green-100 rounded-full cursor-pointer text-3xl border-2 border-solid border-green-100 hover:"/>
             </div>
 
-            <div className="bg-gray-200 bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
+            <div className="bg-gray-200 bg-gray-400 py-3 px-3 border rounded-2xl mt-3 border-green-100"  style={{ borderWidth:'0.5px'}}>
               <div className="flex justify-end px-3">
                 {/* <Text className="block" >
                   Amount You Get
