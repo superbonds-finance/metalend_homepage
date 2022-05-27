@@ -84,6 +84,22 @@ export const HoverToolTip = styled.div`
 `
 
 export const InputWrapper = styled.div`
+display: flex;
+.btn1{
+  margin-top: -35px;
+}
+.btn2{
+  margin-top: -22px;
+}
+@media screen and (max-width: 375px) {
+flex-direction: column;
+.btn1{
+  margin-top: 0;
+}
+.btn2{
+  margin-top: 0;
+} 
+}
 .span1{
   box-sizing: border-box;
   display: inline-block;
