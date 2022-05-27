@@ -128,14 +128,7 @@ export default function Navbar(props: {
             >
               <span className="text-sm tracking-wide">Trade</span>
             </button>
-            <button
-              className={
-                path == "/buy-SB" ? "bg-gray-300  text-white rounded-md" : ""
-              }
-              onClick={() => handlePush("/buy-SB")}
-            >
-              <span className="text-sm tracking-wide">Swap</span>
-            </button>
+           
             <button
               className={
                 path == "/liquidity" ? "bg-gray-300  text-white rounded-md" : ""
@@ -146,11 +139,19 @@ export default function Navbar(props: {
             </button>
             <button
               className={
+                path == "/buy-SB" ? "bg-gray-300  text-white rounded-md" : ""
+              }
+              onClick={() => handlePush("/buy-SB")}
+            >
+              <span className="text-sm tracking-wide">Buy-SB</span>
+            </button>
+            <button
+              className={
                 path == "/stake" ? "bg-gray-300  text-white rounded-md" : ""
               }
               onClick={() => handlePush("/stake")}
             >
-              <span className="text-sm tracking-wide">SB-Staking</span>
+              <span className="text-sm tracking-wide">Stake-SB</span>
             </button>
             {/* <button className={path=="/tge"?"bg-gray-300  text-white rounded-md":''} onClick={()=>handlePush('/tge')}><span className="text-sm tracking-wide">TGE</span></button>
           <button className={path=="/claimNFT"?"bg-gray-300  text-white rounded-md":''} onClick={()=>handlePush('/claimNFT')}><span className="text-sm tracking-wide">Claim NFT</span></button> */}

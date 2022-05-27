@@ -18,7 +18,7 @@ export const DropDown = [
   {
     id: 4,
     label: 'SOL',
-    seconadaryLabel: 'Wrapped SOL',
+    seconadaryLabel: 'SOL',
   },
   {
     id: 5,
