@@ -23,7 +23,7 @@ export default function Modal({ setShowModal, showModal, setInputState, handleMo
 
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 outline-none focus:outline-none"
           >
-            <div ref={dropDownRef} className="relative w-auto my-6 sm:my-0 mx-auto max-w-md sm:max-w-full">
+            <div ref={dropDownRef} className="relative w-auto mt-6 sm:my-0 mx-auto max-w-md sm:max-w-full">
               {/*content*/}
               <div className="flex flex-col relative w-full h-full overflow-hidden text-left rounded-lg style1">
                 <CloseButton onClick={() => setShowModal('')}>×</CloseButton>

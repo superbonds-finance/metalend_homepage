@@ -5,11 +5,11 @@ export const DropDown = [
     label: 'USDC',
     seconadaryLabel: 'USD Coin',
   },
-  {
-    id: 2,
-    label: 'SB',
-    seconadaryLabel: 'SuperBonds Token',
-  },
+  // {
+  //   id: 2,
+  //   label: 'SB',
+  //   seconadaryLabel: 'SuperBonds Token',
+  // },
   {
     id: 3,
     label: 'USDT',

@@ -57,7 +57,11 @@ export function BuySBView() {
   const env = useENV();
   const [showModal, setShowModal] = React.useState('');
   const [youPay, setYouPay] = React.useState(DropDown[0]);
-  const [youGet, setYouGet] = React.useState(DropDown[1]);
+  const [youGet, setYouGet] = React.useState({
+    id: 2,
+    label: 'SB',
+    seconadaryLabel: 'SuperBonds Token',
+  })
   const [inputAmount,setInputAmount] = useState<any>("");
   const [outputAmount,setOutputAmount] = useState<any>("");
 
@@ -361,8 +365,8 @@ export function BuySBView() {
         }
     }
 
-    const getPayImageIndex=()=> DropDown.findIndex((elem) => elem.id === youPay.id) + 1
-    const getGetImageIndex=()=> DropDown.findIndex((elem) => elem.id === youGet.id) + 1
+    // const getPayImageIndex=()=> DropDown.findIndex((elem) => elem.id === youPay.id) + 1
+    // const getGetImageIndex=()=> DropDown.findIndex((elem) => elem.id === youGet.id) + 1
  
   return (
     <>
@@ -419,7 +423,7 @@ export function BuySBView() {
                         <img
                           className="rounded-full"
                           src={require(`../../assets/coinType/logo${
-                            getPayImageIndex()
+                            youPay.id
                           }.jpg`)}
                           alt="..."
                         />
@@ -479,7 +483,7 @@ export function BuySBView() {
                   disabled
                   type="button"
                   onClick={() => setShowModal("get")}
-                  className="py-2 px-2 rounded-lg flex items-center hover:bg-gray-200"
+                  className="py-2 px-2 pr-10 rounded-lg flex items-center hover:bg-gray-200"
                 >
                   <div className="w-6 h-6 text-xs flex items-center justify-center rounded-full">
                     <span className="span1">
@@ -488,7 +492,7 @@ export function BuySBView() {
                         <img
                           className="rounded-full"
                           src={require(`../../assets/coinType/logo${
-                            getGetImageIndex()
+                            youGet.id
                           }.jpg`)}
                           alt="..."
                         />
@@ -499,7 +503,7 @@ export function BuySBView() {
                   <div className="ml-4 mr-2 font-semibold" translate="no">
                     {youGet.label}
                   </div>
-                  <div className="text-white fill-current">
+                  {/* <div className="text-white fill-current">
                     <svg
                       width="10"
                       height="6"
@@ -514,7 +518,7 @@ export function BuySBView() {
                         fill="inherit"
                       ></path>
                     </svg>
-                  </div>
+                  </div> */}
                 </button>
                 <input
                   maxLength={20}
