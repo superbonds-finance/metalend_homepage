@@ -381,7 +381,7 @@ export function BuySBView() {
       {/* <MdRefresh className="text-2xl" />
       <GoSettings className="ml-3 text-2xl" /> */}
         <Text size='20px' weight className="block"  >
-          SB Swap
+          Buy SB
         </Text>
     </div>
     <div
@@ -544,7 +544,7 @@ export function BuySBView() {
                 className="rounded-sm mt-4 text-center bg-green-100 py-2 w-12/12 transform transition hover:scale-105"
               >
                 <ButtonText  color={"#000000"}  transform weight>
-                  Swap
+                  Buy
                 </ButtonText>
               </button>
             </div>
