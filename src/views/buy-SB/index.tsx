@@ -600,18 +600,18 @@ export function BuySBView() {
       {/* <MdRefresh className="text-2xl" />
       <GoSettings className="ml-3 text-2xl" /> */}
         <Text size='20px' weight className="block"  >
-          SB Swap
+          Buy SB
         </Text>
     </div>
     <div
       className="bg-gray-300  w-8/12 2xl:w-8/12 xl:w-8/12 lg:w-8/12 md:w-12/12 sm:w-full  rounded-3xl mx-auto   border-green-100"
-      style={{ maxWidth: "500px" ,borderWidth:'1px'}}
+      style={{ maxWidth: "500px" ,borderWidth:'2px'}}
     >
 
-      <div className="rounded-3xl flex justify-center md:flex-wrap ">
+      <div className="rounded-3xl flex justify-center md:flex-wrap">
         <div className="flex flex-col w-12/12 2xl:w-11/12 xl:w-11/12 md:w-8/12 sm:w-12/12 py-5 px-4 md:my-4 md:mx-0 mt-2 sm:py-0 sm:px-0 md:mb-1">
           <div className="p-1 rounded-3xl">
-            <div className="bg-gray-200 text-center bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
+            <div className="bg-gray-200  border-green-100 text-center bg-gray-400 py-3 px-3 border rounded-2xl mt-3" style={{ borderWidth:'0.5px'}}>
               <div className="flex justify-end px-3">
                 {/* <Text className="block"  >
                   Enter Amount
@@ -630,11 +630,11 @@ export function BuySBView() {
 
               </div>
 
-              <InputWrapper className="bg-transparent rounded-md flex justify-between items-center mt-3">
+              <InputWrapper className="xs:flex-column bg-transparent rounded-md justify-between items-center mt-3">
                 <button
                   type="button"
                   onClick={() => setShowModal("pay")}
-                  className="py-2 px-2 rounded-lg flex items-center hover:bg-gray-200"
+                  className="btn1 py-2 px-2 rounded-lg flex items-center hover:bg-gray-200"
                 >
                   <div className="w-6 h-6 text-xs flex items-center justify-center rounded-full">
                     <span className="span1">
@@ -690,7 +690,7 @@ export function BuySBView() {
               <BsArrowDownCircleFill className="text-green-100 rounded-full cursor-pointer text-3xl border-2 border-solid border-green-100 hover:"/>
             </div>
 
-            <div className="bg-gray-200 bg-gray-400 py-3 px-3 border rounded-2xl mt-3">
+            <div className="bg-gray-200 bg-gray-400 py-3 px-3 border rounded-2xl mt-3 border-green-100"  style={{ borderWidth:'0.5px'}}>
               <div className="flex justify-end px-3">
                 {/* <Text className="block" >
                   Amount You Get
@@ -699,12 +699,12 @@ export function BuySBView() {
                   Balance: {OutputBalance}
                 </Text>
               </div>
-              <InputWrapper className="bg-transparent hover:bg-transparent  rounded-md flex justify-between items-center">
+              <InputWrapper className="xs:flex-column bg-transparent hover:bg-transparent  rounded-md flex justify-between items-center">
                 <button
                   disabled
                   type="button"
                   onClick={() => setShowModal("get")}
-                  className="py-2 px-2 pr-10 rounded-lg flex items-center hover:bg-gray-200"
+                  className="btn2 py-2 px-2 rounded-lg flex items-center hover:bg-gray-200"
                 >
                   <div className="w-6 h-6 text-xs flex items-center justify-center rounded-full">
                     <span className="span1">
@@ -756,14 +756,14 @@ export function BuySBView() {
             </div>
           </div>
           {/* <Text opacity={"50%"}>Fees:0.5%+500SB</Text> */}
-          <div className="grid grid-cols-1 gap-2 mt-3">
+          <div className="grid grid-cols-1 gap-2 mt-3 sm:mb-6">
             <div className="flex justify-center">
               <button
                 onClick={onSwap}
                 className="rounded-sm mt-4 text-center bg-green-100 py-2 w-12/12 transform transition hover:scale-105"
               >
                 <ButtonText  color={"#000000"}  transform weight>
-                  Swap
+                  Buy
                 </ButtonText>
               </button>
             </div>
