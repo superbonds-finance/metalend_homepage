@@ -28,6 +28,7 @@ import {
   getSolongWallet,
   getTorusWallet,
 } from "@solana/wallet-adapter-wallets";
+import { LandingPage } from "./views/landing-page";
 
 export function Routes() {
   const wallets = useMemo(
@@ -70,6 +71,7 @@ export function Routes() {
                   {/*<Route exact path="/farming_rewards" children={<FarmingRewardsView />} />*/}
                   <Route exact path="/platform" children={<PlatformStatsView />} />
                   <Route exact path="/buy-SB" children={<BuySBView />} />
+                  <Route exact path="/landing-page" children={<LandingPage />} />
                 </Switch>
               </AppLayout>
 

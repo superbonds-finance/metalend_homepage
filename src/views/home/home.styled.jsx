@@ -84,7 +84,7 @@ font-family: Archivo;
 font-style: normal;
 font-weight: ${(props) => (props.weight ?  'bold' : '300')};
 font-size: ${(props) => (props.size ? props.size : '14px')};
-line-height: 22px;
+line-height: ${({height}) => (height ? height : '2px')};;
 text-transform: ${(props) => (props.transform ? "uppercase" : 'non')};
 letter-spacing:1px;
 color: ${(props) => (props.color ? props.color : '#FFFFFF')};
