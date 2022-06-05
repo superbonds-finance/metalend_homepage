@@ -29,11 +29,12 @@ export const LandingPage = () => {
             onClick={() =>
               history.push("/trade")
             }
-            className="mt-7 w-48 z-40 rounded-md bg-green-100 px-4 py-2 inline-block text-center transform hover:scale-105"
+            style={{ boxShadow: '0px 3px 19px 0px #7cfa4c' }}
+            className="mt-7 w-40 z-40 rounded-md bg-green-100 px-2 py-2 inline-block text-center transform hover:scale-105"
           >
             <BtnText
               className="transform transition hover:scale-105"
-              transform=""
+              transform
               size="16px"
               weight="true"
               color="black"
