@@ -7,7 +7,8 @@ import { WalletModalProvider } from "@solana/wallet-adapter-ant-design";
 // import { LABELS } from "../../constants";
 // import { AppBar } from "../AppBar";
 import Navbar from "../Navbar"
-import SunNavbar from "../Navbar/subheader"
+// import SunNavbar from "../Navbar/subheader"
+import NavbarNew from "../LandingPage/Navbar";
 // const { Header, Content } = Layout;
 
 export const AppLayout = React.memo(({ children }) => {
@@ -15,11 +16,14 @@ export const AppLayout = React.memo(({ children }) => {
   const location = useLocation();
 
   const showWinUp = location.pathname === '/';
+  const customLandingPage = location.pathname === "/landing-page";
 
   return (
     <WalletModalProvider>
       <div className="App wormhole-bg">
-        <Navbar showWinUp={showWinUp}/>
+        {customLandingPage ?
+          <NavbarNew showWinUp={showWinUp} />
+          : <Navbar showWinUp={showWinUp} />}
         {/* <SunNavbar showWinUp={showWinUp} /> */}
         {/* <Layout title={LABELS.APP_TITLE}>
           <Header className="App-Bar">
@@ -35,9 +39,9 @@ export const AppLayout = React.memo(({ children }) => {
         </Layout> */}
 
         {children}
-       
+
       </div>
-      
+
     </WalletModalProvider>
   );
 });

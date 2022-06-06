@@ -9,7 +9,7 @@ import Gathomwoff from "../../assets/Gotham-Fonts/Gotham-Book.woff";
 import Gathomwoff2 from "../../assets/Gotham-Fonts/Gotham-Book.woff2";
 
 
-export const HeaderText=styled.span`
+export const HeaderText = styled.span`
   font-family: Archivo;
   font-style: normal;
   font-weight: 600;
@@ -21,12 +21,12 @@ export const HeaderText=styled.span`
 `
 
 
-export const NumberText=styled.span`
+export const NumberText = styled.span`
 line-height: 1.41;
 letter-spacing: -0.2px;
 white-space: break-spaces;
 font-family: 'Open Sans', sans-serif;
-font-weight: ${(props) => (props.weight ?  'bold' : '300')};
+font-weight: ${(props) => (props.weight ? 'bold' : '300')};
 font-size: ${(props) => (props.size ? props.size : '16px')};
 text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
 color: ${(props) => (props.color ? props.color : '#FFFFFF')};
@@ -37,16 +37,16 @@ color: ${(props) => (props.color ? props.color : '#FFFFFF')};
   font-size: ${(props) => (props.xssize ? props.xssize : '16px')};
 }
 `
-export const CalibariText=styled.span`
+export const CalibariText = styled.span`
  
 font-family: 'Calibri';
-font-weight: ${(props) => (props.weight ?  'bold' : '300')};
+font-weight: ${(props) => (props.weight ? 'bold' : '300')};
 font-size: ${(props) => (props.size ? props.size : '16px')};
 text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
 color: ${(props) => (props.color ? props.color : '#FFFFFF')};
  
 `
-export const CardText=styled.span`
+export const CardText = styled.span`
   @font-face {
   font-family: "gotham";
   src: url(${Gathomttf}) format('woff'),
@@ -55,9 +55,9 @@ export const CardText=styled.span`
   font-weight: normal;
 }
   font-family: 'Gotham';
-  font-weight: ${(props) => (props.weight ?  'bold' : '300')};
+  font-weight: ${(props) => (props.weight ? 'bold' : '300')};
   font-size: ${(props) => (props.size ? props.size : '16px')};
-  text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
+  text-transform: ${(props) => (props.transform ? props.transform || 'none' : 'none')};
   color: ${(props) => (props.color ? props.color : '#FFFFFF')};
   opacity: ${(props) => (props.opacity ? props.opacity : '')};
   line-height: 1.41;
@@ -65,13 +65,13 @@ export const CardText=styled.span`
   word-break: break-word;
   white-space: break-spaces;
 `
-export const Text=styled.span`
+export const Text = styled.span`
 @font-face {
   font-family: 'AkkuratLLWeb-Bold';
   src: url(${font}) format('truetype');
 }
 font-family: 'AkkuratLLWeb-Bold';
-  font-weight: ${(props) => (props.weight ?  'bold' : '300')};
+  font-weight: ${(props) => (props.weight ? 'bold' : '300')};
   font-size: ${(props) => (props.size ? props.size : '16px')};
   line-height: 22px;
   text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
@@ -79,12 +79,12 @@ font-family: 'AkkuratLLWeb-Bold';
   color: ${(props) => (props.color ? props.color : '#FFFFFF')};
   opacity: ${(props) => (props.opacity ? props.opacity : '')};
 `
-export const BtnText=styled.span`
+export const BtnText = styled.span`
 font-family: Archivo;
 font-style: normal;
-font-weight: ${(props) => (props.weight ?  'bold' : '300')};
+font-weight: ${(props) => (props.weight ? 'bold' : '300')};
 font-size: ${(props) => (props.size ? props.size : '14px')};
-line-height: ${({height}) => (height ? height : '2px')};;
+line-height: ${({ height }) => (height ? height : '2px')};;
 text-transform: ${(props) => (props.transform ? "uppercase" : 'non')};
 letter-spacing:1px;
 color: ${(props) => (props.color ? props.color : '#FFFFFF')};
@@ -95,23 +95,23 @@ opacity: ${(props) => (props.opacity ? props.opacity : '')};
 `
 
 
-export const TextDoc=styled.span`
+export const TextDoc = styled.span`
   font-family: Archivo;
   font-style: normal;
-  font-weight: ${(props) => (props.weight ?  'bold' : '')};
+  font-weight: ${(props) => (props.weight ? 'bold' : '')};
   font-size: ${(props) => (props.size ? props.size : '14px')};
   line-height: 22px;
   text-transform: ${(props) => (props.transform ? "uppercase" : 'non')};
   opacity: ${(props) => (props.opacity ? props.opacity : '')};
   hover:color
 `
-export const NewText=styled.strong`
+export const NewText = styled.strong`
 @font-face {
   font-family: 'Gilroy';
   src: url(${Gilroy}) format('truetype');
 }
 font-family: 'Gilroy';
-font-weight: ${(props) => (props.weight ?  'bold' : '')};
+font-weight: ${(props) => (props.weight ? 'bold' : '')};
 font-size: ${(props) => (props.size ? props.size : '30px')};
 line-height: 28px;
 color:'white';
@@ -120,7 +120,7 @@ text-transform: ${(props) => (props.transform ? "uppercase" : 'non')};
   font-size: 20px;
 }
 `
-export const BoldFont=styled.span`
+export const BoldFont = styled.span`
 @font-face {
   font-family: 'Gilroy';
   src: url(${GilroyBold}) format('truetype');
@@ -134,15 +134,15 @@ opacity: ${(props) => (props.opacity ? props.opacity : '')};
   font-size: 20px;
 }
 `
- 
-export const Jupiter=styled.span`
+
+export const Jupiter = styled.span`
 @font-face {
   font-family: 'AkkuratLLWeb-Bold';
   src: url(${font}) format('truetype');
 }
 font-family: 'AkkuratLLWeb-Bold';
  
-  font-weight: ${(props) => (props.weight ?  'bold' : '300')};
+  font-weight: ${(props) => (props.weight ? 'bold' : '300')};
   font-size: ${(props) => (props.size ? props.size : '16px')};
   line-height: 22px;
   text-transform: ${(props) => (props.transform ? "uppercase" : 'none')};
@@ -150,4 +150,3 @@ font-family: 'AkkuratLLWeb-Bold';
   color: ${(props) => (props.color ? props.color : '#FFFFFF')};
   opacity: ${(props) => (props.opacity ? props.opacity : '')};
 `
- 

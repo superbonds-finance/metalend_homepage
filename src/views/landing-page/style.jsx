@@ -1,10 +1,20 @@
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 
-// import polygon3 from '../../assets/landing-page/polygon_3.png'
-import polygon3 from '../../assets/landing-page/polygon_4.png'
+import polygon3 from '../../assets/landing-page/polygon_4.png';
+
+
+
+
+export const GlobalStyle = createGlobalStyle`
+body {
+ background-color: #161D22; 
+}
+`
+
 
 export const Wrapper = styled.div`
-background-color: #1a232b;
+.top-div{
+  background-color: #1a232b;
 margin-left: 40px;
 padding-top: 70px;
 
@@ -69,5 +79,31 @@ padding-top: 70px;
       }
     }
   }
+}
 
+  .title-2{
+    font-style: normal;
+font-weight: 700;
+font-size: 45px;
+line-height: 34px;
+padding: 6rem 0 2rem;
+    text-align: center;
+  }
+
+  .yielder-below-Q1{
+    text-align: center;
+    padding: 65px 50px 50px;
+  }
+  .orHex{
+    position: absolute;
+  left: calc(50% - 40px);
+  z-index: 1;
+  }
+  .custom-bg-box{
+    height: 380px;
+    width: 80%;
+    margin-top: -300px;
+    background-color: #12181F;
+
+  }
 `

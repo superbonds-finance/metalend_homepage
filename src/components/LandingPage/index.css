@@ -1,0 +1,320 @@
+a, a:hover , a:focus{ 
+  text-decoration: none;
+  color: white;
+}
+.nav > .nav-links > a > button {
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 24px;
+  text-decoration: none;
+  font-family: Archivo;
+  font-size: 14px;   
+}
+
+.ant-btn-primary,.ant-btn-primary:hover,.ant-btn-primary:focus{
+  border:none;
+  padding: 8px 10px;
+  /* border-image-slice: 1;
+  border-image-source: linear-gradient(to right top, #074085, #0e57a3, #116fc1, #0e89e0, #00a3ff); */
+  background: transparent; 
+  background-image: linear-gradient(to right top, #074085, #0e57a3, #116fc1, #0e89e0, #00a3ff);
+  border-radius: 3px;
+}
+
+.ant-btn-ghost,.ant-btn-ghost:hover,.ant-btn-ghost:focus{
+  border:2px solid #0e57a3;
+  padding: 8px 10px;
+  /* border-image-slice: 1;
+  border-image-source: linear-gradient(to right top, #074085, #0e57a3, #116fc1, #0e89e0, #00a3ff); */
+  background: transparent; 
+  vertical-align: middle;
+}
+.ant-btn > span {
+  color: white;
+}
+.wallet-adapter-icon{
+  display: inline-block;
+}
+.nav {
+  height: 64px;
+  width: 100%;
+  background-color:#161D22;
+  position: fixed;
+  padding:12px 20px;
+  z-index: 100;
+}
+
+.nav > .nav-header {
+  display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  /* padding: 10px 10px 10px 10px; */
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  align-items: center;
+  display: flex;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > img {
+  display: inline-block;
+  padding: 10px 13px;
+
+}
+.nav > .nav-links > button {
+  font-weight: bold;
+  display: inline-block;
+  padding: 0 24px;
+  text-decoration: none;
+  font-family: Archivo;
+  font-size: 14px;   
+}
+.nav > .nav-links > button:last-child{
+  padding: 8px 24px;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav > #nav-check {
+  display: none;
+}
+@media (max-width:960px) {
+  .nav > .nav-links > img {
+    padding: 10px 13px;
+ 
+  }
+  .nav > .nav-links > button {
+    padding: 0 18px;
+  }
+  .nav > .nav-links > button:last-child{
+    padding: 8px 18px;
+  }
+}
+
+.nav > .nav-links-outer {
+  display: inline-block;
+  position: absolute;
+  right: 7px;
+  top: 0px;
+  font-size: 18px;
+  padding: 13px;
+}
+.nav-links-outer-nav {
+  display: none;
+}
+.nav-links-outer-nav button{
+  display: none;
+}
+
+
+@media (max-width:769px) {
+  
+  .nav > .nav-links-outer {
+    right: 50px;
+  }
+
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+    transition: all 0.5s ease;
+  }
+  .nav > #nav-check:checked ~ .nav-btn > label > span:first-child {
+    transform: rotate(45deg);
+    height: 0;
+    margin-top: 10px;
+  }
+  .nav > #nav-check:checked ~ .nav-btn > label > span:nth-child(2) {
+    border-top: 0;
+    height: 0;
+    /* display: none; */
+  }
+  .nav > #nav-check:checked ~ .nav-btn > label > span:last-child {
+    transform: rotate(-45deg); 
+    height: 0;
+    margin: -1.2px;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 70%;
+    background-color:black;
+    z-index: 100;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 56px;
+    right: 0;
+  }
+  .nav > .space_top{
+    /* top: 215px; */
+  }
+  .nav > .nav-links > button {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 5px;
+  }
+
+  .nav > .nav-links > a > button {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+  }
+  .nav > .nav-links > img {
+    display: block;
+    margin: 0 auto;
+    
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: 300px;
+    overflow-y: auto;
+  }
+  .nav > #nav-check:checked ~ .space_top {
+    height: 100%;
+    padding-top: 15px;
+  }
+  .nav > #nav-check:checked ~ .space_top {
+    height: 130%;
+  }
+  .nav > .nav-links-outer {
+    font-size: 13px;
+    padding: 13px 0;
+  }
+  .nav > .nav-links-outer a{
+    display: none;
+  }
+  .nav-links-outer-nav {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+}
+
+@media (max-width:698px) {
+
+}
+
+@media (max-width:560px) {
+  .nav > #nav-check:checked ~ .space_top {
+    height: 140px;
+  }
+  .nav > .nav-links > button,.nav > .nav-links > a > button {
+    width: 80%;
+  }
+  .nav > .nav-links {
+    width: 80%;
+  }
+  .nav-links-outer-nav button {
+    display: block;
+  }
+  .nav > .nav-links-outer {
+    display: none;
+  }
+}
+
+@media (max-width:380px) {
+  .nav > .nav-links {
+    width: 100%;
+  }
+}
+
+@media (max-width:340px) {
+  .nav > .nav-links {
+    width: 100%;
+    padding-top: 35px; 
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: 320px;
+  }
+}
+
+.connect-btn{
+  border:2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right top, #074085, #0e57a3, #116fc1, #0e89e0, #00a3ff);
+  padding: 8px 10px;
+ }
+
+ .trade_sb_token_wrapper_mobile{
+   margin:10px 10px;
+  display: none;
+}
+.trade_sb_token_wrapper_1_mobile{
+  padding: 11px 0 16px 18px;
+  background-color: #161D23;
+}
+
+.trade_sb_token_wrapper_2_mobile{
+  padding: 11px 0 16px 18px;
+  background-color: #1A232B;
+}
+
+.offer_wrapper_mobile{
+margin:10px 10px;
+display: none;
+}
+.offer_wrapper_1_mobile{
+  padding: 10px 3px 10px 3px;
+  background-color: #161D23;
+  min-height: 130px;
+}
+@media (max-width:768px) {
+.offer_wrapper_mobile{
+  display: inline;
+}
+.trade_sb_token_wrapper_mobile{
+  display: inline;
+}
+}
+
+.nav-title {
+  color: #687D95;
+}
+
+.nav-title:hover {
+  color: #fff;
+}
+
+.nav-sub-title{
+  color: #fff;
+  font-size: 11px;
+}
+
+.coming-soon-btn{
+  display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

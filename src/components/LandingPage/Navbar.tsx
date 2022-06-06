@@ -8,8 +8,9 @@ import { TextDoc } from "../Navbar/navbar-styled";
 import { WalletMultiButton } from "@solana/wallet-adapter-ant-design";
 import "./index.css";
 import { useLocation } from "react-router-dom";
+import { BtnText } from "../../views/home/home.styled";
 
-export default function Navbar(props: {
+export default function NavbarNew(props: {
   left?: JSX.Element,
   right?: JSX.Element,
   showWinUp?: boolean
@@ -113,47 +114,57 @@ export default function Navbar(props: {
           <>
             <button
               className={
-                path === "/trade" ? "bg-gray-300  text-white rounded-md" : ""
+                path === "/trade" ? "bg-gray-300  text-white rounded-md" : "nav-title"
               }
               onClick={() => handlePush("/trade")}
             >
-              <span className="text-sm tracking-wide">Trade</span>
+              <span className="text-sm tracking-wide">PRODUCT</span>
             </button>
 
             <button
               className={
-                path === "/liquidity" ? "bg-gray-300  text-white rounded-md" : ""
+                path === "/liquidity" ? "bg-gray-300  text-white rounded-md" : "nav-title"
               }
               onClick={() => handlePush("/liquidity")}
             >
-              <span className="text-sm tracking-wide">Liquidity</span>
+              <span className="text-sm tracking-wide">DEVELOPERS</span>
             </button>
             <button
               className={
-                path === "/buy-SB" ? "bg-gray-300  text-white rounded-md" : ""
+                path === "/buy-SB" ? "bg-gray-300  text-white rounded-md" : "nav-title"
               }
               onClick={() => handlePush("/buy-SB")}
             >
-              <span className="text-sm tracking-wide">Buy-SB</span>
+              <span className="text-sm tracking-wide">COMMUNITY</span>
             </button>
             <button
               className={
-                path === "/stake" ? "bg-gray-300  text-white rounded-md" : ""
+                (path === "/stake" ? "bg-gray-300  text-white rounded-md" : "nav-title") + " coming-soon-btn"
               }
               onClick={() => handlePush("/stake")}
             >
-              <span className="text-sm tracking-wide">Stake-SB</span>
+              <span className="text-sm tracking-wide">GOVERNANCE</span>
+              <span className="tracking-wide nav-sub-title">COMING SOON</span>
             </button>
-            {/* <button className={path=="/tge"?"bg-gray-300  text-white rounded-md":''} onClick={()=>handlePush('/tge')}><span className="text-sm tracking-wide">TGE</span></button>
-          <button className={path=="/claimNFT"?"bg-gray-300  text-white rounded-md":''} onClick={()=>handlePush('/claimNFT')}><span className="text-sm tracking-wide">Claim NFT</span></button> */}
-            {/* <button
-              className={
-                path == "/platform" ? "bg-gray-300  text-white rounded-md" : ""
+            <button
+              onClick={() =>
+                history.push("/trade")
               }
-              onClick={() => handlePush("/platform")}
+              style={{ boxShadow: '0px 3px 9px 0px #40ba12' }}
+              className="w-40 z-40 rounded-md bg-green-100 px-2 py-2 inline-block text-center transform hover:scale-105"
             >
-              <span className="text-sm tracking-wide">Platform Stats</span>
-            </button> */}
+              <BtnText
+                className="transform transition hover:scale-105"
+                transform
+                size="16px"
+                weight="true"
+                color="black"
+                height='21px'
+              >
+                Launch App
+              </BtnText>
+              {/* <img  className=' mt-0.5' src={arrow}  /> */}
+            </button>
             {connected && (
               <button
                 className={
@@ -174,16 +185,16 @@ export default function Navbar(props: {
         >
           <button className=""><span className="text-sm tracking-wide">Admin</span></button>
         </Popover>*/}
-            <WalletMultiButton type="primary" />
+            {/* <WalletMultiButton type="primary" /> */}
             {/* {connected ? <WalletDisconnectButton className="ml-2" type="ghost" /> : null} */}
-            <Popover
+            {/* <Popover
               placement="topRight"
               title={LABELS.SETTINGS_TOOLTIP}
               content={<Settings />}
               trigger="click"
             >
               <i className="fas fa-cog fa-lg text-gray-600 cursor-pointer ml-2 mt-1 md:mt-4" />
-            </Popover>
+            </Popover> */}
           </>
         )}
 
