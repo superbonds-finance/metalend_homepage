@@ -151,10 +151,9 @@ export default function NavbarNew(props: {
                 history.push("/trade")
               }
               style={{ boxShadow: '0px 3px 9px 0px #40ba12' }}
-              className="w-40 z-40 rounded-md bg-green-100 px-2 py-2 inline-block text-center transform hover:scale-105"
+              className="w-40 z-40 rounded-md bg-green-100 px-2 py-2 inline-block text-center"
             >
               <BtnText
-                className="transform transition hover:scale-105"
                 transform
                 size="16px"
                 weight="true"
