@@ -9,6 +9,8 @@ import { BtnText, CardText } from "../home/home.styled";
 import { useHistory } from "react-router-dom";
 
 import Collapsible from 'react-collapsible';
+import { FiArrowUpRight } from "react-icons/fi";
+
 
 
 
@@ -37,7 +39,7 @@ export const LandingPage = () => {
                 history.push("/trade")
               }
               style={{ boxShadow: '0px 3px 9px 0px #40ba12' }}
-              className="button-hover-change mt-7 w-40 z-40 rounded-md px-2 py-2 inline-block text-center"
+              className="button-hover-change btn-hover-width mt-7 w-40 z-40 rounded-md px-2 py-2 inline-block text-center"
             >
               <BtnText
                 transform
@@ -47,6 +49,7 @@ export const LandingPage = () => {
                 height='32px'
               >
                 Launch App
+                <FiArrowUpRight />
               </BtnText>
             </button>
 

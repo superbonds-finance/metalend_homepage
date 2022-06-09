@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Popover } from "antd";
-import { Settings } from "../Settings";
-import { LABELS } from "../../constants";
+// import { Popover } from "antd";
+// import { Settings } from "../Settings";
+// import { LABELS } from "../../constants";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useHistory } from "react-router-dom";
 import { TextDoc } from "../Navbar/navbar-styled";
-import { WalletMultiButton } from "@solana/wallet-adapter-ant-design";
+// import { WalletMultiButton } from "@solana/wallet-adapter-ant-design";
 import "./index.css";
 import { useLocation } from "react-router-dom";
 import { BtnText } from "../../views/home/home.styled";
+import { FiArrowUpRight } from "react-icons/fi";
+import { Wrapper } from "./styled";
 
 export default function NavbarNew(props: {
   left?: JSX.Element,
@@ -74,7 +76,7 @@ export default function NavbarNew(props: {
   </>);
 
   return (
-    <div className="nav">
+    <Wrapper className="nav">
       <input type="checkbox" id="nav-check" />
       <div className="nav-header cursor-pointer">
         <div className="nav-title" onClick={() => handlePush("/")}>
@@ -151,7 +153,7 @@ export default function NavbarNew(props: {
                 history.push("/trade")
               }
               style={{ boxShadow: '0px 3px 9px 0px #40ba12' }}
-              className="w-40 z-40 rounded-md bg-green-100 px-2 py-2 inline-block text-center"
+              className="button-hover-change btn-hover-width w-40 z-40 rounded-md px-2 py-2 inline-block text-center"
             >
               <BtnText
                 transform
@@ -161,6 +163,7 @@ export default function NavbarNew(props: {
                 height='21px'
               >
                 Launch App
+                <FiArrowUpRight />
               </BtnText>
               {/* <img  className=' mt-0.5' src={arrow}  /> */}
             </button>
@@ -198,6 +201,7 @@ export default function NavbarNew(props: {
         )}
 
       </div>
-    </div>
+    </Wrapper>
   );
 }
+

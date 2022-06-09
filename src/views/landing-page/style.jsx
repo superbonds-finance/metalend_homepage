@@ -114,6 +114,32 @@ padding: 6rem 0 2rem;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56.83%, rgba(117, 233, 71, 0.2) 103.83%), #1A232B;
     clip-path: polygon(100% 0,100% 100%,14% 100%,0 86%,0 0);
   }
+
+  .btn-hover-width{
+    svg{
+    color: white;
+    font-size: 1.5rem;
+    position: absolute;
+    right: -30px;top:-4px;
+    opacity: 0;
+  }
+
+@keyframes animation2 {
+  0% {right: -30px;top:-4px;}
+  10% {right: -5px;top: 12px;}
+  100% {right: -30px;top:-4px;}
+  }
+
+  &:hover{
+    width: 12rem !important;
+    svg{
+      animation-name: animation2;
+    animation-duration: 0.3s;
+    opacity: 1;
+    }
+  }
+  }
+
   .button-hover-change{
     /* background: linear-gradient(0deg, #7CFA4C, #7CFA4C), #1F2933;
     transition: background 5s; */
@@ -122,6 +148,9 @@ padding: 6rem 0 2rem;
   background-color: #7CFA4C;
   background-image: linear-gradient(0deg, #7CFA4C, #7CFA4C), #1F2933;
   z-index: 1;
+  transition: width 0.1s ease-in-out;
+
+  
 
     &:after {
   position: absolute;
@@ -131,7 +160,7 @@ padding: 6rem 0 2rem;
   width: 100%;
   height: 100%;
   border-radius: 0.3em;
-  background-image: linear-gradient(to right,#7cfa4c , #0ddfff);
+  background-image: linear-gradient(to right,#7cfa4c 30%, #0ddfff);
   transition: opacity 0.5s ease-out;
   z-index: 2;
   opacity: 0;
@@ -197,7 +226,7 @@ ${BtnText}{
 	bottom: 0;
 	width: 0;
   height: 1px;
-	background: linear-gradient(to right,#7cfa4c , #0ddfff);;
+	background: linear-gradient(to right,#7cfa4c 30%, #0ddfff);;
 	animation: border_anim 0.3s linear forwards;
 }
 
@@ -218,7 +247,10 @@ ${BtnText}{
 	}
 }
     }
-    &:hover,.Collapsible__contentOuter,.is-open{
+    &:hover{
+      background: #28333F;
+    }
+    .Collapsible__contentOuter,.is-open{
       background: #1F2934;
       border-radius: 10px;
     }
@@ -239,17 +271,17 @@ ${BtnText}{
     }
   }
   .scroll-handle{
-    height: 80px;
+    height: 60px;
     width: 470px;
     margin-left: 40px;
-    margin-top: -80px;
+    margin-top: -60px;
     background: #161d21;
     position: relative;
-    clip-path: polygon(0 0, 80% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
     border-top-right-radius: 10px;
   }
-/* 
-	.scroll-handle:before,
+
+	/* .scroll-handle:before,
 	.scroll-handle:after {
 		content: "";
 		position: absolute;
@@ -260,16 +292,14 @@ ${BtnText}{
   .scroll-handle:before{
     top: -10px;
   }
-
-
 	.scroll-handle:after {
 		right: -20px;
 		border-radius: 0 0 0 10px;
-		box-shadow: -10px 0 0 0 #161d21;
+		box-shadow: -10px 0 0 0 white;
 	}
 
 	.scroll-handle:before {
-    background: #1a232b;
+    background: white;
 		left: 0;
 		border-radius: 0 0 0 10px;
 	} */
