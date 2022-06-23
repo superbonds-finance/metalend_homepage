@@ -875,7 +875,7 @@ export const HomeView = () => {
                     size="21px"
                     weight="true"
                   >
-                    Financial NFTs
+                    Financial NFTs 
                   </BtnText>
                   <CardText
                     letterSpacing="1px"

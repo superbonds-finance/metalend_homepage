@@ -65,8 +65,8 @@ export const LandingPage = () => {
         </Row>
       </div>
     </div>
-    <div className="scroll-handle">
-
+    <div className="scroll-handle flex justify-center align-middle  py-4">
+      <text className="hero-side-text">A Uniquely Dynamic Exposure</text>
     </div>
     <Row>
       <Col span={24}>

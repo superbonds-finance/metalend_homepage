@@ -14,11 +14,62 @@ body {
 
 
 export const Wrapper = styled.div`
-.top-div{
-  background-color: #1a232b;
+.fd-header{
+    padding-top: 70px;
+}
+.fd-details{
+    margin-top:5rem;
+    margin-bottom:10rem;
+}
+.fd-header-text{
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 52px;
+    /* or 102% */
+    
+    display: flex;
+    align-items: center;
+    display: inline-block;
+    color: #FFFFFF;
+}
+.fd-sub-header{
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    display: inline-block;
+    letter-spacing: 0.3px;
+    color: #687D95;
+    margin-top:0.5rem;
+}
+.fd-desc-header{
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 44px;
+    text-shadow: 0px 3px 9px #40BA12;
+    color:#7CFA4C;
+}
+.fd-desc-text{
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 27px;
+    letter-spacing: 0.3px;
+    color: #ABBDD1;
+    text-align:left;
+    user-select:none;
+}
+.top-div-fd{
+background-color: #1a232b;
 margin-left: 40px;
 padding-top: 70px;
-
+ 
+}
   .polygen1{
     background-image: url(${polygon3});
     height: 600px;
@@ -113,6 +164,12 @@ padding: 6rem 0 2rem;
   .yielder-below-Q2{
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56.83%, rgba(117, 233, 71, 0.2) 103.83%), #1A232B;
     clip-path: polygon(100% 0,100% 100%,14% 100%,0 86%,0 0);
+  }
+  .fd-desc-bg{
+    text-align: center;
+    padding: 65px 50px 50px;
+    clip-path: polygon(0 0,195% 0,0 195%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56.83%, rgba(117, 233, 71, 0.2) 103.83%), #161D23;
   }
 
   .btn-hover-width{
@@ -274,10 +331,10 @@ ${BtnText}{
     height: 60px;
     width: 470px;
     margin-left: 40px;
-    margin-top: -60px;
+    margin-bottom:-50px;
     background: #161d21;
     position: relative;
-    clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0,193% 0,0 193%);
     border-top-right-radius: 10px;
   }
    .hero-side-text{

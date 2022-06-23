@@ -11,3 +11,4 @@ export {FarmingRewardsView} from "./farming_rewards";
 export {ClaimNFTView} from "./claimNFT";
 export {PlatformStatsView} from "./plaftform-stats";
 export {BuySBView} from "./buy-SB"
+export {FDPage} from './fixed-deposits'
