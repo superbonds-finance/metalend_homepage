@@ -14,11 +14,62 @@ body {
 
 
 export const Wrapper = styled.div`
-.top-div{
-  background-color: #1a232b;
+.fd-header{
+    padding-top: 70px;
+}
+.fd-details{
+    margin-top:5rem;
+    margin-bottom:10rem;
+}
+.fd-header-text{
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 52px;
+    /* or 102% */
+    
+    display: flex;
+    align-items: center;
+    display: inline-block;
+    color: #FFFFFF;
+}
+.fd-sub-header{
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    display: inline-block;
+    letter-spacing: 0.3px;
+    color: #687D95;
+    margin-top:0.5rem;
+}
+.fd-desc-header{
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 44px;
+    text-shadow: 0px 3px 9px #40BA12;
+    color:#7CFA4C;
+}
+.fd-desc-text{
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 27px;
+    letter-spacing: 0.3px;
+    color: #ABBDD1;
+    text-align:left;
+    user-select:none;
+}
+.top-div-fd{
+background-color: #1a232b;
 margin-left: 40px;
 padding-top: 70px;
-
+ 
+}
   .polygen1{
     background-image: url(${polygon3});
     height: 600px;
@@ -113,6 +164,12 @@ padding: 6rem 0 2rem;
   .yielder-below-Q2{
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56.83%, rgba(117, 233, 71, 0.2) 103.83%), #1A232B;
     clip-path: polygon(100% 0,100% 100%,14% 100%,0 86%,0 0);
+  }
+  .fd-desc-bg{
+    text-align: center;
+    padding: 65px 50px 50px;
+    clip-path: polygon(0 0,195% 0,0 195%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56.83%, rgba(117, 233, 71, 0.2) 103.83%), #161D23;
   }
 
   .btn-hover-width{
@@ -274,47 +331,12 @@ ${BtnText}{
     height: 60px;
     width: 470px;
     margin-left: 40px;
-    margin-top: -60px;
+    margin-bottom:-50px;
     background: #161d21;
     position: relative;
-    clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0,193% 0,0 193%);
     border-top-right-radius: 10px;
-    img{
-      height: 35px;
-    }
-    .left-btn{
-      transform: rotate(180deg);
-    }
-    .label{
-      font-size: 19px;
-      padding-left: 18px;
-      font-weight: 700;
-      margin-top: -3px;
-      color: #7cfa4c;
-      line-height: 21px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      text-shadow: 0px 3px 9px #40BA12;
-      align-items: center;
-      display: flex;
-    }
   }
-
-  .scrollable{
-    /* background-color: #1a232b; */
-    height: 270px;
-    margin-left: 40px;
-    overflow: hidden;
-    scroll-behavior: smooth;
-    .card-wrapper{
-      height: 100%;
-      display: flex;
-      width: 2000px;
-      
-    }
-  }
-
-
    .hero-side-text{
       color:#7CFA4C;
       letter-spacing: 0.5px;
@@ -347,106 +369,4 @@ ${BtnText}{
 		left: 0;
 		border-radius: 0 0 0 10px;
 	} */
-`
-export const Card = styled.div`
-  background-color: #1a232b;
-  min-width: ${({ width }) => width || '280px'};
-  height: 100%;
-  margin: 5px;
-  border-radius: 8px;
-  padding: 30px 40px;
-  img{
-    height: 34px;
-  }
-  :first-child{
-    margin-left: 0;
-  }
-  :last-child{
-    margin-right: 0;
-  }
-  .card-top{
-    display: flex;
-    justify-content: space-between;
-  }
-  .card-bottom{
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
-    .coin-card{
-      min-width: 78px;
-      display: flex;
-      align-items: center;
-      img{
-        height: 24px;
-      }
-      .card-labels{
-        display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
-    padding-top: 6px;
-    margin-left: 15px;
-    .label{
-      font-style: normal;
-font-weight: 700;
-font-size: 11px;
-line-height: 13px;
-/* identical to box height, or 118% */
-
-display: flex;
-align-items: center;
-letter-spacing: 1px;
-text-transform: uppercase;
-padding-bottom: 3px;
-
-color: #687D95;
-    }
-    .subLabel{
-      font-style: normal;
-font-weight: 600;
-font-size: 15px;
-line-height: 15px;
-/* identical to box height, or 100% */
-
-display: flex;
-align-items: center;
-letter-spacing: 0.5px;
-text-transform: uppercase;
-
-/* White */
-
-color: #FFFFFF;
-
-    }
-      }
-    }
-  }
-  .card-chain{
-    padding: 12px 0 17px;
-    .chain-line{
-      background: linear-gradient(90deg, #7CFA4C 0%, #01A0FC 100%);
-      height: 2px;
-      margin-left: 60px;
-      margin-top: -10px;
-    }
-  }
-  .subHead{
-    font-style: normal;
-    font-weight: 600;
-    font-size: 11px;
-    line-height: 15px;
-    align-items: center;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: #3D4F61;
-  }
-  .title{
-    font-style: normal;
-    font-weight: 700;
-    font-size: 19px;
-    line-height: 20px;
-    align-items: center;
-    text-transform: uppercase;
-    color: #FFFFFF;
-  }
 `
