@@ -279,7 +279,41 @@ ${BtnText}{
     position: relative;
     clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
     border-top-right-radius: 10px;
+    img{
+      height: 35px;
+    }
+    .left-btn{
+      transform: rotate(180deg);
+    }
+    .label{
+      font-size: 19px;
+      padding-left: 18px;
+      font-weight: 700;
+      margin-top: -3px;
+      color: #7cfa4c;
+      line-height: 21px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-shadow: 0px 3px 9px #40BA12;
+      align-items: center;
+      display: flex;
+    }
   }
+
+  .scrollable{
+    /* background-color: #1a232b; */
+    height: 270px;
+    margin-left: 40px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    .card-wrapper{
+      height: 100%;
+      display: flex;
+      width: 2000px;
+      
+    }
+  }
+
 
 	/* .scroll-handle:before,
 	.scroll-handle:after {
@@ -303,4 +337,106 @@ ${BtnText}{
 		left: 0;
 		border-radius: 0 0 0 10px;
 	} */
+`
+export const Card = styled.div`
+  background-color: #1a232b;
+  min-width: ${({ width }) => width || '280px'};
+  height: 100%;
+  margin: 5px;
+  border-radius: 8px;
+  padding: 30px 40px;
+  img{
+    height: 34px;
+  }
+  :first-child{
+    margin-left: 0;
+  }
+  :last-child{
+    margin-right: 0;
+  }
+  .card-top{
+    display: flex;
+    justify-content: space-between;
+  }
+  .card-bottom{
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    .coin-card{
+      min-width: 78px;
+      display: flex;
+      align-items: center;
+      img{
+        height: 24px;
+      }
+      .card-labels{
+        display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    padding-top: 6px;
+    margin-left: 15px;
+    .label{
+      font-style: normal;
+font-weight: 700;
+font-size: 11px;
+line-height: 13px;
+/* identical to box height, or 118% */
+
+display: flex;
+align-items: center;
+letter-spacing: 1px;
+text-transform: uppercase;
+padding-bottom: 3px;
+
+color: #687D95;
+    }
+    .subLabel{
+      font-style: normal;
+font-weight: 600;
+font-size: 15px;
+line-height: 15px;
+/* identical to box height, or 100% */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.5px;
+text-transform: uppercase;
+
+/* White */
+
+color: #FFFFFF;
+
+    }
+      }
+    }
+  }
+  .card-chain{
+    padding: 12px 0 17px;
+    .chain-line{
+      background: linear-gradient(90deg, #7CFA4C 0%, #01A0FC 100%);
+      height: 2px;
+      margin-left: 60px;
+      margin-top: -10px;
+    }
+  }
+  .subHead{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 15px;
+    align-items: center;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #3D4F61;
+  }
+  .title{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 20px;
+    align-items: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
 `
