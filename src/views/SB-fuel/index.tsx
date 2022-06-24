@@ -117,8 +117,8 @@ export const SBFuel = () => {
           <h1 className="title-2 select-none">Trade SB</h1>
         </Col>
       </Row>
-      <div className="flex flex-wrap w-9/12 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center">
-        <div className="flex flex-col justify-center my-0 mx-3 sm:w-full">
+      <div className="flex flex-wrap w-9/12 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center ">
+        <div className="flex flex-col justify-center my-0 mx-3 sm:w-full bg-transparent">
           <div className="z-50">
             <img
               className="my-0 mx-auto  w-24  z-50 select-none"
@@ -210,8 +210,15 @@ export const SBFuel = () => {
 
       <div className="flex bg-gray-300 w-3/12 mx-auto my-0  py-10 ve-sb-section justify-center select-none">
         <div className="flex flex-col">
-          
-          <div className="text-center">
+        <img
+              className="my-0 mx-auto  w-24  z-50 select-none"
+              src={
+                "https://res.cloudinary.com/drr1rnoxf/image/upload/v1656076683/Group_1412_bj46qa.svg"
+              }
+              style={{marginTop:'-5.7rem'}}
+              alt="trade"
+            />
+          <div className="text-center mt-8 ">
             <text className="vesb-text1 block text-gray-110">
              <span className=" text-green-100 vesb-text">veSB</span>  is the governance token of SuperStable. <br /> It is
               acquirable by staking and locking SB.
