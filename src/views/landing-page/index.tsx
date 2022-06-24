@@ -1,8 +1,9 @@
-import React from "react";
-import { Wrapper, GlobalStyle } from "./style";
+import React, { useRef } from "react";
+import { Wrapper, GlobalStyle, Card } from "./style";
 import polygon4 from '../../assets/landing-page/polygon_3.png';
 import orHex from '../../assets/landing-page/or-hex.png'
 import downArrow from '../../assets/landing-page/bxs_down-arrow.png'
+import buttonIcon from '../../assets/landing-page/button.png'
 
 import { Col, Row } from "antd";
 import { BtnText, CardText } from "../home/home.styled";
@@ -10,6 +11,7 @@ import { useHistory } from "react-router-dom";
 
 import Collapsible from 'react-collapsible';
 import { FiArrowUpRight } from "react-icons/fi";
+import { CardData } from "./helper";
 
 
 
@@ -17,6 +19,16 @@ import { FiArrowUpRight } from "react-icons/fi";
 export const LandingPage = () => {
 
   const history = useHistory();
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  const scroll = (scrollOffset: number) => {
+    if (ref.current) {
+      console.log(ref.current.scrollLeft, scrollOffset)
+      ref.current.scrollLeft += scrollOffset;
+
+    }
+  };
 
 
 
@@ -65,9 +77,53 @@ export const LandingPage = () => {
         </Row>
       </div>
     </div>
-    <div className="scroll-handle flex justify-center align-middle  py-4">
-      <text className="hero-side-text">A Uniquely Dynamic Exposure</text>
+    <div className="scroll-handle">
+      <Row className="py-5">
+        <Col>
+          <button onClick={() => scroll(-900)}><img className="left-btn mx-1" src={buttonIcon} alt='button' /></button>
+          <button onClick={() => scroll(900)}><img className="mx-1" src={buttonIcon} alt='button' /></button>
+        </Col>
+        <Col className="label">
+          A Uniquely Dynamic Exposure
+        </Col>
+      </Row>
     </div>
+    <br></br>
+    <div className="scrollable" ref={ref}>
+      <div className="card-wrapper">
+        {CardData.map(({ headCoinId, title, otherCoin, width, coinInRow }, index) =>
+          <Card width={width} key={'card-' + index}>
+            <div className='card-top'>
+              <div><span className="subHead">Stable Coin </span><br /><span className="title">{title}</span></div>
+              <div><img
+                className="rounded-full"
+                src={require(`../../assets/coinType/logo${headCoinId}.jpg`)}
+                alt="..."
+              /></div>
+            </div>
+            <div className="card-chain"><span className="subHead">Chain</span> <div className="chain-line"></div></div>
+            <Row className="card-bottom">
+              {otherCoin.map((coin) =>
+                <Col span={24 / (coinInRow || 2)} className="coin-card">
+                  <div>
+                    <img
+                      className="rounded-full"
+                      src={require(`../../assets/coinType/logo${coin.coinId}.jpg`)}
+                      alt="..."
+                    />
+                  </div>
+                  <div className="card-labels">
+                    <span className="label">{coin.title}</span>
+                    <span className="subLabel">{coin.percentage}</span>
+                  </div>
+                </Col>
+              )}
+            </Row>
+          </Card>
+        )}
+      </div>
+    </div>
+
     <Row>
       <Col span={24}>
         <h1 className="title-2">
