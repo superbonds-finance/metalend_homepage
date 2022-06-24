@@ -12,3 +12,4 @@ export {ClaimNFTView} from "./claimNFT";
 export {PlatformStatsView} from "./plaftform-stats";
 export {BuySBView} from "./buy-SB"
 export {FDPage} from './fixed-deposits'
+export {SBFuel} from './SB-fuel'

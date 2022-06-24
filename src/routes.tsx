@@ -17,7 +17,8 @@ import {  HomeView,
           FarmingRewardsView,
           PlatformStatsView,
           BuySBView,
-          FDPage
+          FDPage,
+          SBFuel
        } from "./views";
 
 import {
@@ -74,6 +75,7 @@ export function Routes() {
                   <Route exact path="/buy-SB" children={<BuySBView />} />
                   <Route exact path="/landing-page" children={<LandingPage />} />
                   <Route exact path="/fd" children={<FDPage />} />
+                  <Route exact path="/sb" children={<SBFuel />} />
                 </Switch>
               </AppLayout>
 
