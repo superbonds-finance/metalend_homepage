@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 // import { Popover } from "antd";
 // import { Settings } from "../Settings";
 // import { LABELS } from "../../constants";
@@ -11,11 +11,13 @@ import { useLocation } from "react-router-dom";
 import { BtnText } from "../../views/home/home.styled";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Wrapper } from "./styled";
+import { IoIosArrowForward } from "react-icons/io";
+import { Menu, Transition } from "@headlessui/react";
 
 export default function NavbarNew(props: {
-  left?: JSX.Element,
-  right?: JSX.Element,
-  showWinUp?: boolean
+  left?: JSX.Element;
+  right?: JSX.Element;
+  showWinUp?: boolean;
 }) {
   const history = useHistory();
   const { connected } = useWallet();
@@ -30,50 +32,65 @@ export default function NavbarNew(props: {
     setPath(location.pathname);
   }, [location.pathname]);
 
-  const Links = (<>
-    <div className="flex md:flex-col">
-      <div className="flex justify-between" style={{ height: '38px' }}>
-        <button
-          onClick={() =>
-            window.open("https://res.cloudinary.com/drr1rnoxf/image/upload/v1649780638/SuperBonds_Audit_Report_caey88.pdf")
-          }
-          className="hover:bg-green-100  text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-5 md:px-3 sm:px-2 py-1 inline-block ml-3"
-        >
-          <TextDoc transform="" className="" size="16px" weight="true">
-            Audit Report
-          </TextDoc>
-        </button>
+  const Links = (
+    <>
+      <div className="flex md:flex-col">
+        <div className="flex justify-between" style={{ height: "38px" }}>
+          <button
+            onClick={() =>
+              window.open(
+                "https://res.cloudinary.com/drr1rnoxf/image/upload/v1649780638/SuperBonds_Audit_Report_caey88.pdf"
+              )
+            }
+            className="hover:bg-green-100  text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-5 md:px-3 sm:px-2 py-1 inline-block ml-3"
+          >
+            <TextDoc transform="" className="" size="16px" weight="true">
+              Audit Report
+            </TextDoc>
+          </button>
 
-
-        <button
-
-          onClick={() =>
-            handlePush("/trade")
-          }
-          className="hover:bg-green-100 text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-4 md:px-3 sm:px-2 py-0 inline-block ml-3"
-        >
-          <TextDoc transform="" className="" size="16px" weight="true">
-            Launch App
-          </TextDoc>
-        </button>
+          <button
+            onClick={() => handlePush("/trade")}
+            className="hover:bg-green-100 text-white hover:text-black mr-2 border-2 z-40  rounded-md border-green-100 px-4 md:px-3 sm:px-2 py-0 inline-block ml-3"
+          >
+            <TextDoc transform="" className="" size="16px" weight="true">
+              Launch App
+            </TextDoc>
+          </button>
+        </div>
+        <div className="mx-auto py-2 sm:pt-6">
+          <a
+            href="https://twitter.com/SBonds_Finance"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <i className="fab fa-twitter fa-lg px-2 z-50" />
+          </a>
+          <a
+            href="https://t.me/SuperBonds"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <i className="fab fa-telegram fa-lg px-2 z-50" />
+          </a>
+          <a
+            href="https://discord.gg/yCWKEcxKAe"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <i className="fab fa-discord fa-lg px-2 z-50" />
+          </a>
+          <a
+            href="https://superbonds.medium.com/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <i className="fab fa-medium fa-lg px-2 z-50" />
+          </a>
+        </div>
       </div>
-      <div className='mx-auto py-2 sm:pt-6'>
-        <a href="https://twitter.com/SBonds_Finance" rel="noopener noreferrer" target="_blank">
-          <i className="fab fa-twitter fa-lg px-2 z-50" />
-        </a>
-        <a href="https://t.me/SuperBonds" rel="noopener noreferrer" target="_blank">
-          <i className="fab fa-telegram fa-lg px-2 z-50" />
-        </a>
-        <a href="https://discord.gg/yCWKEcxKAe" rel="noopener noreferrer" target="_blank">
-          <i className="fab fa-discord fa-lg px-2 z-50" />
-        </a>
-        <a href="https://superbonds.medium.com/" rel="noopener noreferrer" target="_blank">
-          <i className="fab fa-medium fa-lg px-2 z-50" />
-        </a>
-      </div>
-    </div>
-
-  </>);
+    </>
+  );
 
   return (
     <Wrapper className="nav">
@@ -83,19 +100,18 @@ export default function NavbarNew(props: {
           <img
             className="inline-block w-52"
             src={
-              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1648553250/Logo_with-text_lqvart.png"
+              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1656163543/ss_logo_jwymfz.svg"
             }
             alt="SuperB"
           />
-
         </div>
       </div>
 
-      {path === "/" && <div className="nav-links-outer">
-        <div>
-          {Links}
+      {path === "/" && (
+        <div className="nav-links-outer">
+          <div>{Links}</div>
         </div>
-      </div>}
+      )}
 
       <div className="nav-btn">
         <label htmlFor="nav-check">
@@ -105,43 +121,429 @@ export default function NavbarNew(props: {
         </label>
       </div>
 
-
-      <div className={"nav-links  text-center" + (props.showWinUp ? ' space_top' : '')}>
-
+      <div
+        className={
+          "nav-links  text-center" + (props.showWinUp ? " space_top" : "")
+        }
+      >
         {path === "/" ? (
-          <div className="nav-links-outer-nav">
-            {Links}
-          </div>
+          <div className="nav-links-outer-nav">{Links}</div>
         ) : (
           <>
-            <button
-              className={
-                path === "/trade" ? "bg-gray-300  text-white rounded-md" : "nav-title"
-              }
-              onClick={() => handlePush("/trade")}
-            >
-              <span className="text-sm tracking-wide">PRODUCT</span>
-            </button>
+            <Menu as="div" className="relative inline-block text-left">
+              {({ open }) => (
+                <>
+                  <div>
+                    <Menu.Button>
+                      <button
+                        className={`${
+                          open ? "menu-button-hover menu-button" : "menu-button"
+                        }   nav-title`}
+                      >
+                        <span className="text-sm tracking-wide menu-options-text">
+                          PRODUCT
+                        </span>
+                      </button>
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute  mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }  menu-options flex justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Twitter </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Telegram </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Discord </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>{" "}
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Medium </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                </>
+              )}
+            </Menu>
+
+            <Menu as="div" className="relative inline-block text-left">
+              {({ open }) => (
+                <>
+                  <div>
+                    <Menu.Button>
+                      <button
+                        className={`${
+                          open ? "menu-button-hover menu-button" : "menu-button"
+                        }   nav-title`}
+                      >
+                        <span className="text-sm tracking-wide menu-options-text">
+                          DEVELOPERS
+                        </span>
+                      </button>
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute  mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Twitter </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Telegram </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Discord </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>{" "}
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Medium </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                </>
+              )}
+            </Menu>
+
+            <Menu as="div" className="relative inline-block text-left">
+              {({ open }) => (
+                <>
+                  <div>
+                    <Menu.Button>
+                      <button
+                        className={`${
+                          open ? "menu-button-hover menu-button" : "menu-button"
+                        }   nav-title`}
+                      >
+                        <span className="text-sm tracking-wide menu-options-text">
+                          COMMUNITY
+                        </span>
+                      </button>
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute  mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Twitter </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Telegram </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Discord </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>{" "}
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Medium </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                </>
+              )}
+            </Menu>
 
             <button
               className={
-                path === "/liquidity" ? "bg-gray-300  text-white rounded-md" : "nav-title"
-              }
-              onClick={() => handlePush("/liquidity")}
-            >
-              <span className="text-sm tracking-wide">DEVELOPERS</span>
-            </button>
-            <button
-              className={
-                path === "/buy-SB" ? "bg-gray-300  text-white rounded-md" : "nav-title"
-              }
-              onClick={() => handlePush("/buy-SB")}
-            >
-              <span className="text-sm tracking-wide">COMMUNITY</span>
-            </button>
-            <button
-              className={
-                (path === "/stake" ? "bg-gray-300  text-white rounded-md" : "nav-title") + " coming-soon-btn"
+                (path === "/stake"
+                  ? "bg-gray-300  text-white rounded-md"
+                  : "nav-title") + " coming-soon-btn"
               }
               onClick={() => handlePush("/stake")}
             >
@@ -149,10 +551,8 @@ export default function NavbarNew(props: {
               <span className="tracking-wide nav-sub-title">COMING SOON</span>
             </button>
             <button
-              onClick={() =>
-                history.push("/trade")
-              }
-              style={{ boxShadow: '0px 3px 9px 0px #40ba12' }}
+              onClick={() => history.push("/trade")}
+              style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
               className="button-hover-change btn-hover-width w-40 z-40 rounded-md px-2 py-2 inline-block text-center"
             >
               <BtnText
@@ -160,7 +560,7 @@ export default function NavbarNew(props: {
                 size="16px"
                 weight="true"
                 color="black"
-                height='21px'
+                height="21px"
               >
                 Launch App
                 <FiArrowUpRight />
@@ -199,9 +599,7 @@ export default function NavbarNew(props: {
             </Popover> */}
           </>
         )}
-
       </div>
     </Wrapper>
   );
 }
-

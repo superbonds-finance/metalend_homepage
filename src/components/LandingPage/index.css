@@ -8,8 +8,21 @@ a, a:hover , a:focus{
   padding: 8px 24px;
   text-decoration: none;
   font-family: Archivo;
-  font-size: 14px;   
+  font-size: 14px;  
+
 }
+.menu-text{
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px; 
+}
+.menu-options-text{
+  font-weight: 700;
+}
+
+ 
 
 .ant-btn-primary,.ant-btn-primary:hover,.ant-btn-primary:focus{
   border:none;
@@ -311,7 +324,20 @@ display: none;
   color: #fff;
   font-size: 11px;
 }
-
+.menu-button{
+ 
+  padding: 5px 12px;
+  gap: 10px;
+  border-radius: 8px;
+}
+.menu-button-hover{
+  background-color: #28333F;
+  color:white;
+  
+}
+.menu-options{
+  transition: all 0.3s ease-out;
+}
 .coming-soon-btn{
   display: flex !important;
     flex-direction: column;

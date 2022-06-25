@@ -89,7 +89,7 @@ export default function Navbar(props: {
           <img
             className="inline-block w-52"
             src={
-              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1648553250/Logo_with-text_lqvart.png"
+              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1656163543/ss_logo_jwymfz.svg"
             }
             alt="SuperB"
           />

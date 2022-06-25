@@ -20,7 +20,7 @@ export const SBFuel = () => {
         <div className="polygen1">
           <img alt="bg-hexagon" className="blur1" src={polygon4} />
           <img alt="bg-hexagon1" className="blur" src={polygon4} />
-          <Row className="pl-5 custom-row">
+          <Row className="pl-10 custom-row">
             <Col className="col1 flex flex-col" span={14}>
               <div>
                 <div className="main-title">
@@ -117,8 +117,8 @@ export const SBFuel = () => {
           <h1 className="title-2 select-none">Trade SB</h1>
         </Col>
       </Row>
-      <div className="flex flex-wrap w-9/12 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center ">
-        <div className="flex flex-col justify-center my-0 mx-3 sm:w-full bg-transparent">
+      <div className="flex flex-wrap w-9/12 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center" style={{backgroundColor:'none'}}>
+        <div className="flex flex-col justify-center my-0 mx-3 sm:w-full bg-transparent" style={{backgroundColor:'none'}}>
           <div className="z-50">
             <img
               className="my-0 mx-auto  w-24  z-50 select-none"
@@ -137,7 +137,7 @@ export const SBFuel = () => {
               <button
                 onClick={() => history.push("/trade")}
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-                className="button-hover-change mx-auto mt-7 w-36 z-40 rounded-md px-2 py-2 inline-block text-center"
+                className="button-hover-change mx-auto mt-14 w-36 z-40 rounded-md px-2 py-2 inline-block text-center"
               >
                 <BtnText
                   transform
@@ -170,7 +170,7 @@ export const SBFuel = () => {
               </BtnText>
               <button
                 className="sb-market-button mt-5 items-center mx-auto my-0 rounded"
-                style={{ border: "1px solid #3D4F61", width: "60%" }}
+                style={{ border: "1px solid #3D4F61", width: "70%" }}
               >
                 <img
                   onClick={() =>
@@ -186,7 +186,7 @@ export const SBFuel = () => {
               </button>
               <button
                 className="sb-market-button py-1.5 mt-2 w-15  mx-auto my-0 rounded"
-                style={{ border: "1px solid #3D4F61", width: "60%" }}
+                style={{ border: "1px solid #3D4F61", width: "70%" }}
               >
                 <img
                   onClick={() =>
@@ -205,7 +205,7 @@ export const SBFuel = () => {
             </div>
           </div>
         </div>
-        <div className="custom-bg-box"></div>
+       
       </div>
 
       <div className="flex bg-gray-300 w-3/12 mx-auto my-0  py-10 ve-sb-section justify-center select-none">
