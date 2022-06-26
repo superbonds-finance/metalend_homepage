@@ -100,8 +100,8 @@ padding: 6rem 0 2rem;
     text-align: center;
   }
   .title-4{
-    font-size: 14px;
-    color: #687D95;
+    font-size: 13px;
+   
     text-transform: uppercase;
     text-align: center;
   }

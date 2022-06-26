@@ -8,7 +8,8 @@ export const Wrapper = styled.div`
     color: white;
     font-size: 1.5rem;
     position: absolute;
-    right: -30px;top:-4px;
+    right: -30px;
+    top:-4px;
     opacity: 0;
   }
 
@@ -19,7 +20,7 @@ export const Wrapper = styled.div`
     }
 
     &:hover{
-      width: 11rem !important;
+      width: 12rem !important;
       svg{
         animation-name: animation2;
         animation-duration: 0.3s;

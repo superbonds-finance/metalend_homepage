@@ -1,0 +1,23 @@
+.menu-button{
+ 
+    padding: 5px 12px;
+    gap: 10px;
+    border-radius: 8px;
+  }
+  .menu-button-hover{
+    background-color: #28333F;
+    color:white;
+    
+  }
+  .nav-title {
+    color: #687D95;
+  }
+  
+  .nav-title:hover {
+    color: #fff;
+  }
+
+  .title-div{
+    font-family: 'Plus Jakarta Sans';
+    font-size: 18px;
+  }

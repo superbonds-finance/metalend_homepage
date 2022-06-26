@@ -86,7 +86,7 @@ font-weight: ${(props) => (props.weight ? 'bold' : '300')};
 font-size: ${(props) => (props.size ? props.size : '14px')};
 line-height: ${({ height }) => (height ? height : '2px')};;
 text-transform: ${(props) => (props.transform ? "uppercase" : 'non')};
-letter-spacing:1px;
+ 
 color: ${(props) => (props.color ? props.color : '#FFFFFF')};
 opacity: ${(props) => (props.opacity ? props.opacity : '')};
 @media (max-width: 639px) {

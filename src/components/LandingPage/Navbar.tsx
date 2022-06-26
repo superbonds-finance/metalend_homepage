@@ -157,17 +157,17 @@ export default function NavbarNew(props: {
                   >
                     <Menu.Items className="absolute  mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="px-1 py-1" style={{ borderTop: "none" }}>
-                        
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={() => history.push("/trade")}
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
                                   : "text-gray-110"
                               }  menu-options flex justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
                             >
-                              <text className="menu-text"> Twitter </text>
+                              <text className="menu-text"> Trade </text>
                               {active ? (
                                 <IoIosArrowForward
                                   className="text-green-100 text-xl"
@@ -187,13 +187,14 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={() => history.push("/liquidity")}
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
                                   : "text-gray-110"
                               }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
                             >
-                              <text className="menu-text"> Telegram </text>
+                              <text className="menu-text"> Liquidity </text>
                               {active ? (
                                 <IoIosArrowForward
                                   className="text-green-100 text-xl"
@@ -213,13 +214,14 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={() => history.push("/buy-SB")}
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
                                   : "text-gray-110"
                               }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
                             >
-                              <text className="menu-text"> Discord </text>
+                              <text className="menu-text"> Buy-SB </text>
                               {active ? (
                                 <IoIosArrowForward
                                   className="text-green-100 text-xl"
@@ -239,13 +241,14 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={() => history.push("/stake")}
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
                                   : "text-gray-110"
                               }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
                             >
-                              <text className="menu-text"> Medium </text>
+                              <text className="menu-text"> Stake-SB </text>
                               {active ? (
                                 <IoIosArrowForward
                                   className="text-green-100 text-xl"
@@ -297,13 +300,18 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={() =>
+                                window.open(
+                                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1649780638/SuperBonds_Audit_Report_caey88.pdf"
+                                )
+                              }
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
                                   : "text-gray-110"
                               }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
                             >
-                              <text className="menu-text"> Twitter </text>
+                              <text className="menu-text"> Audit Report </text>
                               {active ? (
                                 <IoIosArrowForward
                                   className="text-green-100 text-xl"
@@ -323,65 +331,18 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={() =>
+                                window.open(
+                                  "https://superbonds.gitbook.io/superbonds/"
+                                )
+                              }
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
                                   : "text-gray-110"
                               }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
                             >
-                              <text className="menu-text"> Telegram </text>
-                              {active ? (
-                                <IoIosArrowForward
-                                  className="text-green-100 text-xl"
-                                  aria-hidden="true"
-                                />
-                              ) : (
-                                <IoIosArrowForward
-                                  className="text-green-100 hidden"
-                                  aria-hidden="true"
-                                />
-                              )}
-                            </button>
-                          )}
-                        </Menu.Item>
-                      </div>
-                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <button
-                              className={`${
-                                active
-                                  ? "bg-gray-130 text-white"
-                                  : "text-gray-110"
-                              }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
-                            >
-                              <text className="menu-text"> Discord </text>
-                              {active ? (
-                                <IoIosArrowForward
-                                  className="text-green-100 text-xl"
-                                  aria-hidden="true"
-                                />
-                              ) : (
-                                <IoIosArrowForward
-                                  className="text-green-100 hidden"
-                                  aria-hidden="true"
-                                />
-                              )}
-                            </button>
-                          )}
-                        </Menu.Item>
-                      </div>{" "}
-                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <button
-                              className={`${
-                                active
-                                  ? "bg-gray-130 text-white"
-                                  : "text-gray-110"
-                              }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
-                            >
-                              <text className="menu-text"> Medium </text>
+                              <text className="menu-text"> Docs </text>
                               {active ? (
                                 <IoIosArrowForward
                                   className="text-green-100 text-xl"
@@ -433,6 +394,11 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={() =>
+                                window.open(
+                                  "https://twitter.com/SBonds_Finance"
+                                )
+                              }
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
@@ -459,6 +425,9 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={() =>
+                                window.open("https://t.me/SuperBonds")
+                              }
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
@@ -485,6 +454,9 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={() =>
+                                window.open("https://discord.gg/yCWKEcxKAe")
+                              }
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
@@ -511,6 +483,9 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={() =>
+                                window.open("https://superbonds.medium.com/")
+                              }
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
@@ -550,6 +525,7 @@ export default function NavbarNew(props: {
               <span className="text-sm tracking-wide">GOVERNANCE</span>
               <span className="tracking-wide nav-sub-title">COMING SOON</span>
             </button>
+
             <button
               onClick={() => history.push("/trade")}
               style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
@@ -567,7 +543,7 @@ export default function NavbarNew(props: {
               </BtnText>
               {/* <img  className=' mt-0.5' src={arrow}  /> */}
             </button>
-            {connected && (
+            {/* {connected && (
               <button
                 className={
                   path === "/myaccount"
@@ -578,7 +554,7 @@ export default function NavbarNew(props: {
               >
                 <span className="text-sm tracking-wide">My Account</span>
               </button>
-            )}
+            )} */}
 
             {/*}<Popover
           placement="topRight"
