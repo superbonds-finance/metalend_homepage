@@ -192,7 +192,7 @@ export const LandingPage = () => {
           </Row>
         </div>
       </div>
-      <div className="scroll-handle">
+      <div className="scroll-handle flex justify-end">
         <Row className="py-5">
           <Col>
             {/* <button onClick={() => scroll(-900)}>
@@ -363,7 +363,7 @@ export const LandingPage = () => {
                   )
                 }
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-                className="button-hover-change mx-auto mt-7 w-36 z-40 rounded-md px-2 py-2 inline-block text-center"
+                className=" button-hover-change mx-auto mt-7 w-36 z-40 rounded-md px-2 py-2 inline-block text-center"
               >
                 <BtnText
                   transform
@@ -383,7 +383,7 @@ export const LandingPage = () => {
 
       <Row>
         <Col span={24}>
-          <h1 className="title-3">FAQ</h1>
+          <h1 className="title-3">FAQs</h1>
         </Col>
       </Row>
 

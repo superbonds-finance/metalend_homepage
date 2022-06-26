@@ -3,7 +3,7 @@ import React, { Fragment, useState, useEffect } from "react";
 // import { Settings } from "../Settings";
 // import { LABELS } from "../../constants";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 import { TextDoc } from "../Navbar/navbar-styled";
 // import { WalletMultiButton } from "@solana/wallet-adapter-ant-design";
 import "./index.css";
@@ -96,13 +96,13 @@ export default function NavbarNew(props: {
     <Wrapper className="nav">
       <input type="checkbox" id="nav-check" />
       <div className="nav-header cursor-pointer">
-        <div className="nav-title" onClick={() => handlePush("/")}>
+        <div className="nav-title pl-4" onClick={() => handlePush("/")}>
           <img
             className="inline-block w-52"
             src={
               "https://res.cloudinary.com/drr1rnoxf/image/upload/v1656163543/ss_logo_jwymfz.svg"
             }
-            alt="SuperB"
+            alt="SuperStable"
           />
         </div>
       </div>
@@ -152,8 +152,10 @@ export default function NavbarNew(props: {
                       <div className="px-1 py-1" style={{ borderTop: "none" }}>
                         <Menu.Item>
                           {({ active }) => (
-                            <button
-                              onClick={() => history.push("/fd")}
+                           <Link to='/fd' target={"_blank"}>
+                           <button
+                            
+                             
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
@@ -173,12 +175,14 @@ export default function NavbarNew(props: {
                                 />
                               )}
                             </button>
+                            </Link>
                           )}
                         </Menu.Item>
                       </div>
                       <div className="px-1 py-1" style={{ borderTop: "none" }}>
                         <Menu.Item>
                           {({ active }) => (
+                             <Link to='/sb' target={"_blank"}>
                             <button
                               onClick={() => history.push("/sb")}
                               className={`${
@@ -200,6 +204,7 @@ export default function NavbarNew(props: {
                                 />
                               )}
                             </button>
+                            </Link>
                           )}
                         </Menu.Item>
                       </div>

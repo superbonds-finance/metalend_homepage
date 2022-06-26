@@ -287,7 +287,7 @@ ${BtnText}{
     }
     .label{
       font-size: 19px;
-      padding-left: 18px;
+      padding-left: 5rem;
       font-weight: 700;
       margin-top: -3px;
       color: #7cfa4c;
@@ -295,7 +295,7 @@ ${BtnText}{
       letter-spacing: 0.5px;
       text-transform: uppercase;
       text-shadow: 0px 3px 9px #40BA12;
-      align-items: center;
+      align-items: end;
       display: flex;
     }
   }

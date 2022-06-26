@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Collapsible from "react-collapsible";
+import { useHistory } from "react-router-dom";
 import downArrow from "../../assets/landing-page/bxs_down-arrow.png";
-import './index.css';
+import "./index.css";
 
 export const FAQ = ({ type }) => {
+  const history = useHistory();
+
   if (type === "intro") {
     return (
       <div className="">
@@ -21,9 +24,9 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            SuperStable is an onchain fixed-deposit platform that is powered by
-            bringing together users that want fixed, predictable yield, with
-            those users that want uncapped topside. Users receive 2 key options:
+            SuperStable is an on-chain fixed deposit platform that is powered by
+            bringing together users who want a fixed, predictable yield, with
+            those users who want uncapped topside. Users receive 2 key options:
             1. To deposit USDC, and get a fixed rate of return in USDC, or 2. To
             underwrite the fixed yield, and earn variable yield in the form of
             farmed rewards.
@@ -43,8 +46,8 @@ export const FAQ = ({ type }) => {
         >
           <p className="mt-6">
             For many reasons. For one, you receive exposure to a portfolio of
-            stablecoins, mitigating the danger posed by any one stablecoin. As a
-            buyer of a fixed deposit, you also earn a fixed yield, thereby
+            stablecoins, mitigating the danger posed by any single stablecoin.
+            As a buyer of a fixed deposit, you also earn a fixed yield, thereby
             creating certainty of the value of your deposit over a certain
             period of time.
           </p>
@@ -79,11 +82,11 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            Both buyers of fixed deposits, and LPs of those fixed deposits,
-            stand to earn a return, just of a different nature. The key is that
-            SuperStable mines yield from exposure to stablecoins, not other
-            cryptocurrencies, thereby creating a lot of predictability and a
-            real use case for various risk management strategies.
+            Both the buyers of fixed deposits and the LPs of those fixed
+            deposits, stand to earn a return, just of a different nature. The
+            key is that SuperStable mines yield from exposure to stablecoins,
+            not other cryptocurrencies, thereby creating a lot of predictability
+            and an actual use case for various risk management strategies.
           </p>
         </Collapsible>
       </div>
@@ -106,15 +109,15 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            SB is a gas on SuperStable. It is required for and burned in every
-            transaction. No new SB can be minted.
+            $SB is gas on SuperStable. It is required for and burned in every
+            transaction. No new $SB can be minted.
           </p>
         </Collapsible>
         <Collapsible
           transitionTime={200}
           trigger={
             <div className="title-div">
-              What is the Utility of $SB token?
+              What is the Utility of the $SB token?
               <div>
                 <img src={downArrow} alt="arrow" />
               </div>
@@ -123,9 +126,50 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="mt-6">
-            SB utility is as a gas, but other staking options will become
-            available. It will always be the fuel for the SuperStable platform.
+            $SB token’s utility is as a gas, but other staking options will
+            become available. It will always be the fuel for the SuerStable
+            platform.
           </p>
+        </Collapsible>
+        <Collapsible
+          transitionTime={200}
+          trigger={
+            <div className="title-div">
+              What is the maximum supply of $SB tokens?
+              <div>
+                <img src={downArrow} alt="arrow" />
+              </div>
+              <p className="custom-border"></p>
+            </div>
+          }
+        >
+          <button
+            className="my-6 py-2 px-3"
+            onClick={() =>
+              window.open("https://superbonds.gitbook.io/superbonds/")
+            }
+          >
+            Click Here
+          </button>
+        </Collapsible>
+        <Collapsible
+          transitionTime={200}
+          trigger={
+            <div className="title-div">
+              From where I can buy $SB token?
+              <div>
+                <img src={downArrow} alt="arrow" />
+              </div>
+              <p className="custom-border"></p>
+            </div>
+          }
+        >
+          <button
+            className="my-6 py-2 px-3"
+            onClick={() => history.push("/buy-SB")}
+          >
+            Click Here
+          </button>
         </Collapsible>
       </div>
     );
@@ -147,15 +191,15 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            Right away. All of your yield is in real-time. This means you could
-            redeem your fixed deposit before maturity as well.
+            Right away. Your complete yield is in real-time. This means you
+            could redeem your fixed deposit before maturity as well.
           </p>
         </Collapsible>
         <Collapsible
           transitionTime={200}
           trigger={
             <div className="title-div">
-              How does SuperStable guaranteed a fixed return?
+              How does SuperStable guarantee a fixed return?
               <div>
                 <img src={downArrow} alt="arrow" />
               </div>
@@ -167,7 +211,7 @@ export const FAQ = ({ type }) => {
             Superstable uses a risk framework to send the USDC used for FD
             purchases to various destinations cross-chain to generate a return.
             That return profile is varied. That rate is blended to create a
-            fixed-rated of return.
+            fixed rate of return.
           </p>
         </Collapsible>
         <Collapsible
@@ -185,7 +229,7 @@ export const FAQ = ({ type }) => {
           <p className="my-6">
             SuperStable (formerly known as SuperBonds) is an audited platform
             with all suggested remedies. This goes for the smart contracts as
-            well as server-side security.
+            well as the server-side security.
           </p>
         </Collapsible>
         <Collapsible
@@ -201,9 +245,9 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            It will always be there. If you buy a 30-day FD, in theory you can
-            come back 1 year and the smart contract will still have it available
-            for you.
+            It will always be there. If you buy a 30-day FD, in theory, you can
+            come back 1 year after maturity and the smart contract will still
+            have it available for you.
           </p>
         </Collapsible>
 
@@ -220,10 +264,10 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            Every day, a random period from 00:00 to 23:59 UTC, a yield boost is
-            activated. During this period, 25% of the previous day’s collected
-            fees are redistributed to FD buyers by increasing the yield on their
-            FDs.
+            Every day, for a random period between 00:00 to 23:59 UTC, a yield
+            boost is activated. During this period, 25% of the previous day’s
+            collected fees are redistributed to FD buyers by increasing the
+            yield on their FDs.
           </p>
         </Collapsible>
 
@@ -240,7 +284,7 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            Not if you buy an FD. You know at the outset what you are paying and
+            Not if you buy a FD. You know at the outset what you are paying and
             what you will gain.
           </p>
         </Collapsible>
@@ -248,7 +292,7 @@ export const FAQ = ({ type }) => {
           transitionTime={200}
           trigger={
             <div className="title-div">
-              Where are my USDC stored after buying a Fixed deposit?
+              Where is my USDC stored after buying a Fixed deposit?
               <div>
                 <img src={downArrow} alt="arrow" />
               </div>
@@ -268,7 +312,7 @@ export const FAQ = ({ type }) => {
           transitionTime={200}
           trigger={
             <div className="title-div">
-              Is there any extra charges for early redemptions?
+              Are there any extra charges for early redemptions?
               <div>
                 <img src={downArrow} alt="arrow" />
               </div>
@@ -278,7 +322,7 @@ export const FAQ = ({ type }) => {
         >
           <p className="my-6">
             Fees are always subject to change. More information can be found in
-            the fees section.
+            the Fees section.
           </p>
         </Collapsible>
         <Collapsible
@@ -342,7 +386,7 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            There exists the possibility of losing principal. When an FD
+            There exists the possibility of losing the principal. When an FD
             purchaser provides USDC to the smart contract, the capital is then
             deployed to a number of DApps across various blockchains. This
             naturally introduces multiple elements of vulnerability. If any of
@@ -350,7 +394,7 @@ export const FAQ = ({ type }) => {
             total retrievable value of stablecoin may not equal the amount of
             USDC originally provided by the FD purchaser. In such event(s), in
             good faith, all retrievable value will be redeemable until there is
-            an insufficiency. Any insufficiency will be a loss beared by the FD
+            an insufficiency. Any insufficiency will be a loss borne by the FD
             purchaser.
           </p>
         </Collapsible>
@@ -374,16 +418,16 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            Go to the Liquidity page, enter the amount of liquidity to provide.
-            You may want to stake the generated LP token to further increase
-            your yield.
+            Go to the Liquidity page, and enter the amount of liquidity to
+            provide. You may want to stake the generated LP token to further
+            increase your yield.
           </p>
         </Collapsible>
         <Collapsible
           transitionTime={200}
           trigger={
             <div className="title-div">
-              What are the benefits of becoming a LP?
+              What are the benefits of becoming an LP?
               <div>
                 <img src={downArrow} alt="arrow" />
               </div>
@@ -393,11 +437,11 @@ export const FAQ = ({ type }) => {
         >
           <p className="mt-6">
             As an LP, you get some very distinct benefits. For one, you get a
-            large portion of the emission of SB from the protocol when you stake
-            your LP token on the Liquidity page. LPs also get a share of the
-            platform fees for each transaction (reflected in the LP price). And
-            LPs, also get to enjoy the variable yield generated by the farmed
-            stablecoin.
+            large portion of the emission of $SB from the protocol when you
+            stake your LP tokens on the Liquidity page. LPs also get a share of
+            the platform fees for each transaction (reflected in the LP token
+            price). Plus LPs also get to enjoy the variable yield generated by
+            the farmed stablecoin.
           </p>
         </Collapsible>
         <Collapsible
@@ -413,19 +457,19 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            LP pools on SuperStable are slightly different than most places.
-            When you provide liquidity to the LP Pool, you are effectively
-            providing your capital to be used as interest for purchasers of FDs.
-            You are compensated heavily for this, as when asn FD is purchased,
-            the USDC used to purchase the FD are farmed to generate a yield for
-            LPs.
+            LP pools on SuperStable are slightly different from the pools in
+            most places. When you provide liquidity to the LP Pool, you are
+            effectively providing your capital to be used as interest for
+            purchasers of FDs. You are compensated heavily for this, as when an
+            FD is purchased, the USDC used to purchase the FD is farmed to
+            generate a yield for LPs.
           </p>
         </Collapsible>
         <Collapsible
           transitionTime={200}
           trigger={
             <div className="title-div">
-              Is there any risk associated being a LP?
+              Is there any risk associated with being an LP?
               <div>
                 <img src={downArrow} alt="arrow" />
               </div>
@@ -435,7 +479,7 @@ export const FAQ = ({ type }) => {
         >
           <p className="my-6">
             There are always risks to every position. One such risk could be
-            that the yield the LP Pool is underwriting turns out to be higher
+            that the yield underwritten by the LP Pool turns out to be higher
             than the aggregate yield generated by the LP. For instance, this
             could happen if the broader crypto market enters a prolonged bear
             market and the fixed yield (the liability of the LP) is not adjusted
@@ -470,7 +514,7 @@ export const FAQ = ({ type }) => {
           transitionTime={200}
           trigger={
             <div className="title-div">
-              Are my $SB tokens are safe?
+              Are my $SB tokens safe?
               <div>
                 <img src={downArrow} alt="arrow" />
               </div>

@@ -334,7 +334,7 @@ ${BtnText}{
     margin-bottom:-50px;
     background: #161d21;
     position: relative;
-    clip-path: polygon(0 0,193% 0,0 193%);
+    clip-path: polygon(0 0, 100% 0%, 83% 100%, 0% 100%);
     border-top-right-radius: 10px;
   }
    .hero-side-text{

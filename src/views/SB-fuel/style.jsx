@@ -407,7 +407,9 @@ ${BtnText}{
        
     }
     .supply-circle1:hover{
-      border-width:2px;
+    
+      box-sizing: border-box;
+      border: 2px solid;
  
       background: linear-gradient(0deg, #1F2934, #1F2934),
       linear-gradient(90.02deg, #01A0FC -54.12%, #7CFA4C 101.37%);
@@ -426,6 +428,7 @@ ${BtnText}{
       .supply-6b-text{
         display:inline-block;
       }
+       
     } 
    
     .supply-data-value{
@@ -442,7 +445,7 @@ ${BtnText}{
       background-image: url("https://res.cloudinary.com/drr1rnoxf/image/upload/v1656073008/Polygon_5_udfyts.svg");
     }
     
-    
+     
    
     
 `

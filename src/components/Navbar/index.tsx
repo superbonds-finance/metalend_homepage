@@ -82,16 +82,16 @@ export default function Navbar(props: {
   </>);
 
   return (
-    <div className="nav">
+    <div className="nav" style={{backgroundColor:'black'}} >
       <input type="checkbox" id="nav-check" />
       <div className="nav-header cursor-pointer">
-        <div className="nav-title"  onClick={() => handlePush("/")}>
+        <div className="nav-title pl-4"  onClick={() => handlePush("/")}>
           <img
             className="inline-block w-52"
             src={
               "https://res.cloudinary.com/drr1rnoxf/image/upload/v1656163543/ss_logo_jwymfz.svg"
             }
-            alt="SuperB"
+            alt="SuperStable"
           />
 
         </div>
@@ -112,7 +112,7 @@ export default function Navbar(props: {
       </div>
 
 
-      <div className={"nav-links  text-center" + (props.showWinUp? ' space_top':'')}>
+      <div className={"nav-links  text-center" + (props.showWinUp? ' space_top':'')} >
 
       {path == "/" ?  (
         <div className="nav-links-outer-nav">
@@ -122,8 +122,9 @@ export default function Navbar(props: {
           <>
             <button
               className={
-                path == "/trade" ? "bg-gray-300  text-white rounded-md" : ""
+                path == "/trade" ? "bg-gray-300  text-white rounded-md py-2" : ""
               }
+              style={{padding:'8px 24px'}}
               onClick={() => handlePush("/trade")}
             >
               <span className="text-sm tracking-wide">Trade</span>
@@ -133,6 +134,7 @@ export default function Navbar(props: {
               className={
                 path == "/liquidity" ? "bg-gray-300  text-white rounded-md" : ""
               }
+              style={{padding:'8px 24px'}}
               onClick={() => handlePush("/liquidity")}
             >
               <span className="text-sm tracking-wide">Liquidity</span>
@@ -141,6 +143,7 @@ export default function Navbar(props: {
               className={
                 path == "/buy-SB" ? "bg-gray-300  text-white rounded-md" : ""
               }
+              style={{padding:'8px 24px'}}
               onClick={() => handlePush("/buy-SB")}
             >
               <span className="text-sm tracking-wide">Buy-SB</span>
@@ -149,6 +152,7 @@ export default function Navbar(props: {
               className={
                 path == "/stake" ? "bg-gray-300  text-white rounded-md" : ""
               }
+              style={{padding:'8px 24px'}}
               onClick={() => handlePush("/stake")}
             >
               <span className="text-sm tracking-wide">Stake-SB</span>
@@ -170,8 +174,10 @@ export default function Navbar(props: {
                     ? "bg-gray-300 mr-2 text-white rounded-md"
                     : ""
                 }
+                style={{padding:'8px 24px'}}
                 onClick={() => handlePush("/myaccount")}
               >
+
                 <span className="text-sm tracking-wide">My Account</span>
               </button>
             )}

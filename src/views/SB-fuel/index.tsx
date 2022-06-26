@@ -93,9 +93,8 @@ export const SBFuel = () => {
               Over years with
               Real-Time Settlement`}
             overlayStyle={{ top: "-5rem" }}
-       
           >
-            <div className="bg-gray-300 transition hover:ease-in duration-300 w-40 h-40 border supply-6b supply-circle1 flex flex-col justify-center select-none">
+            <div className="bg-gray-300   w-40 h-40 border supply-6b supply-circle1 flex flex-col justify-center select-none">
               <BsInfoCircleFill
                 className="supply-6b-icon"
                 style={{ fontSize: "9px" }}
@@ -105,6 +104,7 @@ export const SBFuel = () => {
           </Tooltip>
         </AntdTooltip>
 
+         
         <AntdTooltip margin="-3.3rem">
           <Tooltip
             getPopupContainer={(triggerNode) => triggerNode}
@@ -246,8 +246,10 @@ export const SBFuel = () => {
               </BtnText>
 
               <button
-                 onClick={() =>
-                  window.open("https://superbonds.medium.com/the-ambassador-program-from-superbonds-8d11f5063bac")
+                onClick={() =>
+                  window.open(
+                    "https://superbonds.medium.com/the-ambassador-program-from-superbonds-8d11f5063bac"
+                  )
                 }
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
                 className="button-hover-change mx-auto mt-14 w-36 z-40 rounded-md px-2 py-2 inline-block text-center"

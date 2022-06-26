@@ -1244,8 +1244,8 @@ export function TradeView() {
                                     <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status30 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
                                     <HoverToolTip noColor className="text-grid flex flex-col">
 
-                                        <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >YieldBoost Pool
-                                          <Tooltip placement="bottom" title={'Amount of USDC that is eligible for payment as interest during SuperBonds periods'}>
+                                        <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >Yield Boost Pool
+                                          <Tooltip placement="bottom" title={'Amount of USDC that is eligible for payment as interest during yield boost periods'}>
                                           <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                         </Text>
                                         <Text size={"19px"} color={(superBonds_status30 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"white"}><span ><strong>{(SuperBonds_Rewards_Pool_30_Balance).toFixed(2)}</strong></span></Text>
@@ -1415,8 +1415,8 @@ export function TradeView() {
                                       <div className="lg:hidden md:block sm:hidden" style={{paddingLeft:'6px', borderLeft: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188')/* ,height: '-1px' */}}></div>
                                       <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
                                       <HoverToolTip noColor className="text-grid flex flex-col">
-                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >YieldBoost Pool
-                                            <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during SuperBonds periods'}>
+                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >Yield Boost Pool
+                                            <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during yield boost periods'}>
                                             <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                           </Text>
                                           <Text size={"19px"} color={(superBonds_status90 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"white"}><span ><strong>{(SuperBonds_Rewards_Pool_90_Balance).toFixed(2)}</strong></span></Text>
@@ -1509,7 +1509,7 @@ export function TradeView() {
                   <div className="pb-3 flex justify-between flex-wrap">
                     <div className='flex justify-between sm:flex-col sm:justify-start flex-wrap sm:pb-3'>
                       <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 2? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(2)}>MY Trades</Text>
-                      <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 1? 'border-b-2 border-green-100' : '')} transform size='14px' onClick={()=>onShowAllTrades(1)}>Recent Trades</Text>
+                      {/* <Text className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 1? 'border-b-2 border-green-100' : '')} transform size='14px' onClick={()=>onShowAllTrades(1)}>Recent Trades</Text> */}
                         <Text color="white" className={"cursor-pointer ml-2 py-1 " + (showAllTrade == 3? 'border-b-2 border-green-100' : '')} transform  size='14px' onClick={()=>onShowAllTrades(3)}>
                           <Badge offset={[7,0]} count={myPendingData.length>9 ?"9+":myPendingData.length}>
                             <Text  transform  size='14px' >
