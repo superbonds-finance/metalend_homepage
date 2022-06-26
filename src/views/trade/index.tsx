@@ -1161,7 +1161,7 @@ export function TradeView() {
 
                           <div className={`flex justify-between rounded-t-md py-3 px-3 ${superBonds_status30 ==='ACTIVE'?'sb-activated':'bg-gray-200'} select-none`}>
                             <Text className='sm:hidden' weight={'true'} size ={"16px"} transform={"true"} color={superBonds_status30 ==='ACTIVE' ? "#334150":"white"} style={{ fontFamily:"Archivo"}}>30-day pool</Text>
-                            {superBonds_status30 ==='ACTIVE' && <Text className='mr-11 xl:mr-0'  weight={'true'} spacing='0.3em' size ={"16px"} transform={"true"} color={"#334150"} style={{ fontFamily:"Bai Jamjuree"}}>superbonds ACTIVATED</Text>}
+                            {superBonds_status30 ==='ACTIVE' && <Text className='mr-11 xl:mr-0'  weight={'true'} spacing='0.3em' size ={"16px"} transform={"true"} color={"#334150"} style={{ fontFamily:"Bai Jamjuree"}}>Yield Boost ACTIVATED</Text>}
                           </div>
 
                           <div className="grid-cols-2 mt-3 items-center hidden sm:grid">
@@ -1206,7 +1206,7 @@ export function TradeView() {
                             <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2 xs:col-span-1 main_hex">
                               <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url('https://res.cloudinary.com/drr1rnoxf/image/upload/v1649338054/Group_1312_m4dht4.png')`}}>
                                 <Text className='text-grid cursor-pointer w-9/12 mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
-                                <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}>
+                                <Tooltip placement="bottom" title={'Estimated yield earned by FD purchasers, inclusive of a fixed and variable component'}>
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
                                 <Text className="hex_number"
                                 size={CalculateHexNumberSize(((APY+ bond_yield30)>0?formatNumberWithoutRounding.format(APY+ bond_yield30):'0.00').length)}
@@ -1233,8 +1233,8 @@ export function TradeView() {
                                 <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
                                     <HoverToolTip noColor className="flex flex-col justify-start">
 
-                                        <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >Total Bonds Available
-                                          <Tooltip placement="bottom" title={'Total USDC value of bonds that can be purchased given the USDC value of capital in the LP pool'}>
+                                        <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >Total FDs Available
+                                          <Tooltip placement="bottom" title={'Total USDC value of FDs that can be purchased given the USDC value of capital in the LP pool'}>
                                           <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                         </Text>
                                         <Text size={"19px"} color={(superBonds_status30 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"white"}><span ><strong>{bond_yield30 ?formatNumberWithoutRounding.format((adjustedLiquidity30 * tradeLiquidityAvailability30 / (((1 + (bond_yield30/100))**(30/365)) - 1))/0.35):"0.00"}</strong></span></Text>
@@ -1244,7 +1244,7 @@ export function TradeView() {
                                     <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status30 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
                                     <HoverToolTip noColor className="text-grid flex flex-col">
 
-                                        <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >SuperBonds Pool
+                                        <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >YieldBoost Pool
                                           <Tooltip placement="bottom" title={'Amount of USDC that is eligible for payment as interest during SuperBonds periods'}>
                                           <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                         </Text>
@@ -1281,14 +1281,14 @@ export function TradeView() {
                                     </HoverToolTip>
 
                                     <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
-                                      <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Entrance
+                                      <Text weight='true' className="col-span-2" opacity={"50%"}>FD Value at Entrance
                                       <Tooltip placement="rightTop" title={' Amount paid by the trader and the amount on which the fixed interest is tabulated. Fees not included in calculation'}>
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
                                       <Text className='break-all' size={"19px"}color={'white'}><Text size='15px'>{formatNumberWithoutRounding.format(bondValue_30)}</Text>&nbsp;<Text className='whitespace-nowrap' size='12px'>USDC</Text></Text>
                                     </HoverToolTip>
 
                                     <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
-                                      <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Maturity
+                                      <Text weight='true' className="col-span-2" opacity={"50%"}>FD Value at Maturity
                                         <Tooltip placement="rightTop" title={'The gross amount (principal + interest) the trader will get back at maturity. Fees not included in calculation'}>
                                         <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                       </Text>
@@ -1333,7 +1333,7 @@ export function TradeView() {
 
                           <div className={`flex justify-between rounded-t-md py-3 px-3 ${superBonds_status90 ==='ACTIVE'?'sb-activated':'bg-gray-200'} select-none`}>
                             <Text className='sm:hidden' weight={'true'} size ={"16px"} transform={"true"} color={superBonds_status90 ==='ACTIVE' ? "#334150":"white"} style={{ fontFamily:"Archivo"}}>90-day pool</Text>
-                            {superBonds_status90 ==='ACTIVE' && <Text  className='mr-11 xl:mr-0' weight={'true'} spacing='0.3em' size ={"16px"} transform={"true"} color={"#334150"} style={{ fontFamily:"Bai Jamjuree"}}>superbonds ACTIVATED</Text>}
+                            {superBonds_status90 ==='ACTIVE' && <Text  className='mr-11 xl:mr-0' weight={'true'} spacing='0.3em' size ={"16px"} transform={"true"} color={"#334150"} style={{ fontFamily:"Bai Jamjuree"}}>Yield Boost ACTIVATED</Text>}
                           </div>
 
                           <div className="grid-cols-2 mt-3 items-center hidden sm:grid">
@@ -1379,7 +1379,7 @@ export function TradeView() {
                               <div className="flex flex-col items-center col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-2 xs:col-span-1 main_hex">
                                 <div className="flex flex-col text-center bg-no-repeat bg-center justify-center" style={{wordWrap:'break-word', width:'100%', height:'147px',backgroundSize:'147px',backgroundImage: `url('https://res.cloudinary.com/drr1rnoxf/image/upload/v1649338054/Group_1312_m4dht4.png')`}}>
                                   <Text className='w-9/12 text-grid cursor-pointer mx-auto px-2' size='12px' weight='600' color='white'>TOTAL APY
-                                  <Tooltip placement="bottom" title={'Estimated yield earned by Bond purchasers, inclusive of a fixed and variable component'}>
+                                  <Tooltip placement="bottom" title={'Estimated yield earned by FD purchasers, inclusive of a fixed and variable component'}>
                                   <ImInfo  className='info-circle-hide ml-0.5'  /></Tooltip></Text>
                                   <Text className="hex_number"
                                   size={CalculateHexNumberSize(((APY+ bond_yield90)>0?formatNumberWithoutRounding.format(APY+ bond_yield90):'0.00').length)}
@@ -1405,8 +1405,8 @@ export function TradeView() {
                               <div className="w-full px-1 py-3 rounded-md col-span-7 lg:col-span-3 md:col-span-3 sm:col-span-3 xs:col-span-1 hex_adjacent" style={{height:"max-content" ,"background": (superBonds_status90 ==='ACTIVE')? '#263B31':'#161D23'}}>
                                   <div className="flex justify-evenly lg:flex-col md:flex-row sm:flex-col lg:justify-start md:justify-evenly sm:justify-start">
                                       <HoverToolTip noColor className="flex flex-col justify-start">
-                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >Total Bonds Available
-                                            <Tooltip placement="bottom" title={'Total USDC value of bonds that can be purchased given the USDC value of capital in the LP pool'}>
+                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.75"} spacing={'0px'} weight='bold' >Total FDs Available
+                                            <Tooltip placement="bottom" title={'Total USDC value of FDs that can be purchased given the USDC value of capital in the LP pool'}>
                                             <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                           </Text>
                                           <Text size={"19px"} color={(superBonds_status90 ==='ACTIVE')? (bond_yield90>=0 ? "#7CFA4C" : "red"):"white"}><span ><strong>{bond_yield90 ? formatNumberWithoutRounding.format((adjustedLiquidity90 * tradeLiquidityAvailability90 / (((1 + (bond_yield90/100))**(90/365)) - 1))/0.35):"0.00"}</strong></span></Text>
@@ -1415,7 +1415,7 @@ export function TradeView() {
                                       <div className="lg:hidden md:block sm:hidden" style={{paddingLeft:'6px', borderLeft: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188')/* ,height: '-1px' */}}></div>
                                       <div className="hidden lg:block md:hidden sm:block" style={{borderBottom: '3px solid '+ ((superBonds_status90 ==='ACTIVE' )? '#1A232B':'#5C7188'),  marginBottom: '6px'}}></div>
                                       <HoverToolTip noColor className="text-grid flex flex-col">
-                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >SuperBonds Pool
+                                          <Text className='text-grid cursor-pointer' size={"14px"} opacity={"0.5"} spacing={'0px'} weight='bold' >YieldBoost Pool
                                             <Tooltip placement="bottom" title={' Amount of USDC that is eligible for payment as interest during SuperBonds periods'}>
                                             <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                           </Text>
@@ -1440,7 +1440,7 @@ export function TradeView() {
 
                                   <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
                                     <Text weight='true' className="col-span-2" opacity={"0.75"}>Days to Maturity
-                                      <Tooltip placement="rightTop" title={'The period of time after which the bond can be redeemed for its full value'}>
+                                      <Tooltip placement="rightTop" title={'The period of time after which the fd can be redeemed for its full value'}>
                                       <ImInfo  className='info-circle ml-0.5'  /></Tooltip></Text>
                                     <Text weight='true' className='' size={"19px"}color={'white'}>90</Text>
                                   </HoverToolTip>
@@ -1455,7 +1455,7 @@ export function TradeView() {
                                   </HoverToolTip>
 
                                     <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
-                                      <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Entrance
+                                      <Text weight='true' className="col-span-2" opacity={"50%"}>FD Value at Entrance
                                         <Tooltip placement="rightTop" title={' Amount paid by the trader and the amount on which the fixed interest is tabulated. Fees not included in calculation'}>
                                         <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                       </Text>
@@ -1463,7 +1463,7 @@ export function TradeView() {
                                     </HoverToolTip>
 
                                     <HoverToolTip className='text-grid cursor-pointer grid grid-cols-3'>
-                                      <Text weight='true' className="col-span-2" opacity={"50%"}>Bond Value at Maturity
+                                      <Text weight='true' className="col-span-2" opacity={"50%"}>FD Value at Maturity
                                         <Tooltip placement="rightTop" title={'The gross amount (principal + interest) the trader will get back at maturity. Fees not included in calculation'}>
                                         <ImInfo  className='info-circle ml-0.5'  /></Tooltip>
                                       </Text>

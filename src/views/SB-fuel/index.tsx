@@ -10,6 +10,8 @@ import { useHistory } from "react-router-dom";
 
 import Collapsible from "react-collapsible";
 import { BsInfoCircleFill } from "react-icons/bs";
+import { Tooltip } from "antd";
+import { AntdTooltip } from "./style";
 
 export const SBFuel = () => {
   const history = useHistory();
@@ -83,42 +85,146 @@ export const SBFuel = () => {
       </Row>
 
       <div className="supply-data-main flex justify-around align-middle items-center w-6/12 mx-auto my-0 ">
-        <div className="bg-gray-300  w-40 h-40 border supply-circle1 flex flex-col justify-center select-none">
-            <BsInfoCircleFill style={{fontSize:'9px'}} />
-          <text className="supply-data-value text-6xl">6B</text>
-        </div>
-        <div className="bg-gray-300   w-28 h-28 border supply-circle1 flex flex-col justify-center select-none">
-            <BsInfoCircleFill style={{fontSize:'9px'}} />
-          <text className="supply-data-value text-4xl">1.5B</text>
-        </div>
-        <div className="bg-gray-300   w-24 h-24 border supply-circle1 flex flex-col justify-center select-none">
-            <BsInfoCircleFill  style={{fontSize:'9px'}}/>
-          <text className="supply-data-value text-3xl">1.04B</text>
-        </div>
-        <div className="bg-gray-300   w-20 h-20 border supply-circle1 flex flex-col justify-center select-none">
-            <BsInfoCircleFill style={{fontSize:'9px'}} />
-          <text className="supply-data-value text-2xl">0.5B</text>
-        </div>
-        <div className="bg-gray-300  w-16 h-16  border supply-circle1 flex flex-col justify-center select-none">
-            <BsInfoCircleFill style={{fontSize:'9px'}} />
-          <text className="supply-data-value text-xl">0.46B</text>
-        </div>
-        <div className="bg-gray-300   w-14 h-14 border supply-circle1 flex flex-col justify-center select-none">
-            <BsInfoCircleFill style={{fontSize:'9px'}}/>
-          <text className="supply-data-value text-base">0.37B</text>
-        </div>
-        <div className="bg-gray-300  w-12 h-12 border supply-circle1 flex flex-col justify-center select-none">
-            <BsInfoCircleFill   style={{fontSize:'9px'}}/>
-          <text className="supply-data-value text-sm align-middle">0.13B</text>
-        </div>
+        <AntdTooltip margin="-4rem">
+          <Tooltip
+            getPopupContainer={(triggerNode) => triggerNode}
+            placement="bottom"
+            title={`Protocol Rewards Distributed
+              Over years with
+              Real-Time Settlement`}
+            overlayStyle={{ top: "-5rem" }}
+       
+          >
+            <div className="bg-gray-300 transition hover:ease-in duration-300 w-40 h-40 border supply-6b supply-circle1 flex flex-col justify-center select-none">
+              <BsInfoCircleFill
+                className="supply-6b-icon"
+                style={{ fontSize: "9px" }}
+              />
+              <text className="supply-data-value text-6xl">6B</text>
+            </div>
+          </Tooltip>
+        </AntdTooltip>
+
+        <AntdTooltip margin="-3.3rem">
+          <Tooltip
+            getPopupContainer={(triggerNode) => triggerNode}
+            placement="bottom"
+            title={"Dev/Team rewards"}
+            overlayStyle={{ top: "-4.5rem" }}
+          >
+            <div className="bg-gray-300   w-28 h-28 border  supply-6b  supply-circle1 flex flex-col justify-center select-none">
+              <BsInfoCircleFill
+                className="supply-6b-icon"
+                style={{ fontSize: "9px" }}
+              />
+              <text className="supply-data-value text-4xl">1.5B</text>
+            </div>
+          </Tooltip>
+        </AntdTooltip>
+
+        <AntdTooltip margin="-2.7rem">
+          <Tooltip
+            getPopupContainer={(triggerNode) => triggerNode}
+            placement="bottom"
+            title={"Sale in USDC"}
+            overlayStyle={{ top: "-3.5rem" }}
+          >
+            <div className="bg-gray-300   w-24 h-24 border supply-circle1 flex flex-col justify-center select-none">
+              <BsInfoCircleFill
+                className="supply-6b-icon"
+                style={{ fontSize: "9px" }}
+              />
+              <text className="supply-data-value text-3xl">1.04B</text>
+            </div>
+          </Tooltip>
+        </AntdTooltip>
+
+        <AntdTooltip margin="-2.3rem">
+          <Tooltip
+            getPopupContainer={(triggerNode) => triggerNode}
+            placement="bottom"
+            title={"Marketing"}
+            overlayStyle={{ top: "-3rem" }}
+          >
+            <div className="bg-gray-300   w-20 h-20 border supply-circle1 flex flex-col justify-center select-none">
+              <BsInfoCircleFill
+                className="supply-6b-icon"
+                style={{ fontSize: "9px" }}
+              />
+              <text className="supply-data-value text-2xl">0.5B</text>
+            </div>
+          </Tooltip>
+        </AntdTooltip>
+
+        <AntdTooltip margin="-2rem">
+          <Tooltip
+            getPopupContainer={(triggerNode) => triggerNode}
+            placement="bottom"
+            title={"treasury"}
+            overlayStyle={{ top: "-4rem" }}
+          >
+            <div className="bg-gray-300  w-16 h-16  border supply-circle1 flex flex-col justify-center select-none">
+              <BsInfoCircleFill
+                className="supply-6b-icon"
+                style={{ fontSize: "9px" }}
+              />
+              <text className="supply-data-value text-xl">0.46B</text>
+            </div>
+          </Tooltip>
+        </AntdTooltip>
+        <AntdTooltip margin="-1.5rem">
+          <Tooltip
+            getPopupContainer={(triggerNode) => triggerNode}
+            placement="bottom"
+            title={`Maximum a5t unlocked
+            conversion rate:
+            1a5t = 20 SB`}
+            overlayStyle={{ top: "-4rem" }}
+          >
+            <div className="bg-gray-300   w-14 h-14 border supply-circle1 flex flex-col justify-center select-none">
+              <BsInfoCircleFill
+                className="supply-6b-icon"
+                style={{ fontSize: "9px" }}
+              />
+              <text className="supply-data-value text-base">0.37B</text>
+            </div>
+          </Tooltip>
+        </AntdTooltip>
+        <AntdTooltip margin="-1rem">
+          <Tooltip
+            getPopupContainer={(triggerNode) => triggerNode}
+            placement="bottom"
+            title={`
+            maximum a5t locked
+            conversion rate: 
+            1a5t = 10 SB`}
+            overlayStyle={{ top: "-4rem" }}
+          >
+            <div className="bg-gray-300  w-12 h-12 border supply-circle1 flex flex-col justify-center select-none">
+              <BsInfoCircleFill
+                className="supply-6b-icon"
+                style={{ fontSize: "9px" }}
+              />
+              <text className="supply-data-value text-sm align-middle">
+                0.13B
+              </text>
+            </div>
+          </Tooltip>
+        </AntdTooltip>
       </div>
       <Row>
         <Col span={24}>
           <h1 className="title-2 select-none">Trade SB</h1>
         </Col>
       </Row>
-      <div className="flex flex-wrap w-9/12 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center" style={{backgroundColor:'none'}}>
-        <div className="flex flex-col justify-center my-0 mx-3 sm:w-full bg-transparent" style={{backgroundColor:'none'}}>
+      <div
+        className="flex flex-wrap w-9/12 mx-auto my-0 pt-5 2xl:w-11/12 xl:w-full justify-center"
+        style={{ backgroundColor: "none" }}
+      >
+        <div
+          className="flex flex-col justify-center my-0 mx-3 sm:w-full bg-transparent"
+          style={{ backgroundColor: "none" }}
+        >
           <div className="z-50">
             <img
               className="my-0 mx-auto  w-24  z-50 select-none"
@@ -130,12 +236,19 @@ export const SBFuel = () => {
           </div>
           <div className="select-none flex flex-col justify-start yielder-below-Q2 mx-auto my-0 px-3 pb-4 pt-16  rounded-md  -z-50 -mt-14 sm:w-full h-full">
             <div className="flex flex-col">
-              <BtnText className="mt-1" color="white" size="21px" weight="true ">
+              <BtnText
+                className="mt-1"
+                color="white"
+                size="21px"
+                weight="true "
+              >
                 Become an SB Ambassador
               </BtnText>
 
               <button
-                onClick={() => history.push("/trade")}
+                 onClick={() =>
+                  window.open("https://superbonds.medium.com/the-ambassador-program-from-superbonds-8d11f5063bac")
+                }
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
                 className="button-hover-change mx-auto mt-14 w-36 z-40 rounded-md px-2 py-2 inline-block text-center"
               >
@@ -205,23 +318,23 @@ export const SBFuel = () => {
             </div>
           </div>
         </div>
-       
       </div>
 
       <div className="flex bg-gray-300 w-3/12 mx-auto my-0  py-10 ve-sb-section justify-center select-none">
         <div className="flex flex-col">
-        <img
-              className="my-0 mx-auto  w-24  z-50 select-none"
-              src={
-                "https://res.cloudinary.com/drr1rnoxf/image/upload/v1656076683/Group_1412_bj46qa.svg"
-              }
-              style={{marginTop:'-5.7rem'}}
-              alt="trade"
-            />
+          <img
+            className="my-0 mx-auto  w-24  z-50 select-none"
+            src={
+              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1656076683/Group_1412_bj46qa.svg"
+            }
+            style={{ marginTop: "-5.7rem" }}
+            alt="trade"
+          />
           <div className="text-center mt-8 ">
             <text className="vesb-text1 block text-gray-110">
-             <span className=" text-green-100 vesb-text">veSB</span>  is the governance token of SuperStable. <br /> It is
-              acquirable by staking and locking SB.
+              <span className=" text-green-100 vesb-text">veSB</span> is the
+              governance token of SuperStable. <br /> It is acquirable by
+              staking and locking SB.
             </text>
             <text className="vesb-text1 block text-gray-110 py-3">
               More details on veSB can be found under <br />

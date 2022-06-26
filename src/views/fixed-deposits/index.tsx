@@ -16,7 +16,7 @@ export const FDPage = () => {
 
   return (
     <Wrapper>
-      <div className="w-7/12 mx-auto my-0 fd-header flex flex-col mt-10 mb-10 ">
+      <div className="w-9/12 mx-auto my-0 fd-header flex flex-col mt-10 mb-10 ">
         <text className="fd-header-text">Fixed Deposits</text>
         <text className="fd-header-text">(FDs)</text>
         <text className="fd-sub-header">
@@ -60,6 +60,7 @@ export const FDPage = () => {
                   portion of trading fees to boost their aggregate yield.
                 </text>
                 <button
+                 onClick={() => history.push("/trade")}
                   style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
                   className="button-hover-change   mt-7 w-28 z-40 rounded-md px-1 py-1 inline-block text-center"
                 >

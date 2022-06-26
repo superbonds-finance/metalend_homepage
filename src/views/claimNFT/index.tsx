@@ -314,7 +314,7 @@ export  function ClaimNFTView() {
             <div className='w-9/12 lg:w-full md:w-full sm:w-full my-0 mx-auto rounded-lg border-2 selected-box-neon px-3 py-3'>
             <div className="flex flex-col w-full my-0 mx-auto text-center">
               <Text  className='select-none' weight size='18px' color='#7CFA4C'>Claim Transferred NFT</Text>
-              <Text size='14px' className='my-3'>If a Bond NFT you own isn't under My Account, you'll have to claim it</Text>
+              <Text size='14px' className='my-3'>If a FD NFT you own isn't under My Account, you'll have to claim it</Text>
               <div className='w-6/12 md:w-8/12 sm:w-10/12 xs:w-full my-0 mx-auto'>
                 <div className='grid grid-cols-3 gap-2'>
                   <div className="col-span-2">
@@ -322,7 +322,7 @@ export  function ClaimNFTView() {
                       onChange={onChangeNFT}
                       required
                       className="w-full py-2 px-2 h-10 float-right rounded-md bg-gray-400
-                      focus:outline-none ring-2 ring-green-100 border-transparent placeholder-green-100" placeholder="Enter Bond NFT Address" />
+                      focus:outline-none ring-2 ring-green-100 border-transparent placeholder-green-100" placeholder="Enter FD NFT Address" />
                   </div>
                   <div className="">
                     <button onClick={()=>onCheck()} className="border-2 hover:bg-green-100 hover:text-black rounded-md border-green-100 px-6 py-2 inline-block">

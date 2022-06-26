@@ -296,7 +296,11 @@ export const LandingPage = () => {
               </CardText>
 
               <button
-                onClick={() => history.push("/trade")}
+                 onClick={() =>
+                  window.open(
+                    "https://superbonds.gitbook.io/superbonds/"
+                  )
+                }
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
                 className="button-hover-change mx-auto mt-7 w-36 z-40 rounded-md px-2 py-2 inline-block text-center"
               >
@@ -353,7 +357,11 @@ export const LandingPage = () => {
               </CardText>
 
               <button
-                onClick={() => history.push("/trade")}
+                 onClick={() =>
+                  window.open(
+                    "https://superbonds.gitbook.io/superbonds/"
+                  )
+                }
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
                 className="button-hover-change mx-auto mt-7 w-36 z-40 rounded-md px-2 py-2 inline-block text-center"
               >

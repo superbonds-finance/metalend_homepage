@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
     }
 
     &:hover{
-      width: 12rem !important;
+      width: 10rem !important;
       svg{
         animation-name: animation2;
         animation-duration: 0.3s;

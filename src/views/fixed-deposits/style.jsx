@@ -195,7 +195,7 @@ padding: 6rem 0 2rem;
     opacity: 1;
     }
   }
-  }
+  } 
 
   .button-hover-change{
     /* background: linear-gradient(0deg, #7CFA4C, #7CFA4C), #1F2933;

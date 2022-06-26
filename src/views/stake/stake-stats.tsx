@@ -1369,13 +1369,13 @@ export function StakeStats() {
 
                 <div className="pb-6 pt-1 pl-1 pr-1 rounded-md ">
                   <div className='text-grid cursor-pointer grid grid-cols-1'>
-                    <Text size='16px' weight color='#7cfa4d'>Bond Purchaser Stats
-                      <Tooltip placement="rightTop" title={'The live value of all your outstanding bonds and all attributable SB not claimed'}>
+                    <Text size='16px' weight color='#7cfa4d'>FD Purchaser Stats
+                      <Tooltip placement="rightTop" title={'The live value of all your outstanding FDs and all attributable SB not claimed'}>
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>
                   </div>
                   <div className='grid grid-cols-3 bg-gray-200 rounded-t-md px-3 mt-2 py-1'>
-                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Outstanding Bond Value</Text>
+                    <Text  size={"14px"} className="col-span-2" opacity={"50%"}>Outstanding FD Value</Text>
                     <Text className='' size={"14px"}color={'white'}>{traderData ? formatNumberWithoutRounding.format(new BN(traderData.total_active_trades, 10, "le").toNumber()/1000000): "0.00"}</Text>
                   </div>
 
@@ -1385,7 +1385,7 @@ export function StakeStats() {
                   </div>
 
                   <div className='text-grid cursor-pointer grid grid-cols-1 mt-7'>
-                    <Text size='16px' weight color='#7cfa4d'>Bond LP Stats
+                    <Text size='16px' weight color='#7cfa4d'>FD LP Stats
                       <Tooltip placement="rightTop" title={'The number of staked LP tokens in each respective pool including all unclaimed rewards, consisting of SB and 3rd party tokens(Other Rewards)'}>
                       <ImInfo  className='info-circle ml-0.5'  style={{width:"13px", marginBottom:"2px"}} /></Tooltip>
                     </Text>

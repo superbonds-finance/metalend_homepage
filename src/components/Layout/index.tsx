@@ -15,9 +15,9 @@ export const AppLayout = React.memo(({ children }) => {
 
   const location = useLocation();
 
-  const showWinUp = location.pathname === '/';
-  const customLandingPage = location.pathname === "/landing-page";
-
+  const showWinUp = location.pathname === '/old';
+  const customLandingPage = location.pathname === "/" || location.pathname === "/fd"|| location.pathname === "/sb";
+console.log(location.pathname )
   return (
     <WalletModalProvider>
       <div className="App wormhole-bg">

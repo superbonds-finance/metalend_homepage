@@ -60,7 +60,7 @@ export function Routes() {
 
               <AppLayout>
                 <Switch>
-                  <Route exact path="/" component={() => <HomeView />} />
+                  <Route exact path="/" component={() => <LandingPage />} />
                   <Route exact path="/myaccount" children={<MyAccountView />} />
                   {/*<Route exact path="/pool-management" children={<PoolManagementView />} />
                   <Route exact path="/platform-settings" children={<StakingManagementView />} />*/}

@@ -34,7 +34,7 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
                     <th className="sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Maturity</Text></th>
                     <th className="sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Value at Entrance</Text></th>
                     <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Value at Maturity</Text></th>
-                    <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current Bond Value</Text></th>
+                    <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current FD Value</Text></th>
                     <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Profit at Maturity</Text></th>
                     <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current Profit</Text></th>
                 </tr>
@@ -87,7 +87,7 @@ export const TradeTableComponent: React.FC<{ tradeType: string ,data:any,onSettl
                 <th className="sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Maturity</Text></th>
                 <th className="sticky-header py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Value at Entrance</Text></th>
                 <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Value at Maturity</Text></th>
-                <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current Bond Value</Text></th>
+                <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current FD Value</Text></th>
                 <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Profit at Maturity</Text></th>
                 <th className="sticky-header py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current Profit</Text></th>
                 

@@ -107,12 +107,7 @@ export default function NavbarNew(props: {
         </div>
       </div>
 
-      {path === "/" && (
-        <div className="nav-links-outer">
-          <div>{Links}</div>
-        </div>
-      )}
-
+       
       <div className="nav-btn">
         <label htmlFor="nav-check">
           <span></span>
@@ -126,9 +121,7 @@ export default function NavbarNew(props: {
           "nav-links  text-center" + (props.showWinUp ? " space_top" : "")
         }
       >
-        {path === "/" ? (
-          <div className="nav-links-outer-nav">{Links}</div>
-        ) : (
+        {path === "/" || path === "/fd"|| path=== "/sb" ?  (
           <>
             <Menu as="div" className="relative inline-block text-left">
               {({ open }) => (
@@ -160,14 +153,14 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
-                              onClick={() => history.push("/trade")}
+                              onClick={() => history.push("/fd")}
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
                                   : "text-gray-110"
                               }  menu-options flex justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
                             >
-                              <text className="menu-text"> Trade </text>
+                              <text className="menu-text">Fixed Deposits</text>
                               {active ? (
                                 <IoIosArrowForward
                                   className="text-green-100 text-xl"
@@ -187,14 +180,14 @@ export default function NavbarNew(props: {
                         <Menu.Item>
                           {({ active }) => (
                             <button
-                              onClick={() => history.push("/liquidity")}
+                              onClick={() => history.push("/sb")}
                               className={`${
                                 active
                                   ? "bg-gray-130 text-white"
                                   : "text-gray-110"
                               }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
                             >
-                              <text className="menu-text"> Liquidity </text>
+                              <text className="menu-text">SB Token </text>
                               {active ? (
                                 <IoIosArrowForward
                                   className="text-green-100 text-xl"
@@ -210,60 +203,8 @@ export default function NavbarNew(props: {
                           )}
                         </Menu.Item>
                       </div>
-                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <button
-                              onClick={() => history.push("/buy-SB")}
-                              className={`${
-                                active
-                                  ? "bg-gray-130 text-white"
-                                  : "text-gray-110"
-                              }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
-                            >
-                              <text className="menu-text"> Buy-SB </text>
-                              {active ? (
-                                <IoIosArrowForward
-                                  className="text-green-100 text-xl"
-                                  aria-hidden="true"
-                                />
-                              ) : (
-                                <IoIosArrowForward
-                                  className="text-green-100 hidden"
-                                  aria-hidden="true"
-                                />
-                              )}
-                            </button>
-                          )}
-                        </Menu.Item>
-                      </div>{" "}
-                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <button
-                              onClick={() => history.push("/stake")}
-                              className={`${
-                                active
-                                  ? "bg-gray-130 text-white"
-                                  : "text-gray-110"
-                              }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
-                            >
-                              <text className="menu-text"> Stake-SB </text>
-                              {active ? (
-                                <IoIosArrowForward
-                                  className="text-green-100 text-xl"
-                                  aria-hidden="true"
-                                />
-                              ) : (
-                                <IoIosArrowForward
-                                  className="text-green-100 hidden"
-                                  aria-hidden="true"
-                                />
-                              )}
-                            </button>
-                          )}
-                        </Menu.Item>
-                      </div>
+                       
+                       
                     </Menu.Items>
                   </Transition>
                 </>
@@ -342,7 +283,7 @@ export default function NavbarNew(props: {
                                   : "text-gray-110"
                               }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
                             >
-                              <text className="menu-text"> Docs </text>
+                              <text className="menu-text"> Gitbook </text>
                               {active ? (
                                 <IoIosArrowForward
                                   className="text-green-100 text-xl"
@@ -516,11 +457,9 @@ export default function NavbarNew(props: {
 
             <button
               className={
-                (path === "/stake"
-                  ? "bg-gray-300  text-white rounded-md"
-                  : "nav-title") + " coming-soon-btn"
+                  "nav-title coming-soon-btn"
               }
-              onClick={() => handlePush("/stake")}
+             
             >
               <span className="text-sm tracking-wide">GOVERNANCE</span>
               <span className="tracking-wide nav-sub-title">COMING SOON</span>
@@ -529,7 +468,7 @@ export default function NavbarNew(props: {
             <button
               onClick={() => history.push("/trade")}
               style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-              className="button-hover-change btn-hover-width w-40 z-40 rounded-md px-2 py-2 inline-block text-center"
+              className="grow  button-hover-change btn-hover-width w-40 z-40 rounded-md px-2 py-2 inline-block text-center"
             >
               <BtnText
                 transform
@@ -574,8 +513,13 @@ export default function NavbarNew(props: {
               <i className="fas fa-cog fa-lg text-gray-600 cursor-pointer ml-2 mt-1 md:mt-4" />
             </Popover> */}
           </>
-        )}
+        ):
+        (
+          <div className="nav-links-outer-nav">{Links}</div>
+        ) 
+        }
       </div>
+    
     </Wrapper>
   );
 }

@@ -11,6 +11,23 @@ body {
  background-color: #161D22; 
 }
 `
+ 
+
+export const AntdTooltip= styled.div`
+  .ant-tooltip-inner {
+    color: white;
+    background: #334150;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    text-align:center;
+    margin-top: ${(props) => (props.margin ?  props.margin : '-3rem')};
+  }
+`;
+
 
 
 export const Wrapper = styled.div`
@@ -378,14 +395,39 @@ ${BtnText}{
 
     .supply-circle1{
       border-color: #1c4e08;
-     
+      border-width:2px;
       border-style: solid;
- 
+     
       border-radius: 50%;
       display: flex; /* or inline-flex */
       align-items: center; 
       justify-content: center;
     }
+    .supply-6b-text{
+       
+    }
+    .supply-circle1:hover{
+      border-width:2px;
+ 
+      background: linear-gradient(0deg, #1F2934, #1F2934),
+      linear-gradient(90.02deg, #01A0FC -54.12%, #7CFA4C 101.37%);
+      border-color:#7CFA4C;
+      transition: all 0.3s ease-out;
+      .supply-data-value{
+        background: linear-gradient(90.02deg, #01A0FC -54.12%, #7CFA4C 101.37%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+      .supply-6b-icon{
+        display:none;
+      }
+      .supply-6b-text{
+        display:inline-block;
+      }
+    } 
+   
     .supply-data-value{
       color: #FFFFFF
       font-family: 'Archivo Narrow';
@@ -399,4 +441,8 @@ ${BtnText}{
     height:3rem;
       background-image: url("https://res.cloudinary.com/drr1rnoxf/image/upload/v1656073008/Polygon_5_udfyts.svg");
     }
+    
+    
+   
+    
 `
