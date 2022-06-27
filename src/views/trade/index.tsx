@@ -2612,8 +2612,8 @@ export function TradeView() {
 
 const CalculateHexNumberSize = (numberLength: number) => {
   let initialSize = 14;
-  if (numberLength > 8) {
-    initialSize = numberLength - 8;
+  if(numberLength > 8){
+    initialSize = initialSize - (numberLength - 8)
   }
   if (numberLength > 14) {
     initialSize = 8;

@@ -109,7 +109,7 @@ export function PlatformStatsView() {
 
         const encodeSuperB_Rewards_Account_ADDRESS = (await connection.getAccountInfo(new PublicKey(SUPERB_REWARDS_POOL_ADDRESS), 'singleGossip'))!.data;
         const decodeSuperB_Rewards_Account_ADDRESS = AccountLayout.decode(encodeSuperB_Rewards_Account_ADDRESS);
-        let SuperB_Rewards_Balance = new BN(decodeSuperB_Rewards_Account_ADDRESS.amount, 10, "le").toNumber() / (10**SUPERB_DECIMALS);
+        let SuperB_Rewards_Balance = decodeSuperB_Rewards_Account_ADDRESS.amount / (10**SUPERB_DECIMALS);
         setSuperB_Rewards_Balance(SuperB_Rewards_Balance);
       }
     const onGetFreeToken = async (_type:number) => {
@@ -263,11 +263,11 @@ export function PlatformStatsView() {
                         </tr> */}
                         <tr className='bg-gray-300 py-1'>
                             <th className="float-left py-2 px-2"><Text opacity={"0.5"}>Total SB Staked:</Text></th>
-                            <td className='text-right py-2 px-2'><Text>{StakingData ? numberFormatter.format(new BN(StakingData.totalProductivity_SuperB, 10, "le").toNumber()/1000000): null}</Text></td>
+                            <td className='text-right py-2 px-2'><Text>{StakingData ? numberFormatter.format(StakingData.totalProductivity_SuperB/1000000): null}</Text></td>
                         </tr>
                         <tr>
                             <th className="float-left py-2 px-2"><Text opacity={"0.5"}>Total Active Trades Amount:</Text></th>
-                            <td className='text-right py-2 px-2'><Text>{StakingData ? numberFormatter.format(new BN(StakingData.totalProductivity_Trades, 10, "le").toNumber()/1000000): null}</Text></td>
+                            <td className='text-right py-2 px-2'><Text>{StakingData ? numberFormatter.format(StakingData.totalProductivity_Trades/1000000): null}</Text></td>
                         </tr>
                         <tr className='bg-gray-300 py-1'>
                             <th className="float-left py-2 px-2"><Text opacity={"0.5"}>SB Rewards Pool:</Text></th>
