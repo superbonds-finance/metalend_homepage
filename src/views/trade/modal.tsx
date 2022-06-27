@@ -1,16 +1,18 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, {useRef, Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Checkbox } from 'antd';
 import { notify } from "../../utils/notifications";
 
 export default function MyModal({ isShow = true, handleShow=()=>{}}) {
  
-
+  const title=useRef<any>()
   const [checked,setChecked]=useState(false);
 
 useEffect (()=>{
  if(isShow && localStorage.getItem('confirm-disc') ) setChecked(true)
 },[isShow])
+
+ 
 
   const onChange = (e:any) => {
     setChecked(e.target.checked)
@@ -32,7 +34,7 @@ useEffect (()=>{
   return (
     <>
       <Transition appear show={isShow} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={()=>{}}>
+        <Dialog as="div" className="relative z-10" initialFocus={title} onClose={()=>{}}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -45,8 +47,8 @@ useEffect (()=>{
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto" >
-            <div className="flex min-h-full items-center justify-center p-4 text-center" >
+          <div   className="fixed inset-0 scroll-smooth  overflow-y-auto" >
+            <div   className="flex min-h-full items-center justify-center p-4 text-center" >
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -56,14 +58,15 @@ useEffect (()=>{
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full  max-w-md transform overflow-y-auto rounded-2xl bg-gray-130 text-white p-6 text-left align-middle shadow-xl transition-all"style={{height:"30rem"}} >
+                <Dialog.Panel   className="w-full h-full no-scrollbar  max-w-md transform overflow-y-auto rounded-2xl bg-gray-130 text-white p-6 text-left align-middle shadow-xl transition-all"style={{height:"30rem"}} >
                   <Dialog.Title
+                  ref={title}
                     as="h3"
                     className="text-lg font-medium leading-6 text-green-100"
                   >
                   DISCLAIMER
                   </Dialog.Title>
-                  <div className="mt-2">
+                  <div className="mt-2 ">
                     <p className="text-sm text-white">
                       Superstable.finance , its affiliates, and any related
                       domains, collectively “the Platform” are a

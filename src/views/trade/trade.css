@@ -71,3 +71,13 @@
    }
  }
  
+ .no-scrollbar::-webkit-scrollbar {
+   position: absolute;
+   top: 0;
+   width:2px;
+   scrollbar-color: red yellow;
+   background-color: #aaa; /* or add it to the track */
+ }
+ .no-scrollbar::-webkit-scrollbar-thumb {
+   background: #7CFA4C;
+ }
