@@ -342,7 +342,7 @@ export default function NavbarNew(props: {
                             <button
                               onClick={() =>
                                 window.open(
-                                  "https://twitter.com/SBonds_Finance"
+                                  "https://twitter.com/Super_Stable"
                                 )
                               }
                               className={`${
@@ -430,7 +430,7 @@ export default function NavbarNew(props: {
                           {({ active }) => (
                             <button
                               onClick={() =>
-                                window.open("https://superbonds.medium.com/")
+                                window.open("https://superstable.medium.com/")
                               }
                               className={`${
                                 active
