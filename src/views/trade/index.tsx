@@ -510,7 +510,7 @@ export function TradeView() {
               <tr>
                 <th class="text-left">
                   <span class="th_span small_font_td_span">
-                    Bond Value: </span>
+                    FD Value: </span>
                 </th>
                 <td class="text-right">
                   <span class="td_span small_font_td_span">
@@ -1826,7 +1826,7 @@ export function TradeView() {
                           <Tooltip
                             placement="rightTop"
                             title={
-                              "The period of time after which the bond can be redeemed for its full value"
+                              "The period of time after which the FD can be redeemed for its full value"
                             }
                           >
                             <ImInfo className="info-circle ml-0.5" />
@@ -2356,7 +2356,7 @@ export function TradeView() {
                           <Tooltip
                             placement="rightTop"
                             title={
-                              "The period of time after which the fd can be redeemed for its full value"
+                              "The period of time after which the FD can be redeemed for its full value"
                             }
                           >
                             <ImInfo className="info-circle ml-0.5" />
