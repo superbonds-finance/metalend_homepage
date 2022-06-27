@@ -279,7 +279,7 @@ export default function NavbarNew(props: {
                             <button
                               onClick={() =>
                                 window.open(
-                                  "https://superbonds.gitbook.io/superbonds/"
+                                  "https://superstable.gitbook.io/superbonds/"
                                 )
                               }
                               className={`${

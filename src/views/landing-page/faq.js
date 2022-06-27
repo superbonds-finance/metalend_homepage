@@ -144,7 +144,7 @@ export const FAQ = ({ type }) => {
           <button
             className="my-6 py-2 px-3"
             onClick={() =>
-              window.open("https://superbonds.gitbook.io/superbonds/")
+              window.open("https://superstable.gitbook.io/superbonds/")
             }
           >
             Click Here

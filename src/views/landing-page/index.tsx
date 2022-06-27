@@ -133,8 +133,8 @@ export const LandingPage = () => {
   };
 
   return (
-    <Wrapper>
-      <div className="top-div">
+    <Wrapper className='select-none'>
+      <div className="top-div ">
         <div className="polygen1">
           <img alt="bg-hexagon" src={polygon4} />
           <img alt="bg-hexagon1" className="blur" src={polygon4} />
@@ -298,7 +298,7 @@ export const LandingPage = () => {
               <button
                  onClick={() =>
                   window.open(
-                    "https://superbonds.gitbook.io/superbonds/"
+                    "https://superstable.gitbook.io/superbonds/"
                   )
                 }
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
@@ -359,7 +359,7 @@ export const LandingPage = () => {
               <button
                  onClick={() =>
                   window.open(
-                    "https://superbonds.gitbook.io/superbonds/"
+                    "https://superstable.gitbook.io//superbonds/"
                   )
                 }
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
