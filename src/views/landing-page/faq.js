@@ -126,9 +126,7 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="mt-6">
-            $SB token’s utility is as a gas, but other staking options will
-            become available. It will always be the fuel for the SuerStable
-            platform.
+          $SB token’s utility is as a gas, but other staking options will become available. It will always be the fuel for the SuerStable platform
           </p>
         </Collapsible>
         <Collapsible
@@ -208,10 +206,8 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="mt-6">
-            Superstable uses a risk framework to send the USDC used for FD
-            purchases to various destinations cross-chain to generate a return.
-            That return profile is varied. That rate is blended to create a
-            fixed rate of return.
+          Superstable uses a risk framework to send the USDC used for FD purchases to various destinations cross-chain to generate a return. That return profile is varied. That rate is blended to create a fixed rate of return by paying a variable rate to LPs who underwrite the fixed yield of the FD holders.
+
           </p>
         </Collapsible>
         <Collapsible
@@ -352,7 +348,7 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="my-6">
-            No, you just need to have the relevant capital.
+          No, you just need to have the relevant capital(USDC for buying and SOL and $SB for fees).
           </p>
         </Collapsible>
         <Collapsible
