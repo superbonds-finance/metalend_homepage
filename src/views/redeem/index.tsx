@@ -507,7 +507,7 @@ export const RedeemView = () => {
                 <div className='flex pt-6 justify-around flex-col items-center'>
                     <div className="flex w-6/12 md:w-full md:mt-3 flex-col bg-gray-300 py-3 px-7 mt-4  rounded-md md:ml-0 sm:py-3 sm:px-2">
                         <div className="text-center">
-                            <Text weight={'true'} size ={"16px"} transform={"true"} color={"#7CFA4C"}>Bond Redemption</Text>
+                            <Text weight={'true'} size ={"16px"} transform={"true"} color={"#7CFA4C"}>FD Redemption</Text>
                         </div>
                         <div className="flex justify-between py-2 px-2  mt-3 ß rounded-md" style={{'background':' linear-gradient(89.52deg, rgba(124, 250, 76, 0.1) 15.18%, rgba(124, 250, 76, 0) 76.06%), #1F2933'}}>
                           <Text className='' weight size="14px" opacity="0.5">Trade Account:</Text>
@@ -530,11 +530,11 @@ export const RedeemView = () => {
                                             <td className="float-right" ><Text size={"19px"}color={'white'}>{formatInputNumber(String(SuperBbalance))}</Text></td>
                                         </tr> */}
                                           <tr>
-                                            <th className="float-left">  <Text size={"16px"} opacity={"0.75"}>Bond Value at Entrance:</Text></th>
+                                            <th className="float-left">  <Text size={"16px"} opacity={"0.75"}>FD Value at Entrance:</Text></th>
                                             <td className="float-right" ><Text size={"16px"} color={'white'}>{parseFloat(Trade_dataSource[0]?.bond_value).toFixed(1)} USDC</Text></td>
                                         </tr>
                                         <tr>
-                                            <th className="float-left">  <Text size={"16px"} opacity={"0.75"}>Current Bond Value:</Text></th>
+                                            <th className="float-left">  <Text size={"16px"} opacity={"0.75"}>Current FD Value:</Text></th>
                                             <td className="float-right" ><Text size={"16px"} color={'white'}>{parseFloat(Trade_dataSource[0]?.current_bond_value).toFixed(1)} USDC</Text></td>
                                         </tr>
                                     </table>}
@@ -559,9 +559,9 @@ export const RedeemView = () => {
                             <th className="py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Yield</Text></th>
                             <th className="py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Issued at</Text></th>
                             <th className="py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Maturity</Text></th>
-                            <th className="py-2 px-4  text-center"><Text opacity='0.5' size='13px'>Bond Value at Entrance</Text></th>
-                            <th className="py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Bond Value at Maturity</Text></th>
-                            <th className="py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current Bond Value</Text></th>
+                            <th className="py-2 px-4  text-center"><Text opacity='0.5' size='13px'>FD Value at Entrance</Text></th>
+                            <th className="py-2 px-4 text-center"><Text opacity='0.5' size='13px'>FD Value at Maturity</Text></th>
+                            <th className="py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current FD Value</Text></th>
                             <th className="py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Profit at Maturity</Text></th>
                             <th className="py-2 px-4 text-center"><Text opacity='0.5' size='13px'>Current Profit</Text></th>
                         </tr>

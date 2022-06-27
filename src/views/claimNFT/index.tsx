@@ -64,7 +64,7 @@ export  function ClaimNFTView() {
     }
     if (nft == "") {
       notify({
-        message: 'Please enter a Bond NFT address',
+        message: 'Please enter a FD NFT address',
         type: "error",
       });
       return;

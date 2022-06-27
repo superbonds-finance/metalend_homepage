@@ -126,7 +126,7 @@ export const FAQ = ({ type }) => {
           }
         >
           <p className="mt-6">
-          $SB token’s utility is as a gas, but other staking options will become available. It will always be the fuel for the SuerStable platform
+          $SB token’s utility is as a gas, but other staking options will become available. It will always be the fuel for the SuperStable platform
           </p>
         </Collapsible>
         <Collapsible
