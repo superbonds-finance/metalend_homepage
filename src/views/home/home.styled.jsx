@@ -90,7 +90,7 @@ text-transform: ${(props) => (props.transform ? "uppercase" : 'non')};
 color: ${(props) => (props.color ? props.color : '#FFFFFF')};
 opacity: ${(props) => (props.opacity ? props.opacity : '')};
 @media (max-width: 639px) {
-    font-size: 20px;
+    font-size: 14px;
 }
 `
 

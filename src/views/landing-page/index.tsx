@@ -133,24 +133,24 @@ export const LandingPage = () => {
   };
 
   return (
-    <Wrapper className='select-none'>
-      <div className="top-div ">
+    <Wrapper>
+      <div className="top-div">
         <div className="polygen1">
           <img alt="bg-hexagon" src={polygon4} />
           <img alt="bg-hexagon1" className="blur" src={polygon4} />
-          <Row className="custom-row">
-            <Col className="col1" span={10}>
-              <div className="main-title">
+          <Row className="custom-row sm:flex-col" wrap={false}>
+            <div className="col1">
+              <div className="main-title md:text-xl sm:text-xl">
                 Up to <span>{bond_yield90}%</span> in <br />
                 Fixed Deposits
               </div>
-              <div className="sub-title">
+              <div className="sub-title md:text-2xl sm:text-2xl">
                 Secured by a diversified exposure to a universe of stablecoins
               </div>
               <button
                 onClick={() => history.push("/trade")}
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-                className="button-hover-change btn-hover-width mt-7 w-40 z-40 rounded-md px-2 py-2 inline-block text-center"
+                className="button-hover-change btn-hover-width mt-7 w-40 sm:w-30  z-40 rounded-md px-2 py-2 inline-block text-center"
               >
                 <BtnText
                   transform
@@ -163,8 +163,8 @@ export const LandingPage = () => {
                   <FiArrowUpRight />
                 </BtnText>
               </button>
-            </Col>
-            <Col className="col2" span={14}>
+            </div>
+            <div className="col2 lg:flex-col md:flex-col">
               <div className="sub-title">total deposits available</div>
               <CountUp
                   start={0}
@@ -188,7 +188,7 @@ export const LandingPage = () => {
                   )}
                 </CountUp>
               
-            </Col>
+            </div>
           </Row>
         </div>
       </div>
@@ -268,7 +268,7 @@ export const LandingPage = () => {
               alt="trade"
             />
           </div>
-          <div className="flex flex-col justify-start yielder-below-Q2 mx-auto my-0 px-3 pb-4 pt-16  rounded-md w-96 -z-50 -mt-14 sm:w-full h-full">
+          <div className="flex flex-col justify-start yielder-below-Q2 mx-auto my-0 px-3 pb-4 pt-16  rounded-md w-96 -z-50 -mt-14 h-full sm:w-11/12">
             <div className="flex flex-col">
               <BtnText className="mt-1" color="white" size="21px" weight="true">
                 Earn a Stable, Fixed Yield
@@ -302,7 +302,7 @@ export const LandingPage = () => {
                   )
                 }
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-                className="button-hover-change mx-auto mt-7 w-36 z-40 rounded-md px-2 py-2 inline-block text-center"
+                className="button-hover-change mx-auto mt-7 w-36 z-40 rounded-md px-2 py-2 inline-block text-center text-sm  whitespace-nowrap"
               >
                 <BtnText
                   transform
@@ -321,7 +321,7 @@ export const LandingPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center my-0 mx-3 sm:w-full">
+        <div className="flex flex-col justify-center sm:-mt-12 md:-mt-12 mx-3 sm:w-full">
           <div className="z-50">
             <img
               className="my-0 mx-auto w-24 z-50"
@@ -331,7 +331,7 @@ export const LandingPage = () => {
               alt="trade"
             />
           </div>
-          <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 pb-4 pt-16  rounded-md w-96 -z-50 -mt-14 sm:w-full h-full">
+          <div className="flex flex-col justify-start yielder-below-Q1 mx-auto my-0 px-3 pb-4 pt-16  rounded-md w-96 -z-50 -mt-14 h-full sm:w-11/12">
             <div className="flex flex-col">
               <BtnText className="mt-1" color="white" size="21px" weight="true">
                 Earn Variable Rewards
@@ -359,11 +359,11 @@ export const LandingPage = () => {
               <button
                  onClick={() =>
                   window.open(
-                    "https://superstable.gitbook.io//superbonds/"
+                    "https://superstable.gitbook.io/superbonds/"
                   )
                 }
                 style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-                className=" button-hover-change mx-auto mt-7 w-36 z-40 rounded-md px-2 py-2 inline-block text-center"
+                className=" button-hover-change mx-auto mt-7 w-36 z-40 rounded-md px-2 py-2 inline-block text-center whitespace-nowrap  "
               >
                 <BtnText
                   transform
@@ -383,11 +383,11 @@ export const LandingPage = () => {
 
       <Row>
         <Col span={24}>
-          <h1 className="title-3">FAQs</h1>
+          <h1 className="title-3 sm:flex sm:w-11/12 sm:mx-auto">FAQs</h1>
         </Col>
       </Row>
 
-      <div className="grid grid-cols-5 w-7/12 mx-auto">
+      <div className="grid grid-cols-5 sm:grid-cols-2 sm:w-11/12 md:grid-cols-2 md:w-7/12 w-7/12 mx-auto">
         <button
           onClick={() => setSelectedFAQ("intro")}
           className={`${
@@ -469,13 +469,13 @@ export const LandingPage = () => {
         </button>
       </div>
 
-      <div className="w-7/12 mx-auto my-auto mt-10">
+      <div className="w-7/12 sm:w-11/12 mx-auto my-auto mt-10">
         <FAQ type={selectedFAQ} />
       </div>
 
       <section className="mb-5" style={{ marginTop: "7rem" }}>
         <div
-          className="flex justify-around   mt-5   rounded-md flex-wrap w-8/12  2xl:w-8/12  maxWidth-lg my-0 mx-auto pb-1 pt-1 lg:w-11/12"
+          className="flex justify-around   mt-7   rounded-md flex-wrap w-8/12  2xl:w-8/12  sm:w-11/12 maxWidth-lg my-0 mx-auto pb-1 pt-1 sm:pl-4 lg:w-11/12"
           style={{ maxWidth: "1400px" }}
         >
           <div className="xl:w-56 bg-transparent rounded-lg sahdow-lg flex flex-col justify-center items-center max-w-xs w-64 min-h-14">
