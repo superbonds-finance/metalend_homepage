@@ -10,29 +10,31 @@ import { useHistory } from "react-router-dom";
 
 import Collapsible from "react-collapsible";
 import { FiArrowUpRight } from "react-icons/fi";
+import fdMobile from "../../assets/landing-page/fd_mobile_hero.svg";
 
 export const FDPage = () => {
   const history = useHistory();
 
   return (
     <Wrapper>
-      <div className="w-9/12 mx-auto my-0 fd-header flex flex-col mt-10 mb-10 ">
+      <div className="w-10/12 mx-auto sm:w-10/12 my-0 fd-header flex flex-col mt-10 mb-10 ">
         <text className="fd-header-text">Fixed Deposits</text>
         <text className="fd-header-text">(FDs)</text>
         <text className="fd-sub-header">
           A predictable yield on your stablecoins
         </text>
       </div>
-      <div className="scroll-handle flex justify-center align-middle  py-4">
+      <div className="scroll-handle flex justify-center align-middle sm:justify-start px-5 md:px-10 ">
         <text className="hero-side-text">Simple Mechanics</text>
       </div>
       <div className="top-div-fd flex justify-center">
-        <img src="https://res.cloudinary.com/drr1rnoxf/image/upload/v1655892672/Group_1411_zqmesy.svg" />
+        <img src="https://res.cloudinary.com/drr1rnoxf/image/upload/v1655892672/Group_1411_zqmesy.svg" className="sm:hidden" />
+        <img src= {fdMobile} alt='fd-mobile' className="hidden sm:block pb-16" />
       </div>
     
       <div className="fd-details">
-        <div className="fd-desc-bg w-5/12 mx-auto my-0">
-          <Row className="">
+        <div className="fd-desc-bg w-5/12 mx-auto my-0 lg:w-auto lg:mx-5">
+          <Row className="fd-details-container">
             <Col span={10} className='text-left'>
               <text className="fd-desc-header">Fixed return in USDC</text>
             </Col>

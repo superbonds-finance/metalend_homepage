@@ -68,8 +68,14 @@ export const Wrapper = styled.div`
 background-color: #1a232b;
 margin-left: 40px;
 padding-top: 70px;
- 
 }
+
+@media (max-width: 768px) {
+  .top-div-fd{
+    margin-left: 0px;
+  }
+}
+
   .polygen1{
     background-image: url(${polygon3});
     height: 600px;
@@ -347,6 +353,27 @@ ${BtnText}{
       font-size: 20px;
       text-shadow: 0px 3px 9px #40BA12;
     }
+    @media (min-width: 768px) {
+      .scroll-handle{
+        margin-left: 0px;
+        clip-path: polygon(0 0, 100% 0%, 80% 100%, 0% 100%);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .scroll-handle{
+        margin-left: 0px;
+        clip-path: polygon(0 0, 90% 0%, 75% 100%, 0% 100%);
+      }
+      .fd-details-container{
+        display:flex !important;
+        flex-direction: column !important;
+        .ant-col{
+          max-width:100%;
+        }
+      }
+    }
+
 	/* .scroll-handle:before,
 	.scroll-handle:after {
 		content: "";

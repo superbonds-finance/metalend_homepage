@@ -22,8 +22,8 @@ export const SBFuel = () => {
         <div className="polygen1">
           <img alt="bg-hexagon" className="blur1" src={polygon4} />
           <img alt="bg-hexagon1" className="blur" src={polygon4} />
-          <Row className="pl-10 custom-row">
-            <Col className="col1 flex flex-col" span={14}>
+          <Row className="pl-10 sm:pl-0 custom-row">
+            <Col className="col1 flex flex-col">
               <div>
                 <div className="main-title">
                   SB Token <br />
@@ -33,21 +33,20 @@ export const SBFuel = () => {
                   A predictable yield on your stablecoins
                 </div>
               </div>
-              <div className="icon-desc flex justify-between">
-                <div className="flex">
+              <div className="icon-desc flex sm:flex-col justify-between sm:text-2xl">
+                <div className="flex mr-6 sm:mb-14">
                   <img
                     className="sb-fuel-logo"
                     src={
                       "https://res.cloudinary.com/drr1rnoxf/image/upload/v1655985378/Vector_mxmvtt.svg"
                     }
                     alt="..."
-                    style={{ width: "40px", height: "40px", top: 0 }}
                   />
                   <text className="sb-logo-text">
                     SB is the gas of the <br /> SuperStable Platform
                   </text>
                 </div>
-                <div className="flex">
+                <div className="flex mr-6 sm:mb-14">
                   <img
                     className="sb-fuel-logo"
                     src={
@@ -59,7 +58,7 @@ export const SBFuel = () => {
                     It is required and burned <br /> in every transaction
                   </text>
                 </div>
-                <div className="flex">
+                <div className="flex mr-6 sm:mb-14">
                   <img
                     className="sb-fuel-logo"
                     src={
@@ -84,27 +83,27 @@ export const SBFuel = () => {
         </Col>
       </Row>
 
-      <div className="supply-data-main flex justify-around align-middle items-center w-6/12 mx-auto my-0 ">
-        <AntdTooltip margin="-4rem">
+      <div className="supply-data-main flex justify-around align-middle sm:grid sm:grid-cols-2 sm:place-items-center sm:justify-center items-center w-6/12 sm:w-8/12 md:w-8/12 mx-auto my-0 md:flex-wrap">
+        <div className="sm:w-full flex  sm:col-span-2 sm:ml-4 items-center sm:justify-center sm:items-center">
+        <AntdTooltip margin="-3.3rem">
           <Tooltip
             getPopupContainer={(triggerNode) => triggerNode}
             placement="bottom"
-            title={`Protocol Rewards Distributed
-              Over years with
-              Real-Time Settlement`}
-            overlayStyle={{ top: "-5rem" }}
+            title={`Protocol Rewards Distributed Over years with Real-Time Settlement`}
+            overlayStyle={{ top: "-4.5rem" }}
           >
-            <div className="bg-gray-300   w-40 h-40 border supply-6b supply-circle1 flex flex-col justify-center select-none">
+            <div className="bg-gray-300  mr-4 w-40 h-40 lg:mb-4 md:mb-4 md:mr-4 border supply-6b supply-circle1 flex flex-col justify-center select-none">
               <BsInfoCircleFill
                 className="supply-6b-icon"
                 style={{ fontSize: "9px" }}
               />
               <text className="supply-data-value text-6xl">6B</text>
             </div>
-          </Tooltip>
+            </Tooltip>
         </AntdTooltip>
+        </div>
 
-         
+        {/* <div className="sm:w-full flex items-center sm:justify-between sm:items-center"> */}
         <AntdTooltip margin="-3.3rem">
           <Tooltip
             getPopupContainer={(triggerNode) => triggerNode}
@@ -112,7 +111,7 @@ export const SBFuel = () => {
             title={"Dev/Team rewards"}
             overlayStyle={{ top: "-4.5rem" }}
           >
-            <div className="bg-gray-300   w-28 h-28 border  supply-6b  supply-circle1 flex flex-col justify-center select-none">
+            <div className="bg-gray-300 mr-4   w-28 h-28 lg:mb-4 md:mb-4 md:mr-4 sm:mr-2 border  supply-6b  supply-circle1 flex flex-col justify-center select-none">
               <BsInfoCircleFill
                 className="supply-6b-icon"
                 style={{ fontSize: "9px" }}
@@ -121,7 +120,6 @@ export const SBFuel = () => {
             </div>
           </Tooltip>
         </AntdTooltip>
-
         <AntdTooltip margin="-2.7rem">
           <Tooltip
             getPopupContainer={(triggerNode) => triggerNode}
@@ -129,7 +127,7 @@ export const SBFuel = () => {
             title={"Sale in USDC"}
             overlayStyle={{ top: "-3.5rem" }}
           >
-            <div className="bg-gray-300   w-24 h-24 border supply-circle1 flex flex-col justify-center select-none">
+            <div className="bg-gray-300 mr-4  w-24 h-24 lg:mb-4 md:mb-4 md:mr-4 sm:mr-2 border supply-circle1 flex flex-col justify-center select-none">
               <BsInfoCircleFill
                 className="supply-6b-icon"
                 style={{ fontSize: "9px" }}
@@ -138,7 +136,9 @@ export const SBFuel = () => {
             </div>
           </Tooltip>
         </AntdTooltip>
+        {/* </div> */}
 
+        {/* <div className="sm:w-full flex items-center sm:px-8 sm:justify-between sm:items-center"> */}
         <AntdTooltip margin="-2.3rem">
           <Tooltip
             getPopupContainer={(triggerNode) => triggerNode}
@@ -146,7 +146,7 @@ export const SBFuel = () => {
             title={"Marketing"}
             overlayStyle={{ top: "-3rem" }}
           >
-            <div className="bg-gray-300   w-20 h-20 border supply-circle1 flex flex-col justify-center select-none">
+            <div className="bg-gray-300 mr-4  w-20 h-20 lg:mb-4 md:mb-4 md:mr-4 sm:mr-2 border supply-circle1 flex flex-col justify-center select-none">
               <BsInfoCircleFill
                 className="supply-6b-icon"
                 style={{ fontSize: "9px" }}
@@ -163,7 +163,7 @@ export const SBFuel = () => {
             title={"treasury"}
             overlayStyle={{ top: "-4rem" }}
           >
-            <div className="bg-gray-300  w-16 h-16  border supply-circle1 flex flex-col justify-center select-none">
+            <div className="bg-gray-300 mr-4 w-16 h-16 lg:mb-4 md:mb-4 md:mr-4 sm:mr-2 border supply-circle1 flex flex-col justify-center select-none">
               <BsInfoCircleFill
                 className="supply-6b-icon"
                 style={{ fontSize: "9px" }}
@@ -172,6 +172,8 @@ export const SBFuel = () => {
             </div>
           </Tooltip>
         </AntdTooltip>
+        {/* </div> */}
+        {/* <div className="sm:w-full flex items-center sm:px-14 sm:justify-between sm:items-center"> */}
         <AntdTooltip margin="-1.5rem">
           <Tooltip
             getPopupContainer={(triggerNode) => triggerNode}
@@ -181,7 +183,7 @@ export const SBFuel = () => {
             1a5t = 20 SB`}
             overlayStyle={{ top: "-4rem" }}
           >
-            <div className="bg-gray-300   w-14 h-14 border supply-circle1 flex flex-col justify-center select-none">
+            <div className="bg-gray-300 mr-4  w-14 h-14 lg:mb-4 md:mb-4 md:mr-4 sm:mr-2 border supply-circle1 flex flex-col justify-center select-none">
               <BsInfoCircleFill
                 className="supply-6b-icon"
                 style={{ fontSize: "9px" }}
@@ -200,7 +202,7 @@ export const SBFuel = () => {
             1a5t = 10 SB`}
             overlayStyle={{ top: "-4rem" }}
           >
-            <div className="bg-gray-300  w-12 h-12 border supply-circle1 flex flex-col justify-center select-none">
+            <div className="bg-gray-300 mr-4 w-12 h-12 lg:mb-4 md:mb-4 md:mr-4 sm:mr-2 border supply-circle1 flex flex-col justify-center select-none">
               <BsInfoCircleFill
                 className="supply-6b-icon"
                 style={{ fontSize: "9px" }}
@@ -211,6 +213,7 @@ export const SBFuel = () => {
             </div>
           </Tooltip>
         </AntdTooltip>
+        {/* </div> */}
       </div>
       <Row>
         <Col span={24}>
@@ -322,7 +325,7 @@ export const SBFuel = () => {
         </div>
       </div>
 
-      <div className="flex bg-gray-300 w-3/12 mx-auto my-0  py-10 ve-sb-section justify-center select-none">
+      <div className="flex bg-gray-300 w-6/12 mx-auto my-0 sm:w-11/12 md:w-9/12 py-10 ve-sb-section justify-center select-none">
         <div className="flex flex-col">
           <img
             className="my-0 mx-auto  w-24  z-50 select-none"

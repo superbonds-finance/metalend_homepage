@@ -33,15 +33,27 @@ export const AntdTooltip= styled.div`
 export const Wrapper = styled.div`
 .top-div{
   background-color: #1a232b;
-margin-left: 40px;
-padding-top: 70px;
+  margin-left: 40px;
+  padding-top: 70px;
+}
+@media (max-width: 768px) {
+  .top-div{
+    margin-left: 15px;
+    height: 900px;
+  }
+}
 .sb-fuel-logo{
   width: 40px;
   height: 40px;
  
 }
+@media (max-width: 768px) {
+  .sb-fuel-logo{
+    width: 60px;
+    height: 60px;
+  }
+}
 .vesb-text{
-  color: red;
   font-family: 'Plus Jakarta Sans';
   font-size: 20px;
   font-weight: 700;
@@ -54,6 +66,7 @@ font-size: 20px;
 text-align: center;
 color: #687D95;
 }
+
 
 .sb-market-button{
   border: 1px solid white;
@@ -68,6 +81,17 @@ color: #687D95;
   font-size: 14px;
   letter-spacing: 0.3px;
   color: #FFFFFF;
+}
+@media (max-width: 768px) {
+  .sb-logo-text{
+    margin-left:30px;
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 0.3px;
+    color: #FFFFFF;
+  }
 }
 
  
@@ -106,10 +130,22 @@ color: #687D95;
             text-shadow: -1px 1px 12px rgb(45 220 10 / 89%)
           }
         }
+        @media (max-width: 768px) {
+          .main-title{
+            font-size: 3.5rem;
+            line-height: 4rem;
+            padding-bottom: 10px;
+          }
+        }
         .sub-title{
           line-height: 2rem;
           color:#687D95;
           font-size: 1.2rem;
+        }
+      }
+      @media (max-width: 768px) {
+        .col1{
+          padding: 70px 20px 60px 20px;
         }
       }
       .col2{
@@ -133,6 +169,22 @@ color: #687D95;
           -webkit-background-clip: text;
 	        -webkit-text-fill-color: transparent;
         }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .polygen1{
+      background-image: url(${polygon3});
+    background-size: 170px;
+    height: 600px;
+    background-position-x: right;
+    background-position-y: 190px;
+      .blur1, .blur{
+        position: absolute;
+        right: 0;
+        top: 300px;
+        height: 300px;
+        opacity: 0.6;
       }
     }
   }
