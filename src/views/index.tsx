@@ -1,15 +1,1 @@
-export { HomeView } from "./home";
-export { MyAccountView } from "./myaccount";
-export {PoolManagementView} from "./pool-management/pool-management";
-export {StakingManagementView} from "./platform-settings/platform-settings";
-export {LiquidityView} from "./liquidity";
-export {TradeView} from "./trade";
-export {RedeemView} from "./redeem";
-export {StakeView} from "./stake";
-export {GovernanceView} from "./governance";
-export {FarmingRewardsView} from "./farming_rewards";
-export {ClaimNFTView} from "./claimNFT";
-export {PlatformStatsView} from "./plaftform-stats";
-export {BuySBView} from "./buy-SB"
-export {FDPage} from './fixed-deposits'
-export {SBFuel} from './SB-fuel'
+ export {LandingPage} from './landing-page'
