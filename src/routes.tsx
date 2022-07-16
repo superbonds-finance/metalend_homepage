@@ -5,6 +5,8 @@ import { ConnectionProvider } from "./contexts/connection";
 import { AccountsProvider } from "./contexts/accounts";
 import { AppLayout } from "./components/Layout";
 
+import { Metalend } from "./views";
+
 import {
   getLedgerWallet,
   getMathWallet,
@@ -14,7 +16,6 @@ import {
   getSolongWallet,
   getTorusWallet,
 } from "@solana/wallet-adapter-wallets";
-import { LandingPage } from "./views";
 
 export function Routes() {
   const wallets = useMemo(
@@ -44,7 +45,8 @@ export function Routes() {
 
           <AppLayout>
             <Switch>
-              <Route exact path="/" component={() => <LandingPage />} />
+              <Route exact path="/" component={() => <Metalend />} />
+             
             </Switch>
           </AppLayout>
 

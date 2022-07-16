@@ -100,7 +100,7 @@ export default function NavbarNew(props: {
           <img
             className="inline-block w-52"
             src={
-              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1656261886/ss-white-logo_im8hiq.png"
+              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1657956203/Component_160_c0ee43.png"
             }
             alt="SuperStable"
           />
@@ -123,98 +123,7 @@ export default function NavbarNew(props: {
       >
         {path === "/" || path === "/fd"|| path=== "/sb" ?  (
           <>
-            <Menu as="div" className="relative inline-block text-left">
-              {({ open }) => (
-                <>
-                  <div>
-                    <Menu.Button>
-                      <button
-                        className={`${
-                          open ? "menu-button-hover menu-button" : "menu-button"
-                        }   nav-title`}
-                      >
-                        <span className="text-sm tracking-wide menu-options-text">
-                          PRODUCT
-                        </span>
-                      </button>
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute z-40 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
-                        <Menu.Item>
-                          {({ active }) => (
-                           <Link to='/fd' target={"_blank"}>
-                           <button
-                            
-                             
-                              className={`${
-                                active
-                                  ? "bg-gray-130 text-white"
-                                  : "text-gray-110"
-                              }  menu-options flex justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
-                            >
-                              <text className="menu-text">Fixed Deposits</text>
-                              {active ? (
-                                <IoIosArrowForward
-                                  className="text-green-100 text-xl"
-                                  aria-hidden="true"
-                                />
-                              ) : (
-                                <IoIosArrowForward
-                                  className="text-green-100 hidden"
-                                  aria-hidden="true"
-                                />
-                              )}
-                            </button>
-                            </Link>
-                          )}
-                        </Menu.Item>
-                      </div>
-                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
-                        <Menu.Item>
-                          {({ active }) => (
-                             <Link to='/sb' target={"_blank"}>
-                            <button
-                              onClick={() => history.push("/sb")}
-                              className={`${
-                                active
-                                  ? "bg-gray-130 text-white"
-                                  : "text-gray-110"
-                              }   flex menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
-                            >
-                              <text className="menu-text">SB Token </text>
-                              {active ? (
-                                <IoIosArrowForward
-                                  className="text-green-100 text-xl"
-                                  aria-hidden="true"
-                                />
-                              ) : (
-                                <IoIosArrowForward
-                                  className="text-green-100 hidden"
-                                  aria-hidden="true"
-                                />
-                              )}
-                            </button>
-                            </Link>
-                          )}
-                        </Menu.Item>
-                      </div>
-                       
-                       
-                    </Menu.Items>
-                  </Transition>
-                </>
-              )}
-            </Menu>
+            
 
             <Menu as="div" className="relative inline-block text-left">
               {({ open }) => (
@@ -227,7 +136,7 @@ export default function NavbarNew(props: {
                         }   nav-title`}
                       >
                         <span className="text-sm tracking-wide menu-options-text">
-                          DEVELOPERS
+                          Docs
                         </span>
                       </button>
                     </Menu.Button>
@@ -241,7 +150,7 @@ export default function NavbarNew(props: {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute  z-40 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute  z-40 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="px-1 py-1" style={{ borderTop: "none" }}>
                         <Menu.Item>
                           {({ active }) => (
@@ -310,7 +219,7 @@ export default function NavbarNew(props: {
               )}
             </Menu>
 
-            <Menu as="div" className="relative inline-block text-left">
+            <Menu as="div" className="relative inline-block text-left mr-10">
               {({ open }) => (
                 <>
                   <div>
@@ -321,7 +230,7 @@ export default function NavbarNew(props: {
                         }   nav-title`}
                       >
                         <span className="text-sm tracking-wide menu-options-text">
-                          COMMUNITY
+                          Community
                         </span>
                       </button>
                     </Menu.Button>
@@ -335,7 +244,7 @@ export default function NavbarNew(props: {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute  z-40 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute  z-40 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="px-1 py-1" style={{ borderTop: "none" }}>
                         <Menu.Item>
                           {({ active }) => (
@@ -459,34 +368,7 @@ export default function NavbarNew(props: {
                 </>
               )}
             </Menu>
-
-            <button
-              className={
-                  "nav-title coming-soon-btn"
-              }
-             
-            >
-              <span className="text-sm tracking-wide">GOVERNANCE</span>
-              <span className="tracking-wide nav-sub-title">COMING SOON</span>
-            </button>
-
-            <button
-              onClick={() => history.push("/trade")}
-              style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-              className="grow  button-hover-change btn-hover-width w-40 z-40 rounded-md px-2 py-2 inline-block text-center"
-            >
-              <BtnText
-                transform
-                size="16px"
-                weight="true"
-                color="black"
-                height="21px"
-              >
-                Launch App
-                <FiArrowUpRight />
-              </BtnText>
-              {/* <img  className=' mt-0.5' src={arrow}  /> */}
-            </button>
+  
             {/* {connected && (
               <button
                 className={

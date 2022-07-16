@@ -20,7 +20,7 @@ export const AppLayout = React.memo(({ children }) => {
  
   return (
     <WalletModalProvider>
-      <div className="App wormhole-bg">
+      <div className="App">
         {customLandingPage ?
           <NavbarNew showWinUp={showWinUp} />
           : <Navbar showWinUp={showWinUp} />}

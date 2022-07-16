@@ -1,1 +1,1 @@
- export {LandingPage} from './landing-page'
+ export { Metalend } from "./Metaland";

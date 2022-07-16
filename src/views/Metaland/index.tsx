@@ -10,19 +10,16 @@ import radialborder from "../../assets/Metalend/radialborder.png";
 import boxborder from "../../assets/Metalend/boxborder.png";
 import circleframe from "../../assets/Metalend/circleframe.png";
 import lenderframe from "../../assets/Metalend/lender_frame.png";
-import orHex from "../../assets/landing-page/or-hex.png";
-import downArrow from "../../assets/landing-page/bxs_down-arrow.png";
+ 
 
 import { Col, Row } from "antd";
-import { BtnText, CardText } from "../home/home.styled";
+import { BtnText,   } from "../home/home.styled";
 import { useHistory } from "react-router-dom";
 
-import Collapsible from "react-collapsible";
-import { BsInfoCircleFill } from "react-icons/bs";
-import { Tooltip } from "antd";
-import { AntdTooltip } from "./style";
+ 
+import { FiArrowUpRight } from "react-icons/fi";
 
-export const LandingPage = () => {
+export const Metalend = () => {
   const history = useHistory();
 
   return (
@@ -31,65 +28,60 @@ export const LandingPage = () => {
         <div className="polygen1">
           <img alt="bg-hexagon" className="blur1" src={polygon4} />
           <img alt="bg-hexagon1" className="blur" src={polygon3} />
-          <Row className="pl-10 sm:pl-0 custom-row">
-            <Col className="col1 flex flex-col">
-              <div>
+          <div className="pl-10 pr-28 sm:pl-0 custom-row">
+            <div className=" antd-col col1 flex flex-col w-full">
+              <div className="w-1/2 lg:w-4/5 xl:w-4/6 2xl:w-3/5">
                 <div className="main-title">Metalend</div>
-                <div className="sub-title pt-4">
+                <div className="sub-title pt-6">
                   A capital raising platform for everyone
                 </div>
-                <div className="flex justify-between w-4/6">
-                  <button
-                    onClick={() => history.push("/trade")}
-                    style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-                    className="button-hover-change   mt-7 w-28 z-40 rounded-md px-1 py-1 inline-block text-center"
-                  >
+                <div className="flex justify-between mt-8 pt-0.5 w-4/6 max-w-md">
+                  <button className="button-learn-more learn-more-2 btn-hover-width  w-32 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                     <BtnText
                       transform
-                      size="12px"
+                      size="15px"
                       weight="true"
-                      color="black"
-                      height="28px"
+                      color="white"
+                      height="32px"
                     >
-                      Launch App
+                      BORROW
+                      <FiArrowUpRight style={{ color: "#52B4FF" }} />
                     </BtnText>
                   </button>
-                  <button
-                    onClick={() => history.push("/trade")}
-                    style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-                    className="button-hover-change   mt-7 w-28 z-40 rounded-md px-1 py-1 inline-block text-center"
-                  >
+                  <button className="button-learn-more learn-more-3 btn-hover-width  w-32 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                     <BtnText
                       transform
-                      size="12px"
+                      size="15px"
                       weight="true"
-                      color="black"
-                      height="28px"
+                      color="white"
+                      height="32px"
                     >
-                      Launch App
+                      LEND
+                      <FiArrowUpRight style={{ color: "#53DFDF" }} />
                     </BtnText>
                   </button>
-                  <button
-                    onClick={() => history.push("/trade")}
-                    style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-                    className="button-hover-change   mt-7 w-28 z-40 rounded-md px-1 py-1 inline-block text-center"
-                  >
+                  <button className="button-learn-more learn-more-4 btn-hover-width  w-32 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                     <BtnText
                       transform
-                      size="12px"
+                      size="15px"
                       weight="true"
-                      color="black"
-                      height="28px"
+                      color="white"
+                      height="32px"
                     >
-                      Launch App
+                      TRADE
+                      <FiArrowUpRight style={{ color: "#FFFFFF" }} />
                     </BtnText>
                   </button>
                 </div>
               </div>
-              <div className="flex mt-32 w-full items-center justify-center">
-                <div className="flex-col text-center w-52 mr-4">
-                  <img className="mx-auto mb-6" src={vector} alt="..." />
-                  <text className="text-center">
+              <div className="flex mt-32 w-full items-center justify-between">
+                <div className="flex-col text-center w-52">
+                  <img
+                    className="mx-auto mb-6 h-8 w-8"
+                    src={vector}
+                    alt="..."
+                  />
+                  <text className="text-center text-lg">
                     Fully decentralized and not privileged
                   </text>
                   <img
@@ -98,10 +90,11 @@ export const LandingPage = () => {
                     alt="..."
                   />
                 </div>
-                <div className="flex-col text-center w-52 mr-4">
-                  <img className="mx-auto mb-6" src={chart} alt="..." />
-                  <text className="text-center">
-                    Raise funding with or without collateral
+                <div className="flex-col text-center w-52">
+                  <img className="mx-auto mb-6 h-8 w-8" src={chart} alt="..." />
+                  <text className="text-center text-lg">
+                    Raise funding with or{" "}
+                    <span style={{ color: "#01C0FC" }}>without</span> collateral
                   </text>
                   <img
                     className="w-full h-4 mt-8"
@@ -109,9 +102,13 @@ export const LandingPage = () => {
                     alt="..."
                   />
                 </div>
-                <div className="flex-col text-center w-52 mr-4">
-                  <img className="mx-auto mb-6" src={carbon} alt="..." />
-                  <text className="text-center">
+                <div className="flex-col text-center w-52">
+                  <img
+                    className="mx-auto mb-6 h-8 w-8"
+                    src={carbon}
+                    alt="..."
+                  />
+                  <text className="text-center text-lg">
                     Independent 3rd party credit evaluations
                   </text>
                   <img
@@ -121,8 +118,8 @@ export const LandingPage = () => {
                   />
                 </div>
                 <div className="flex-col text-center w-52">
-                  <img className="mx-auto mb-6" src={union} alt="..." />
-                  <text className="text-center">
+                  <img className="mx-auto mb-6 h-8 w-8" src={union} alt="..." />
+                  <text className="text-center text-lg">
                     Immediate secondary markets for all successful raises
                   </text>
                   <img
@@ -132,22 +129,22 @@ export const LandingPage = () => {
                   />
                 </div>
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </div>
       </div>
 
-      <Row className="supply-data">
+      <div className="flex justify-center mx-auto">
         <div className="w-10/12 mx-auto mt-20">
           <text className="supply-text">Borrowers</text>
         </div>
-      </Row>
+      </div>
 
-      <div className="w-11/12 bg-rectangle blur1 mx-auto mb-28 mt-20">
-        <div className="grid grid-cols-3 w-11/12 mx-auto">
-          <div className="col-span-2">
+      <div className="w-11/12 bg-rectangle blur1 mx-auto mt-20 rounded-md">
+        <div className="flex w-11/12 mx-auto justify-between">
+          <div className="w-3/5">
             <div className="grid grid-cols-3 grid-rows-2 gap-4 pt-12 pr-12">
-              <div className="bg-gray-300 rounded-xl text-lg p-4">
+              <div className="bg-gray-300 rounded-xl text-lg p-4" style={{background:'#1A232B'}}>
                 <p>Borrow For Your Specific Needs</p>
                 <img className="w-8 h-1 mt-8" src={boxborder} alt="..." />
               </div>
@@ -168,88 +165,80 @@ export const LandingPage = () => {
                 <img className="w-8 h-1 mt-8" src={boxborder} alt="..." />
               </div>
             </div>
-            <button
-              onClick={() => history.push("/trade")}
-              style={{ boxShadow: "0px 3px 9px 0px #40ba12" }}
-              className="button-hover-change   mt-7 w-28 z-40 rounded-md px-1 py-1 inline-block text-center"
-            >
-              <BtnText
-                transform
-                size="12px"
-                weight="true"
-                color="black"
-                height="28px"
-              >
-                Launch App
-              </BtnText>
-            </button>
+            <div className="w-80">
+              <button className="button-learn-more learn-more-1 btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+                <BtnText
+                  transform
+                  size="15px"
+                  weight="true"
+                  color="white"
+                  height="32px"
+                >
+                  Become a borrower
+                </BtnText>
+              </button>
+            </div>
           </div>
-          <div className="col-span-1">
+          <div className="w-2/5 max-w-md">
             <img className="h-full w-full" src={circleframe} alt="..." />
           </div>
         </div>
       </div>
 
-      <Row className="supply-data">
-        <div className="w-10/12 mx-auto mt-20">
+      <div className="flex justify-center mx-auto mt-20">
+        <div className="w-10/12 mx-auto ">
           <text className="supply-text block">Traders and</text>
           <text className="supply-text ml-2">Lenders</text>
         </div>
-      </Row>
+      </div>
 
-      <div className="w-11/12 bg-lender-pro rounded-2xl blur1 mx-auto my-0 mb-28 mt-20 py-20 px-10">
+      <div className="w-11/12 bg-lender-pro rounded-2xl blur1 mx-auto my-0 mt-20 py-20 px-10">
         <div className="flex justify-around">
           <div className="flex flex-col self-center">
             <img className="" src={lenderframe} alt="..." />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col mx-4">
             <div
               className="grid grid-cols-2 grid-rows-2 gap-4 pt-12 justify-items-center "
               style={{ marginTop: "-12rem" }}
             >
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-3 w-10/12">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 w-full">
                 <p>Generate a fixed income</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-3   w-10/12">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 w-full">
                 <p>Earn exposure to large ecosystems</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-3   w-10/12">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 w-full">
                 <p>Benefit from liquidity in secondary markets</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-3  w-10/12">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 w-full">
                 <p>Diversify your portfolio risk</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
             </div>
-            <div className="grid grid-cols-2 grid-rows-2 gap-4 justify-items-center">
-              <button
-                onClick={() => history.push("/trade")}
-                className="lender-button-1  mt-7 w-10/12 z-40 rounded-md px-1 py-1 inline-block text-center"
-              >
+            <div className="grid grid-cols-2 grid-rows-1 mt-6 gap-4 justify-items-center">
+              <button className="button-learn-more learn-more-1 btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                 <BtnText
                   transform
                   size="15px"
                   weight="true"
                   color="white"
-                  height="28px"
+                  height="32px"
                 >
                   Browse New Issuances
                 </BtnText>
               </button>
-              <button
-                onClick={() => history.push("/trade")}
-                className="lender-button-1   mt-7 w-10/12 z-40 rounded-md px-1 py-1 inline-block text-center"
-              >
+              <button className="button-learn-more learn-more-1 btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                 <BtnText
                   transform
                   size="15px"
                   weight="true"
                   color="white"
-                  height="28px"
+                  height="32px"
                 >
                   Trade Secondary Markets
                 </BtnText>
@@ -259,7 +248,7 @@ export const LandingPage = () => {
         </div>
       </div>
 
-      <div className="w-11/12 bg-sb-fuel blur1 mx-auto mb-28 mt-20 py-20 px-10">
+      <div className="w-11/12 bg-sb-fuel blur1 mx-auto mb-28 mt-40 py-20 px-10 rounded-2xl ">
         <div className="flex justify-around">
           <div className="flex flex-col self-center">
             <BtnText size="15px" weight="true" color="white" height="28px">
@@ -267,22 +256,18 @@ export const LandingPage = () => {
             </BtnText>
             <text className="sb-fuel-text block mt-4">SB Token</text>
             <text className="sb-fuel-text block">Fuel of the Platform</text>
-            <div className='grad-border text-center flex justify-center'>
-            <button className="sb-fuel-button">
-                <BtnText
-                  transform
-                  size="15px"
-                  weight="true"
-                  color="white"
-                  height="28px"
-                >
-                  Learn More
-                </BtnText>
-              </button>
-            </div>
-             
-            
-           
+            <button className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+              <BtnText
+                transform
+                size="15px"
+                weight="true"
+                color="white"
+                height="32px"
+              >
+                LEARN MORE
+                <FiArrowUpRight style={{ color: "#52B4FF" }} />
+              </BtnText>
+            </button>
           </div>
           <div className="flex flex-col justify-center my-0 mx-3 sm:w-full">
             <div className="z-50">
