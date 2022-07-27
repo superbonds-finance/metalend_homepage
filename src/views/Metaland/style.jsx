@@ -69,7 +69,7 @@ button.learn-more {
   border: 3px solid transparent;
   border-radius: 6px;
   width: 12rem;
-  padding: 16px;
+  padding:  10px 16px;
 
 
   &::before{
@@ -94,7 +94,7 @@ button.learn-more:hover {
   border: 3px solid transparent;
   border-radius: 6px;
   width: 12rem;
-  padding: 16px;
+  padding:  10px 16px;
   // border-width: 3px;
   // color: white;
   box-shadow: white;
@@ -274,7 +274,7 @@ button.learn-more-1 {
   border: 3px solid transparent;
   border-radius: 6px;
   width: 100%;
-  padding: 16px;
+  padding: 10px 16px;
 
 
   &::before{
@@ -299,7 +299,7 @@ button.learn-more-1:hover {
   border: 3px solid transparent;
   border-radius: 6px;
   width: 100%;
-  padding: 16px;
+  padding: 10px 16px;
   // border-width: 3px;
   // color: white;
   box-shadow: white;
@@ -491,7 +491,7 @@ color: #687D95;
     }
 
     .custom-row{
-      height: 600px;
+      height: 800px;
       .col1{
         padding: 80px 0 0 80px;
         .main-title{
@@ -517,6 +517,7 @@ color: #687D95;
           line-height: 2rem;
           color:#FFFFFF;
           font-size: 1.75rem;
+          font-family: 'Space Grotesk';
         }
       }
       @media (max-width: 768px) {

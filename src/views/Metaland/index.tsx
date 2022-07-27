@@ -26,14 +26,17 @@ export const Metalend = () => {
     <Wrapper>
       <div className="top-div select-none">
         <div className="polygen1">
-          <img alt="bg-hexagon" className="blur1" src={polygon4} />
+          <img alt="bg-hexagon" className="blur1" src={polygon4}/>
           <img alt="bg-hexagon1" className="blur" src={polygon3} />
           <div className="pl-10 pr-28 sm:pl-0 custom-row">
             <div className=" antd-col col1 flex flex-col w-full">
               <div className="w-1/2 lg:w-4/5 xl:w-4/6 2xl:w-3/5">
                 <div className="main-title">Metalend</div>
                 <div className="sub-title pt-6">
-                  A capital raising platform for everyone
+                 Permisonless Credit Market for Everyone
+                </div>
+                <div className="sub-title pt-3">
+                 100% of Revenue Reserved for the Community
                 </div>
                 <div className="flex justify-between mt-8 pt-0.5 w-4/6 max-w-md">
                   <button className="button-learn-more learn-more-2 btn-hover-width  w-32 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
@@ -109,7 +112,7 @@ export const Metalend = () => {
                     alt="..."
                   />
                   <text className="text-center text-lg">
-                    Independent 3rd party credit evaluations
+                    Independent 3rd party credit scoring
                   </text>
                   <img
                     className="w-full h-4 mt-8"
@@ -117,7 +120,7 @@ export const Metalend = () => {
                     alt="..."
                   />
                 </div>
-                <div className="flex-col text-center w-52">
+                <div className="flex-col text-center w-64">
                   <img className="mx-auto mb-6 h-8 w-8" src={union} alt="..." />
                   <text className="text-center text-lg">
                     Immediate secondary markets for all successful raises
@@ -254,7 +257,7 @@ export const Metalend = () => {
             <BtnText size="15px" weight="true" color="white" height="28px">
               POWERED BY
             </BtnText>
-            <text className="sb-fuel-text block mt-4">SB Token</text>
+            <text className="sb-fuel-text block mt-4">LNDR Token</text>
             <text className="sb-fuel-text block">Fuel of the Platform</text>
             <button className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
               <BtnText
@@ -269,7 +272,27 @@ export const Metalend = () => {
               </BtnText>
             </button>
           </div>
-          <div className="flex flex-col justify-center my-0 mx-3 sm:w-full">
+          
+          <div className="flex flex-col self-center">
+            <BtnText size="15px" weight="true" color="white" height="28px">
+              GOVERNED BY
+            </BtnText>
+            <text className="sb-fuel-text block mt-4">vLNDR Token</text>
+            <text className="sb-fuel-text block">Owners of the Platform</text>
+            <button className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+              <BtnText
+                transform
+                size="15px"
+                weight="true"
+                color="white"
+                height="32px"
+              >
+                LEARN MORE
+                <FiArrowUpRight style={{ color: "#52B4FF" }} />
+              </BtnText>
+            </button>
+          </div>
+          {/* <div className="flex flex-col justify-center my-0 mx-3 sm:w-full">
             <div className="z-50">
               <img
                 className="my-0 mx-auto w-24 z-50 select-none"
@@ -325,7 +348,7 @@ export const Metalend = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -333,3 +356,5 @@ export const Metalend = () => {
     </Wrapper>
   );
 };
+
+
