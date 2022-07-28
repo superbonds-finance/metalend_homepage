@@ -144,7 +144,7 @@ export const Metalend = () => {
       </div>
 
       <div className="w-11/12 bg-rectangle blur1 mx-auto mt-10 rounded-md">
-        <div className="flex w-11/12 mx-auto justify-between">
+        <div className="flex w-11/12 mx-auto justify-evenly xl:justify-between">
           <div className="w-2/5 xxl:w-3/5">
             <div className="grid grid-cols-3 grid-rows-2 gap-4 pt-12 pr-12">
               <div className="bg-gray-300 rounded-xl text-lg p-4" style={{background:'#1A232B'}}>
