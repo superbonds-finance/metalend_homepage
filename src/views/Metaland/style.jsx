@@ -43,9 +43,10 @@ background: #161D23;
     min-height: 1px;
 }
 .icon-desc{
-  max-width: 1160px;
-  margin-left: auto;
+  max-width: 1300px;
+  /* margin-left: auto; */
   margin-right: auto;
+
 }
 @media (max-width: 768px) {
   .top-div{
