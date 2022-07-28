@@ -77,7 +77,7 @@ export const Metalend = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex mt-32 w-full items-center justify-between">
+              <div className="flex mt-32 w-full items-center justify-between icon-desc">
                 <div className="flex-col text-center w-52">
                   <img
                     className="mx-auto mb-6 h-8 w-8"

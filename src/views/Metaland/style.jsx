@@ -42,7 +42,11 @@ background: #161D23;
     max-width: 100%;
     min-height: 1px;
 }
-
+.icon-desc{
+  max-width: 1160px;
+  margin-left: auto;
+  margin-right: auto;
+}
 @media (max-width: 768px) {
   .top-div{
     margin-left: 15px;
