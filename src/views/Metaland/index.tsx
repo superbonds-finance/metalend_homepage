@@ -29,7 +29,7 @@ export const Metalend = () => {
           <img alt="bg-hexagon" className="blur1" src={polygon4}/>
           <img alt="bg-hexagon1" className="blur" src={polygon3} />
           <div className="pl-10 pr-28 sm:pl-0 custom-row">
-            <div className=" antd-col col1 flex flex-col w-full">
+            <div className="icon-desc antd-col col1 flex flex-col w-full">
               <div className="w-1/2 lg:w-4/5 xl:w-4/6 2xl:w-3/5">
                 <div className="main-title">Metalend</div>
                 <div className="sub-title pt-6">
@@ -77,7 +77,7 @@ export const Metalend = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex mt-32 w-full items-center justify-between icon-desc">
+              <div className="flex mt-32 w-full items-center justify-between">
                 <div className="flex-col text-center w-52">
                   <img
                     className="mx-auto mb-6 h-8 w-8"
