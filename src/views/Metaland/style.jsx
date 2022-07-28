@@ -469,7 +469,7 @@ color: #687D95;
   }
   .polygen1{
     // background-image: url(${polygon3});
-    height: 600px;
+    height: 800px;
     // background-size: 200px;
     // background-repeat: no-repeat;
     // background-sizeo: contain;
@@ -479,7 +479,7 @@ color: #687D95;
     .blur1{
       position: absolute;
       left: 25px;
-      height: 600px;
+      height: 700px;
       width: 100%;
     }
     .blur{

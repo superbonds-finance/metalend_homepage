@@ -12,15 +12,15 @@ import circleframe from "../../assets/Metalend/circleframe.png";
 import lenderframe from "../../assets/Metalend/lender_frame.png";
  
 
-import { Col, Row } from "antd";
+// import { Col, Row } from "antd";
 import { BtnText,   } from "../home/home.styled";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
  
 import { FiArrowUpRight } from "react-icons/fi";
 
 export const Metalend = () => {
-  const history = useHistory();
+  // const history = useHistory();
 
   return (
     <Wrapper>
@@ -143,9 +143,9 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="w-11/12 bg-rectangle blur1 mx-auto mt-20 rounded-md">
+      <div className="w-11/12 bg-rectangle blur1 mx-auto mt-10 rounded-md">
         <div className="flex w-11/12 mx-auto justify-between">
-          <div className="w-3/5">
+          <div className="w-2/5 xxl:w-3/5">
             <div className="grid grid-cols-3 grid-rows-2 gap-4 pt-12 pr-12">
               <div className="bg-gray-300 rounded-xl text-lg p-4" style={{background:'#1A232B'}}>
                 <p>Borrow For Your Specific Needs</p>
@@ -183,7 +183,7 @@ export const Metalend = () => {
             </div>
           </div>
           <div className="w-2/5 max-w-md">
-            <img className="h-full w-full" src={circleframe} alt="..." />
+            <img className="h-full w-full -mt-2" src={circleframe} alt="..." />
           </div>
         </div>
       </div>
@@ -201,7 +201,7 @@ export const Metalend = () => {
             <img className="" src={lenderframe} alt="..." />
           </div>
 
-          <div className="flex flex-col mx-4">
+          <div className="w-2/5 xxl:w-3/5 flex flex-col mx-4">
             <div
               className="grid grid-cols-2 grid-rows-2 gap-4 pt-12 justify-items-center "
               style={{ marginTop: "-12rem" }}
