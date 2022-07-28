@@ -32,3 +32,67 @@
     margin: 0px 0px 20px 0px;
   }
 }
+
+.modal-container{
+  background: linear-gradient(0deg, rgba(1, 252, 252, 0.55) 27.05%, rgba(31, 107, 165, 0.55) 100%), #12181F;
+
+}
+.input-div{
+  background: #161D23;
+ 
+  padding: 3rem 3rem 1rem 3rem;
+  border-radius:1rem;
+}
+.input-box-modal{
+  background: #1A232B;
+border-radius: 6px;
+padding: 12px;
+}
+.header-modal{
+  font-family: 'Open Sans', sans-serif;
+}
+.launch-text{
+    background-image: linear-gradient(90.09deg,#01FCFC,#0085FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.button {
+  border-radius: 4px;
+  border: 1px solid #338BA8;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+ 
+ 
+  transition: all 0.5s;
+  cursor: pointer;
+ ;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
