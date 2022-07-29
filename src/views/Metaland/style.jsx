@@ -29,6 +29,17 @@ export const AntdTooltip= styled.div`
 `;
 
 
+export const HeadeText= styled.text`
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+    font-feature-settings: 'ss02' on, 'ss03' on, 'ss04' on;
+    color: #FFFFFF;
+`;
 
 export const Wrapper = styled.div`
 background: #161D23;
@@ -519,10 +530,18 @@ color: #687D95;
           }
         }
         .sub-title{
-          line-height: 2rem;
-          color:#FFFFFF;
-          font-size: 1.75rem;
+         
+
           font-family: 'Space Grotesk';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 40px;
+          line-height: 27px;
+          display: flex;
+          align-items: center;
+          letter-spacing: -1px;
+          font-feature-settings: 'ss02' on, 'ss03' on, 'ss04' on
+          color: #FFFFFF;
         }
       }
       @media (max-width: 768px) {

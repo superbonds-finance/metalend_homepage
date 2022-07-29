@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Wrapper, GlobalStyle } from "./style";
+import { Wrapper, GlobalStyle,HeadeText } from "./style";
 import polygon4 from "../../assets/Metalend/polygon_4.png";
 import polygon3 from "../../assets/Metalend/polygon_3.png";
 import carbon from "../../assets/Metalend/carbon_center-to-fit.png";
@@ -46,12 +46,13 @@ export const Metalend = () => {
             <div className="antd-col col1 flex flex-col w-full">
               <div className="w-1/2 lg:w-4/5 xl:w-4/6 2xl:w-3/5">
                 <div className="main-title">Metalend</div>
-                <div className="sub-title pt-6">
-                 Permisonless Credit Market for Everyone
-                </div>
-                <div className="sub-title pt-3">
-                 100% of Revenue Reserved for the Community
-                </div>
+                <HeadeText>
+                  Permisonless Credit Market for Everyone
+                </HeadeText>
+                <HeadeText className='mt-3'>
+                  100% of Revenue Reserved for the Community
+                </HeadeText>
+                
                 <div className="flex justify-between mt-8 pt-0.5 w-4/6 max-w-md">
                   <button onClick={()=>openModal()} className="button-learn-more learn-more-2 btn-hover-width  w-32 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                     <BtnText
@@ -94,7 +95,7 @@ export const Metalend = () => {
               <div className="icon-desc flex mt-32 w-full items-center justify-between">
                 <div className="flex-col text-center w-52">
                   <img
-                    className="mx-auto mb-6 h-8 w-8"
+                    className="mx-auto mb-6 h-8 w-9"
                     src={vector}
                     alt="..."
                   />
@@ -108,7 +109,7 @@ export const Metalend = () => {
                   />
                 </div>
                 <div className="flex-col text-center w-52">
-                  <img className="mx-auto mb-6 h-8 w-8" src={chart} alt="..." />
+                  <img className="mx-auto mb-6 h-8 w-9" src={chart} alt="..." />
                   <text className="text-center text-lg font-semibold">
                     Raise funding with or{" "}
                     <span style={{ color: "#01C0FC" }}>without</span> collateral
@@ -121,7 +122,7 @@ export const Metalend = () => {
                 </div>
                 <div className="flex-col text-center w-52">
                   <img
-                    className="mx-auto mb-6 h-8 w-8"
+                    className="mx-auto mb-6 h-8 w-9"
                     src={carbon}
                     alt="..."
                   />
@@ -135,7 +136,7 @@ export const Metalend = () => {
                   />
                 </div>
                 <div className="flex-col text-center w-64">
-                  <img className="mx-auto mb-6 h-8 w-8" src={union} alt="..." />
+                  <img className="mx-auto mb-6 h-8 w-9" src={union} alt="..." />
                   <text className="text-center text-lg font-semibold">
                     Immediate secondary markets for all successful raises
                   </text>
