@@ -36,12 +36,13 @@ export const Metalend = () => {
     <Wrapper>
       <Modal closeModal={closeModal} 
         openModal={openModal} isOpen={isOpen}/>
-      <div className="top-div select-none">
+ 
+      <div className="  top-div select-none mx-0 my-auto"   style={{maxWidth:'1800px',margin: "0 auto"}}>
        
-        <div className="polygen1">
-          <img alt="bg-hexagon" className="blur1" src={polygon4}/>
+        <div className="polygen1  2xxl:ml-10 relative" >
+          <img alt="bg-hexagon" className="blur1" src={polygon4} />
           <img alt="bg-hexagon1" className="blur" src={polygon3} />
-          <div className="pl-28 xxl:pl-10 pr-28 sm:pl-0 custom-row">
+          <div className="pl-28 xxl:pl-10 pr-28 sm:pl-0 custom-row" >
             <div className="antd-col col1 flex flex-col w-full">
               <div className="w-1/2 lg:w-4/5 xl:w-4/6 2xl:w-3/5">
                 <div className="main-title">Metalend</div>
@@ -150,16 +151,16 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="flex justify-center mx-auto">
-        <div className="w-10/12 mx-auto mt-20">
+      <div className="flex  mx-auto"  style={{maxWidth:'1350px'}}>
+        <div className="w-full mx-auto mt-20 2xl:w-10/12">
           <text className="supply-text">Borrowers</text>
         </div>
       </div>
 
-      <div className="w-11/12 bg-rectangle blur1 mx-auto mt-10 rounded-md  ">
-        <div className="flex w-11/12 mx-auto justify-between xl:justify-between"  >
+      <div className="w-11/12 bg-rectangle blur1 mx-auto mt-10 rounded-2xl  " style={{maxWidth:'1800px'}}>
+        <div className="flex w-11/12 mx-auto justify-between xl:justify-between" style={{maxWidth:'1350px'}} >
           <div className="w-3/5 xxl:w-3/5">
-            <div className="grid grid-cols-3 grid-rows-2 gap-4 pt-12 pr-12">
+            <div className="grid grid-cols-3 grid-rows-2 gap-4 pt-12 pr-12" >
               <div className="bg-gray-300 rounded-xl text-lg p-4"   >
                 <p>Borrow For Your Specific Needs</p>
                 <img className="w-8 h-1 mt-8" src={boxborder} alt="..." />
@@ -201,43 +202,43 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="flex justify-center mx-auto mt-20">
-        <div className="w-10/12 mx-auto ">
+      <div className="flex justify-center mx-auto mt-20" style={{maxWidth:'1350px'}}>
+        <div className="w-full mx-auto mt-20 2xl:w-10/12 ">
           <text className="supply-text block">Traders and</text>
           <text className="supply-text ml-2">Lenders</text>
         </div>
       </div>
 
-      <div className="w-11/12 bg-lender-pro rounded-2xl blur1 mx-auto my-0 mt-20 py-20 px-10">
-        <div className="flex justify-around">
+      <div className="w-11/12 bg-lender-pro rounded-2xl blur1 mx-auto my-0 mt-20 py-20"  style={{maxWidth:'1800px'}}>
+        <div className="flex w-11/12 mx-auto justify-between xl:justify-between" style={{maxWidth:'1350px'}}>
           <div className="flex flex-col self-center">
             <img className="" src={lenderframe} alt="..." />
           </div>
 
-          <div className="w-2/5 xxl:w-3/5 flex flex-col mx-4">
+          <div className="  flex flex-col mx-4">
             <div
               className="grid grid-cols-2 grid-rows-2 gap-4 pt-12 justify-items-center "
               style={{ marginTop: "-12rem" }}
             >
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 w-full">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 w-10/12">
                 <p>Generate a fixed income</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 w-full">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 pr-10  w-10/12">
                 <p>Earn exposure to large ecosystems</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 w-full">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6  w-10/12">
                 <p>Benefit from liquidity in secondary markets</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 w-full">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6  w-10/12">
                 <p>Diversify your portfolio risk</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
             </div>
             <div className="grid grid-cols-2 grid-rows-1 mt-6 gap-4 justify-items-center">
-              <button className="button-learn-more learn-more-1 btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+              <button className="w-10/12 button-learn-more learn-more-1 btn-hover-width-1  mt-9   z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >  
                 <BtnText
                   transform
                   size="15px"
@@ -248,7 +249,7 @@ export const Metalend = () => {
                   Browse New Issuances
                 </BtnText>
               </button>
-              <button className="button-learn-more learn-more-1 btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+              <button className=" w-10/12 button-learn-more  learn-more-1 btn-hover-width-1  mt-9   z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
                 <BtnText
                   transform
                   size="15px"
@@ -264,7 +265,7 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="w-11/12 bg-sb-fuel blur1 mx-auto mb-28 mt-40 py-20 px-10 rounded-2xl ">
+      <div className="w-11/12 bg-sb-fuel blur1 mx-auto mb-28 mt-40 py-20 px-10 rounded-2xl" style={{maxWidth:'1800px'}}>
         <div className="flex justify-around">
           <div className="flex flex-col self-center">
             <BtnText size="15px" weight="true" color="white" height="28px">

@@ -278,7 +278,7 @@ button.learn-more-1 {
   position: relative;
   border: 3px solid transparent;
   border-radius: 6px;
-  width: 100%;
+  width: 84%;
   padding: 10px 16px;
 
 
@@ -303,7 +303,7 @@ button.learn-more-1:hover {
   position: relative;
   border: 3px solid transparent;
   border-radius: 6px;
-  width: 100%;
+  width: 84%;
   padding: 10px 16px;
   // border-width: 3px;
   // color: white;
@@ -419,7 +419,7 @@ color: #687D95;
       position: absolute;
       // left: 25px;
       // height: 600px;
-      width: 100%;
+      width: 0%;
     }
   }
   .bg-lender{
@@ -483,7 +483,7 @@ color: #687D95;
     // background-position-y: 75px;
     .blur1{
       position: absolute;
-      left: 25px;
+      //left: 25px;
       height: 700px;
       width: 100%;
     }
@@ -491,8 +491,8 @@ color: #687D95;
       position: absolute;
       top: 25%;
       right: 0px;
-      height: 600px;
-      width: 100%;
+      height: 500px;
+      width: 60%;
     }
 
     .custom-row{
@@ -502,7 +502,7 @@ color: #687D95;
         .main-title{
           font-weight: 500;
           font-size: 82px;
-          line-height: 62px;
+          line-height: px;
           letter-spacing: -1px;
           background-image: linear-gradient(90.09deg, #01FCFC, #0085FF);
           -webkit-background-clip: text;
@@ -566,7 +566,7 @@ color: #687D95;
         position: absolute;
         left: 15px;
         height: 600px;
-        width: 100%;
+        width: 60%;
       }
       .blur{
         // position: absolute;

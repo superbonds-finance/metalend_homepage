@@ -38,8 +38,8 @@
 
 }
 .input-div{
-  background: #161D23;
- 
+  background: transparent;
+
   padding: 3rem 3rem 1rem 3rem;
   border-radius:1rem;
 }
@@ -61,7 +61,7 @@ padding: 12px;
 
 .button {
   border-radius: 4px;
-  border: 1px solid #338BA8;
+  border: 1px solid #FFFFFF;
   color: #FFFFFF;
   text-align: center;
   font-size: 28px;

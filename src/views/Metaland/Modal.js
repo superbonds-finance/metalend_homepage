@@ -33,30 +33,30 @@ export default function Modal({openModal,closeModal,isOpen}) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="select-none   relative w-6/12 transform overflow-hidden rounded-2xl    modal-container p-6 text-left align-middle shadow-xl transition-all"  >
+                <Dialog.Panel className="select-none   relative w-4/12 transform overflow-hidden rounded-2xl  modal-container p-6 text-left align-middle shadow-xl transition-all"  >
                   <RiCloseCircleLine className='text-4xl absolute  top-1 right-1 z-10 cursor-pointer'   onClick={closeModal}/>
                   <div className='w-full flex flex-col items-center'>
-                    <text className='text-6xl tracking-wide font-semibold header-modal'>Stay Tuned</text>
-                    <text className='text-5xl tracking-wide font-semibold mt-3 header-modal'>we're <span className='font-bold launch-text'>launching</span>  soon</text>
+                    <text className='text-5xl tracking-wide font-semibold header-modal'>Stay Tuned</text>
+                    <text className='text-4xl tracking-wide font-semibold mt-4 header-modal'>we're <span className='font-bold launch-text'>launching</span>  soon</text>
                   </div>
                   
                  
-                  <div className="flex flex-col justify-center mt-4 input-div items-center">
+                  <div className="flex flex-col justify-center mt-3 input-div items-center">
                   
-                        <input  className='block p-4 w-9/12  placeholder-white font-semibold bg-blue-800 rounded-lg  border-gray-300 sm:text-md     dark:bg-gray-700  outline-none text-white ' type="email" placeholder='Enter your email address'/>
+                        <input  className='block p-4 w-9/12  placeholder-white font-semibold bg-gray-200 rounded-lg  border-gray-300 sm:text-md     dark:bg-gray-700  outline-none text-white ' type="email" placeholder='Enter your email address'/>
                     <button
                       type="button "
-                      className=" button w-3/12 rounded-md border border-transparent mt-6 bg-transparent px-4 py-3 text-sm font-medium text-white  focus:outline-none border-blue-800"
+                      className=" button w-4/12 rounded-md border border-transparent mt-6 bg-transparent px-4 py-3 text-sm font-medium text-white  focus:outline-none border-blue-800"
                       onClick={closeModal}
                     >
                       <span className='text-xl'>Notify Me</span> 
                     </button>
-
+{/* 
                     <div className='flex gap-6 mt-10'>
                         <img src="https://res.cloudinary.com/drr1rnoxf/image/upload/v1658653499/akar-icons_twitter-fill_vkn6xc.svg" alt='twitter' className='w-8'/>
                         <img src="https://res.cloudinary.com/drr1rnoxf/image/upload/v1658653480/akar-icons_discord-fill_ewmxlp.svg" alt='dicsord' className='w-8'/>
                         <img src="https://res.cloudinary.com/drr1rnoxf/image/upload/v1658653480/akar-icons_twitter-fill_gaaszb.png" alt='telegram' className='w-8'/>
-                    </div>
+                    </div> */}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
