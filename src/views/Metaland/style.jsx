@@ -29,6 +29,17 @@ export const AntdTooltip= styled.div`
 `;
 
 
+export const HeadeText= styled.text`
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+    font-feature-settings: 'ss02' on, 'ss03' on, 'ss04' on;
+    color: #FFFFFF;
+`;
 
 export const Wrapper = styled.div`
 background: #161D23;
@@ -278,7 +289,7 @@ button.learn-more-1 {
   position: relative;
   border: 3px solid transparent;
   border-radius: 6px;
-  width: 100%;
+  width: 84%;
   padding: 10px 16px;
 
 
@@ -303,7 +314,7 @@ button.learn-more-1:hover {
   position: relative;
   border: 3px solid transparent;
   border-radius: 6px;
-  width: 100%;
+  width: 84%;
   padding: 10px 16px;
   // border-width: 3px;
   // color: white;
@@ -419,7 +430,7 @@ color: #687D95;
       position: absolute;
       // left: 25px;
       // height: 600px;
-      width: 100%;
+      width: 0%;
     }
   }
   .bg-lender{
@@ -483,7 +494,7 @@ color: #687D95;
     // background-position-y: 75px;
     .blur1{
       position: absolute;
-      left: 25px;
+      //left: 25px;
       height: 700px;
       width: 100%;
     }
@@ -505,7 +516,7 @@ color: #687D95;
         .main-title{
           font-weight: 500;
           font-size: 82px;
-          line-height: 62px;
+          line-height: px;
           letter-spacing: -1px;
           background-image: linear-gradient(90.09deg, #01FCFC, #0085FF);
           -webkit-background-clip: text;
@@ -522,10 +533,18 @@ color: #687D95;
           }
         }
         .sub-title{
-          line-height: 2rem;
-          color:#FFFFFF;
-          font-size: 1.75rem;
+         
+
           font-family: 'Space Grotesk';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 40px;
+          line-height: 27px;
+          display: flex;
+          align-items: center;
+          letter-spacing: -1px;
+          font-feature-settings: 'ss02' on, 'ss03' on, 'ss04' on;
+          color: #FFFFFF;
         }
       }
       @media (max-width: 768px) {
@@ -569,7 +588,7 @@ color: #687D95;
         position: absolute;
         left: 15px;
         height: 600px;
-        width: 100%;
+        width: 60%;
       }
       .blur{
         // position: absolute;
@@ -577,7 +596,6 @@ color: #687D95;
       }
     }
   }
-}
 
 .supply-data{
   margin:3rem 0rem;
@@ -950,7 +968,7 @@ border-image-source: linear-gradient(269.54deg, #01C0FC 0.15%, #0085FF 96.26%);
     } 
    
     .supply-data-value{
-      color: #FFFFFF
+      color: #FFFFFF;
       font-family: 'Archivo Narrow';
       font-style: normal;
     }
