@@ -1,7 +1,6 @@
-import React, {useState} from "react";
-import { Wrapper, GlobalStyle,HeadeText } from "./style";
-import polygon4 from "../../assets/Metalend/polygon_4.png";
-import polygon3 from "../../assets/Metalend/polygon_3.png";
+import React, { useState } from "react";
+import { Wrapper, GlobalStyle, HeadeText } from "./style";
+import polygon4 from "../../assets/Metalend/landingPageTop.png";
 import carbon from "../../assets/Metalend/carbon_center-to-fit.png";
 import union from "../../assets/Metalend/Union.png";
 import vector from "../../assets/Metalend/Vector.png";
@@ -10,13 +9,13 @@ import radialborder from "../../assets/Metalend/radialborder.png";
 import boxborder from "../../assets/Metalend/boxborder.png";
 import circleframe from "../../assets/Metalend/circleframe.png";
 import lenderframe from "../../assets/Metalend/lender_frame.png";
-import Modal from "./Modal" 
+import Modal from "./Modal"
 
 // import { Col, Row } from "antd";
-import { BtnText,   } from "../home/home.styled";
+import { BtnText, } from "../home/home.styled";
 // import { useHistory } from "react-router-dom";
 
- 
+
 import { FiArrowUpRight } from "react-icons/fi";
 
 export const Metalend = () => {
@@ -24,37 +23,38 @@ export const Metalend = () => {
   let [isOpen, setIsOpen] = useState(false)
 
 
-  const closeModal=()=>{
+  const closeModal = () => {
     setIsOpen(false)
   }
 
-  const openModal=()=>{
+  const openModal = () => {
     setIsOpen(true)
   }
 
   return (
     <Wrapper>
-      <Modal closeModal={closeModal} 
-        openModal={openModal} isOpen={isOpen}/>
- 
-      <div className="  top-div select-none mx-0 my-auto"   style={{maxWidth:'1800px',margin: "0 auto"}}>
-       
+      <Modal closeModal={closeModal}
+        openModal={openModal} isOpen={isOpen} />
+
+      <div className="top-div select-none mx-0 my-auto" style={{ maxWidth: '1600px', margin: "0 auto", height: '992px' }}>
+
         <div className="polygen1  2xxl:ml-10 relative" >
           <img alt="bg-hexagon" className="blur1" src={polygon4} />
-          <img alt="bg-hexagon1" className="blur" src={polygon3} />
-          <div className="pl-28 xxl:pl-10 pr-28 sm:pl-0 custom-row" >
+          {/* <img alt="bg-hexagon1" className="blur" src={polygon3} /> */}
+          <div className="pl-28 pt-28 xxl:pl-10 xxl:pt-0 pr-28 sm:pl-0 custom-row" >
             <div className="antd-col col1 flex flex-col w-full">
-              <div className="w-1/2 lg:w-4/5 xl:w-4/6 2xl:w-3/5">
-                <div className="main-title">Metalend</div>
-                <HeadeText>
+              <div className="w-full ">
+                <div className="main-title">{/* Metalend */}A Permissionless<br />
+                  Credit Market for Everyone</div>
+                {/* <HeadeText>
                   Permisonless Credit Market for Everyone
-                </HeadeText>
-                <HeadeText className='mt-3'>
+                </HeadeText> */}
+                <HeadeText className='mt-8 mb-6'>
                   100% of Revenue Reserved for the Community
                 </HeadeText>
-                
-                <div className="flex justify-between mt-8 pt-0.5 w-4/6 max-w-md">
-                  <button onClick={()=>openModal()} className="button-learn-more learn-more-2 btn-hover-width  w-32 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+
+                <div className="flex justify-start mt-8 pt-0.5 w-auto">
+                  <button onClick={() => openModal()} className="button-learn-more learn-more-2 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                     <BtnText
                       transform
                       size="15px"
@@ -66,7 +66,7 @@ export const Metalend = () => {
                       <FiArrowUpRight style={{ color: "#52B4FF" }} />
                     </BtnText>
                   </button>
-                  <button onClick={()=>openModal()} className="button-learn-more learn-more-3 btn-hover-width  w-32 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+                  <button onClick={() => openModal()} className="button-learn-more learn-more-3 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                     <BtnText
                       transform
                       size="15px"
@@ -78,7 +78,7 @@ export const Metalend = () => {
                       <FiArrowUpRight style={{ color: "#53DFDF" }} />
                     </BtnText>
                   </button>
-                  <button onClick={()=>openModal()} className="button-learn-more learn-more-4 btn-hover-width  w-32 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+                  <button onClick={() => openModal()} className="button-learn-more learn-more-4 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                     <BtnText
                       transform
                       size="15px"
@@ -92,15 +92,18 @@ export const Metalend = () => {
                   </button>
                 </div>
               </div>
-              <div className="icon-desc flex mt-32 w-full items-center justify-between">
-                <div className="flex-col text-center w-52">
+              <div className="icon-desc flex w-11/12 xxl:w-full items-center justify-between">
+                <div className="flex-col text-center">
                   <img
-                    className="mx-auto mb-6 h-8 w-9"
+                    className="mx-auto mb-8"
+                    width={35}
+                    height={35}
                     src={vector}
                     alt="..."
                   />
                   <text className="text-center text-lg font-semibold">
-                    Fully decentralized and not privileged
+                    Fully decentralized and <br />
+                    not privileged
                   </text>
                   <img
                     className="w-full h-4 mt-8"
@@ -108,10 +111,12 @@ export const Metalend = () => {
                     alt="..."
                   />
                 </div>
-                <div className="flex-col text-center w-52">
-                  <img className="mx-auto mb-6 h-8 w-9" src={chart} alt="..." />
+                <div className="flex-col text-center">
+                  <img className="mx-auto mb-8"
+                    width={35}
+                    height={35} src={chart} alt="..." />
                   <text className="text-center text-lg font-semibold">
-                    Raise funding with or{" "}
+                    Raise funding with or{" "}<br />
                     <span style={{ color: "#01C0FC" }}>without</span> collateral
                   </text>
                   <img
@@ -120,14 +125,17 @@ export const Metalend = () => {
                     alt="..."
                   />
                 </div>
-                <div className="flex-col text-center w-52">
+                <div className="flex-col text-center">
                   <img
-                    className="mx-auto mb-6 h-8 w-9"
+                    className="mx-auto mb-8"
+                    width={40}
+                    height={40}
                     src={carbon}
                     alt="..."
                   />
                   <text className="text-center text-lg font-semibold" >
-                    Independent 3rd party credit scoring
+                    Independent 3rd party<br />
+                    credit evaluations
                   </text>
                   <img
                     className="w-full h-4 mt-8"
@@ -135,10 +143,13 @@ export const Metalend = () => {
                     alt="..."
                   />
                 </div>
-                <div className="flex-col text-center w-64">
-                  <img className="mx-auto mb-6 h-8 w-9" src={union} alt="..." />
+                <div className="flex-col text-center">
+                  <img className="mx-auto mb-8"
+                    width={35}
+                    height={35} src={union} alt="..." />
                   <text className="text-center text-lg font-semibold">
-                    Immediate secondary markets for all successful raises
+                    Immediate secondary markets<br />
+                    for all successful raises
                   </text>
                   <img
                     className="w-full h-4 mt-8"
@@ -152,14 +163,14 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="flex  mx-auto"  style={{maxWidth:'1350px'}}>
+      <div className="flex  mx-auto" style={{ maxWidth: '1350px' }}>
         <div className="w-full mx-auto mt-20 2xl:w-10/12">
           <text className="supply-text">Borrowers</text>
         </div>
       </div>
 
-      <div className="w-11/12 bg-rectangle blur1 mx-auto mt-10 rounded-2xl  " style={{maxWidth:'1800px'}}>
-        <div className="flex w-11/12 mx-auto justify-between xl:justify-between" style={{maxWidth:'1350px'}} >
+      <div className="w-11/12 bg-rectangle blur1 mx-auto mt-10 rounded-2xl  " style={{ maxWidth: '1600px' }}>
+        <div className="flex w-11/12 mx-auto justify-between xl:justify-between" style={{ maxWidth: '1350px' }} >
           <div className="w-3/5 xxl:w-3/5">
             <div className="grid grid-cols-3 grid-rows-2 gap-4 pt-12 pr-12" >
               <div className="bg-gray-300 rounded-xl text-lg p-4"   >
@@ -203,15 +214,15 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="flex justify-center mx-auto mt-20" style={{maxWidth:'1350px'}}>
+      <div className="flex justify-center mx-auto mt-20" style={{ maxWidth: '1350px' }}>
         <div className="w-full mx-auto mt-20 2xl:w-10/12 ">
           <text className="supply-text block">Traders and</text>
           <text className="supply-text ml-2">Lenders</text>
         </div>
       </div>
 
-      <div className="w-11/12 bg-lender-pro rounded-2xl blur1 mx-auto my-0 mt-20 py-20"  style={{maxWidth:'1800px'}}>
-        <div className="flex w-11/12 mx-auto justify-between xl:justify-between" style={{maxWidth:'1350px'}}>
+      <div className="w-11/12 bg-lender-pro rounded-2xl blur1 mx-auto my-0 mt-20 py-20" style={{ maxWidth: '1600px' }}>
+        <div className="flex w-11/12 mx-auto justify-between xl:justify-between" style={{ maxWidth: '1350px' }}>
           <div className="flex flex-col self-center">
             <img className="" src={lenderframe} alt="..." />
           </div>
@@ -239,7 +250,7 @@ export const Metalend = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 grid-rows-1 mt-6 gap-4 justify-items-center">
-              <button className="w-10/12 button-learn-more learn-more-1 btn-hover-width-1  mt-9   z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >  
+              <button className="w-10/12 button-learn-more learn-more-1 btn-hover-width-1  mt-9   z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
                 <BtnText
                   transform
                   size="15px"
@@ -266,8 +277,8 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="w-11/12 bg-sb-fuel blur1 mx-auto mb-28 mt-40 py-20 px-10 rounded-2xl" style={{maxWidth:'1800px'}}>
-        <div className="flex justify-around">
+      <div className="w-full bg-sb-fuel blur1  pb-28 pt-40  px-40 rounded-2xl">
+        <div className="flex justify-between mx-auto " style={{ maxWidth: '1400px' }}>
           <div className="flex flex-col self-center">
             <BtnText size="15px" weight="true" color="white" height="28px">
               POWERED BY
@@ -287,7 +298,7 @@ export const Metalend = () => {
               </BtnText>
             </button>
           </div>
-          
+
           <div className="flex flex-col self-center">
             <BtnText size="15px" weight="true" color="white" height="28px">
               GOVERNED BY

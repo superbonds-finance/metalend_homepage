@@ -30,15 +30,21 @@ export const AntdTooltip= styled.div`
 
 
 export const HeadeText= styled.text`
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 27px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.5px;
-    font-feature-settings: 'ss02' on, 'ss03' on, 'ss04' on;
-    color: #FFFFFF;
+    font-family: 'Space Grotesk';
+font-style: normal;
+font-weight: 500;
+font-size: 28px;
+line-height: 36px;
+/* or 129% */
+
+display: flex;
+align-items: center;
+letter-spacing: -1px;
+font-feature-settings: 'ss02' on, 'ss03' on, 'ss04' on;
+
+/* White */
+
+color: #FFFFFF;
 `;
 
 export const Wrapper = styled.div`
@@ -135,8 +141,9 @@ button.learn-more-2 {
   position: relative;
   border: 3px solid transparent;
   border-radius: 6px;
-  width: 8.7rem;
+  width: 10.2rem;
   padding: 8px;
+  margin-right: 20px;
 
 
   &::before{
@@ -187,8 +194,9 @@ button.learn-more-3 {
   position: relative;
   border: 3px solid transparent;
   border-radius: 6px;
-  width: 8.7rem;
+  width: 10.2rem;
   padding: 8px;
+  margin-right: 20px;
 
 
   &::before{
@@ -238,7 +246,7 @@ button.learn-more-4 {
   position: relative;
   border: 3px solid transparent;
   border-radius: 6px;
-  width: 8.7rem;
+  width: 10.2rem;
   padding: 8px;
 
 
@@ -415,7 +423,26 @@ color: #687D95;
 
  
 .icon-desc{
-  margin-top:5rem;
+  margin-top: 10.5rem;
+  @media (max-width: 1900px) {
+    
+    margin-top: 6.5rem;
+  }
+  text{
+    font-family: 'Space Grotesk';
+font-style: normal;
+font-weight: 500;
+font-size: 21px;
+line-height: 30px;
+/* or 141% */
+
+letter-spacing: -0.3px;
+font-feature-settings: 'ss03' on, 'ss04' on, 'ss02' on;
+
+/* backgrounds/G3 */
+
+color: #687D95;
+  }
 }
   .bg-rectangle{
     background-image: url(${bgRectangle});
@@ -472,7 +499,8 @@ color: #687D95;
   
     // background-size: 200px;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
+    background-position-y: 12px;
     // width: 100%;
     // background-position-x: right;
     //background-position-y: 90px;
@@ -495,8 +523,10 @@ color: #687D95;
     .blur1{
       position: absolute;
       //left: 25px;
-      height: 700px;
+      height: 922px;
       width: 100%;
+      border-radius: 20px;
+
     }
     .blur{
       position: absolute;
@@ -512,18 +542,28 @@ color: #687D95;
     .custom-row{
       height: 800px;
       .col1{
-        padding: 80px 0 0 80px;
+        padding: 75px 0 0 80px;
         .main-title{
-          font-weight: 500;
-          font-size: 82px;
-          line-height: px;
-          letter-spacing: -1px;
-          background-image: linear-gradient(90.09deg, #01FCFC, #0085FF);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          color: transparent;
-          width: fit-content;
+          font-family: 'Space Grotesk';
+font-style: normal;
+font-weight: 500;
+font-size: 64px;
+line-height: 71px;
+/* or 110% */
+
+display: flex;
+align-items: center;
+letter-spacing: -1.3px;
+font-feature-settings: 'ss02' on, 'ss03' on, 'ss04' on;
+
+/* gradients/Linear blue teal 1 */
+
+background: linear-gradient(90.09deg, #01FCFC 2.67%, #0085FF 104.69%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+
         }
         @media (max-width: 768px) {
           .main-title{
