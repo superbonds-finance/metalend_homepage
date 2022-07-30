@@ -277,7 +277,7 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="w-full bg-sb-fuel blur1  pb-28 pt-40  px-40 rounded-2xl">
+      <div className="w-full bg-sb-fuel blur1  pb-56 pt-40  px-40 rounded-2xl ">
         <div className="flex justify-between mx-auto " style={{ maxWidth: '1400px' }}>
           <div className="flex flex-col self-center">
             <BtnText size="15px" weight="true" color="white" height="28px">
