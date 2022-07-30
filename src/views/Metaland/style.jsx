@@ -489,10 +489,13 @@ color: #687D95;
     }
     .blur{
       position: absolute;
-      top: 25%;
+      top: 15%;
       right: 0px;
-      height: 600px;
-      width: 100%;
+      height: 610px;
+      width: 670px;
+      @media screen and (min-width: 1900px) {
+        width: 950px;
+      }
     }
 
     .custom-row{
