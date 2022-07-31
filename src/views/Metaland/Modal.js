@@ -33,7 +33,7 @@ export default function Modal({openModal,closeModal,isOpen}) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="select-none   relative w-4/12 transform overflow-hidden rounded-2xl  modal-container p-6 text-left align-middle shadow-xl transition-all"  >
+                <Dialog.Panel className="select-none   relative transform overflow-hidden rounded-2xl  modal-container p-6 text-left align-middle shadow-xl transition-all" style={{width:'611px' , maxWidth:'611px'}} >
                   <RiCloseCircleLine className='text-4xl absolute  top-1 right-1 z-10 cursor-pointer'   onClick={closeModal}/>
                   <div className='w-full flex flex-col items-center'>
                     <text className='text-5xl tracking-wide font-semibold header-modal'>Stay Tuned</text>

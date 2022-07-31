@@ -42,9 +42,9 @@ export const Metalend = () => {
         <div className="polygen1  2xxl:ml-10 relative" >
           <img alt="bg-hexagon" className="blur1" src={polygon4} />
           {/* <img alt="bg-hexagon1" className="blur" src={polygon3} /> */}
-          <div className="pl-28 pt-28 xxl:pl-10 xxl:pt-0 pr-28 sm:pl-0 custom-row" >
+          <div className="pl-8 pt-28 xxl:pl-10 xxl:pt-0 pr-28 sm:pl-0 custom-row" >
             <div className="antd-col col1 flex flex-col w-full">
-              <div className="w-full ">
+              <div className="w-full hero-section1">
                 <div className="main-title">{/* Metalend */}A Permissionless<br />
                   Credit Market for Everyone</div>
                 {/* <HeadeText>
@@ -93,8 +93,8 @@ export const Metalend = () => {
                   </button>
                 </div>
               </div>
-              <div className="icon-desc flex w-11/12 xxl:w-full items-center justify-between">
-                <div className="flex-col text-center">
+              <div className="icon-desc ">
+                <div className="flex-col items-center  text-center hero-section-desc">
                   <img
                     className="mx-auto mb-8"
                     width={35}
@@ -107,12 +107,12 @@ export const Metalend = () => {
                     not privileged
                   </text>
                   <img
-                    className="w-full h-4 mt-8"
+                    className="w-full h-4 mt-8 border-image"
                     src={radialborder}
                     alt="..."
                   />
                 </div>
-                <div className="flex-col text-center">
+                <div className="flex-col text-center hero-section-desc">
                   <img className="mx-auto mb-8"
                     width={35}
                     height={35} src={chart} alt="..." />
@@ -121,12 +121,12 @@ export const Metalend = () => {
                     <span style={{ color: "#01C0FC" }}>without</span> collateral
                   </text>
                   <img
-                    className="w-full h-4 mt-8"
+                    className="w-full h-4 mt-8 border-image"
                     src={radialborder}
                     alt="..."
                   />
                 </div>
-                <div className="flex-col text-center">
+                <div className="flex-col text-center hero-section-desc">
                   <img
                     className="mx-auto mb-8"
                     width={40}
@@ -139,12 +139,12 @@ export const Metalend = () => {
                     credit evaluations
                   </text>
                   <img
-                    className="w-full h-4 mt-8"
+                    className="w-full h-4 mt-8 border-image"
                     src={radialborder}
                     alt="..."
                   />
                 </div>
-                <div className="flex-col text-center">
+                <div className="flex-col text-center hero-section-desc2">
                   <img className="mx-auto mb-8"
                     width={35}
                     height={35} src={union} alt="..." />
@@ -153,7 +153,7 @@ export const Metalend = () => {
                     for all successful raises
                   </text>
                   <img
-                    className="w-full h-4 mt-8"
+                    className="w-full h-4 mt-8 border-image"
                     src={radialborder}
                     alt="..."
                   />
