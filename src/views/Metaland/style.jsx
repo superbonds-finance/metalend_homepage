@@ -30,7 +30,7 @@ export const AntdTooltip= styled.div`
 
 
 export const HeadeText= styled.text`
-    font-family: 'Space Grotesk';
+ 
 font-style: normal;
 font-weight: 500;
 font-size: 28px;
@@ -167,7 +167,7 @@ button.learn-more-2:hover {
   position: relative;
   border: 3px solid transparent;
   border-radius: 6px;
-  width: 8.7rem;
+  width: 10.2rem;
   padding: 8px;
   // border-width: 3px;
   // color: white;
@@ -220,7 +220,7 @@ button.learn-more-3:hover {
   position: relative;
   border: 3px solid transparent;
   border-radius: 6px;
-  width: 8.7rem;
+  width: 10.2rem;
   padding: 8px;
   // border-width: 3px;
   // color: white;
@@ -271,7 +271,7 @@ button.learn-more-4:hover {
   position: relative;
   border: 3px solid transparent;
   border-radius: 6px;
-  width: 8.7rem;
+  width: 10.2rem;
   padding: 8px;
   // border-width: 3px;
   // color: white;
@@ -429,7 +429,7 @@ color: #687D95;
     margin-top: 6.5rem;
   }
   text{
-    font-family: 'Space Grotesk';
+ 
 font-style: normal;
 font-weight: 500;
 font-size: 21px;
@@ -544,7 +544,7 @@ color: #687D95;
       .col1{
         padding: 75px 0 0 80px;
         .main-title{
-          font-family: 'Space Grotesk';
+       
 font-style: normal;
 font-weight: 500;
 font-size: 64px;

@@ -14,6 +14,7 @@ import Modal from "./Modal"
 // import { Col, Row } from "antd";
 import { BtnText, } from "../home/home.styled";
 // import { useHistory } from "react-router-dom";
+import "./index.css"
 
 
 import { FiArrowUpRight } from "react-icons/fi";
@@ -36,7 +37,7 @@ export const Metalend = () => {
       <Modal closeModal={closeModal}
         openModal={openModal} isOpen={isOpen} />
 
-      <div className="top-div select-none mx-0 my-auto" style={{ maxWidth: '1600px', margin: "0 auto", height: '992px' }}>
+      <div className="top-div select-none mx-0 my-auto hero-section" style={{ maxWidth: '1600px', margin: "0 auto", }}>
 
         <div className="polygen1  2xxl:ml-10 relative" >
           <img alt="bg-hexagon" className="blur1" src={polygon4} />

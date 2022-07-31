@@ -96,3 +96,13 @@ padding: 12px;
   opacity: 1;
   right: 0;
 }
+
+.hero-section{
+  height: 992px;
+}
+
+@media (max-width: 1540px) {  
+
+  
+
+ }
