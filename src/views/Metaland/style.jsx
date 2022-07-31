@@ -53,6 +53,10 @@ background: #161D23;
   background-color: #161D23;
   margin-left: 40px;
   padding-top: 70px;
+  height : 830px;
+  @media (min-width: 1536px) {
+    height : 1102px;
+}
 }
 .antd-col{
     position: relative;
@@ -523,9 +527,12 @@ color: #687D95;
     .blur1{
       position: absolute;
       //left: 25px;
-      height: 922px;
+      height: 732px;
       width: 100%;
       border-radius: 20px;
+      @media screen and (min-width: 1536px) {
+        height: 972px;
+      }
 
     }
     .blur{
