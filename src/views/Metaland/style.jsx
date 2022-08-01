@@ -349,12 +349,11 @@ export const Wrapper = styled.div`
       -webkit-mask-composite: xor;
     }
   }
-
-  button.learn-more-1 {
+  button.learn-more-new {
     position: relative;
     border: 3px solid transparent;
     border-radius: 6px;
-    width: 84%;
+    width: 229px;
     padding: 10px 16px;
 
     &::before {
@@ -374,13 +373,17 @@ export const Wrapper = styled.div`
         linear-gradient(white, white);
       -webkit-mask-composite: xor;
     }
+
+    @media (max-width: 1536px) {
+      width: 292px;
+    }
   }
 
-  button.learn-more-1:hover {
+  button.learn-more-new:hover {
     position: relative;
     border: 3px solid transparent;
     border-radius: 6px;
-    width: 84%;
+    width: 229px;
     padding: 10px 16px;
     // border-width: 3px;
     // color: white;
@@ -401,6 +404,73 @@ export const Wrapper = styled.div`
       mask: linear-gradient(white, white) padding-box,
         linear-gradient(white, white);
       -webkit-mask-composite: xor;
+    }
+    @media (max-width: 1536px) {
+      width: 292px;
+    }
+  }
+
+
+
+
+  button.learn-more-1 {
+    position: relative;
+    border: 3px solid transparent;
+    border-radius: 6px;
+    width: 320px;
+    padding: 10px 16px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      background: linear-gradient(269.54deg, #01c0fc 0.15%, #0085ff 96.26%)
+        border-box;
+      border: inherit;
+      border-radius: inherit;
+      mask: linear-gradient(rgba(1, 192, 252, 0.7), rgba(1, 192, 252, 0.7))
+          padding-box,
+        linear-gradient(white, white);
+      -webkit-mask-composite: xor;
+    }
+
+    @media (max-width: 1536px) {
+      width: 292px;
+    }
+  }
+
+  button.learn-more-1:hover {
+    position: relative;
+    border: 3px solid transparent;
+    border-radius: 6px;
+    width: 320px;
+    padding: 10px 16px;
+    // border-width: 3px;
+    // color: white;
+    box-shadow: white;
+    filter: drop-shadow(0px 3px 9px rgba(255, 255, 255, 0.46));
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      background: linear-gradient(269.54deg, #01c0fc 0.15%, #0085ff 96.26%)
+        border-box;
+      border: inherit;
+      border-radius: inherit;
+      mask: linear-gradient(white, white) padding-box,
+        linear-gradient(white, white);
+      -webkit-mask-composite: xor;
+    }
+    @media (max-width: 1536px) {
+      width: 292px;
     }
   }
   .button-learn-more {
@@ -532,7 +602,7 @@ export const Wrapper = styled.div`
 
   .bg-rectangle {
     background-image: url(${bgRectangle});
-    height: 450px;
+    height: 542px;
     // background-size: 200px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -544,6 +614,9 @@ export const Wrapper = styled.div`
       // left: 25px;
       // height: 600px;
       width: 0%;
+    }
+    @media (max-width: 1536px) {
+      height: 435px;
     }
   }
   .bg-lender {

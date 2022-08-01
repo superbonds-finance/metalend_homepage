@@ -176,30 +176,30 @@ export const Metalend = () => {
       <div className="w-11/12 bg-rectangle blur1 mx-auto mt-10 rounded-2xl  " style={{ maxWidth: '1600px' }}>
         <div className="flex w-11/12 mx-auto justify-between xl:justify-between" style={{ maxWidth: '1350px' }} >
           <div className="w-3/5 xxl:w-3/5">
-            <div className="grid grid-cols-3 grid-rows-2 gap-4 pt-12 pr-12" >
-              <div className="bg-gray-300 rounded-xl text-lg p-4"   >
+            <div className="grid grid-cols-3 grid-rows-2 gap-4 pr-12 second-section-main" >
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card"   >
                 <p>Borrow For Your Specific Needs</p>
-                <img className="w-8 h-1 mt-8" src={boxborder} alt="..." />
+                <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 rounded-xl text-lg p-4" >
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card" >
                 <p>Set Your Duration</p>
-                <img className="w-8 h-1 mt-8" src={boxborder} alt="..." />
+                <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 rounded-xl text-lg p-4">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>Set Your Rate</p>
-                <img className="w-8 h-1 mt-8" src={boxborder} alt="..." />
+                <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 rounded-xl text-lg p-4">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>Pledge Collateral (Optional)</p>
-                <img className="w-8 h-1 mt-8" src={boxborder} alt="..." />
+                <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 rounded-xl text-lg p-4">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>No Liquidation Risk</p>
-                <img className="w-8 h-1 mt-8" src={boxborder} alt="..." />
+                <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
             </div>
             <div className="w-80">
-              <button className="button-learn-more learn-more-1 btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+              <button className="button-learn-more learn-more-new btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                 <BtnText
                   transform
                   size="15px"
@@ -233,22 +233,21 @@ export const Metalend = () => {
 
           <div className="  flex flex-col mx-4">
             <div
-              className="grid grid-cols-2 grid-rows-2 gap-4 pt-12 justify-items-center "
-              style={{ marginTop: "-12rem" }}
+              className="grid grid-cols-2 grid-rows-2 gap-4 pt-12 justify-items-center third-section-main"
             >
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 w-10/12">
-                <p>Generate a fixed income</p>
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg third-section-card">
+                <p >Generate a fixed income</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6 pr-10  w-10/12">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg third-section-card">
                 <p>Earn exposure to large ecosystems</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6  w-10/12">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg third-section-card">
                 <p>Benefit from liquidity in secondary markets</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg p-6  w-10/12">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg  third-section-card">
                 <p>Diversify your portfolio risk</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
