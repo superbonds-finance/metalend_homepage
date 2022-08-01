@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Wrapper, GlobalStyle, HeadeText } from "./style";
 import polygon4 from "../../assets/Metalend/landingPageTop.png";
+import polygon4Md from "../../assets/Metalend/landingPageTopMd.png";
+
 import carbon from "../../assets/Metalend/carbon_center-to-fit.png";
 import union from "../../assets/Metalend/Union.png";
 import vector from "../../assets/Metalend/Vector.png";
@@ -10,7 +12,7 @@ import boxborder from "../../assets/Metalend/boxborder.png";
 import circleframe from "../../assets/Metalend/circleframe.png";
 import lenderframe from "../../assets/Metalend/lender_frame.png";
 import Modal from "./Modal"
-
+import { useMediaPredicate } from "react-media-hook";
 // import { Col, Row } from "antd";
 import { BtnText, } from "../home/home.styled";
 // import { useHistory } from "react-router-dom";
@@ -22,6 +24,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 export const Metalend = () => {
   // const history = useHistory();
   let [isOpen, setIsOpen] = useState(false)
+  const biggerThan1536 = useMediaPredicate("(max-width: 1536px)");
 
 
   const closeModal = () => {
@@ -40,7 +43,7 @@ export const Metalend = () => {
       <div className="top-div select-none mx-0 my-auto hero-section" style={{ maxWidth: '1600px', margin: "0 auto", }}>
 
         <div className="polygen1  2xxl:ml-10 relative" >
-          <img alt="bg-hexagon" className="blur1" src={polygon4} />
+          <img alt="bg-hexagon" className="blur1" src={biggerThan1536 ? polygon4Md : polygon4} />
           {/* <img alt="bg-hexagon1" className="blur" src={polygon3} /> */}
           <div className="pl-8 pt-28 xxl:pl-10 xxl:pt-0 pr-28 sm:pl-0 custom-row" >
             <div className="antd-col col1 flex flex-col w-full">
@@ -149,7 +152,7 @@ export const Metalend = () => {
                     width={35}
                     height={35} src={union} alt="..." />
                   <text className="text-center text-lg font-semibold">
-                    Immediate secondary markets<br />
+                    Immediate secondary markets <br className="customBr" />
                     for all successful raises
                   </text>
                   <img
