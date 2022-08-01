@@ -8,7 +8,59 @@ import { BtnText } from "../home/home.styled";
 export const GlobalStyle = createGlobalStyle`
 
 `;
+export const ModalWrapper=styled.div`
+  button.modal-button {
+    position: relative;
+    border: 3px solid transparent;
+    border-radius: 6px;
+    padding: 12px 36px;
 
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      background: linear-gradient(269.54deg, #01c0fc 0.15%, #0085ff 96.26%)
+        border-box;
+      border: inherit;
+      border-radius: inherit;
+      mask: linear-gradient(rgba(1, 192, 252, 0.7), rgba(1, 192, 252, 0.7))
+          padding-box,
+        linear-gradient(white, white);
+      -webkit-mask-composite: xor;
+    }
+  }
+
+  button.modal-button:hover {
+    position: relative;
+    border: 3px solid transparent;
+    border-radius: 6px;
+    padding: 12px 36px;
+    // border-width: 3px;
+    // color: white;
+    box-shadow: white;
+    filter: drop-shadow(0px 3px 9px rgba(255, 255, 255, 0.46));
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      background: linear-gradient(269.54deg, #01c0fc 0.15%, #0085ff 96.26%)
+        border-box;
+      border: inherit;
+      border-radius: inherit;
+      mask: linear-gradient(white, white) padding-box,
+        linear-gradient(white, white);
+      -webkit-mask-composite: xor;
+    } 
+  }
+`
 export const AntdTooltip = styled.div`
   .ant-tooltip-inner {
     color: white;

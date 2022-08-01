@@ -198,7 +198,7 @@ export const Metalend = () => {
               </div>
             </div>
             <div className="w-80">
-              <button className="button-learn-more learn-more-new btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+              <button onClick={() => openModal()}  className="button-learn-more learn-more-new btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                 <BtnText
                   transform
                   size="15px"
@@ -252,7 +252,7 @@ export const Metalend = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 grid-rows-1 mt-6 gap-4 justify-items-center">
-              <button className="w-10/12 button-learn-more learn-more-1 btn-hover-width-1  mt-9   z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
+              <button onClick={() => openModal()}  className="w-10/12 learn-more-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
                 <BtnText
                   transform
                   size="15px"
@@ -263,7 +263,7 @@ export const Metalend = () => {
                   Browse New Issuances
                 </BtnText>
               </button>
-              <button className=" w-10/12 button-learn-more  learn-more-1 btn-hover-width-1  mt-9   z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
+              <button onClick={() => openModal()}  className=" w-10/12 button-learn-more  learn-more-1 btn-hover-width-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
                 <BtnText
                   transform
                   size="15px"
@@ -287,7 +287,7 @@ export const Metalend = () => {
             </BtnText>
             <text className="sb-fuel-text block mt-4">LNDR Token</text>
             <text className="sb-fuel-text block">Fuel of the Platform</text>
-            <button className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <button onClick={() => openModal()}  className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
               <BtnText
                 transform
                 size="15px"
@@ -307,7 +307,7 @@ export const Metalend = () => {
             </BtnText>
             <text className="sb-fuel-text block mt-4">vLNDR Token</text>
             <text className="sb-fuel-text block">Owners of the Platform</text>
-            <button className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <button onClick={() => openModal()}  className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
               <BtnText
                 transform
                 size="15px"

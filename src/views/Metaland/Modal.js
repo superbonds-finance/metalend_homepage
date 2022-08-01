@@ -3,6 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import "./index.css"
 import {RiCloseCircleLine} from "react-icons/ri"
+import {ModalWrapper} from "./style"
 
 export default function Modal({openModal,closeModal,isOpen}) {
  
@@ -41,12 +42,12 @@ export default function Modal({openModal,closeModal,isOpen}) {
                   </div>
                   
                  
-                  <div className="flex flex-col justify-center mt-3 input-div items-center">
+                  <ModalWrapper className="flex flex-col justify-center mt-3 input-div items-center">
                   
-                        <input  className='block p-4 w-9/12  placeholder-white font-semibold bg-gray-200 rounded-lg  border-gray-300 sm:text-md     dark:bg-gray-700  outline-none text-white ' type="email" placeholder='Enter your email address'/>
+                    <input  className='block p-4 w-9/12  placeholder-white font-semibold bg-gray-200 rounded-lg  border-gray-300 sm:text-md     dark:bg-gray-700  outline-none text-white ' type="email" placeholder='Enter your email address'/>
                     <button
                       type="button "
-                      className=" button w-4/12 rounded-md border border-transparent mt-6 bg-transparent px-4 py-3 text-sm font-medium text-white  focus:outline-none border-blue-800"
+                      className="modal-button mt-5"
                       onClick={closeModal}
                     >
                       <span className='text-xl'>Notify Me</span> 
@@ -57,7 +58,7 @@ export default function Modal({openModal,closeModal,isOpen}) {
                         <img src="https://res.cloudinary.com/drr1rnoxf/image/upload/v1658653480/akar-icons_discord-fill_ewmxlp.svg" alt='dicsord' className='w-8'/>
                         <img src="https://res.cloudinary.com/drr1rnoxf/image/upload/v1658653480/akar-icons_twitter-fill_gaaszb.png" alt='telegram' className='w-8'/>
                     </div> */}
-                  </div>
+                  </ModalWrapper>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
