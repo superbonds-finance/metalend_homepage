@@ -100,7 +100,7 @@ export default function NavbarNew(props: {
           <img
             className="inline-block w-52"
             src={
-              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1659274095/Component_160_bo3hw2.svg"
+              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1659331546/Component_new_1_iq6br1.png"
             }
             alt="SuperStable"
           />

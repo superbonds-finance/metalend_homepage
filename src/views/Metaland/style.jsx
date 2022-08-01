@@ -176,7 +176,9 @@ export const Wrapper = styled.div`
     width: 10.2rem;
     padding: 8px;
     margin-right: 20px;
-
+    @media (max-width: 1536px) {
+      width: 130px;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -202,6 +204,9 @@ export const Wrapper = styled.div`
     border-radius: 6px;
     width: 10.2rem;
     padding: 8px;
+    @media (max-width: 1536px) {
+      width: 130px;
+    }
     // border-width: 3px;
     // color: white;
     box-shadow: white;
@@ -231,7 +236,9 @@ export const Wrapper = styled.div`
     width: 10.2rem;
     padding: 8px;
     margin-right: 20px;
-
+    @media (max-width: 1536px) {
+      width: 130px;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -257,6 +264,9 @@ export const Wrapper = styled.div`
     border-radius: 6px;
     width: 10.2rem;
     padding: 8px;
+    @media (max-width: 1536px) {
+      width: 130px;
+    }
     // border-width: 3px;
     // color: white;
     box-shadow: white;
@@ -284,7 +294,9 @@ export const Wrapper = styled.div`
     border-radius: 6px;
     width: 10.2rem;
     padding: 8px;
-
+    @media (max-width: 1536px) {
+      width: 130px;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -312,6 +324,9 @@ export const Wrapper = styled.div`
     padding: 8px;
     // border-width: 3px;
     // color: white;
+    @media (max-width: 1536px) {
+      width: 130px;
+    }
     box-shadow: white;
     filter: drop-shadow(0px 3px 9px rgba(255, 255, 255, 0.46));
     &::before {
@@ -557,7 +572,7 @@ export const Wrapper = styled.div`
       width: 1071px;
      .hero-section-desc{
        width: 240px;
-       padding: 0px;
+       padding: 14px 24px 24px;
        .border-image{
          width: 199px;
          margin: 0 auto;
@@ -566,12 +581,12 @@ export const Wrapper = styled.div`
        
      }
      .hero-section-desc2{
-       width: 240px;
-       padding:0px;
+       width: 241px;
+       padding: 14px 24px 24px;
        .border-image{
          width: 199px;
          margin: 0 auto;
-         margin-top:2rem;
+         margin-top:1.3rem;
        }
   
    }
@@ -703,6 +718,11 @@ export const Wrapper = styled.div`
           background-clip: text;
           text-fill-color: transparent;
         }
+
+        @media (max-width: 1536px) {
+          padding: 75px 0 0 20px;
+        }
+
         @media (max-width: 768px) {
           .main-title {
             font-size: 3.5rem;

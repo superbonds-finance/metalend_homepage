@@ -96,7 +96,7 @@ export const Metalend = () => {
               <div className="icon-desc ">
                 <div className="flex-col items-center  text-center hero-section-desc">
                   <img
-                    className="mx-auto mb-8"
+                    className="mx-auto mb-8 hero-section-desc-img"
                     width={35}
                     height={35}
                     src={vector}
@@ -113,7 +113,7 @@ export const Metalend = () => {
                   />
                 </div>
                 <div className="flex-col text-center hero-section-desc">
-                  <img className="mx-auto mb-8"
+                  <img className="mx-auto mb-8 hero-section-desc-img"
                     width={35}
                     height={35} src={chart} alt="..." />
                   <text className="text-center text-lg font-semibold">
@@ -128,7 +128,7 @@ export const Metalend = () => {
                 </div>
                 <div className="flex-col text-center hero-section-desc">
                   <img
-                    className="mx-auto mb-8"
+                    className="mx-auto mb-8 hero-section-desc-img"
                     width={40}
                     height={40}
                     src={carbon}
@@ -144,8 +144,10 @@ export const Metalend = () => {
                     alt="..."
                   />
                 </div>
+
+                
                 <div className="flex-col text-center hero-section-desc2">
-                  <img className="mx-auto mb-8"
+                  <img className="mx-auto mb-6 hero-section-desc-img"
                     width={35}
                     height={35} src={union} alt="..." />
                   <text className="text-center text-lg font-semibold">
@@ -209,8 +211,8 @@ export const Metalend = () => {
               </button>
             </div>
           </div>
-          <div className="w-2/5 max-w-md ">
-            <img className="h-full w-full -mt-2" src={circleframe} alt="..." />
+          <div className="max-w-md  ">
+            <img className="h-full w-full -mt-2 borrower-image" src={circleframe} alt="..." />
           </div>
         </div>
       </div>
@@ -222,10 +224,10 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="w-11/12 bg-lender-pro rounded-2xl blur1 mx-auto my-0 mt-20 py-20" style={{ maxWidth: '1600px' }}>
+      <div className="w-11/12 bg-lender-pro rounded-2xl blur1 mx-auto my-0 mt-20 py-20 lender-section" style={{ maxWidth: '1600px' }}>
         <div className="flex w-11/12 mx-auto justify-between xl:justify-between" style={{ maxWidth: '1350px' }}>
           <div className="flex flex-col self-center">
-            <img className="" src={lenderframe} alt="..." />
+            <img className="lender-img" src={lenderframe} alt="..." />
           </div>
 
           <div className="  flex flex-col mx-4">

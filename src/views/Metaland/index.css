@@ -100,6 +100,7 @@ padding: 12px;
 .hero-section{
   height: 992px;
 }
+
 .second-section-card{
   width: 230px;
   height: 157px;
@@ -133,8 +134,34 @@ padding: 12px;
 .third-section-main{
   margin-top: -14rem;
 }
-@media (max-width: 1536px) {
+.lender-img{
+height: 267.58px;
+margin-top: 15px;;
+}
+.lender-section{
+height: 504px;
+}
 
+.borrower-image{
+  width: 447.99px;
+  height: 447px;
+}
+@media (max-width: 1536px) {
+  .lender-img{
+    height: 201.58px;
+    margin-top: 3px;
+    }
+    .lender-section{
+      height: 375px;
+      }
+
+  .borrower-image{
+    width: 399px;
+    height: 398.12px;
+  }
+  .hero-section-desc-img{
+  width: 28px;
+  }
   .second-section-card{
     width: 192px;
     height: 120px;
