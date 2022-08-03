@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Wrapper, GlobalStyle, HeadeText } from "./style";
 import polygon4 from "../../assets/Metalend/landingPageTop.png";
 import polygon4Md from "../../assets/Metalend/landingPageTopMd.png";
+import polygon4Sm from "../../assets/Metalend/landingPageTopSm.png";
 
 import carbon from "../../assets/Metalend/carbon_center-to-fit.png";
 import union from "../../assets/Metalend/Union.png";
@@ -24,7 +25,8 @@ import { FiArrowUpRight } from "react-icons/fi";
 export const Metalend = () => {
   // const history = useHistory();
   let [isOpen, setIsOpen] = useState(false)
-  const biggerThan1536 = useMediaPredicate("(max-width: 1536px)");
+  const lessThan1536 = useMediaPredicate("(max-width: 1536px)");
+  const lessThan769 = useMediaPredicate("(max-width: 769px)");
 
 
   const closeModal = () => {
@@ -42,10 +44,10 @@ export const Metalend = () => {
 
       <div className="top-div select-none mx-0 my-auto hero-section" style={{ maxWidth: '1600px', margin: "0 auto", }}>
 
-        <div className="polygen1  2xxl:ml-10 relative" >
-          <img alt="bg-hexagon" className="blur1" src={biggerThan1536 ? polygon4Md : polygon4} />
+        <div className="polygen1  2xxl:ml-10 sm:ml-2 relative" >
+          <img alt="bg-hexagon" className="blur1" src={lessThan769 ? polygon4Sm : (lessThan1536 ? polygon4Md : polygon4)} />
           {/* <img alt="bg-hexagon1" className="blur" src={polygon3} /> */}
-          <div className="pl-8 pt-28 xxl:pl-10 xxl:pt-0 pr-28 sm:pl-0 custom-row" >
+          <div className="pl-8 pt-28 xxl:pl-10 xxl:pt-0 pr-28 md:pr-10 sm:pl-0 sm:pr-0 custom-row" >
             <div className="antd-col col1 flex flex-col w-full">
               <div className="w-full hero-section1">
                 <div className="main-title">{/* Metalend */}A Permissionless<br />
@@ -57,7 +59,7 @@ export const Metalend = () => {
                   100% of Revenue Reserved for the Community
                 </HeadeText>
 
-                <div className="flex justify-start mt-8 pt-0.5 w-auto">
+                <div className="flex justify-start mt-8 pt-0.5 w-auto sm:flex-col sm:items-center">
                   <button onClick={() => openModal()} className="button-learn-more learn-more-2 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                     <BtnText
                       transform
@@ -148,7 +150,7 @@ export const Metalend = () => {
                   />
                 </div>
 
-                
+
                 <div className="flex-col text-center hero-section-desc2">
                   <img className="mx-auto mb-6 hero-section-desc-img"
                     width={35}
@@ -201,7 +203,7 @@ export const Metalend = () => {
               </div>
             </div>
             <div className="w-80">
-              <button onClick={() => openModal()}  className="button-learn-more learn-more-new btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+              <button onClick={() => openModal()} className="button-learn-more learn-more-new btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                 <BtnText
                   transform
                   size="15px"
@@ -255,7 +257,7 @@ export const Metalend = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 grid-rows-1 mt-6 gap-4 justify-items-center">
-              <button onClick={() => openModal()}  className="w-10/12 learn-more-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
+              <button onClick={() => openModal()} className="w-10/12 learn-more-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
                 <BtnText
                   transform
                   size="15px"
@@ -266,7 +268,7 @@ export const Metalend = () => {
                   Browse New Issuances
                 </BtnText>
               </button>
-              <button onClick={() => openModal()}  className=" w-10/12 button-learn-more  learn-more-1 btn-hover-width-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
+              <button onClick={() => openModal()} className=" w-10/12 button-learn-more  learn-more-1 btn-hover-width-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
                 <BtnText
                   transform
                   size="15px"
@@ -290,7 +292,7 @@ export const Metalend = () => {
             </BtnText>
             <text className="sb-fuel-text block mt-4">LNDR Token</text>
             <text className="sb-fuel-text block">Fuel of the Platform</text>
-            <button onClick={() => openModal()}  className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <button onClick={() => openModal()} className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
               <BtnText
                 transform
                 size="15px"
@@ -310,7 +312,7 @@ export const Metalend = () => {
             </BtnText>
             <text className="sb-fuel-text block mt-4">vLNDR Token</text>
             <text className="sb-fuel-text block">Owners of the Platform</text>
-            <button onClick={() => openModal()}  className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <button onClick={() => openModal()} className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
               <BtnText
                 transform
                 size="15px"

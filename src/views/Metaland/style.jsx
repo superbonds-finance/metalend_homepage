@@ -8,7 +8,7 @@ import { BtnText } from "../home/home.styled";
 export const GlobalStyle = createGlobalStyle`
 
 `;
-export const ModalWrapper=styled.div`
+export const ModalWrapper = styled.div`
   button.modal-button {
     position: relative;
     border: 3px solid transparent;
@@ -104,6 +104,19 @@ export const Wrapper = styled.div`
     @media (min-width: 1536px) {
       height: 1102px;
     }
+    @media (max-width: 1140px) {
+      height: 1030px;
+    }
+    @media (max-width: 769px) {
+      height: 1030px;
+    }
+    @media (max-width: 768px) {
+      margin-left: 15px;
+      height: 1120px;
+    }
+    @media (max-width: 639px) {
+      height: 1650px;
+    }
   }
   .antd-col {
     position: relative;
@@ -111,6 +124,9 @@ export const Wrapper = styled.div`
     min-height: 1px;
     .hero-section1{
       margin-left:3.5rem;
+      @media (max-width: 639px) {
+        margin-left: 0.5rem;
+    }
     }    
 
   }
@@ -146,12 +162,6 @@ export const Wrapper = styled.div`
   }
    
 
-  @media (max-width: 768px) {
-    .top-div {
-      margin-left: 15px;
-      height: 900px;
-    }
-  }
   .sb-fuel-logo {
     width: 40px;
     height: 40px;
@@ -234,6 +244,11 @@ export const Wrapper = styled.div`
     @media (max-width: 1536px) {
       width: 130px;
     }
+    @media (max-width: 639px) {
+      margin-right: 0;
+      margin-bottom: 20px;
+      width:100%;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -300,6 +315,11 @@ export const Wrapper = styled.div`
     @media (max-width: 1536px) {
       width: 130px;
     }
+    @media (max-width: 639px) {
+      margin-right: 0;
+      margin-bottom: 20px;
+      width:100%;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -363,6 +383,11 @@ export const Wrapper = styled.div`
     padding: 8px;
     @media (max-width: 1536px) {
       width: 130px;
+    }
+    @media (max-width: 639px) {
+      margin-right: 0;
+      margin-bottom: 20px;
+      width:100%;
     }
     &::before {
       content: "";
@@ -663,7 +688,13 @@ export const Wrapper = styled.div`
        }
   
    }
-
+ }
+ @media (max-width: 1140px){
+    flex-wrap: wrap;
+      width: 100%;
+    }
+ @media screen and (max-width: 769px) {
+    width: auto;
  }
   }
 
@@ -740,6 +771,9 @@ export const Wrapper = styled.div`
   .polygen1 {
     // background-image: url(${polygon3});
     height: 800px;
+    @media (max-width: 1140px) {
+      height: 100%;
+    }
     // background-size: 200px;
     // background-repeat: no-repeat;
     // background-sizeo: contain;
@@ -754,6 +788,21 @@ export const Wrapper = styled.div`
       border-radius: 20px;
       @media screen and (min-width: 1536px) {
         height: 972px;
+      }
+      @media (max-width: 1140px) {
+        height: 100%;
+      }
+      @media (max-width: 768px) {
+        position: absolute;
+        left: 15px;
+        height: 100%;
+        width: 100%;
+      }
+      @media (max-width: 639px) {
+        height: 680px;
+      }
+      @media (max-width: 418px) {
+        height: 720px;
       }
     }
     .blur {
@@ -845,27 +894,6 @@ export const Wrapper = styled.div`
       // }
     }
   }
-  @media (max-width: 768px) {
-    .polygen1 {
-      // background-image: url(${polygon3});
-      // background-sizeo: cover;
-      // background-size: 170px;
-      // height: 600px;
-      // background-position-x: right;
-      // background-position-y: 190px;
-      .blur1 {
-        position: absolute;
-        left: 15px;
-        height: 600px;
-        width: 60%;
-      }
-      .blur {
-        // position: absolute;
-        // left: 10px;
-      }
-    }
-  }
-
   .supply-data {
     margin: 3rem 0rem;
   }
