@@ -225,7 +225,10 @@ export const Wrapper = styled.div`
     position: relative;
     border: 3px solid transparent;
     border-radius: 6px;
-    width: 10.2rem;
+    width: 130px;
+    @media screen and (min-width :1536px) {
+      width: 10.2rem;
+    }
     padding: 8px;
     margin-right: 20px;
     @media (max-width: 1536px) {
@@ -254,7 +257,10 @@ export const Wrapper = styled.div`
     position: relative;
     border: 3px solid transparent;
     border-radius: 6px;
-    width: 10.2rem;
+    width: 130px;
+    @media screen and (min-width :1536px) {
+      width: 10.2rem;
+    }
     padding: 8px;
     @media (max-width: 1536px) {
       width: 130px;
@@ -285,7 +291,10 @@ export const Wrapper = styled.div`
     position: relative;
     border: 3px solid transparent;
     border-radius: 6px;
-    width: 10.2rem;
+    width: 130px;
+    @media screen and (min-width :1536px) {
+      width: 10.2rem;
+    }
     padding: 8px;
     margin-right: 20px;
     @media (max-width: 1536px) {
@@ -314,7 +323,10 @@ export const Wrapper = styled.div`
     position: relative;
     border: 3px solid transparent;
     border-radius: 6px;
-    width: 10.2rem;
+    width: 130px;
+    @media screen and (min-width :1536px) {
+      width: 10.2rem;
+    }
     padding: 8px;
     @media (max-width: 1536px) {
       width: 130px;
@@ -344,7 +356,10 @@ export const Wrapper = styled.div`
     position: relative;
     border: 3px solid transparent;
     border-radius: 6px;
-    width: 10.2rem;
+    width: 130px;
+    @media screen and (min-width :1536px) {
+      width: 10.2rem;
+    }
     padding: 8px;
     @media (max-width: 1536px) {
       width: 130px;
@@ -372,7 +387,10 @@ export const Wrapper = styled.div`
     position: relative;
     border: 3px solid transparent;
     border-radius: 6px;
-    width: 10.2rem;
+    width: 130px;
+    @media screen and (min-width :1536px) {
+      width: 10.2rem;
+    }
     padding: 8px;
     // border-width: 3px;
     // color: white;
@@ -620,6 +638,9 @@ export const Wrapper = styled.div`
       text{
       font-size: 18px;
       line-height: 24px;
+      }
+      .customBr {
+        display: none;
       }
       width: 1071px;
      .hero-section-desc{
