@@ -172,12 +172,12 @@ export const Metalend = () => {
       </div>
 
       <div className="flex  mx-auto" style={{ maxWidth: '1350px' }}>
-        <div className="w-full mx-auto mt-20 2xl:w-10/12">
+        <div className="w-full mx-auto mt-20 2xl:w-10/12 md:text-center">
           <text className="supply-text">Borrowers</text>
         </div>
       </div>
 
-      <div className="w-11/12 bg-rectangle blur1 mx-auto mt-10 rounded-2xl  " style={{ maxWidth: '1600px' }}>
+      <div className="w-11/12 bg-rectangle blur1 mx-auto mt-10 rounded-2xl md:w-full md:mx-0 md:mt-20 " style={{ maxWidth: '1600px' }}>
         <div className="flex w-11/12 mx-auto justify-between xl:justify-between md:flex-col-reverse md:items-center" style={{ maxWidth: '1350px' }} >
           <div className="w-3/5 xxl:w-3/5 md:w-11/12">
             <div className="grid grid-cols-3 grid-rows-2 gap-4 pr-12 md:pr-0 md:gap-8 md:grid-cols-1 second-section-main" >

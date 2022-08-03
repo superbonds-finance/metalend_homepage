@@ -721,6 +721,7 @@ export const Wrapper = styled.div`
     }
     @media (max-width: 769px) {
       height: auto;
+      background-position-x: center;
     }
   }
   .bg-lender {
