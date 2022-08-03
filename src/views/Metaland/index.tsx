@@ -47,7 +47,7 @@ export const Metalend = () => {
         <div className="polygen1  2xxl:ml-10 sm:ml-2 relative" >
           <img alt="bg-hexagon" className="blur1" src={lessThan769 ? polygon4Sm : (lessThan1536 ? polygon4Md : polygon4)} />
           {/* <img alt="bg-hexagon1" className="blur" src={polygon3} /> */}
-          <div className="pl-8 pt-28 xxl:pl-10 xxl:pt-0 pr-28 md:pr-10 sm:pl-0 sm:pr-0 custom-row" >
+          <div className="pl-8 pt-28 xxl:pl-10 xxl:pt-0 pr-28 md:pt-20 md:pr-10 sm:pl-0 sm:pr-0 custom-row" >
             <div className="antd-col col1 flex flex-col w-full">
               <div className="w-full hero-section1">
                 <div className="main-title">{/* Metalend */}A Permissionless<br />
