@@ -469,6 +469,9 @@ export const Wrapper = styled.div`
     @media (max-width: 1536px) {
       width: 292px;
     }
+    @media (max-width: 769px) {
+      width: 100%;
+    }
   }
 
   button.learn-more-new:hover {
@@ -715,6 +718,9 @@ export const Wrapper = styled.div`
     }
     @media (max-width: 1536px) {
       height: 435px;
+    }
+    @media (max-width: 769px) {
+      height: auto;
     }
   }
   .bg-lender {

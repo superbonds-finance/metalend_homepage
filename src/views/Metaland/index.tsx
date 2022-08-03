@@ -178,32 +178,32 @@ export const Metalend = () => {
       </div>
 
       <div className="w-11/12 bg-rectangle blur1 mx-auto mt-10 rounded-2xl  " style={{ maxWidth: '1600px' }}>
-        <div className="flex w-11/12 mx-auto justify-between xl:justify-between" style={{ maxWidth: '1350px' }} >
-          <div className="w-3/5 xxl:w-3/5">
-            <div className="grid grid-cols-3 grid-rows-2 gap-4 pr-12 second-section-main" >
+        <div className="flex w-11/12 mx-auto justify-between xl:justify-between md:flex-col-reverse md:items-center" style={{ maxWidth: '1350px' }} >
+          <div className="w-3/5 xxl:w-3/5 md:w-11/12">
+            <div className="grid grid-cols-3 grid-rows-2 gap-4 pr-12 md:pr-0 md:gap-8 md:grid-cols-1 second-section-main" >
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card"   >
                 <p>Borrow For Your Specific Needs</p>
-                <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
+                <img className="w-8 h-1 mt-auto md:mx-auto md:w-20" src={boxborder} alt="..." />
               </div>
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card" >
                 <p>Set Your Duration</p>
-                <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
+                <img className="w-8 h-1 mt-auto md:mx-auto md:w-20" src={boxborder} alt="..." />
               </div>
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>Set Your Rate</p>
-                <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
+                <img className="w-8 h-1 mt-auto md:mx-auto md:w-20" src={boxborder} alt="..." />
               </div>
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>Pledge Collateral (Optional)</p>
-                <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
+                <img className="w-8 h-1 mt-auto md:mx-auto md:w-20" src={boxborder} alt="..." />
               </div>
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>No Liquidation Risk</p>
-                <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
+                <img className="w-8 h-1 mt-auto md:mx-auto md:w-20" src={boxborder} alt="..." />
               </div>
             </div>
-            <div className="w-80">
-              <button onClick={() => openModal()} className="button-learn-more learn-more-new btn-hover-width-1  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <div className="w-80 md:w-full md:mb-20 md:mt-8">
+              <button onClick={() => openModal()} className="button-learn-more learn-more-new btn-hover-width-1  mt-9 w-38 md:w-full z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                 <BtnText
                   transform
                   size="15px"

@@ -156,3 +156,13 @@ height: 504px;
     user-select: none;
   }
 }
+@media (max-width: 769px) {
+  .second-section-card{
+    width: 100%;
+    text-align: center;
+  }
+  .borrower-image{
+    width: 100%;
+    height: auto;
+  }
+}
