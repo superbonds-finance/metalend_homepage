@@ -13,6 +13,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { Wrapper } from "./styled";
 import { IoIosArrowForward } from "react-icons/io";
 import { Menu, Transition } from "@headlessui/react";
+import "./index.css"
 
 export default function NavbarNew(props: {
   left?: JSX.Element;
@@ -98,9 +99,9 @@ export default function NavbarNew(props: {
       <div className="nav-header cursor-pointer">
         <div className="nav-title pl-4" onClick={() => handlePush("/")}>
           <img
-            className="inline-block w-52"
+            className="inline-block header-logo"
             src={
-              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1659331546/Component_new_1_iq6br1.png"
+              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1659695430/Component_160_1_f06z27.svg"
             }
             alt="SuperStable"
           />
@@ -151,7 +152,7 @@ export default function NavbarNew(props: {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute  z-40 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                      {/* <div className="px-1 py-1" style={{ borderTop: "none" }}>
                         <Menu.Item>
                           {({ active }) => (
                             <button
@@ -181,14 +182,14 @@ export default function NavbarNew(props: {
                             </button>
                           )}
                         </Menu.Item>
-                      </div>
+                      </div> */}
                       <div className="px-1 py-1" style={{ borderTop: "none" }}>
                         <Menu.Item>
                           {({ active }) => (
                             <button
                               onClick={() =>
                                 window.open(
-                                  "https://superstable.gitbook.io/superbonds/"
+                                  "https://metalend-fi.gitbook.io/metalend.fi/"
                                 )
                               }
                               className={`${
@@ -251,7 +252,7 @@ export default function NavbarNew(props: {
                             <button
                               onClick={() =>
                                 window.open(
-                                  "https://twitter.com/Super_Stable"
+                                  "https://twitter.com/MetaLend_fi"
                                 )
                               }
                               className={`${
@@ -281,7 +282,7 @@ export default function NavbarNew(props: {
                           {({ active }) => (
                             <button
                               onClick={() =>
-                                window.open("https://t.me/SuperBonds")
+                                window.open("https://t.me/metalend_fi")
                               }
                               className={`${
                                 active
@@ -310,7 +311,7 @@ export default function NavbarNew(props: {
                           {({ active }) => (
                             <button
                               onClick={() =>
-                                window.open("https://discord.gg/yCWKEcxKAe")
+                                window.open("https://discord.gg/JPNTpy5m2x")
                               }
                               className={`${
                                 active
@@ -339,7 +340,7 @@ export default function NavbarNew(props: {
                           {({ active }) => (
                             <button
                               onClick={() =>
-                                window.open("https://superstable.medium.com/")
+                                window.open("https://medium.com/@MetaLend_fi")
                               }
                               className={`${
                                 active

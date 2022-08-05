@@ -91,6 +91,11 @@ export const HeadeText = styled.text`
   /* White */
 
   color: #ffffff;
+  @media (max-width: 1536px) {
+    font-size: 52px;
+    font-size: 24px;
+    line-height: 36px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -846,6 +851,10 @@ export const Wrapper = styled.div`
           -webkit-text-fill-color: transparent;
           background-clip: text;
           text-fill-color: transparent;
+          @media (max-width: 1536px) {
+            font-size: 52px;
+            line-height: 47px;
+          }
         }
 
         @media (max-width: 1536px) {

@@ -22,7 +22,16 @@ a, a:hover , a:focus{
   font-weight: 700;
 }
 
- 
+.header-logo{
+  width: 13rem;
+  height: 3rem;
+} 
+@media (max-width:1536px) {
+  .header-logo{
+    width: 11rem;
+    height: 3rem;
+  } 
+}
 
 .ant-btn-primary,.ant-btn-primary:hover,.ant-btn-primary:focus{
   border:none;
