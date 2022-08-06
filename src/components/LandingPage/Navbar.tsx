@@ -213,6 +213,35 @@ export default function NavbarNew(props: {
                             </button>
                           )}
                         </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={() =>
+                                window.open(
+                                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1659792708/ML_WP_1_r2eldq.pdf"
+                                )
+                              }
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Whitepaper </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
                       </div>
                     </Menu.Items>
                   </Transition>

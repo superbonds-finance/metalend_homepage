@@ -229,7 +229,7 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="w-11/12  md:w-full md:mx-0  md:border-none bg-lender-pro rounded-2xl blur1 mx-auto my-0 mt-20 md:py-0 py-20 lender-section" style={{ maxWidth: '1600px' }}>
+      <div className="w-11/12  md:w-full md:mx-0  md:border-none bg-lender-pro  rounded-2xl blur1 mx-auto my-0 mt-20 md:py-0 py-20 lender-section" style={{ maxWidth: '1600px' }}>
         <div className="flex w-11/12 mx-auto justify-between xl:justify-between md:flex-col md:items-center" style={{ maxWidth: '1350px' }}>
           <div className="flex flex-col self-center">
             <img className="lender-img" src={lenderframe} alt="..." />
@@ -292,7 +292,9 @@ export const Metalend = () => {
             </BtnText>
             <text className="sb-fuel-text block mt-4">LNDR Token</text>
             <text className="sb-fuel-text block">Fuel of the Platform</text>
-            <button onClick={() => openModal()} className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <button onClick={() =>   window.open(
+                "https://metalend-fi.gitbook.io/metalend.fi/tokenomics"
+              )} className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
               <BtnText
                 transform
                 size="15px"
@@ -312,7 +314,9 @@ export const Metalend = () => {
             </BtnText>
             <text className="sb-fuel-text block mt-4">vLNDR Token</text>
             <text className="sb-fuel-text block">Owners of the Platform</text>
-            <button onClick={() => openModal()} className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <button onClick={() =>   window.open(
+                "https://metalend-fi.gitbook.io/metalend.fi/governance"
+              )} className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
               <BtnText
                 transform
                 size="15px"
