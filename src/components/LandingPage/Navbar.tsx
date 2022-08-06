@@ -94,7 +94,7 @@ export default function NavbarNew(props: {
   );
 
   return (
-    <Wrapper className="nav">
+    <Wrapper className="nav" >
       <input type="checkbox" id="nav-check" />
       <div className="nav-header cursor-pointer">
         <div className="nav-title pl-4" onClick={() => handlePush("/")}>

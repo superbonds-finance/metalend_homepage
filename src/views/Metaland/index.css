@@ -165,4 +165,14 @@ height: 504px;
     width: 100%;
     height: auto;
   }
+  .third-section-main{
+    margin-top: 1rem;
+  }
+  .third-section-card{
+    width: 339px;
+    height: 96px;
+  }
+  .third-section-card p ,.third-section-card img {
+   align-self: center;
+  }
 }

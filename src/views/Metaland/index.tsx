@@ -223,21 +223,21 @@ export const Metalend = () => {
       </div>
 
       <div className="flex justify-center mx-auto mt-20" style={{ maxWidth: '1350px' }}>
-        <div className="w-full mx-auto mt-20 2xl:w-10/12 ">
+        <div className="w-full mx-auto mt-20 2xl:w-10/12 md:text-center">
           <text className="supply-text block">Traders and</text>
           <text className="supply-text ml-2">Lenders</text>
         </div>
       </div>
 
-      <div className="w-11/12 bg-lender-pro rounded-2xl blur1 mx-auto my-0 mt-20 py-20 lender-section" style={{ maxWidth: '1600px' }}>
-        <div className="flex w-11/12 mx-auto justify-between xl:justify-between" style={{ maxWidth: '1350px' }}>
+      <div className="w-11/12  md:w-full md:mx-0  md:border-none bg-lender-pro rounded-2xl blur1 mx-auto my-0 mt-20 md:py-0 py-20 lender-section" style={{ maxWidth: '1600px' }}>
+        <div className="flex w-11/12 mx-auto justify-between xl:justify-between md:flex-col md:items-center" style={{ maxWidth: '1350px' }}>
           <div className="flex flex-col self-center">
             <img className="lender-img" src={lenderframe} alt="..." />
           </div>
 
-          <div className="  flex flex-col mx-4">
+          <div className="flex flex-col mx-4">
             <div
-              className="grid grid-cols-2 grid-rows-2 gap-4 pt-12 justify-items-center third-section-main"
+              className="grid grid-cols-2 grid-rows-2 gap-4 pt-12 md:gap-8 md:grid-cols-1 justify-items-center third-section-main"
             >
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg third-section-card">
                 <p >Generate a fixed income</p>
@@ -256,7 +256,7 @@ export const Metalend = () => {
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
             </div>
-            <div className="grid grid-cols-2 grid-rows-1 mt-6 gap-4 justify-items-center">
+            <div className="grid grid-cols-2 grid-rows-1 mt-6 gap-4 md:gap-8 md:grid-cols-1 justify-items-center">
               <button onClick={() => openModal()} className="w-10/12 learn-more-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
                 <BtnText
                   transform
@@ -284,15 +284,15 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="w-full bg-sb-fuel blur1  pb-56 pt-40  px-40 rounded-2xl ">
-        <div className="flex justify-between mx-auto " style={{ maxWidth: '1400px' }}>
-          <div className="flex flex-col self-center">
+      <div className="w-full bg-sb-fuel blur1  pb-56 pt-40  px-40 md:px-3 rounded-2xl ">
+        <div className="flex md:flex-col md:gap-10 justify-between mx-auto " style={{ maxWidth: '1400px' }}>
+          <div className="flex flex-col self-center md:text-center">
             <BtnText size="15px" weight="true" color="white" height="28px">
               POWERED BY
             </BtnText>
             <text className="sb-fuel-text block mt-4">LNDR Token</text>
             <text className="sb-fuel-text block">Fuel of the Platform</text>
-            <button onClick={() => openModal()} className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <button onClick={() => openModal()} className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
               <BtnText
                 transform
                 size="15px"
@@ -306,13 +306,13 @@ export const Metalend = () => {
             </button>
           </div>
 
-          <div className="flex flex-col self-center">
+          <div className="flex flex-col self-center  md:text-center">
             <BtnText size="15px" weight="true" color="white" height="28px">
               GOVERNED BY
             </BtnText>
             <text className="sb-fuel-text block mt-4">vLNDR Token</text>
             <text className="sb-fuel-text block">Owners of the Platform</text>
-            <button onClick={() => openModal()} className="button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <button onClick={() => openModal()} className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
               <BtnText
                 transform
                 size="15px"

@@ -104,7 +104,7 @@ export const Wrapper = styled.div`
   .top-div {
     background-color: #161d23;
     margin-left: 40px;
-    padding-top: 70px;
+    padding-top: 3px;
     height: 830px;
     @media (min-width: 1536px) {
       height: 1102px;
@@ -541,6 +541,9 @@ export const Wrapper = styled.div`
     @media (max-width: 1536px) {
       width: 292px;
     }
+    @media (max-width: 764px) {
+      width: 339px;
+    }
   }
 
   button.learn-more-1:hover {
@@ -571,6 +574,9 @@ export const Wrapper = styled.div`
     }
     @media (max-width: 1536px) {
       width: 292px;
+    }
+    @media (max-width: 764px) {
+      width: 339px;
     }
   }
   .button-learn-more {
@@ -760,6 +766,11 @@ export const Wrapper = styled.div`
       // left: 25px;
       // height: 600px;
       width: 100%;
+    }
+    @media (max-width: 769px) {
+      height:auto;
+      background-position-y: 97px;
+      padding-bottom:5rem;
     }
   }
 
