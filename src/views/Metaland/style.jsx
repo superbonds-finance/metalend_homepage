@@ -1019,7 +1019,7 @@ export const Wrapper = styled.div`
   .btn-hover-width {
     svg {
       color: #ffffff;
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       position: absolute;
       /* right: -5px;
         top: 12px; */
@@ -1035,8 +1035,8 @@ export const Wrapper = styled.div`
       }
       svg {
         display: block;
-        right: -24px;
-      top: -1px;
+        right: 12px;
+      top: 15px;
         animation-name: animation2;
         animation-duration: 0.6s;
         opacity: 1;
@@ -1046,26 +1046,26 @@ export const Wrapper = styled.div`
   .btn-hover-width-1 {
     svg {
       color: #52b4ff;
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       position: absolute;
-      right: -24px;
-      top: -1px;
+      right: 12px;
+      top: 15px;
       opacity: 0;
     }
 
     @keyframes animation2 {
       
       from {
-        right: -10px;
-        top: 8px;
+        right: 24px;
+        top: 24px;
         opacity: 0.1;
       }
       50%{
         opacity: 0.8;
       }
       to {
-        right: -24px;
-        top: -1px;
+        right: 12px;
+        top: 15px;
         opacity: 1;
       }
     }
