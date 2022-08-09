@@ -105,13 +105,14 @@ export const Wrapper = styled.div`
     background-color: #161d23;
     margin-left: 40px;
     padding-top: 3px;
-    height: 830px;
+    height: 782.5px;
     @media (min-width: 1536px) {
-      height: 1102px;
+      height: 978px;
     }
     @media (max-width: 1140px) {
       height: 1030px;
     }
+    
     @media (max-width: 769px) {
       height: 1030px;
     }
@@ -472,7 +473,7 @@ export const Wrapper = styled.div`
     }
 
     @media (max-width: 1536px) {
-      width: 292px;
+      width: 229px;
     }
     @media (max-width: 769px) {
       width: 100%;
@@ -506,7 +507,7 @@ export const Wrapper = styled.div`
       -webkit-mask-composite: xor;
     }
     @media (max-width: 1536px) {
-      width: 292px;
+      width: 229px;
     }
   }
 
@@ -519,7 +520,7 @@ export const Wrapper = styled.div`
     border-radius: 6px;
     width: 320px;
     padding: 10px 16px;
-
+    
     &::before {
       content: "";
       position: absolute;
