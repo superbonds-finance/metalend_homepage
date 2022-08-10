@@ -303,8 +303,8 @@ export const Metalend = () => {
                 height="32px"
               >
                 LEARN MORE
-                <FiArrowUpRight style={{ color: "#52B4FF" }} />
               </BtnText>
+                <FiArrowUpRight style={{ color: "#52B4FF" }} />
             </button>
           </div>
 
@@ -325,8 +325,8 @@ export const Metalend = () => {
                 height="32px"
               >
                 LEARN MORE
-                <FiArrowUpRight style={{ color: "#52B4FF" }} />
               </BtnText>
+                <FiArrowUpRight style={{ color: "#52B4FF" }} />
             </button>
           </div>
           {/* <div className="flex flex-col justify-center my-0 mx-3 sm:w-full">
