@@ -69,8 +69,8 @@ export const Metalend = () => {
                       height="32px"
                     >
                       BORROW
-                      <FiArrowUpRight style={{ color: "#52B4FF" }} />
                     </BtnText>
+                      <FiArrowUpRight style={{ color: "#52B4FF" }} />
                   </button>
                   <button onClick={() => openModal()} className="button-learn-more learn-more-3 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                     <BtnText
@@ -81,8 +81,8 @@ export const Metalend = () => {
                       height="32px"
                     >
                       LEND
-                      <FiArrowUpRight style={{ color: "#53DFDF" }} />
                     </BtnText>
+                      <FiArrowUpRight style={{ color: "#53DFDF" }} />
                   </button>
                   <button onClick={() => openModal()} className="button-learn-more learn-more-4 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
                     <BtnText
@@ -93,8 +93,8 @@ export const Metalend = () => {
                       height="32px"
                     >
                       TRADE
-                      <FiArrowUpRight style={{ color: "#FFFFFF" }} />
                     </BtnText>
+                      <FiArrowUpRight style={{ color: "#FFFFFF" }} />
                   </button>
                 </div>
               </div>
@@ -257,7 +257,7 @@ export const Metalend = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 grid-rows-1 mt-6 gap-4 md:gap-8 md:grid-cols-1 justify-items-center">
-              <button onClick={() => openModal()} className="w-10/12 learn-more-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
+              <button onClick={() => openModal()} className="w-10/12 learn-more-1 button-learn-more mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
                 <BtnText
                   transform
                   size="15px"
@@ -268,7 +268,7 @@ export const Metalend = () => {
                   Browse New Issuances
                 </BtnText>
               </button>
-              <button onClick={() => openModal()} className=" w-10/12  learn-more-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
+              <button onClick={() => openModal()} className=" w-10/12 button-learn-more learn-more-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
                 <BtnText
                   transform
                   size="15px"
@@ -303,8 +303,8 @@ export const Metalend = () => {
                 height="32px"
               >
                 LEARN MORE
-                <FiArrowUpRight style={{ color: "#52B4FF" }} />
               </BtnText>
+                <FiArrowUpRight style={{ color: "#52B4FF" }} />
             </button>
           </div>
 
@@ -325,8 +325,8 @@ export const Metalend = () => {
                 height="32px"
               >
                 LEARN MORE
-                <FiArrowUpRight style={{ color: "#52B4FF" }} />
               </BtnText>
+                <FiArrowUpRight style={{ color: "#52B4FF" }} />
             </button>
           </div>
           {/* <div className="flex flex-col justify-center my-0 mx-3 sm:w-full">

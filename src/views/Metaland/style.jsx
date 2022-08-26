@@ -520,7 +520,8 @@ export const Wrapper = styled.div`
     border-radius: 6px;
     width: 320px;
     padding: 10px 16px;
-    
+    /* transition: all 0.9s ease-in-out; */
+
     &::before {
       content: "";
       position: absolute;
@@ -1018,27 +1019,14 @@ export const Wrapper = styled.div`
   .btn-hover-width {
     svg {
       color: #ffffff;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       position: absolute;
-      right: -30px;
-      top: -4px;
+      /* right: -5px;
+        top: 12px; */
       opacity: 0;
+      display: none;
     }
-
-    @keyframes animation2 {
-      0% {
-        right: -30px;
-        top: -4px;
-      }
-      10% {
-        right: -5px;
-        top: 12px;
-      }
-      100% {
-        right: -30px;
-        top: -4px;
-      }
-    }
+ 
 
     &:hover {
       span {
@@ -1046,8 +1034,11 @@ export const Wrapper = styled.div`
         margin-left: -16px;
       }
       svg {
+        display: block;
+        right: 12px;
+      top: 15px;
         animation-name: animation2;
-        animation-duration: 0.3s;
+        animation-duration: 0.6s;
         opacity: 1;
       }
     }
@@ -1055,25 +1046,27 @@ export const Wrapper = styled.div`
   .btn-hover-width-1 {
     svg {
       color: #52b4ff;
-      font-size: 1.5rem;
+      font-size: 1.15rem;
       position: absolute;
-      right: -30px;
-      top: -4px;
+      right: 12px;
+      top: 15px;
       opacity: 0;
     }
 
     @keyframes animation2 {
-      0% {
-        right: -30px;
-        top: -4px;
+      
+      from {
+        right: 24px;
+        top: 24px;
+        opacity: 0.1;
       }
-      10% {
-        right: -5px;
-        top: 12px;
+      50%{
+        opacity: 0.8;
       }
-      100% {
-        right: -30px;
-        top: -4px;
+      to {
+        right: 12px;
+        top: 15px;
+        opacity: 1;
       }
     }
 
@@ -1084,7 +1077,7 @@ export const Wrapper = styled.div`
       }
       svg {
         animation-name: animation2;
-        animation-duration: 0.3s;
+        animation-duration: 0.6s;
         opacity: 1;
       }
     }
