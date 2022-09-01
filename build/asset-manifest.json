@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fdd154df.chunk.css",
+    "main.js": "/static/js/main.e569ba0a.chunk.js",
+    "main.js.map": "/static/js/main.e569ba0a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.75a1c68d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.75a1c68d.js.map",
+    "static/css/2.6563fe34.chunk.css": "/static/css/2.6563fe34.chunk.css",
+    "static/js/2.48224438.chunk.js": "/static/js/2.48224438.chunk.js",
+    "static/js/2.48224438.chunk.js.map": "/static/js/2.48224438.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.00c07c4f5deec572edaaf88c380e86a8.js": "/precache-manifest.00c07c4f5deec572edaaf88c380e86a8.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.6563fe34.chunk.css.map": "/static/css/2.6563fe34.chunk.css.map",
+    "static/css/main.fdd154df.chunk.css.map": "/static/css/main.fdd154df.chunk.css.map",
+    "static/js/2.48224438.chunk.js.LICENSE.txt": "/static/js/2.48224438.chunk.js.LICENSE.txt",
+    "static/media/FontsFree-Net-Akkurat-Bold.ttf": "/static/media/FontsFree-Net-Akkurat-Bold.cc4c7e3a.ttf",
+    "static/media/Gilroy-Bold.ttf": "/static/media/Gilroy-Bold.b381c2ab.ttf",
+    "static/media/Gilroy-ExtraBold.ttf": "/static/media/Gilroy-ExtraBold.b487bfc6.ttf",
+    "static/media/Gilroy-Light.ttf": "/static/media/Gilroy-Light.4b236c6c.ttf",
+    "static/media/Gotham-Book.woff2": "/static/media/Gotham-Book.6a185de4.woff2",
+    "static/media/Gotham-Book.woff": "/static/media/Gotham-Book.9565527b.woff",
+    "static/media/Gotham-Book.ttf": "/static/media/Gotham-Book.a8437603.ttf",
+    "static/media/bgRectangle.png": "/static/media/bgRectangle.68c6c187.png",
+    "static/media/bgSbFuel.png": "/static/media/bgSbFuel.a719bf78.png",
+    "static/media/index.css": "/static/media/builton.a4e80c1e.svg",
+    "static/media/circleframe.png": "/static/media/circleframe.cc0b7fba.png",
+    "static/media/landingPageTop.png": "/static/media/landingPageTop.44ffb5fa.png",
+    "static/media/landingPageTopMd.png": "/static/media/landingPageTopMd.58eefde4.png",
+    "static/media/landingPageTopSm.png": "/static/media/landingPageTopSm.23608dec.png",
+    "static/media/lender_frame.png": "/static/media/lender_frame.9cb9bcfb.png",
+    "static/media/polygon_3.png": "/static/media/polygon_3.f7c640d9.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.75a1c68d.js",
+    "static/css/2.6563fe34.chunk.css",
+    "static/js/2.48224438.chunk.js",
+    "static/css/main.fdd154df.chunk.css",
+    "static/js/main.e569ba0a.chunk.js"
+  ]
+}
