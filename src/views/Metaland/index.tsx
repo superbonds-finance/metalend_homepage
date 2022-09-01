@@ -50,7 +50,7 @@ export const Metalend = () => {
           <div className="pl-8 pt-28 xxl:pl-10 xxl:pt-0 pr-28 md:pt-20 md:pr-10 sm:pl-0 sm:pr-0 custom-row" >
             <div className="antd-col col1 flex flex-col w-full">
               <div className="w-full hero-section1">
-                <div className="main-title">{/* Metalend */}A Permissionless<br />
+                <div className="main-title py-3">{/* Metalend */}A Permissionless<br />
                   Credit Market for Everyone</div>
                 {/* <HeadeText>
                   Permisonless Credit Market for Everyone
