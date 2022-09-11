@@ -101,9 +101,9 @@ export default function NavbarNew(props: {
           <img
             className="inline-block header-logo"
             src={
-              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1659695430/Component_160_1_f06z27.svg"
+              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1662791909/CREDIT_X_LOGO_2_yiooie.png"
             }
-            alt="SuperStable"
+            alt="CreditX"
           />
         </div>
       </div>
@@ -201,12 +201,12 @@ export default function NavbarNew(props: {
                               <text className="menu-text"> Gitbook </text>
                               {active ? (
                                 <IoIosArrowForward
-                                  className="text-green-100 text-xl"
+                                  className="text-blue-120 text-xl"
                                   aria-hidden="true"
                                 />
                               ) : (
                                 <IoIosArrowForward
-                                  className="text-green-100 hidden"
+                                  className="text-blue-120 hidden"
                                   aria-hidden="true"
                                 />
                               )}
@@ -230,12 +230,12 @@ export default function NavbarNew(props: {
                               <text className="menu-text"> Whitepaper </text>
                               {active ? (
                                 <IoIosArrowForward
-                                  className="text-green-100 text-xl"
+                                  className="text-blue-120 text-xl"
                                   aria-hidden="true"
                                 />
                               ) : (
                                 <IoIosArrowForward
-                                  className="text-green-100 hidden"
+                                  className="text-blue-120 hidden"
                                   aria-hidden="true"
                                 />
                               )}
@@ -293,12 +293,12 @@ export default function NavbarNew(props: {
                               <text className="menu-text"> Twitter </text>
                               {active ? (
                                 <IoIosArrowForward
-                                  className="text-green-100 text-xl"
+                                  className="text-blue-120 text-xl"
                                   aria-hidden="true"
                                 />
                               ) : (
                                 <IoIosArrowForward
-                                  className="text-green-100 hidden"
+                                  className="text-blue-120 hidden"
                                   aria-hidden="true"
                                 />
                               )}
@@ -322,12 +322,12 @@ export default function NavbarNew(props: {
                               <text className="menu-text"> Telegram </text>
                               {active ? (
                                 <IoIosArrowForward
-                                  className="text-green-100 text-xl"
+                                  className="text-blue-120 text-xl"
                                   aria-hidden="true"
                                 />
                               ) : (
                                 <IoIosArrowForward
-                                  className="text-green-100 hidden"
+                                  className="text-blue-120 hidden"
                                   aria-hidden="true"
                                 />
                               )}
@@ -351,12 +351,12 @@ export default function NavbarNew(props: {
                               <text className="menu-text"> Discord </text>
                               {active ? (
                                 <IoIosArrowForward
-                                  className="text-green-100 text-xl"
+                                  className="text-blue-120 text-xl"
                                   aria-hidden="true"
                                 />
                               ) : (
                                 <IoIosArrowForward
-                                  className="text-green-100 hidden"
+                                  className="text-blue-120 hidden"
                                   aria-hidden="true"
                                 />
                               )}
@@ -380,12 +380,12 @@ export default function NavbarNew(props: {
                               <text className="menu-text"> Medium </text>
                               {active ? (
                                 <IoIosArrowForward
-                                  className="text-green-100 text-xl"
+                                  className="text-blue-120 text-xl"
                                   aria-hidden="true"
                                 />
                               ) : (
                                 <IoIosArrowForward
-                                  className="text-green-100 hidden"
+                                  className="text-blue-120 hidden"
                                   aria-hidden="true"
                                 />
                               )}
