@@ -12,55 +12,70 @@ import radialborder from "../../assets/Metalend/radialborder.png";
 import boxborder from "../../assets/Metalend/boxborder.png";
 import circleframe2 from "../../assets/Metalend/circleframe.png";
 import lenderframe from "../../assets/Metalend/lender_frame.png";
-import Modal from "./Modal"
+import Modal from "./Modal";
 import { useMediaPredicate } from "react-media-hook";
 // import { Col, Row } from "antd";
-import { BtnText, } from "../home/home.styled";
+import { BtnText } from "../home/home.styled";
 // import { useHistory } from "react-router-dom";
-import "./index.css"
-
+import "./index.css";
 
 import { FiArrowUpRight } from "react-icons/fi";
+import { AiFillTwitterCircle, AiFillMediumCircle } from "react-icons/ai";
+import { FaTelegram } from "react-icons/fa";
+import { IoLogoDiscord } from "react-icons/io5";
+import { SiSubstack } from "react-icons/si";
 
 export const Metalend = () => {
   // const history = useHistory();
-  let [isOpen, setIsOpen] = useState(false)
+  let [isOpen, setIsOpen] = useState(false);
   const lessThan1536 = useMediaPredicate("(max-width: 1536px)");
   const lessThan769 = useMediaPredicate("(max-width: 769px)");
 
-
   const closeModal = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
   const openModal = () => {
-    setIsOpen(true)
-  }
+    setIsOpen(true);
+  };
 
   return (
     <Wrapper>
-      <Modal closeModal={closeModal}
-        openModal={openModal} isOpen={isOpen} />
+      <Modal closeModal={closeModal} openModal={openModal} isOpen={isOpen} />
 
-      <div className="top-div select-none mx-0 my-auto hero-section" style={{ maxWidth: '1600px', margin: "0 auto", }}>
-
-        <div className="polygen1  2xxl:ml-10 sm:ml-2 relative" >
-          <img alt="bg-hexagon" className="blur1" src={lessThan769 ? polygon4Sm : (lessThan1536 ? polygon4Md : polygon4)} />
+      <div
+        className="top-div select-none mx-0 my-auto hero-section"
+        style={{ maxWidth: "1600px", margin: "0 auto" }}
+      >
+        <div className="polygen1  2xxl:ml-10 sm:ml-2 relative">
+          <img
+            alt="bg-hexagon"
+            className="blur1"
+            src={
+              lessThan769 ? polygon4Sm : lessThan1536 ? polygon4Md : polygon4
+            }
+          />
           {/* <img alt="bg-hexagon1" className="blur" src={polygon3} /> */}
-          <div className="pl-8 pt-28 xxl:pl-10 xxl:pt-0 pr-28 md:pt-20 md:pr-10 sm:pl-0 sm:pr-0 custom-row" >
+          <div className="pl-8 pt-28 xxl:pl-10 xxl:pt-0 pr-28 md:pt-20 md:pr-10 sm:pl-0 sm:pr-0 custom-row">
             <div className="antd-col col1 flex flex-col w-full">
               <div className="w-full hero-section1">
-                <div className="main-title py-3">{/* Metalend */}A Permissionless<br />
-                  Credit Market for Everyone</div>
+                <div className="main-title py-3">
+                  {/* Metalend */}A Permissionless
+                  <br />
+                  Credit Market for Everyone
+                </div>
                 {/* <HeadeText>
                   Permisonless Credit Market for Everyone
                 </HeadeText> */}
-                <HeadeText className='mt-8 mb-6'>
+                <HeadeText className="mt-8 mb-6">
                   100% of Revenue Reserved for the Community
                 </HeadeText>
 
                 <div className="flex justify-start mt-8 pt-0.5 w-auto sm:flex-col sm:items-center">
-                  <button onClick={() => openModal()} className="button-learn-more learn-more-2 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+                  <button
+                    onClick={() => openModal()}
+                    className="button-learn-more learn-more-2 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"
+                  >
                     <BtnText
                       transform
                       size="15px"
@@ -70,9 +85,12 @@ export const Metalend = () => {
                     >
                       BORROW
                     </BtnText>
-                      <FiArrowUpRight style={{ color: "#52B4FF" }} />
+                    <FiArrowUpRight style={{ color: "#52B4FF" }} />
                   </button>
-                  <button onClick={() => openModal()} className="button-learn-more learn-more-3 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+                  <button
+                    onClick={() => openModal()}
+                    className="button-learn-more learn-more-3 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"
+                  >
                     <BtnText
                       transform
                       size="15px"
@@ -82,9 +100,12 @@ export const Metalend = () => {
                     >
                       LEND
                     </BtnText>
-                      <FiArrowUpRight style={{ color: "#53DFDF" }} />
+                    <FiArrowUpRight style={{ color: "#53DFDF" }} />
                   </button>
-                  <button onClick={() => openModal()} className="button-learn-more learn-more-4 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+                  <button
+                    onClick={() => openModal()}
+                    className="button-learn-more learn-more-4 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"
+                  >
                     <BtnText
                       transform
                       size="15px"
@@ -94,7 +115,7 @@ export const Metalend = () => {
                     >
                       TRADE
                     </BtnText>
-                      <FiArrowUpRight style={{ color: "#FFFFFF" }} />
+                    <FiArrowUpRight style={{ color: "#FFFFFF" }} />
                   </button>
                 </div>
               </div>
@@ -118,11 +139,15 @@ export const Metalend = () => {
                   />
                 </div>
                 <div className="flex-col text-center hero-section-desc">
-                  <img className="mx-auto mb-8 hero-section-desc-img"
+                  <img
+                    className="mx-auto mb-8 hero-section-desc-img"
                     width={35}
-                    height={35} src={chart} alt="..." />
+                    height={35}
+                    src={chart}
+                    alt="..."
+                  />
                   <text className="text-center text-lg font-semibold">
-                    Raise funding with or{" "}<br />
+                    Raise funding with or <br />
                     <span style={{ color: "#01C0FC" }}>without</span> collateral
                   </text>
                   <img
@@ -139,8 +164,9 @@ export const Metalend = () => {
                     src={carbon}
                     alt="..."
                   />
-                  <text className="text-center text-lg font-semibold" >
-                    Independent 3rd party<br />
+                  <text className="text-center text-lg font-semibold">
+                    Independent 3rd party
+                    <br />
                     credit evaluations
                   </text>
                   <img
@@ -150,11 +176,14 @@ export const Metalend = () => {
                   />
                 </div>
 
-
                 <div className="flex-col text-center hero-section-desc2">
-                  <img className="mx-auto mb-6 hero-section-desc-img"
+                  <img
+                    className="mx-auto mb-6 hero-section-desc-img"
                     width={35}
-                    height={35} src={union} alt="..." />
+                    height={35}
+                    src={union}
+                    alt="..."
+                  />
                   <text className="text-center text-lg font-semibold">
                     Immediate secondary markets <br className="customBr" />
                     for all successful raises
@@ -171,39 +200,68 @@ export const Metalend = () => {
         </div>
       </div>
 
-      <div className="flex  mx-auto" style={{ maxWidth: '1350px' }}>
+      <div className="flex  mx-auto" style={{ maxWidth: "1350px" }}>
         <div className="w-full mx-auto mt-20 2xl:w-10/12 md:text-center">
           <text className="supply-text">Borrowers</text>
         </div>
       </div>
 
-      <div className="w-11/12 bg-rectangle blur1 mx-auto mt-14 xxl:mt-10 rounded-2xl md:w-full md:mx-0 md:mt-20 " style={{ maxWidth: '1600px' }}>
-        <div className="flex w-11/12 mx-auto xxl:justify-around justify-between xl:justify-between md:flex-col-reverse md:items-center" style={{ maxWidth: '1350px' }} >
+      <div
+        className="w-11/12 bg-rectangle blur1 mx-auto mt-14 xxl:mt-10 rounded-2xl md:w-full md:mx-0 md:mt-20 "
+        style={{ maxWidth: "1600px" }}
+      >
+        <div
+          className="flex w-11/12 mx-auto xxl:justify-around justify-between xl:justify-between md:flex-col-reverse md:items-center"
+          style={{ maxWidth: "1350px" }}
+        >
           <div className=" w-3/5 xxl:w-55  w-1300:w-60 md:w-11/12">
-            <div className="grid grid-cols-3 grid-rows-2 gap-4  pr:5 md:pr-0 md:gap-8 md:grid-cols-1 second-section-main" >
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card"   >
+            <div className="grid grid-cols-3 grid-rows-2 gap-4  pr:5 md:pr-0 md:gap-8 md:grid-cols-1 second-section-main">
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>Borrow For Your Specific Needs</p>
-                <img className="w-8 h-1 mt-auto md:mx-auto md:w-20" src={boxborder} alt="..." />
+                <img
+                  className="w-8 h-1 mt-auto md:mx-auto md:w-20"
+                  src={boxborder}
+                  alt="..."
+                />
               </div>
-              <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card" >
+              <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>Set Your Duration</p>
-                <img className="w-8 h-1 mt-auto md:mx-auto md:w-20" src={boxborder} alt="..." />
+                <img
+                  className="w-8 h-1 mt-auto md:mx-auto md:w-20"
+                  src={boxborder}
+                  alt="..."
+                />
               </div>
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>Set Your Rate</p>
-                <img className="w-8 h-1 mt-auto md:mx-auto md:w-20" src={boxborder} alt="..." />
+                <img
+                  className="w-8 h-1 mt-auto md:mx-auto md:w-20"
+                  src={boxborder}
+                  alt="..."
+                />
               </div>
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>Pledge Collateral (Optional)</p>
-                <img className="w-8 h-1 mt-auto md:mx-auto md:w-20" src={boxborder} alt="..." />
+                <img
+                  className="w-8 h-1 mt-auto md:mx-auto md:w-20"
+                  src={boxborder}
+                  alt="..."
+                />
               </div>
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg second-section-card">
                 <p>No Liquidation Risk</p>
-                <img className="w-8 h-1 mt-auto md:mx-auto md:w-20" src={boxborder} alt="..." />
+                <img
+                  className="w-8 h-1 mt-auto md:mx-auto md:w-20"
+                  src={boxborder}
+                  alt="..."
+                />
               </div>
             </div>
             <div className="w-80 md:w-full md:mb-20 md:mt-8">
-              <button onClick={() => openModal()} className="button-learn-more learn-more-new btn-hover-width-1  mt-9 w-38 md:w-full z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+              <button
+                onClick={() => openModal()}
+                className="button-learn-more learn-more-new btn-hover-width-1  mt-9 w-38 md:w-full z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"
+              >
                 <BtnText
                   transform
                   size="15px"
@@ -217,30 +275,41 @@ export const Metalend = () => {
             </div>
           </div>
           <div className="">
-            <img className="-mt-2 borrower-image" src={circleframe2} alt="..." />
+            <img
+              className="-mt-2 borrower-image"
+              src={circleframe2}
+              alt="..."
+            />
           </div>
         </div>
       </div>
 
-      <div className="flex justify-center mx-auto mt-20" style={{ maxWidth: '1350px' }}>
+      <div
+        className="flex justify-center mx-auto mt-20"
+        style={{ maxWidth: "1350px" }}
+      >
         <div className="w-full mx-auto mt-20 2xl:w-10/12 md:text-center">
           <text className="supply-text block">Traders and</text>
           <text className="supply-text ml-2">Lenders</text>
         </div>
       </div>
 
-      <div className="w-11/12  md:w-full md:mx-0  md:border-none bg-lender-pro  rounded-2xl blur1 mx-auto my-0 mt-20 md:py-0 py-20 lender-section" style={{ maxWidth: '1600px' }}>
-        <div className="flex w-11/12 mx-auto justify-between xl:justify-between md:flex-col md:items-center" style={{ maxWidth: '1350px' }}>
+      <div
+        className="w-11/12  md:w-full md:mx-0  md:border-none bg-lender-pro  rounded-2xl blur1 mx-auto my-0 mt-20 md:py-0 py-20 lender-section"
+        style={{ maxWidth: "1600px" }}
+      >
+        <div
+          className="flex w-11/12 mx-auto justify-between xl:justify-between md:flex-col md:items-center"
+          style={{ maxWidth: "1350px" }}
+        >
           <div className="flex flex-col self-center">
             <img className="lender-img" src={lenderframe} alt="..." />
           </div>
 
           <div className="flex flex-col mx-4">
-            <div
-              className="grid grid-cols-2 grid-rows-2 gap-4 pt-12 md:gap-8 md:grid-cols-1 justify-items-center third-section-main"
-            >
+            <div className="grid grid-cols-2 grid-rows-2 gap-4 pt-12 md:gap-8 md:grid-cols-1 justify-items-center third-section-main">
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg third-section-card">
-                <p >Generate a fixed income</p>
+                <p>Generate a fixed income</p>
                 <img className="w-8 h-1 mt-auto" src={boxborder} alt="..." />
               </div>
               <div className="bg-gray-300 flex flex-col rounded-xl text-lg third-section-card">
@@ -257,7 +326,10 @@ export const Metalend = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 grid-rows-1 mt-6 gap-4 md:gap-8 md:grid-cols-1 justify-items-center">
-              <button onClick={() => openModal()} className="w-10/12 learn-more-1 button-learn-more mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
+              <button
+                onClick={() => openModal()}
+                className="w-10/12 learn-more-1 button-learn-more mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"
+              >
                 <BtnText
                   transform
                   size="15px"
@@ -268,7 +340,10 @@ export const Metalend = () => {
                   Browse New Issuances
                 </BtnText>
               </button>
-              <button onClick={() => openModal()} className=" w-10/12 button-learn-more learn-more-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"  >
+              <button
+                onClick={() => openModal()}
+                className=" w-10/12 button-learn-more learn-more-1  mt-9 rounded-md inline-block text-center text-sm  whitespace-nowrap"
+              >
                 <BtnText
                   transform
                   size="15px"
@@ -285,16 +360,24 @@ export const Metalend = () => {
       </div>
 
       <div className="w-full bg-sb-fuel blur1  pb-56 pt-40  px-40 md:px-3 rounded-2xl ">
-        <div className="flex md:flex-col md:gap-10 justify-between mx-auto " style={{ maxWidth: '1400px' }}>
+        <div
+          className="flex md:flex-col md:gap-10 justify-between mx-auto "
+          style={{ maxWidth: "1400px" }}
+        >
           <div className="flex flex-col self-center md:text-center">
             <BtnText size="15px" weight="true" color="white" height="28px">
               POWERED BY
             </BtnText>
             <text className="sb-fuel-text block mt-4">LNDR Token</text>
             <text className="sb-fuel-text block">Fuel of the Platform</text>
-            <button onClick={() =>   window.open(
-                "https://metalend-fi.gitbook.io/metalend.fi/tokenomics"
-              )} className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <button
+              onClick={() =>
+                window.open(
+                  "https://metalend-fi.gitbook.io/metalend.fi/tokenomics"
+                )
+              }
+              className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"
+            >
               <BtnText
                 transform
                 size="15px"
@@ -304,7 +387,7 @@ export const Metalend = () => {
               >
                 LEARN MORE
               </BtnText>
-                <FiArrowUpRight style={{ color: "#52B4FF" }} />
+              <FiArrowUpRight style={{ color: "#52B4FF" }} />
             </button>
           </div>
 
@@ -314,9 +397,14 @@ export const Metalend = () => {
             </BtnText>
             <text className="sb-fuel-text block mt-4">vLNDR Token</text>
             <text className="sb-fuel-text block">Owners of the Platform</text>
-            <button onClick={() =>   window.open(
-                "https://metalend-fi.gitbook.io/metalend.fi/governance"
-              )} className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap">
+            <button
+              onClick={() =>
+                window.open(
+                  "https://metalend-fi.gitbook.io/metalend.fi/governance"
+                )
+              }
+              className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"
+            >
               <BtnText
                 transform
                 size="15px"
@@ -326,7 +414,7 @@ export const Metalend = () => {
               >
                 LEARN MORE
               </BtnText>
-                <FiArrowUpRight style={{ color: "#52B4FF" }} />
+              <FiArrowUpRight style={{ color: "#52B4FF" }} />
             </button>
           </div>
           {/* <div className="flex flex-col justify-center my-0 mx-3 sm:w-full">
@@ -389,9 +477,137 @@ export const Metalend = () => {
         </div>
       </div>
 
+      <footer
+        className="footer-div w-9/12  sm:w-full mx-auto my-0 py-4 select-none "
+        style={{ maxWidth: "1600px" }}
+      >
+        {/* <img
+            className="inline-block header-logo"
+            src={
+              "https://res.cloudinary.com/drr1rnoxf/image/upload/v1659695430/Component_160_1_f06z27.svg"
+            }
+            alt="SuperStable"
+          /> */}
+
+        <div className="flex justify-around sm:flex-wrap sm:gap-2 pb-10">
+          <div className="flex flex-col gap-2">
+            <text className="footer-header">Key Concepts</text>
+            <div className="flex flex-col">
+              <text
+                className="footer-option link-div"
+                onClick={() =>
+                  window.open(
+                    "https://metalend-fi.gitbook.io/metalend.fi/how-does-metalend-work#what-are-the-zcb-markets-on-metalend"
+                  )
+                }
+              >
+                ZCB Markets
+              </text>
+              <text
+                className="footer-option link-div"
+                onClick={() =>
+                  window.open(
+                    "Borrowers: https://metalend-fi.gitbook.io/metalend.fi/how-does-metalend-work/borrowers"
+                  )
+                }
+              >
+                MLEx
+              </text>
+              <text
+                className="footer-option link-div"
+                onClick={() =>
+                  window.open(
+                    "https://metalend-fi.gitbook.io/metalend.fi/how-does-metalend-work/borrowers"
+                  )
+                }
+              >
+                Borrowers
+              </text>
+              <text
+                className="footer-option link-div"
+                onClick={() =>
+                  window.open(
+                    "https://metalend-fi.gitbook.io/metalend.fi/governance"
+                  )
+                }
+              >
+                Governance
+              </text>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <text className="footer-header">Resources</text>
+            <div className="flex flex-col">
+              <text
+                className="footer-option link-div"
+                onClick={() =>
+                  window.open("https://metalend-fi.gitbook.io/metalend.fi/")
+                }
+              >
+                Gitbook
+              </text>
+              <text
+                className="footer-option link-div"
+                onClick={() =>
+                  window.open(
+                    "https://res.cloudinary.com/drr1rnoxf/image/upload/v1659792708/ML_WP_1_r2eldq.pdf"
+                  )
+                }
+              >
+                WhitePaper
+              </text>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <text className="footer-header">Community</text>
+            <div className="flex flex-col gap-1">
+              <div
+                className="flex link-div gap-1"
+                onClick={() => window.open("https://twitter.com/MetaLend_fi")}
+              >
+                <AiFillTwitterCircle className="footer-icon self-center" />
+                <text className="footer-option">Twitter</text>
+              </div>
+
+              <div
+                className="flex link-div gap-1"
+                onClick={() => window.open("https://t.me/metalend_fi")}
+              >
+                <FaTelegram className="footer-icon self-center" />
+                <text className="footer-option">Telegram</text>
+              </div>
+
+              <div
+                className="flex link-div gap-1"
+                onClick={() => window.open("https://discord.gg/JPNTpy5m2x")}
+              >
+                <IoLogoDiscord className="footer-icon self-center" />
+                <text className="footer-option">Discord</text>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <text className="footer-header">Learn</text>
+            <div
+              className="flex link-div gap-1"
+              onClick={() => window.open("https://medium.com/@MetaLend_fi")}
+            >
+              <AiFillMediumCircle className="footer-icon self-center" />
+              <text className="footer-option">Medium</text>
+            </div>
+
+            <div
+              className="flex link-div gap-1"
+              onClick={() => window.open("https://metalend.substack.com/")}
+            >
+              <SiSubstack className="footer-icon self-center" />
+              <text className="footer-option">Substack</text>
+            </div>
+          </div>
+        </div>
+      </footer>
       <GlobalStyle />
     </Wrapper>
   );
 };
-
-
