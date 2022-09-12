@@ -497,7 +497,7 @@ export const Metalend = () => {
                 className="footer-option link-div"
                 onClick={() =>
                   window.open(
-                    "https://metalend-fi.gitbook.io/metalend.fi/how-does-metalend-work#what-are-the-zcb-markets-on-metalend"
+                    "https://creditx.gitbook.io/creditx/how-does-creditx-work#what-are-the-zcb-markets-on-creditx"
                   )
                 }
               >
@@ -507,17 +507,17 @@ export const Metalend = () => {
                 className="footer-option link-div"
                 onClick={() =>
                   window.open(
-                    "Borrowers: https://metalend-fi.gitbook.io/metalend.fi/how-does-metalend-work/borrowers"
+                    "https://creditx.gitbook.io/creditx/how-does-creditx-work#what-is-lndex"
                   )
                 }
               >
-                MLEx
+                LNDEx
               </text>
               <text
                 className="footer-option link-div"
                 onClick={() =>
                   window.open(
-                    "https://metalend-fi.gitbook.io/metalend.fi/how-does-metalend-work/borrowers"
+                    "https://creditx.gitbook.io/creditx/how-does-creditx-work/borrowers"
                   )
                 }
               >
@@ -527,7 +527,7 @@ export const Metalend = () => {
                 className="footer-option link-div"
                 onClick={() =>
                   window.open(
-                    "https://metalend-fi.gitbook.io/metalend.fi/governance"
+                    "https://creditx.gitbook.io/creditx/governance"
                   )
                 }
               >
@@ -542,7 +542,7 @@ export const Metalend = () => {
               <text
                 className="footer-option link-div"
                 onClick={() =>
-                  window.open("https://metalend-fi.gitbook.io/metalend.fi/")
+                  window.open("https://creditx.gitbook.io/creditx/")
                 }
               >
                 Gitbook
@@ -564,7 +564,7 @@ export const Metalend = () => {
             <div className="flex flex-col gap-1">
               <div
                 className="flex link-div gap-1"
-                onClick={() => window.open("https://twitter.com/MetaLend_fi")}
+                onClick={() => window.open("https://twitter.com/credit_ex")}
               >
                 <AiFillTwitterCircle className="footer-icon self-center" />
                 <text className="footer-option">Twitter</text>
@@ -572,7 +572,7 @@ export const Metalend = () => {
 
               <div
                 className="flex link-div gap-1"
-                onClick={() => window.open("https://t.me/metalend_fi")}
+                onClick={() => window.open("https://t.me/creditX_fi")}
               >
                 <FaTelegram className="footer-icon self-center" />
                 <text className="footer-option">Telegram</text>
@@ -591,7 +591,7 @@ export const Metalend = () => {
             <text className="footer-header">Learn</text>
             <div
               className="flex link-div gap-1"
-              onClick={() => window.open("https://medium.com/@MetaLend_fi")}
+              onClick={() => window.open("https://medium.com/@CreditX")}
             >
               <AiFillMediumCircle className="footer-icon self-center" />
               <text className="footer-option">Medium</text>
@@ -599,7 +599,7 @@ export const Metalend = () => {
 
             <div
               className="flex link-div gap-1"
-              onClick={() => window.open("https://metalend.substack.com/")}
+              onClick={() => window.open("https://creditx.substack.com/")}
             >
               <SiSubstack className="footer-icon self-center" />
               <text className="footer-option">Substack</text>
