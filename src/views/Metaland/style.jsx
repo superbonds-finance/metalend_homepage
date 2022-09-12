@@ -100,6 +100,44 @@ export const HeadeText = styled.text`
 
 export const Wrapper = styled.div`
 
+.footer-header{
+  font-family: Archivo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 28px;
+  color: white;
+}
+.footer-option{
+  font-family: Archivo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 28px;
+ 
+  cursor:pointer;
+}
+// .footer-option:hover{
+//   color:white;
+// }
+.link-div{
+  color: #848E9C;
+}
+
+.footer-icon{
+  font-family: Archivo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+   
+  cursor:pointer;
+}
+.link-div:hover{
+  color:white;
+}
+
+
   background: #161d23;
   .top-div {
     background-color: #161d23;
