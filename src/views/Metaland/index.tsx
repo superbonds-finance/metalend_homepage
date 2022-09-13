@@ -373,7 +373,7 @@ export const Metalend = () => {
             <button
               onClick={() =>
                 window.open(
-                  "https://metalend-fi.gitbook.io/metalend.fi/tokenomics"
+                  "https://creditx.gitbook.io/creditx/tokenomics"
                 )
               }
               className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"
@@ -400,7 +400,7 @@ export const Metalend = () => {
             <button
               onClick={() =>
                 window.open(
-                  "https://metalend-fi.gitbook.io/metalend.fi/governance"
+                  "https://creditx.gitbook.io/creditx/governance"
                 )
               }
               className="md:mx-auto md:my-0 md:mt-5  button-learn-more learn-more btn-hover-width  mt-9 w-38 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"
