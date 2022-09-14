@@ -189,7 +189,7 @@ export default function NavbarNew(props: {
                             <button
                               onClick={() =>
                                 window.open(
-                                  "https://metalend-fi.gitbook.io/metalend.fi/"
+                                  "https://creditx.gitbook.io/creditx/"
                                 )
                               }
                               className={`${
@@ -218,7 +218,7 @@ export default function NavbarNew(props: {
                             <button
                               onClick={() =>
                                 window.open(
-                                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1659792708/ML_WP_1_r2eldq.pdf"
+                                  "https://s3.ap-southeast-1.amazonaws.com/creditx.fi/CX+WP1.pdf"
                                 )
                               }
                               className={`${
@@ -281,7 +281,7 @@ export default function NavbarNew(props: {
                             <button
                               onClick={() =>
                                 window.open(
-                                  "https://twitter.com/MetaLend_fi"
+                                  "https://twitter.com/credit_ex"
                                 )
                               }
                               className={`${
@@ -311,7 +311,7 @@ export default function NavbarNew(props: {
                           {({ active }) => (
                             <button
                               onClick={() =>
-                                window.open("https://t.me/metalend_fi")
+                                window.open("https://t.me/creditX_fi")
                               }
                               className={`${
                                 active
@@ -369,7 +369,7 @@ export default function NavbarNew(props: {
                           {({ active }) => (
                             <button
                               onClick={() =>
-                                window.open("https://medium.com/@MetaLend_fi")
+                                window.open("https://medium.com/@CreditX")
                               }
                               className={`${
                                 active
