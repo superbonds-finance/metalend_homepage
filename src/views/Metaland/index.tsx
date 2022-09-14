@@ -551,7 +551,7 @@ export const Metalend = () => {
                 className="footer-option link-div"
                 onClick={() =>
                   window.open(
-                    "https://res.cloudinary.com/drr1rnoxf/image/upload/v1659792708/ML_WP_1_r2eldq.pdf"
+                    "https://s3.ap-southeast-1.amazonaws.com/creditx.fi/CX+WP1.pdf"
                   )
                 }
               >
