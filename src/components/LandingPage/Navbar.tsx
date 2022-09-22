@@ -3,7 +3,7 @@ import React, { Fragment, useState, useEffect } from "react";
 // import { Settings } from "../Settings";
 // import { LABELS } from "../../constants";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { useHistory,Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { TextDoc } from "../Navbar/navbar-styled";
 // import { WalletMultiButton } from "@solana/wallet-adapter-ant-design";
 import "./index.css";
@@ -13,7 +13,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { Wrapper } from "./styled";
 import { IoIosArrowForward } from "react-icons/io";
 import { Menu, Transition } from "@headlessui/react";
-import "./index.css"
+import "./index.css";
 
 export default function NavbarNew(props: {
   left?: JSX.Element;
@@ -94,7 +94,7 @@ export default function NavbarNew(props: {
   );
 
   return (
-    <Wrapper className="nav" >
+    <Wrapper className="nav">
       <input type="checkbox" id="nav-check" />
       <div className="nav-header cursor-pointer">
         <div className="nav-title pl-4" onClick={() => handlePush("/")}>
@@ -108,7 +108,6 @@ export default function NavbarNew(props: {
         </div>
       </div>
 
-       
       <div className="nav-btn">
         <label htmlFor="nav-check">
           <span></span>
@@ -122,10 +121,8 @@ export default function NavbarNew(props: {
           "nav-links  text-center" + (props.showWinUp ? " space_top" : "")
         }
       >
-        {path === "/" || path === "/fd"|| path=== "/sb" ?  (
+        {path === "/" || path === "/fd" || path === "/sb" ? (
           <>
-            
-
             <Menu as="div" className="relative inline-block text-left">
               {({ open }) => (
                 <>
@@ -137,7 +134,7 @@ export default function NavbarNew(props: {
                         }   nav-title`}
                       >
                         <span className="text-sm tracking-wide menu-options-text">
-                          Docs
+                          PRODUCT
                         </span>
                       </button>
                     </Menu.Button>
@@ -151,7 +148,189 @@ export default function NavbarNew(props: {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute  z-40 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute  z-40 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      {/* <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={() =>
+                                window.open(
+                                  "https://res.cloudinary.com/drr1rnoxf/image/upload/v1649780638/SuperBonds_Audit_Report_caey88.pdf"
+                                )
+                              }
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text">Borrow</text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-green-100 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-green-100 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div> */}
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={() =>
+                                window.open(
+                                  "https://devnet.creditx.fi/borrowers",
+                                  "_blank"
+                                )
+                              }
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Borrow </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-blue-120 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-blue-120 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={() =>
+                                window.open(
+                                  "https://devnet.creditx.fi/active-subscription-pools",
+                                  "_blank"
+                                )
+                              }
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Lend </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-blue-120 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-blue-120 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={() =>
+                                window.open(
+                                  "https://devnet.creditx.fi/auction",
+                                  "_blank"
+                                )
+                              }
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> NFT Auction </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-blue-120 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-blue-120 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={() =>
+                                window.open("https://dex.creditx.fi/", "_blank")
+                              }
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  menu-options justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> LNDEX </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-blue-120 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-blue-120 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                </>
+              )}
+            </Menu>
+
+            <Menu as="div" className="relative inline-block text-left">
+              {({ open }) => (
+                <>
+                  <div>
+                    <Menu.Button>
+                      <button
+                        className={`${
+                          open ? "menu-button-hover menu-button" : "menu-button"
+                        }   nav-title`}
+                      >
+                        <span className="text-sm tracking-wide menu-options-text">
+                          DEVELOPERS
+                        </span>
+                      </button>
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute  z-40 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {/* <div className="px-1 py-1" style={{ borderTop: "none" }}>
                         <Menu.Item>
                           {({ active }) => (
@@ -249,7 +428,7 @@ export default function NavbarNew(props: {
               )}
             </Menu>
 
-            <Menu as="div" className="relative inline-block text-left mr-10">
+            <Menu as="div" className="relative inline-block text-left ">
               {({ open }) => (
                 <>
                   <div>
@@ -260,7 +439,7 @@ export default function NavbarNew(props: {
                         }   nav-title`}
                       >
                         <span className="text-sm tracking-wide menu-options-text">
-                          Community
+                          COMMUNITY
                         </span>
                       </button>
                     </Menu.Button>
@@ -274,15 +453,13 @@ export default function NavbarNew(props: {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute  z-40 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute  z-40 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="px-1 py-1" style={{ borderTop: "none" }}>
                         <Menu.Item>
                           {({ active }) => (
                             <button
                               onClick={() =>
-                                window.open(
-                                  "https://twitter.com/credit_ex"
-                                )
+                                window.open("https://twitter.com/credit_ex")
                               }
                               className={`${
                                 active
@@ -398,7 +575,162 @@ export default function NavbarNew(props: {
                 </>
               )}
             </Menu>
-  
+
+            <Menu as="div" className="relative inline-block text-left mr-10">
+              {({ open }) => (
+                <>
+                  <div>
+                    <Menu.Button>
+                      <button
+                        className={`${
+                          open ? "menu-button-hover menu-button" : "menu-button"
+                        }   nav-title`}
+                      >
+                        <span className="text-sm tracking-wide menu-options-text">
+                          GOVERNANCE
+                        </span>
+                      </button>
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute  z-40 mt-2 w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-gray-120 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={() =>
+                                window.open(
+                                  "https://devnet.creditx.fi/dao",
+                                  "_blank"
+                                )
+                              }
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text">
+                                {" "}
+                                Staking & Rewards{" "}
+                              </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-blue-120 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-blue-120 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={() =>
+                                window.open(
+                                  "https://devnet.creditx.fi/governance",
+                                  "_blank"
+                                )
+                              }
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text">
+                                {" "}
+                                Create Proposal{" "}
+                              </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-blue-120 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-blue-120 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                      <div className="px-1 py-1" style={{ borderTop: "none" }}>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={() =>
+                                window.open(
+                                  "https://devnet.creditx.fi/top-stakers",
+                                  "_blank"
+                                )
+                              }
+                              className={`${
+                                active
+                                  ? "bg-gray-130 text-white"
+                                  : "text-gray-110"
+                              }   flex  justify-between w-full items-center rounded-md px-2 py-3 text-sm`}
+                            >
+                              <text className="menu-text"> Top Stakers </text>
+                              {active ? (
+                                <IoIosArrowForward
+                                  className="text-blue-120 text-xl"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <IoIosArrowForward
+                                  className="text-blue-120 hidden"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>{" "}
+                    </Menu.Items>
+                  </Transition>
+                </>
+              )}
+            </Menu>
+
+            <button
+              onClick={() =>
+                window.open(
+                  "https://devnet.creditx.fi/active-subscription-pools",
+                  "_blank"
+                )
+              }
+              className="button-learn-more learn-more-2 btn-hover-width  w-40 z-40 rounded-md inline-block text-center text-sm  whitespace-nowrap"
+            >
+              <BtnText
+                transform
+                size="15px"
+                weight="true"
+                color="white"
+                height="32px"
+              >
+                Launch app
+              </BtnText>
+              <FiArrowUpRight style={{ color: "#52B4FF" }} />
+            </button>
+
             {/* {connected && (
               <button
                 className={
@@ -430,13 +762,10 @@ export default function NavbarNew(props: {
               <i className="fas fa-cog fa-lg text-gray-600 cursor-pointer ml-2 mt-1 md:mt-4" />
             </Popover> */}
           </>
-        ):
-        (
+        ) : (
           <div className="nav-links-outer-nav">{Links}</div>
-        ) 
-        }
+        )}
       </div>
-    
     </Wrapper>
   );
 }
